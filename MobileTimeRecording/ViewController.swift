@@ -11,7 +11,9 @@ import UIKit
 class ViewController: UIViewController
 {
     @IBOutlet var timeLabel: UILabel!
+    
     var timer : NSTimer!
+    var startTime : NSDate!
     var elapsedTime = 0
     
     
@@ -31,34 +33,50 @@ class ViewController: UIViewController
     
     /*
         Function is called when pressing play button.
-        Starts the time recording thread, visualizing the timer.
+        Toggles time recording functionality.
         
-        @methodtype
-        @pre
-        @post
+        @methodtype Command
+        @pre -
+        @post -
     */
-    @IBAction func startTimeRecording(sender: AnyObject)
+    @IBAction func toggleTimeRecording(sender: AnyObject)
     {
-        if(self.timer == nil)
+        if(startTime == nil)
         {
-            timeLabel.text = formatTimeToString(0)
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+            startTime = NSDate()
+            startVisualizingTimer()
         }
         else
         {
-            timer.invalidate()
-            timer = nil
-            elapsedTime = 0
+            // todo: some database stuff...
+            stopVisualizingTimer()
+            startTime = nil
         }
     }
     
     
     /*
-        Update function for timer, called every time interval.
+        Visualizes elapsed time on screen.
     
-        @methodtype command
-        @pre Initialized thread object
-        @post Thread is running
+        @methodtype Command
+        @pre -
+        @post Running timer
+    */
+    func startVisualizingTimer()
+    {
+        elapsedTime = 0
+        timeLabel.text = formatTimeToString(elapsedTime)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+    }
+    
+    
+    /*
+        Callback function for timer.
+        Updates elapsed time along with ui.
+    
+        @methodtype Command
+        @pre -
+        @post Update on ui and elapsed time
     */
     func updateTimer()
     {
@@ -68,10 +86,27 @@ class ViewController: UIViewController
     
     
     /*
-        Formats a given time interval to its string representation e.g.
+        Stop Visualization.
+    
+        @methodtype Command
+        @pre Valid timer object
+        @post Invalidated and deleted timer
+    */
+    func stopVisualizingTimer()
+    {
+        if(timer != nil)
+        {
+            timer.invalidate()
+            timer = nil
+        }
+    }
+    
+    
+    /*
+        Formats a given time interval in seconds to a string representation e.g.
         128 -> 2 m 08 s
     
-        @methodtype convert
+        @methodtype Convert
         @pre Time interval in seconds
         @post Converted string, representing the time
     */
@@ -80,20 +115,7 @@ class ViewController: UIViewController
         var minutes = elapsedTime/60
         var seconds = elapsedTime%60
         
-        var secondsString = ""
-        var minutesString = ""
-        
-        if (seconds/10 == 0)
-        {
-            secondsString = "0\(seconds)"
-        }
-        else
-        {
-            secondsString = "\(seconds)"
-        }
-        minutesString = "\(minutes)"
-        
-        return minutesString + " m " + secondsString + " s"
+        return String(format: "%d m %0.2d s", minutes, seconds)
     }
 }
 
