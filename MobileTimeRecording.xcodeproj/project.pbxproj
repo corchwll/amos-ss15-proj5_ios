@@ -10,6 +10,8 @@
 		E45C447B1AED83510044D25F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; };
 		E45C447C1AED835B0044D25F /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E45C447F1AED83700044D25F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C447E1AED83700044D25F /* Project.swift */; };
+		E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
+		E45C44921AED8AB10044D25F /* SQLiteDAOFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteDAOFactory.swift */; };
 		E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA51AE531EB006BB173 /* AppDelegate.swift */; };
 		E4A16AA81AE531EB006BB173 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA71AE531EB006BB173 /* ViewController.swift */; };
 		E4A16AAB1AE531EC006BB173 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A16AA91AE531EC006BB173 /* Main.storyboard */; };
@@ -86,6 +88,8 @@
 /* Begin PBXFileReference section */
 		E45C44651AED83310044D25F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
+		E45C44911AED8AB10044D25F /* SQLiteDAOFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDAOFactory.swift; sourceTree = "<group>"; };
 		E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeRecording.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16AA41AE531EB006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4A16AA51AE531EB006BB173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		E45C448A1AED8A1D0044D25F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E45C44911AED8AB10044D25F /* SQLiteDAOFactory.swift */,
+				E45C448F1AED8A350044D25F /* ProjectDAO.swift */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		E4A16A971AE531EB006BB173 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +172,7 @@
 		E4A16AA21AE531EB006BB173 /* MobileTimeRecording */ = {
 			isa = PBXGroup;
 			children = (
+				E45C448A1AED8A1D0044D25F /* Database */,
 				E45C447D1AED83610044D25F /* Model */,
 				E4A16AA51AE531EB006BB173 /* AppDelegate.swift */,
 				E4A16AA71AE531EB006BB173 /* ViewController.swift */,
@@ -343,6 +357,8 @@
 			files = (
 				E4A16AA81AE531EB006BB173 /* ViewController.swift in Sources */,
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
+				E45C44921AED8AB10044D25F /* SQLiteDAOFactory.swift in Sources */,
+				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
 				E45C447F1AED83700044D25F /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
