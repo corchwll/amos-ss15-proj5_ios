@@ -11,10 +11,14 @@ import Foundation
 
 class ProjectDAO
 {
-    func getProject()->Project
+    func addProject(project: Project)
     {
-        let db = SQLiteDAOFactory.sqliteDatabase
+    }
+    
+    
+    func getProjects()->[Project]
+    {
         //todo: some query stuff
-        return Project(id: 1, name: "test")
+        return []
     }
 }
