@@ -9,9 +9,11 @@
 import UIKit
 
 
-class ViewController: UIViewController
+class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet var timeLabel: UILabel!
+    @IBOutlet weak var projectsList: UITableView!
+
     
     var timer : NSTimer!
     var startTime : NSDate!
@@ -21,6 +23,7 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        // self.projectsList.registerClass(ProjectsListCell.self, forCellReuseIdentifier: "cell")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -30,8 +33,25 @@ class ViewController: UIViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete method implementation.
+        // Return the number of rows in the section.
+        return 2
+    }
+
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: ProjectsListCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectsListCell
+        
+        cell.projectID.text = "123"
+        cell.projectName.text = "test"
+
+        return cell
+    }
+
+
     /*
         Function is called when pressing play button.
         Toggles time recording functionality.
