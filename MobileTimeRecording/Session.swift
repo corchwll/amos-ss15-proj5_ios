@@ -11,12 +11,12 @@ import Foundation
 
 class Session
 {
-    var id: Int64
+    var id: Int
     var startTime: NSDate
     var endTime: NSDate
     
     
-    init(id: Int64, startTime: NSDate, endTime: NSDate)
+    init(id: Int, startTime: NSDate, endTime: NSDate)
     {
         self.id = id
         self.startTime = startTime

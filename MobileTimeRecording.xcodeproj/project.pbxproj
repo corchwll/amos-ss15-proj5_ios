@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
+		E41B9C361AEF995C00EE9CFD /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45E12441AEE43C20081E23C /* db.sqlite3 */; };
 		E42BF14D1AEEF61400337385 /* ProjectsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectsListCell.swift */; };
 		E45C447B1AED83510044D25F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; };
 		E45C447C1AED835B0044D25F /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -77,6 +78,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E41B9C351AEF994D00EE9CFD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				E41B9C361AEF995C00EE9CFD /* db.sqlite3 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E45C44781AED83410044D25F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -97,7 +108,7 @@
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
 		E45C44911AED8AB10044D25F /* SQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
-		E45E12441AEE43C20081E23C /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
+		E45E12441AEE43C20081E23C /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite3; path = ../db.sqlite3; sourceTree = "<group>"; };
 		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeRecording.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16AA41AE531EB006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -177,7 +188,6 @@
 				E4A16AA21AE531EB006BB173 /* MobileTimeRecording */,
 				E4A16AB81AE531EC006BB173 /* MobileTimeRecordingTests */,
 				E4A16AA11AE531EB006BB173 /* Products */,
-				E45E12441AEE43C20081E23C /* db.sqlite3 */,
 				E45C44651AED83310044D25F /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
@@ -209,6 +219,7 @@
 		E4A16AA31AE531EB006BB173 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E45E12441AEE43C20081E23C /* db.sqlite3 */,
 				E4A16AA41AE531EB006BB173 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -242,6 +253,7 @@
 				E4A16A9D1AE531EB006BB173 /* Frameworks */,
 				E4A16A9E1AE531EB006BB173 /* Resources */,
 				E45C44781AED83410044D25F /* CopyFiles */,
+				E41B9C351AEF994D00EE9CFD /* CopyFiles */,
 			);
 			buildRules = (
 			);

@@ -10,11 +10,11 @@ import Foundation
 
 class Project
 {
-    var id: Int64
+    var id: Int
     var name: String
     
     
-    init(id: Int64, name: String)
+    init(id: Int, name: String)
     {
         self.id = id
         self.name = name

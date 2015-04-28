@@ -24,6 +24,12 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         super.viewDidLoad()
     }
+    
+    
+    override func viewWillAppear(animated: Bool)
+    {
+        self.projectsList.reloadData()
+    }
 
     
     override func didReceiveMemoryWarning()

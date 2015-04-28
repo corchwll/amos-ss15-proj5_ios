@@ -102,7 +102,7 @@
                                             <constraint firstAttribute="width" constant="600" id="VTN-rT-3hY"/>
                                             <constraint firstAttribute="height" constant="130" id="sKK-DE-nP6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="5"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -160,7 +160,11 @@
                                                 <action selector="cancel:" destination="8hc-sO-Zki" id="idf-cV-TVJ"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Add" id="FAK-8z-OX0"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Add" id="FAK-8z-OX0">
+                                            <connections>
+                                                <action selector="addProject:" destination="8hc-sO-Zki" id="pxJ-Kt-fKY"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -216,6 +220,10 @@
                             <constraint firstAttribute="trailing" secondItem="Qaf-Xy-64n" secondAttribute="trailing" id="UE8-Ag-lgK"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="projectIdTextField" destination="IdQ-o9-uky" id="NDM-PE-31B"/>
+                        <outlet property="projectNameTextField" destination="2bx-Fg-EDa" id="LTW-Py-gEw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESJ-BX-Gti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

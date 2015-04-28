@@ -11,6 +11,10 @@ import UIKit
 
 class NewProjectViewController: UIViewController
 {
+    @IBOutlet weak var projectIdTextField: UITextField!
+    @IBOutlet weak var projectNameTextField: UITextField!
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -25,6 +29,15 @@ class NewProjectViewController: UIViewController
     
     @IBAction func cancel(sender: AnyObject)
     {
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    
+    @IBAction func addProject(sender: AnyObject)
+    {
+        let newProject = Project(id: projectIdTextField.text.toInt()!, name: projectNameTextField.text)
+        projectDAO.addProject(newProject)
+        
         self.dismissViewControllerAnimated(true, completion: {})
     }
 }

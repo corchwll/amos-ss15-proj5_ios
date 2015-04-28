@@ -29,11 +29,17 @@ class SQLiteHelper
     func copyDatabaseIfNotExist()
     {
         let fileManager = NSFileManager()
-        let rawSQLiteFilePath = NSBundle.mainBundle().pathForResource("myData", ofType: "sqlite")!
-        
-        if !fileManager.fileExistsAtPath(path)
+        let rawSQLiteFilePath: String = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite3")!
+        println("path ready")
+        println(path + "/db.sqlite3")
+        if !fileManager.fileExistsAtPath("\(path)/db.sqlite3")
         {
-            fileManager.copyItemAtPath(rawSQLiteFilePath, toPath: path, error:nil)
+            fileManager.copyItemAtPath(rawSQLiteFilePath, toPath: "\(path)/db.sqlite3", error:nil)
+            println("copied")
+        }
+        else
+        {
+            println("no need to copy")
         }
     }
     

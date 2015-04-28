@@ -15,10 +15,10 @@ let sessionDAO = SessionDAO()
 
 class SessionDAO
 {
-    let id = Expression<Int64>("id")
-    let projectId = Expression<Int64>("project_id")
-    let startTime = Expression<Int64>("startTime")
-    let endTime = Expression<Int64>("endTime")
+    let id = Expression<Int>("id")
+    let projectId = Expression<Int>("project_id")
+    let startTime = Expression<Int>("startTime")
+    let endTime = Expression<Int>("endTime")
     
     
     func addSession(session: Session, project: Project)

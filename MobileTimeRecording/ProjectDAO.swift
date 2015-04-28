@@ -15,7 +15,7 @@ let projectDAO = ProjectDAO()
 
 class ProjectDAO
 {
-    let id = Expression<Int64>("id")
+    let id = Expression<Int>("id")
     let name = Expression<String>("name")
     
     
