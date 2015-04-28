@@ -15,6 +15,8 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var projectsList: UITableView!
 
     
+    var projects: [Project] = []
+    
     var timer : NSTimer!
     var startTime : NSDate!
     var elapsedTime = 0
@@ -28,6 +30,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(animated: Bool)
     {
+        projects = projectDAO.getProjects()
         self.projectsList.reloadData()
     }
 
@@ -40,7 +43,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return 2
+        return projects.count
     }
 
 
@@ -48,8 +51,9 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         let cell: ProjectsListCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectsListCell
         
-        cell.projectID.text = "123"
-        cell.projectName.text = "test"
+        var project = projects[indexPath.item]
+        cell.projectID.text = "\(project.id)"
+        cell.projectName.text = project.name
 
         return cell
     }
