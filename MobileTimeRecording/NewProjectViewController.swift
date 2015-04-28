@@ -27,17 +27,32 @@ class NewProjectViewController: UIViewController
     }
     
     
+    /*
+        Called when cancel button is pressed. Dismisses current view.
+    
+        @methodtype Command
+        @pre -
+        @post Return back to previous view
+    */
     @IBAction func cancel(sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: {})
+        dismissViewControllerAnimated(true, completion: {})
     }
     
     
+    /*
+        Called when new project should be added. Stores new project into sqlite database by using
+        project data access object.
+    
+        @methodtype Commang
+        @pre Valid user input
+        @post New project added and current view dismissed
+    */
     @IBAction func addProject(sender: AnyObject)
     {
         let newProject = Project(id: projectIdTextField.text.toInt()!, name: projectNameTextField.text)
         projectDAO.addProject(newProject)
         
-        self.dismissViewControllerAnimated(true, completion: {})
+        dismissViewControllerAnimated(true, completion: {})
     }
 }

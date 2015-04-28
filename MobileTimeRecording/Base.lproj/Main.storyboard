@@ -56,16 +56,6 @@
                                             <action selector="toggleTimeRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yjH-0K-4NP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 m 00 s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRM-y4-JRH">
-                                        <rect key="frame" x="0.0" y="241" width="600" height="130"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="600" id="VTN-rT-3hY"/>
-                                            <constraint firstAttribute="height" constant="130" id="sKK-DE-nP6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-C5-aP9">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="241"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -116,6 +106,16 @@
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="PiJ-jA-VOA"/>
                                         </connections>
                                     </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 m 00 s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRM-y4-JRH">
+                                        <rect key="frame" x="0.0" y="241" width="600" height="130"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="600" id="VTN-rT-3hY"/>
+                                            <constraint firstAttribute="height" constant="130" id="sKK-DE-nP6"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -142,7 +142,8 @@
                     </view>
                     <connections>
                         <outlet property="projectsList" destination="2F8-C5-aP9" id="CmL-Ti-e14"/>
-                        <outlet property="timeLabel" destination="dRM-y4-JRH" id="i3v-oO-dvf"/>
+                        <outlet property="startStopButton" destination="H8l-0h-Mge" id="fZ2-ja-5bf"/>
+                        <outlet property="timeLabel" destination="dRM-y4-JRH" id="hi9-gD-znV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

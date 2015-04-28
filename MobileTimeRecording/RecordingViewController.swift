@@ -11,15 +11,15 @@ import UIKit
 
 class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var projectsList: UITableView!
+    @IBOutlet weak var startStopButton: UIButton!
 
-    
-    var projects: [Project] = []
-    
+
     var timer : NSTimer!
-    var startTime : NSDate!
-    var elapsedTime = 0
+    var projects: [Project] = []
+    var session: Session = Session()
+    var isRunning: Bool = false
     
     
     override func viewDidLoad()
@@ -31,7 +31,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(animated: Bool)
     {
         projects = projectDAO.getProjects()
-        self.projectsList.reloadData()
+        projectsList.reloadData()
     }
 
     
@@ -57,6 +57,19 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
 
         return cell
     }
+    
+    
+    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
+    {
+        if isRunning
+        {
+            return nil
+        }
+        else
+        {
+            return indexPath
+        }
+    }
 
 
     /*
@@ -69,19 +82,23 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     @IBAction func toggleTimeRecording(sender: AnyObject)
     {
-        if(startTime == nil)
+        if projectsList.indexPathForSelectedRow() != nil
         {
-            startTime = NSDate()
-            startVisualizingTimer()
-        }
-        else
-        {
-            var session = Session(id: 0, startTime: startTime, endTime: NSDate())
-            var project = projects[projectsList.indexPathForSelectedRow()!.item]
-            sessionDAO.addSession(session, project: project)
+            if isRunning
+            {
+                session.endTime = NSDate()
+                sessionDAO.addSession(session, project: projects[projectsList.indexPathForSelectedRow()!.item])
             
-            stopVisualizingTimer()
-            startTime = nil
+                stopVisualizingTimer()
+                isRunning = false
+            }
+            else
+            {
+                session.startTime = NSDate()
+            
+                startVisualizingTimer()
+                isRunning = true
+            }
         }
     }
     
@@ -95,8 +112,8 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     func startVisualizingTimer()
     {
-        elapsedTime = 0
-        timeLabel.text = formatTimeToString(elapsedTime)
+        startStopButton.setTitle("STOP", forState: .Normal)
+        timeLabel.text = formatTimeToString(0)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
     }
     
@@ -111,7 +128,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     */
     func updateTimer()
     {
-        elapsedTime += 1
+        var elapsedTime = (Int(NSDate().timeIntervalSinceDate(session.startTime)))
         timeLabel.text = formatTimeToString(elapsedTime)
     }
     
@@ -127,6 +144,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         if(timer != nil)
         {
+            startStopButton.setTitle("START", forState: .Normal)
             timer.invalidate()
             timer = nil
         }
