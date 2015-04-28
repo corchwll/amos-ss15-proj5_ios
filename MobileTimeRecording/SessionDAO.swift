@@ -17,17 +17,17 @@ class SessionDAO
 {
     let id = Expression<Int>("id")
     let projectId = Expression<Int>("project_id")
-    let startTime = Expression<Int>("startTime")
-    let endTime = Expression<Int>("endTime")
+    let startTime = Expression<Int>("timestamp_start")
+    let endTime = Expression<Int>("timestamp_end")
     
     
     func addSession(session: Session, project: Project)
     {
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
-        
-        //todo: fix date issue
-        sessions.insert(id <- session.id, projectId <- project.id)!
+
+        sessions.insert(id <- session.id, projectId <- project.id, startTime <- (Int(session.startTime.timeIntervalSince1970)),
+            endTime <- (Int(session.endTime.timeIntervalSince1970)))!
     }
     
     
@@ -39,8 +39,8 @@ class SessionDAO
         var queriedSessions: [Session] = []
         for sessionRow in sessions
         {
-            //todo: fix date issue
-            var session = Session(id: sessionRow[id], startTime: NSDate(), endTime: NSDate())
+            var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
+                endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
             queriedSessions.append(session)
         }
         return queriedSessions
