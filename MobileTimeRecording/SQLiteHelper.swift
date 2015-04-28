@@ -15,35 +15,53 @@ let sqliteHelper = SQLiteHelper()
 
 class SQLiteHelper
 {
-    let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String
+    let databaseFileName = "db"
+    let databaseFileExtension = "sqlite3"
+    let databasePath: String!
     private var sqliteDatabase: Database!
     
     
+    /*
+        Constructor for helper class, initializing database if necessary and copies database file into documents directory.
+    
+        @methodtype Constructor
+        @pre Correct database name and extension
+        @post Fully working sqlite database
+    */
     init()
     {
+        databasePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String + "/\(databaseFileName).\(databaseFileExtension)"
         copyDatabaseIfNotExist()
-        sqliteDatabase = Database("\(path)/db.sqlite3")
+        sqliteDatabase = Database("\(databasePath)")
     }
     
     
+    /*
+        Looks up database file, if not available, copies shiped database file from main bundle to document directory.
+    
+        @methodtype Command
+        @pre Correct path and database file (need to copie database file into main bundle during build phase)
+        @post Copied database inside document directory
+    */
     func copyDatabaseIfNotExist()
     {
         let fileManager = NSFileManager()
-        let rawSQLiteFilePath: String = NSBundle.mainBundle().pathForResource("db", ofType: "sqlite3")!
-        println("path ready")
-        println(path + "/db.sqlite3")
-        if !fileManager.fileExistsAtPath("\(path)/db.sqlite3")
+        let rawSQLiteFilePath: String = NSBundle.mainBundle().pathForResource(databaseFileName, ofType: databaseFileExtension)!
+
+        if !fileManager.fileExistsAtPath("\(databasePath)")
         {
-            fileManager.copyItemAtPath(rawSQLiteFilePath, toPath: "\(path)/db.sqlite3", error:nil)
-            println("copied")
-        }
-        else
-        {
-            println("no need to copy")
+            fileManager.copyItemAtPath(rawSQLiteFilePath, toPath: "\(databasePath)", error:nil)
         }
     }
     
     
+    /*
+        Return database object for further use (executing queries, etc..).
+    
+        @methodtype Getter
+        @pre Database was initialized successfully
+        @post Working database object
+    */
     func getSQLiteDatabase()->Database
     {
         return sqliteDatabase

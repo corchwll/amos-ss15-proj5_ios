@@ -19,6 +19,13 @@ class ProjectDAO
     let name = Expression<String>("name")
     
     
+    /*
+        Stores given project into sqlite database.
+    
+        @methodtype Command
+        @pre Project paramter != nil
+        @post Persistent project
+    */
     func addProject(project: Project)
     {
         let database = sqliteHelper.getSQLiteDatabase()
@@ -28,6 +35,13 @@ class ProjectDAO
     }
     
     
+    /*
+        Returns all projects from sqlite database.
+    
+        @methodtype Query
+        @pre -
+        @post All projects from database
+    */
     func getProjects()->[Project]
     {
         let database = sqliteHelper.getSQLiteDatabase()

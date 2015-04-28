@@ -49,7 +49,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell: ProjectsListCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectsListCell
+        let cell: ProjectTableViewCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
         
         var project = projects[indexPath.item]
         cell.projectID.text = "\(project.id)"

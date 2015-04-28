@@ -16,6 +16,13 @@ class Session
     var endTime: NSDate
     
     
+    /*
+        Constructor for model class, representing sessions.
+    
+        @methodtype Constructor
+        @pre Correct paramters != nil
+        @post Initialized session
+    */
     init(id: Int, startTime: NSDate, endTime: NSDate)
     {
         self.id = id

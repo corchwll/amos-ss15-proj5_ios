@@ -8,12 +8,20 @@
 
 import Foundation
 
+
 class Project
 {
     var id: Int
     var name: String
     
     
+    /*
+        Constructor for model class, representing projects.
+    
+        @methodtype Constructor
+        @pre Correct paramters != nil
+        @post Initialized project
+    */
     init(id: Int, name: String)
     {
         self.id = id

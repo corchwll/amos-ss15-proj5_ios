@@ -21,6 +21,13 @@ class SessionDAO
     let endTime = Expression<Int>("timestamp_end")
     
     
+    /*
+        Adds new session into sqlite database, session id not necessary because of auto increment.
+    
+        @methodtype Command
+        @pre Existing project (foreign-key relationship)
+        @post Stored session
+    */
     func addSession(session: Session, project: Project)
     {
         let database = sqliteHelper.getSQLiteDatabase()
@@ -33,6 +40,13 @@ class SessionDAO
     }
     
     
+    /*
+        Return every session from sqlite database.
+    
+        @methodtype Query
+        @pre -
+        @post Every session from database
+    */
     func getSessions()->[Session]
     {
         let database = sqliteHelper.getSQLiteDatabase()
