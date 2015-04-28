@@ -2,7 +2,7 @@
 //  Project.swift
 //  MobileTimeRecording
 //
-//  Created by cdan on 26/04/15.
+//  Created by DanNglk on 26/04/15.
 //  Copyright (c) 2015 develop-group. All rights reserved.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 
 class Project
 {
-    var id: Int
+    var id: Int64
     var name: String
     
     
-    init(id: Int, name: String)
+    init(id: Int64, name: String)
     {
         self.id = id
         self.name = name

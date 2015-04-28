@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
+		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
 		E42BF14D1AEEF61400337385 /* ProjectsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectsListCell.swift */; };
 		E45C447B1AED83510044D25F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; };
 		E45C447C1AED835B0044D25F /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -88,6 +90,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E41B9C2C1AEF833600EE9CFD /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsListCell.swift; sourceTree = "<group>"; };
 		E45C44651AED83310044D25F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				E45C447E1AED83700044D25F /* Project.swift */,
+				E41B9C2C1AEF833600EE9CFD /* Session.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				E45C44911AED8AB10044D25F /* SQLiteHelper.swift */,
 				E45C448F1AED8A350044D25F /* ProjectDAO.swift */,
+				E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -372,9 +378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A16AA81AE531EB006BB173 /* RecordingViewController.swift in Sources */,
+				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
 				E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectsListCell.swift in Sources */,
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
+				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
 				E45C447F1AED83700044D25F /* Project.swift in Sources */,

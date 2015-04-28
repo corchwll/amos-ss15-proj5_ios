@@ -7,18 +7,38 @@
 //
 
 import Foundation
+import SQLite
+
+
+let projectDAO = ProjectDAO()
 
 
 class ProjectDAO
 {
+    let id = Expression<Int64>("id")
+    let name = Expression<String>("name")
+    
+    
     func addProject(project: Project)
     {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        projects.insert(id <- project.id, name <- project.name)!
     }
     
     
     func getProjects()->[Project]
     {
-        //todo: some query stuff
-        return []
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        var queriedProjects: [Project] = []
+        for projectRow in projects
+        {
+            var project = Project(id: projectRow[id], name: projectRow[name])
+            queriedProjects.append(project)
+        }
+        return queriedProjects
     }
 }
