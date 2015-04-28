@@ -41,12 +41,26 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        Function returns current count of necessary cells.
+    
+        @methodtype Command
+        @pre -
+        @post Amount of cells
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return projects.count
     }
 
 
+    /*
+        Function is called when populating table cells. Maps projects to table cells.
+    
+        @methodtype Command
+        @pre -
+        @post Populated cell, ready for use
+    */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell: ProjectTableViewCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
@@ -59,6 +73,13 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        Function is called when selecting table row. Prevents user from selecting another row while recording.
+    
+        @methodtype Command
+        @pre -
+        @post Prevents from selecting during recording
+    */
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
     {
         if isRunning
