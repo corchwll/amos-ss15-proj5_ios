@@ -76,7 +76,10 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         else
         {
-            // todo: some database stuff...
+            var session = Session(id: 0, startTime: startTime, endTime: NSDate())
+            var project = projects[projectsList.indexPathForSelectedRow()!.item]
+            sessionDAO.addSession(session, project: project)
+            
             stopVisualizingTimer()
             startTime = nil
         }

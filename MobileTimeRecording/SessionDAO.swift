@@ -25,9 +25,11 @@ class SessionDAO
     {
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
+        
+        var start = (Int(session.startTime.timeIntervalSince1970))
+        var end = (Int(session.endTime.timeIntervalSince1970))
 
-        sessions.insert(id <- session.id, projectId <- project.id, startTime <- (Int(session.startTime.timeIntervalSince1970)),
-            endTime <- (Int(session.endTime.timeIntervalSince1970)))!
+        sessions.insert(projectId <- project.id, startTime <- start, endTime <- end)!
     }
     
     
