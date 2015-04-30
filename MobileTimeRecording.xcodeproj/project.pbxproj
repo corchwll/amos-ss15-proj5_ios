@@ -17,6 +17,8 @@
 		E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
 		E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E12461AEE65040081E23C /* NewProjectViewController.swift */; };
+		E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */; };
+		E485BC981AF235F100CE7F72 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485BC971AF235F100CE7F72 /* SessionTableViewCell.swift */; };
 		E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA51AE531EB006BB173 /* AppDelegate.swift */; };
 		E4A16AA81AE531EB006BB173 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */; };
 		E4A16AAB1AE531EC006BB173 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4A16AA91AE531EC006BB173 /* Main.storyboard */; };
@@ -110,6 +112,8 @@
 		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
 		E45C44911AED8AB10044D25F /* SQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
 		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
+		E485BC971AF235F100CE7F72 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeRecording.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16AA41AE531EB006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4A16AA51AE531EB006BB173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
 				E45E12461AEE65040081E23C /* NewProjectViewController.swift */,
 				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
+				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
+				E485BC971AF235F100CE7F72 /* SessionTableViewCell.swift */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -396,7 +402,9 @@
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
+				E485BC981AF235F100CE7F72 /* SessionTableViewCell.swift in Sources */,
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
+				E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */,
 				E45C447F1AED83700044D25F /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -91,8 +91,17 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
             return indexPath
         }
     }
-
-
+    
+    
+    @IBAction func addNewSession(sender: AnyObject)
+    {
+        if let projectIndex = projectsList.indexPathForSelectedRow()
+        {
+            performSegueWithIdentifier("AddNewSession", sender: self)
+        }
+    }
+    
+    
     /*
         Function is called when pressing play button.
         Toggles time recording functionality.
