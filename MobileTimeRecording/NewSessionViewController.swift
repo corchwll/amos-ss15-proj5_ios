@@ -17,6 +17,6 @@ class NewSessionViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        newSessionTableView.tableFooterView = UIView()
+       // newSessionTableView.tableFooterView = UIView()
     }
 }
