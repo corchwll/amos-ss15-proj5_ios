@@ -22,24 +22,12 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     var isRunning: Bool = false
     
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-    
-    
     override func viewWillAppear(animated: Bool)
     {
         projects = projectDAO.getProjects()
         projectsList.reloadData()
     }
 
-    
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     /*
         Function returns current count of necessary cells.

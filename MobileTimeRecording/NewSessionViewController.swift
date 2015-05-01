@@ -12,11 +12,4 @@ import UIKit
 class NewSessionViewController: UITableViewController
 {
     @IBOutlet var newSessionTableView: UITableView!
-    
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-       // newSessionTableView.tableFooterView = UIView()
-    }
 }

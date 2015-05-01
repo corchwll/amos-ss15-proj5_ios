@@ -15,36 +15,11 @@ class NewProjectViewController: UIViewController
     @IBOutlet weak var projectNameTextField: UITextField!
     
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-    }
-
-    
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    /*
-        Called when cancel button is pressed. Dismisses current view.
-    
-        @methodtype Command
-        @pre -
-        @post Return back to previous view
-    */
-    @IBAction func cancel(sender: AnyObject)
-    {
-        dismissViewControllerAnimated(true, completion: {})
-    }
-    
-    
     /*
         Called when new project should be added. Stores new project into sqlite database by using
         project data access object.
     
-        @methodtype Commang
+        @methodtype Command
         @pre Valid user input
         @post New project added and current view dismissed
     */
@@ -53,6 +28,6 @@ class NewProjectViewController: UIViewController
         let newProject = Project(id: projectIdTextField.text.toInt()!, name: projectNameTextField.text)
         projectDAO.addProject(newProject)
         
-        dismissViewControllerAnimated(true, completion: {})
+        navigationController?.popViewControllerAnimated(true)
     }
 }
