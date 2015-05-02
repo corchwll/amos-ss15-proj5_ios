@@ -1,5 +1,5 @@
 //
-//  ProjectsListCell.swift
+//  ProjectTableViewCell.swift
 //  MobileTimeRecording
 //
 //  Created by DanNglk on 28/04/15.

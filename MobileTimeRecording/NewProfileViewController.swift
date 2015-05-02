@@ -1,32 +1,34 @@
 //
-//  NewAccountViewController.swift
+//  NewProfileViewController.swift
 //  MobileTimeRecording
 //
-//  Created by cdan on 02/05/15.
+//  Created by DanNglk on 02/05/15.
 //  Copyright (c) 2015 develop-group. All rights reserved.
 //
 
 import UIKit
 
 
-protocol NewAccountViewControllerDelegate
+protocol NewProfileViewControllerDelegate
 {
     func didRegister()
 }
 
 
-class NewAccountViewController: UITableViewController
+class NewProfileViewController: UITableViewController
 {
     @IBOutlet weak var forenameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var employeeIdTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    var delegate: NewAccountViewControllerDelegate?
+    var delegate: NewProfileViewControllerDelegate?
     
     
     @IBAction func done(sender: AnyObject)
     {
+        let profile = Profile(forename: forenameTextField.text, surname: surnameTextField.text, employeeId: employeeIdTextField.text)
+        profileDAO.addProfile(profile)
         delegate?.didRegister()
         dismissViewControllerAnimated(true, completion: {})
     }

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordingViewController.swift
 //  MobileTimeRecording
 //
 //  Created by DanNglk on 20/04/15.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewAccountViewControllerDelegate
+class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewProfileViewControllerDelegate
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var projectsList: UITableView!
@@ -36,6 +36,11 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         {
             performSegueWithIdentifier("new_account_segue", sender: self)
         }
+        else
+        {
+            //debug: prints user account
+            println(profileDAO.getProfile().asString())
+        }
     }
     
     
@@ -57,7 +62,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         else if segue.identifier == "new_account_segue"
         {
             var navigationController = segue.destinationViewController as! UINavigationController
-            var viewController = navigationController.topViewController as! NewAccountViewController
+            var viewController = navigationController.topViewController as! NewProfileViewController
             viewController.delegate = self
         }
     }

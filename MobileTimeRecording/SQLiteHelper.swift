@@ -1,5 +1,5 @@
 //
-//  SQLiteDAOFactory.swift
+//  SQLiteHelper.swift
 //  MobileTimeRecording
 //
 //  Created by DanNglk on 26/04/15.

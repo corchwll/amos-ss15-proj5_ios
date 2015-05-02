@@ -2,7 +2,7 @@
 //  FromViewController.swift
 //  MobileTimeRecording
 //
-//  Created by cdan on 02/05/15.
+//  Created by DanNglk on 02/05/15.
 //  Copyright (c) 2015 develop-group. All rights reserved.
 //
 
