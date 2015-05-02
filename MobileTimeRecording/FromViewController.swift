@@ -21,6 +21,14 @@ class FromViewController: UIViewController
     var delegate: FromViewControllerDelegate?
     
     
+    /*
+        Function is called when pressing 'done'-button. Delegates user input back to session controller
+        and dismisses this view.
+        
+        @methodtype Hook
+        @pre Valid segue identifier
+        @post Set delegates for future callbacks
+    */
     @IBAction func done(sender: AnyObject)
     {
         if delegate != nil

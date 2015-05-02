@@ -20,6 +20,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     var project: Project?
     
     
+    /*
+        iOS life-cycle function, called when view did load. Start and end-time is set to default values.
+        
+        @methodtype Hook
+        @pre -
+        @post Set default time values
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -34,6 +41,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     }
     
     
+    /*
+        iOS life-cycle function, called right before performing a segue.
+        
+        @methodtype Hook
+        @pre Valid segue identifier
+        @post Set delegates for future callbacks
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "from_segue"
@@ -49,6 +63,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     }
 
     
+    /*
+        Callback function, called when start-time is picked.
+        
+        @methodtype Hook
+        @pre -
+        @post Notify controller, set start-time
+    */
     func pickedFromTime(time: NSDate)
     {
         fromTimeLabel.text = timeFormatter.stringFromDate(time)
@@ -56,6 +77,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     }
     
     
+    /*
+        Callback function, called when end-time is picked.
+        
+        @methodtype Hook
+        @pre -
+        @post Notify controller, set end-time
+    */
     func pickedToTime(time: NSDate)
     {
         toTimeLabel.text = timeFormatter.stringFromDate(time)
@@ -63,6 +91,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     }
     
     
+    /*
+        Function is called when pressing the 'add'-button. Creates a new session by using user input and data access object.
+        
+        @methodtype Command
+        @pre Valid SessionDAO singleton
+        @post New session, stored into database
+    */
     @IBAction func addNewSession(sender: AnyObject)
     {
         var calendar = NSCalendar.currentCalendar()
@@ -83,6 +118,13 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     }
     
     
+    /*
+        Function is called when pressing the 'cancel'-button. Dismisses the current view controller and returns to recording.
+        
+        @methodtype Command
+        @pre -
+        @post Dismiss view controller
+    */
     @IBAction func cancel(sender: AnyObject)
     {
         self.dismissViewControllerAnimated(true, completion: {})

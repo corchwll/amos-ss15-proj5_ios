@@ -29,6 +29,13 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        Function for user registration. Will perform an initial registration screen for creating a profile.
+        
+        @methodtype Command
+        @pre User not yet registered
+        @post Perform segue for registration
+    */
     func performOneTimeRegistration()
     {
         var nsUserDefaults = NSUserDefaults()
@@ -44,6 +51,13 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        iOS life-cycle function, reloading all projects into table view everytime this view will appears.
+    
+        @methodtype Query
+        @pre Requieres working ProjectDAO singleton
+        @post Query and reload all projects into projects list
+    */
     override func viewWillAppear(animated: Bool)
     {
         projects = projectDAO.getProjects()
@@ -51,6 +65,13 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        iOS life-cycle function, called right before performing a segue.
+        
+        @methodtype Hook
+        @pre Valid segue identifier
+        @post Set delegates for future callbacks
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "new_session_segue"
@@ -68,6 +89,13 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
+    /*
+        Callback function, signalizing user profile registered. Sets boolean for one time registration.
+        
+        @methodtype Hook
+        @pre -
+        @post Set boolean to registered
+    */
     func didRegister()
     {
         var nsUserDefaults = NSUserDefaults()
