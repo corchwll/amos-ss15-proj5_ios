@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewAccountViewControllerDelegate
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var projectsList: UITableView!
@@ -22,6 +22,23 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     var isRunning: Bool = false
     
     
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        performOneTimeRegistration()
+    }
+    
+    
+    func performOneTimeRegistration()
+    {
+        var nsUserDefaults = NSUserDefaults()
+        if !nsUserDefaults.boolForKey("registered")
+        {
+            performSegueWithIdentifier("new_account_segue", sender: self)
+        }
+    }
+    
+    
     override func viewWillAppear(animated: Bool)
     {
         projects = projectDAO.getProjects()
@@ -31,17 +48,27 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if let index = projectsList.indexPathForSelectedRow()
+        if segue.identifier == "new_session_segue"
         {
-            if segue.identifier == "new_session_segue"
-            {
-                var navigationController = segue.destinationViewController as! UINavigationController
-                var viewController = navigationController.topViewController as! NewSessionViewController
-                viewController.project = projects[index.item]
-            }
+            var navigationController = segue.destinationViewController as! UINavigationController
+            var viewController = navigationController.topViewController as! NewSessionViewController
+            viewController.project = projects[projectsList.indexPathForSelectedRow()!.item]
+        }
+        else if segue.identifier == "new_account_segue"
+        {
+            var navigationController = segue.destinationViewController as! UINavigationController
+            var viewController = navigationController.topViewController as! NewAccountViewController
+            viewController.delegate = self
         }
     }
-
+    
+    
+    func didRegister()
+    {
+        var nsUserDefaults = NSUserDefaults()
+        nsUserDefaults.setBool(true, forKey: "registered")
+    }
+    
     
     /*
         Function returns current count of necessary cells.
