@@ -120,8 +120,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="addNewSession:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="od5-ck-3vZ"/>
-                                            <segue destination="Xv2-rP-eah" kind="presentation" id="kh1-TT-cYC"/>
+                                            <segue destination="Xv2-rP-eah" kind="presentation" identifier="new_session_segue" id="fej-m3-uzq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -287,7 +286,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="timeLabel" destination="Abp-yk-Ez5" id="yFF-r1-hBI"/>
                                             <segue destination="vnD-bH-pi6" kind="show" identifier="from_segue" id="kSY-Si-7m1"/>
                                         </connections>
                                     </tableViewCell>
@@ -320,8 +318,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="timeLabel" destination="n6X-QH-DeT" id="Nt2-0i-57s"/>
-                                            <segue destination="nEa-v1-IGq" kind="show" id="i7s-M7-gVd"/>
+                                            <segue destination="nEa-v1-IGq" kind="show" identifier="to_segue" id="i7s-M7-gVd"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -333,14 +330,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Session" id="les-s4-wSk">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kSt-fC-gUG"/>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="fve-vN-gd7"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="kSt-fC-gUG">
+                            <connections>
+                                <action selector="cancel:" destination="o6a-X0-WUt" id="z7j-8T-GIs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="fve-vN-gd7">
+                            <connections>
+                                <action selector="addNewSession:" destination="o6a-X0-WUt" id="hgj-67-1nI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="fromTime" destination="Abp-yk-Ez5" id="Vvv-MR-9WW"/>
-                        <outlet property="fromTimeLabel" destination="Abp-yk-Ez5" id="geW-iW-y2b"/>
-                        <outlet property="toTime" destination="n6X-QH-DeT" id="9xj-5n-TBO"/>
-                        <outlet property="toTimeLabel" destination="n6X-QH-DeT" id="0Ml-2a-qeS"/>
+                        <outlet property="datePicker" destination="XrI-un-aTi" id="XZ6-op-02S"/>
+                        <outlet property="fromTimeLabel" destination="Abp-yk-Ez5" id="dEw-gW-ObI"/>
+                        <outlet property="toTimeLabel" destination="n6X-QH-DeT" id="n6v-uH-C69"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4r-OK-Ywl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -449,7 +453,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eYx-Az-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2316" y="1552"/>
+            <point key="canvasLocation" x="2311" y="1552"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LaY-5C-SWQ">

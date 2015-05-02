@@ -11,23 +11,26 @@ import UIKit
 
 class NewSessionViewController: UITableViewController, FromViewControllerDelegate, ToViewControllerDelegate
 {
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var fromTimeLabel: UILabel!
     @IBOutlet weak var toTimeLabel: UILabel!
     
     var timeFormatter = NSDateFormatter()
-    var fromTime: NSDate?
-    var toTime: NSDate?
+    var session = Session()
+    var project: Project?
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+    
         timeFormatter.dateFormat = "HH:mm"
-        fromTime = timeFormatter.dateFromString("08:00")
-        toTime = timeFormatter.dateFromString("16:00")
         
-        fromTimeLabel.text = timeFormatter.stringFromDate(fromTime!)
-        toTimeLabel.text = timeFormatter.stringFromDate(toTime!)
+        session.startTime = timeFormatter.dateFromString("08:00")!
+        session.endTime = timeFormatter.dateFromString("16:00")!
+        
+        fromTimeLabel.text = timeFormatter.stringFromDate(session.startTime)
+        toTimeLabel.text = timeFormatter.stringFromDate(session.endTime)
     }
     
     
@@ -49,13 +52,39 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     func pickedFromTime(time: NSDate)
     {
         fromTimeLabel.text = timeFormatter.stringFromDate(time)
-        fromTime = time
+        session.startTime = time
     }
     
     
     func pickedToTime(time: NSDate)
     {
         toTimeLabel.text = timeFormatter.stringFromDate(time)
-        toTime = time
+        session.endTime = time
+    }
+    
+    
+    @IBAction func addNewSession(sender: AnyObject)
+    {
+        var calendar = NSCalendar.currentCalendar()
+        var dateComponent = calendar.components(.TimeZoneCalendarUnit | .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit, fromDate: datePicker.date)
+        var fromTimeComponent = datePicker.calendar.components(.TimeZoneCalendarUnit | .HourCalendarUnit | .MinuteCalendarUnit, fromDate: session.startTime)
+        var toTimeComponent = datePicker.calendar.components(.TimeZoneCalendarUnit | .HourCalendarUnit | .MinuteCalendarUnit, fromDate: session.endTime)
+        
+        fromTimeComponent.day = dateComponent.day
+        fromTimeComponent.month = dateComponent.month
+        fromTimeComponent.year = dateComponent.year
+        
+        toTimeComponent.day = dateComponent.day
+        toTimeComponent.month = dateComponent.month
+        toTimeComponent.year = dateComponent.year
+        
+        sessionDAO.addSession(session, project: project!)
+        self.dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    
+    @IBAction func cancel(sender: AnyObject)
+    {
+        self.dismissViewControllerAnimated(true, completion: {})
     }
 }

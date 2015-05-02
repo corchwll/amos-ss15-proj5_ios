@@ -27,6 +27,20 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         projects = projectDAO.getProjects()
         projectsList.reloadData()
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if let index = projectsList.indexPathForSelectedRow()
+        {
+            if segue.identifier == "new_session_segue"
+            {
+                var navigationController = segue.destinationViewController as! UINavigationController
+                var viewController = navigationController.topViewController as! NewSessionViewController
+                viewController.project = projects[index.item]
+            }
+        }
+    }
 
     
     /*
@@ -77,15 +91,6 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         else
         {
             return indexPath
-        }
-    }
-    
-    
-    @IBAction func addNewSession(sender: AnyObject)
-    {
-        if let projectIndex = projectsList.indexPathForSelectedRow()
-        {
-            performSegueWithIdentifier("AddNewSession", sender: self)
         }
     }
     
