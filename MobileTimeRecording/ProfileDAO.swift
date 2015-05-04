@@ -22,6 +22,13 @@ class ProfileDAO
     private var vacationKey = "vacation_key"
     
     
+    /*
+        Adds new profile into user defaults.
+        
+        @methodtype Command
+        @pre -
+        @post Stored user profile
+    */
     func addProfile(profile: Profile)
     {
         userDefaults.setObject(profile.forename, forKey: forenameKey)
@@ -32,6 +39,13 @@ class ProfileDAO
     }
     
     
+    /*
+        Returns profile from user defaults.
+        
+        @methodtype Query
+        @pre -
+        @post Get user profile
+    */
     func getProfile()->Profile
     {
         var profile = Profile()

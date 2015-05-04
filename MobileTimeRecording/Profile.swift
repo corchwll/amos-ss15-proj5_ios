@@ -64,6 +64,13 @@ class Profile
     }
     
     
+    /*
+        Returns string representation of user profile
+        
+        @methodtype Convertion
+        @pre -
+        @post String representation of user profile
+    */
     func asString()->String
     {
         return "\(forename) \(surname); \(employeeId); \(hoursPerWeek); \(vacation)"

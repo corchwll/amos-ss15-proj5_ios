@@ -41,7 +41,7 @@ class SessionDAO
     
     
     /*
-        Return every session from sqlite database.
+        Returns every session from sqlite database.
     
         @methodtype Query
         @pre -

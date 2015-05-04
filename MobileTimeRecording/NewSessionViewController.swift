@@ -101,9 +101,9 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     @IBAction func addNewSession(sender: AnyObject)
     {
         var calendar = NSCalendar.currentCalendar()
-        var dateComponent = calendar.components(.TimeZoneCalendarUnit | .DayCalendarUnit | .MonthCalendarUnit | .YearCalendarUnit, fromDate: datePicker.date)
-        var fromTimeComponent = datePicker.calendar.components(.TimeZoneCalendarUnit | .HourCalendarUnit | .MinuteCalendarUnit, fromDate: session.startTime)
-        var toTimeComponent = datePicker.calendar.components(.TimeZoneCalendarUnit | .HourCalendarUnit | .MinuteCalendarUnit, fromDate: session.endTime)
+        var dateComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: datePicker.date)
+        var fromTimeComponent = datePicker.calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.startTime)
+        var toTimeComponent = datePicker.calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.endTime)
         
         fromTimeComponent.day = dateComponent.day
         fromTimeComponent.month = dateComponent.month
