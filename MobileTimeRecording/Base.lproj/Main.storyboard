@@ -29,16 +29,6 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Project at Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-3I-KX2">
-                                        <rect key="frame" x="124" y="51" width="353" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="WJN-pL-dg7"/>
-                                            <constraint firstAttribute="width" constant="353" id="vOM-FA-wKh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H8l-0h-Mge">
                                         <rect key="frame" x="180" y="167" width="240" height="240"/>
                                         <color key="backgroundColor" red="0.70196080207824707" green="0.70196080207824707" blue="0.70196080207824707" alpha="1" colorSpace="calibratedRGB"/>
@@ -74,6 +64,16 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Project at Apple" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-3I-KX2">
+                                        <rect key="frame" x="124" y="51" width="353" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="WJN-pL-dg7"/>
+                                            <constraint firstAttribute="width" constant="353" id="vOM-FA-wKh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
@@ -99,12 +99,15 @@
                     <navigationItem key="navigationItem" title="Recording" id="b1K-G6-r5T">
                         <barButtonItem key="rightBarButtonItem" title="new Session" id="pEA-2N-gnt">
                             <connections>
-                                <segue destination="o6a-X0-WUt" kind="show" id="K2g-ng-eKa"/>
+                                <segue destination="o6a-X0-WUt" kind="show" identifier="new_session_segue" id="K2g-ng-eKa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="projectIdLabel" destination="06a-Jv-4gh" id="Wk4-Re-Rz1"/>
+                        <outlet property="projectNameLabel" destination="Pgw-3I-KX2" id="9kH-CY-LQg"/>
                         <outlet property="startStopButton" destination="H8l-0h-Mge" id="fZ2-ja-5bf"/>
+                        <outlet property="timeLabel" destination="mI9-Yu-DZX" id="hoZ-W4-cZd"/>
                         <segue destination="WV2-Pg-Tb1" kind="presentation" identifier="new_account_segue" id="t9Z-Ss-K8M"/>
                     </connections>
                 </viewController>

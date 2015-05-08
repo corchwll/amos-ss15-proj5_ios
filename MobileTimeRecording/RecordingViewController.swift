@@ -9,13 +9,16 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController
+class RecordingViewController: UIViewController, NewProfileViewControllerDelegate
 {
+    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var projectIdLabel: UILabel!
+    @IBOutlet weak var projectNameLabel: UILabel!
 
 
     var timer : NSTimer!
-    var projects: [Project] = []
+    var project: Project!
     var session: Session = Session()
     var isRunning: Bool = false
     
@@ -48,18 +51,12 @@ class RecordingViewController: UIViewController
         }
     }
     
-/*
-    /*
-        iOS life-cycle function, reloading all projects into table view everytime this view will appears.
     
-        @methodtype Query
-        @pre Requieres working ProjectDAO singleton
-        @post Query and reload all projects into projects list
-    */
-    override func viewWillAppear(animated: Bool)
+    func setProject(project: Project)
     {
-        projects = projectDAO.getProjects()
-        projectsList.reloadData()
+        self.project = project
+        projectIdLabel.text = String(project.id)
+        projectNameLabel.text = project.name
     }
     
     
@@ -74,9 +71,8 @@ class RecordingViewController: UIViewController
     {
         if segue.identifier == "new_session_segue"
         {
-            var navigationController = segue.destinationViewController as! UINavigationController
-            var viewController = navigationController.topViewController as! NewSessionViewController
-            viewController.project = projects[projectsList.indexPathForSelectedRow()!.item]
+            var viewController = segue.destinationViewController as! NewSessionViewController
+            viewController.project = project
         }
         else if segue.identifier == "new_account_segue"
         {
@@ -102,58 +98,6 @@ class RecordingViewController: UIViewController
     
     
     /*
-        Function returns current count of necessary cells.
-    
-        @methodtype Command
-        @pre -
-        @post Amount of cells
-    */
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return projects.count
-    }
-
-
-    /*
-        Function is called when populating table cells. Maps projects to table cells.
-    
-        @methodtype Command
-        @pre -
-        @post Populated cell, ready for use
-    */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell: ProjectTableViewCell = projectsList.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
-        
-        var project = projects[indexPath.item]
-        cell.projectID.text = "\(project.id)"
-        cell.projectName.text = project.name
-
-        return cell
-    }
-    
-    
-    /*
-        Function is called when selecting table row. Prevents user from selecting another row while recording.
-    
-        @methodtype Command
-        @pre -
-        @post Prevents from selecting during recording
-    */
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
-    {
-        if isRunning
-        {
-            return nil
-        }
-        else
-        {
-            return indexPath
-        }
-    }
-    
-    
-    /*
         Function is called when pressing play button.
         Toggles time recording functionality.
         
@@ -163,23 +107,20 @@ class RecordingViewController: UIViewController
     */
     @IBAction func toggleTimeRecording(sender: AnyObject)
     {
-        if projectsList.indexPathForSelectedRow() != nil
+        if isRunning
         {
-            if isRunning
-            {
-                session.endTime = NSDate()
-                sessionDAO.addSession(session, project: projects[projectsList.indexPathForSelectedRow()!.item])
-            
-                stopVisualizingTimer()
-                isRunning = false
-            }
-            else
-            {
-                session.startTime = NSDate()
-            
-                startVisualizingTimer()
-                isRunning = true
-            }
+            session.endTime = NSDate()
+            sessionDAO.addSession(session, project: project!)
+        
+            stopVisualizingTimer()
+            isRunning = false
+        }
+        else
+        {
+            session.startTime = NSDate()
+        
+            startVisualizingTimer()
+            isRunning = true
         }
     }
     
@@ -245,8 +186,7 @@ class RecordingViewController: UIViewController
         var minutes = elapsedTime/60
         var seconds = elapsedTime%60
         
-        return String(format: "%d m %0.2d s", minutes, seconds)
+        return String(format: "%d:%0.2d", minutes, seconds)
     }
-*/
 }
 

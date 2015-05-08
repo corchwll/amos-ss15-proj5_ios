@@ -2,7 +2,7 @@
 //  ProjectsViewController.swift
 //  MobileTimeRecording
 //
-//  Created by cdan on 08/05/15.
+//  Created by DanNglk on 08/05/15.
 //  Copyright (c) 2015 develop-group. All rights reserved.
 //
 
@@ -55,7 +55,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
-        Function is called when selecting table row. Prevents user from selecting another row while recording.
+        Function is called when selecting table row.
         
         @methodtype Command
         @pre -
@@ -63,6 +63,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
     {
+        tabBarController?.selectedIndex = 0
+        var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
+        var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
+        recordingViewController.setProject(projects[indexPath.item])
+        
         return indexPath
     }
 }
