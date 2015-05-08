@@ -9,15 +9,24 @@
 import UIKit
 
 
-class NewSessionViewController: UITableViewController, FromViewControllerDelegate, ToViewControllerDelegate
+class NewSessionViewController: UITableViewController
 {
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var fromTimeLabel: UILabel!
-    @IBOutlet weak var toTimeLabel: UILabel!
+    @IBOutlet weak var projectNameLabel: UILabel!
+    @IBOutlet weak var projectIdLabel: UILabel!
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var fromTextField: UITextField!
+    @IBOutlet weak var toTextField: UITextField!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+
     
-    var timeFormatter = NSDateFormatter()
+    let timeFormatter = NSDateFormatter()
+    let dateFormatter = NSDateFormatter()
+    var datePicker = UIDatePicker()
+    var timePickerFrom = UIDatePicker()
+    var timePickerTo = UIDatePicker()
+    
     var session = Session()
-    var project: Project?
+    var project: Project!
     
     
     /*
@@ -30,64 +39,95 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     override func viewDidLoad()
     {
         super.viewDidLoad()
-    
-        timeFormatter.dateFormat = "HH:mm"
         
-        session.startTime = timeFormatter.dateFromString("08:00")!
-        session.endTime = timeFormatter.dateFromString("16:00")!
-        
-        fromTimeLabel.text = timeFormatter.stringFromDate(session.startTime)
-        toTimeLabel.text = timeFormatter.stringFromDate(session.endTime)
+        setUpProjectHeading()
+        setUpDateTimeFormatters()
+        setUpSession()
+        setUpTimeTextFields()
     }
     
     
-    /*
-        iOS life-cycle function, called right before performing a segue.
-        
-        @methodtype Hook
-        @pre Valid segue identifier
-        @post Set delegates for future callbacks
-    */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    func setUpProjectHeading()
     {
-        if segue.identifier == "from_segue"
+        projectNameLabel.text = project.name
+        projectIdLabel.text = String(project.id)
+    }
+    
+    
+    func setUpDateTimeFormatters()
+    {
+        timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        timeFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+        timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
+        
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+    }
+    
+    
+    func setUpSession()
+    {
+        session.startTime = timeFormatter.dateFromString("08:00")!
+        session.endTime = timeFormatter.dateFromString("16:00")!
+    }
+    
+    
+    func setUpTimeTextFields()
+    {
+        dateTextField.text = dateFormatter.stringFromDate(NSDate())
+        fromTextField.text = timeFormatter.stringFromDate(session.startTime)
+        toTextField.text = timeFormatter.stringFromDate(session.endTime)
+        
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        datePicker.addTarget(self, action: Selector("datePickerDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        dateTextField.inputView = datePicker
+        
+        timePickerFrom.datePickerMode = UIDatePickerMode.Time
+        timePickerFrom.minuteInterval = 30
+        timePickerFrom.locale = NSLocale(localeIdentifier: "en_DE")
+        timePickerFrom.addTarget(self, action: Selector("timePickerFromDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        timePickerFrom.date = session.startTime
+        fromTextField.inputView = timePickerFrom
+        
+        timePickerTo.datePickerMode = UIDatePickerMode.Time
+        timePickerTo.minuteInterval = 30
+        timePickerTo.locale = NSLocale(localeIdentifier: "en_DE")
+        timePickerTo.addTarget(self, action: Selector("timePickerToDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        timePickerTo.date = session.endTime
+        toTextField.inputView = timePickerTo
+    }
+    
+    
+    func datePickerDidChange()
+    {
+        dateTextField.text = dateFormatter.stringFromDate(datePicker.date)
+    }
+    
+    
+    func timePickerFromDidChange()
+    {
+        fromTextField.text = timeFormatter.stringFromDate(timePickerFrom.date)
+        updateDoneButtonState()
+    }
+    
+    
+    func timePickerToDidChange()
+    {
+        toTextField.text = timeFormatter.stringFromDate(timePickerTo.date)
+        updateDoneButtonState()
+    }
+    
+    
+    func updateDoneButtonState()
+    {
+        if timePickerFrom.date.timeIntervalSince1970 > timePickerTo.date.timeIntervalSince1970
         {
-            var destination = segue.destinationViewController as! FromViewController
-            destination.delegate = self
+            doneButton.enabled = false
         }
         else
         {
-            var destination = segue.destinationViewController as! ToViewController
-            destination.delegate = self
+            doneButton.enabled = true
         }
-    }
-
-    
-    /*
-        Callback function, called when start-time is picked.
-        
-        @methodtype Hook
-        @pre -
-        @post Notify controller, set start-time
-    */
-    func pickedFromTime(time: NSDate)
-    {
-        fromTimeLabel.text = timeFormatter.stringFromDate(time)
-        session.startTime = time
-    }
-    
-    
-    /*
-        Callback function, called when end-time is picked.
-        
-        @methodtype Hook
-        @pre -
-        @post Notify controller, set end-time
-    */
-    func pickedToTime(time: NSDate)
-    {
-        toTimeLabel.text = timeFormatter.stringFromDate(time)
-        session.endTime = time
     }
     
     
@@ -101,9 +141,9 @@ class NewSessionViewController: UITableViewController, FromViewControllerDelegat
     @IBAction func addNewSession(sender: AnyObject)
     {
         var calendar = NSCalendar.currentCalendar()
-        var dateComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: datePicker.date)
-        var fromTimeComponent = datePicker.calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.startTime)
-        var toTimeComponent = datePicker.calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.endTime)
+        var dateComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: dateFormatter.dateFromString(dateTextField.text)!)
+        var fromTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.startTime)
+        var toTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.endTime)
         
         fromTimeComponent.day = dateComponent.day
         fromTimeComponent.month = dateComponent.month

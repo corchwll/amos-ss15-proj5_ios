@@ -44,7 +44,8 @@ class RecordingViewController: UIViewController
     {
         if segue.identifier == "new_session_segue"
         {
-            var viewController = segue.destinationViewController as! NewSessionViewController
+            var navigationController = segue.destinationViewController as! UINavigationController
+            var viewController = navigationController.visibleViewController as! NewSessionViewController
             viewController.project = project
         }
     }

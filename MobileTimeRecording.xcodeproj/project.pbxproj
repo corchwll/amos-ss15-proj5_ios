@@ -11,8 +11,6 @@
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
 		E41B9C391AEFA61300EE9CFD /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E41B9C381AEFA60600EE9CFD /* db.sqlite3 */; };
 		E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */; };
-		E43D51581AF4F1BC00D9FFF8 /* FromViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D51571AF4F1BC00D9FFF8 /* FromViewController.swift */; };
-		E43D515E1AF4F5D500D9FFF8 /* ToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43D515D1AF4F5D500D9FFF8 /* ToViewController.swift */; };
 		E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */; };
 		E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB51AF52E25006DF820 /* ProfileDAO.swift */; };
 		E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
@@ -114,8 +112,6 @@
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		E41B9C381AEFA60600EE9CFD /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
-		E43D51571AF4F1BC00D9FFF8 /* FromViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromViewController.swift; sourceTree = "<group>"; };
-		E43D515D1AF4F5D500D9FFF8 /* ToViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToViewController.swift; sourceTree = "<group>"; };
 		E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		E444CDB51AF52E25006DF820 /* ProfileDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDAO.swift; sourceTree = "<group>"; };
 		E444CDB71AF52EE0006DF820 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -174,8 +170,6 @@
 			children = (
 				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
 				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
-				E43D51571AF4F1BC00D9FFF8 /* FromViewController.swift */,
-				E43D515D1AF4F5D500D9FFF8 /* ToViewController.swift */,
 			);
 			name = Recording;
 			sourceTree = "<group>";
@@ -446,7 +440,6 @@
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
 				E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */,
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
-				E43D515E1AF4F5D500D9FFF8 /* ToViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */,
 				E446C0001AFD18A7000DBAA0 /* ProfileTableViewController.swift in Sources */,
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
@@ -456,7 +449,6 @@
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
 				E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */,
 				E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */,
-				E43D51581AF4F1BC00D9FFF8 /* FromViewController.swift in Sources */,
 				E45C447F1AED83700044D25F /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
