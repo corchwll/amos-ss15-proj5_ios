@@ -36,6 +36,8 @@ class ProfileDAO
         userDefaults.setObject(profile.employeeId, forKey: employeeIdKey)
         userDefaults.setObject(profile.hoursPerWeek, forKey: hoursPerWeekKey)
         userDefaults.setObject(profile.vacation, forKey: vacationKey)
+        
+        userDefaults.setBool(true, forKey: "registered")
     }
     
     
@@ -56,5 +58,11 @@ class ProfileDAO
         profile.vacation = userDefaults.stringForKey(vacationKey)
         
         return profile
+    }
+    
+    
+    func isRegistered()->Bool
+    {
+        return userDefaults.boolForKey("registered")
     }
 }

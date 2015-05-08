@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, NewProfileViewControllerDelegate
+class RecordingViewController: UIViewController
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -23,40 +23,13 @@ class RecordingViewController: UIViewController, NewProfileViewControllerDelegat
     var isRunning: Bool = false
     
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        performOneTimeRegistration()
-    }
-    
-    
-    /*
-        Function for user registration. Will perform an initial registration screen for creating a profile.
-        
-        @methodtype Command
-        @pre User not yet registered
-        @post Perform segue for registration
-    */
-    func performOneTimeRegistration()
-    {
-        var nsUserDefaults = NSUserDefaults()
-        if !nsUserDefaults.boolForKey("registered")
-        {
-            performSegueWithIdentifier("new_account_segue", sender: self)
-        }
-        else
-        {
-            //debug: prints user account
-            println(profileDAO.getProfile().asString())
-        }
-    }
-    
-    
     func setProject(project: Project)
     {
         self.project = project
         projectIdLabel.text = String(project.id)
         projectNameLabel.text = project.name
+        
+        println(profileDAO.getProfile().asString())
     }
     
     
@@ -74,26 +47,6 @@ class RecordingViewController: UIViewController, NewProfileViewControllerDelegat
             var viewController = segue.destinationViewController as! NewSessionViewController
             viewController.project = project
         }
-        else if segue.identifier == "new_account_segue"
-        {
-            var navigationController = segue.destinationViewController as! UINavigationController
-            var viewController = navigationController.topViewController as! NewProfileViewController
-            viewController.delegate = self
-        }
-    }
-    
-    
-    /*
-        Callback function, signalizing user profile registered. Sets boolean for one time registration.
-        
-        @methodtype Hook
-        @pre -
-        @post Set boolean to registered
-    */
-    func didRegister()
-    {
-        var nsUserDefaults = NSUserDefaults()
-        nsUserDefaults.setBool(true, forKey: "registered")
     }
     
     

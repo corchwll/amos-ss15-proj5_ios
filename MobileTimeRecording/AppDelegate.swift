@@ -14,8 +14,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
+        if profileDAO.isRegistered()
+        {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("main") as! UITabBarController
+            window?.rootViewController = mainViewController
+            
+            //debug: prints user account
+            println(profileDAO.getProfile().asString())
+        }
+        else
+        {
+            println("not yet registered")
+        }
+        
         return true
     }
 

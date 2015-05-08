@@ -9,21 +9,13 @@
 import UIKit
 
 
-protocol NewProfileViewControllerDelegate
-{
-    func didRegister()
-}
-
-
 class NewProfileViewController: UITableViewController
 {
     @IBOutlet weak var forenameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var employeeIdTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-    
-    var delegate: NewProfileViewControllerDelegate?
-    
+
     
     /*
         Function is called when pressing 'done'-button. Creates new profile and delegates registration feedback
@@ -37,8 +29,7 @@ class NewProfileViewController: UITableViewController
     {
         let profile = Profile(forename: forenameTextField.text, surname: surnameTextField.text, employeeId: employeeIdTextField.text)
         profileDAO.addProfile(profile)
-        delegate?.didRegister()
-        dismissViewControllerAnimated(true, completion: {})
+        performSegueWithIdentifier("main_segue", sender: nil)
     }
     
     

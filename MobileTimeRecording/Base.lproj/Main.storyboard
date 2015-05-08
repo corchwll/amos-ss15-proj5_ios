@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rIO-BA-Z0S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WV2-Pg-Tb1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -108,7 +108,6 @@
                         <outlet property="projectNameLabel" destination="Pgw-3I-KX2" id="9kH-CY-LQg"/>
                         <outlet property="startStopButton" destination="H8l-0h-Mge" id="fZ2-ja-5bf"/>
                         <outlet property="timeLabel" destination="mI9-Yu-DZX" id="hoZ-W4-cZd"/>
-                        <segue destination="WV2-Pg-Tb1" kind="presentation" identifier="new_account_segue" id="t9Z-Ss-K8M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -258,11 +257,12 @@
                         <outlet property="employeeIdTextField" destination="nFv-O1-gFi" id="0u3-ha-D8t"/>
                         <outlet property="forenameTextField" destination="K9e-Zo-Sh8" id="gsK-vb-JTO"/>
                         <outlet property="surnameTextField" destination="ddN-qR-wxo" id="aLX-oc-CV3"/>
+                        <segue destination="rIO-BA-Z0S" kind="presentation" identifier="main_segue" id="QF1-Qr-yny"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzX-tc-VPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621" y="2127"/>
+            <point key="canvasLocation" x="1621" y="-2057"/>
         </scene>
         <!--Projects-->
         <scene sceneID="Nj0-9g-Wvo">
@@ -399,7 +399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESJ-BX-Gti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3493" y="1328"/>
+            <point key="canvasLocation" x="3031" y="1272"/>
         </scene>
         <!--New Session-->
         <scene sceneID="x0l-GU-mWt">
@@ -509,7 +509,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q4r-OK-Ywl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405" y="1300"/>
+            <point key="canvasLocation" x="1621" y="1272"/>
         </scene>
         <!--From-->
         <scene sceneID="Aqp-qP-AHO">
@@ -552,7 +552,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BzA-1c-fU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2405" y="2127"/>
+            <point key="canvasLocation" x="1621" y="2115"/>
         </scene>
         <!--To-->
         <scene sceneID="y5W-CH-CTz">
@@ -595,7 +595,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6f-sT-faU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3189" y="2127"/>
+            <point key="canvasLocation" x="2425" y="2115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iGS-tm-ufK">
@@ -613,12 +613,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeO-jP-Y84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621" y="1300"/>
+            <point key="canvasLocation" x="1621" y="-2908"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="O99-2i-cON">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="rIO-BA-Z0S" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rIO-BA-Z0S" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="GiP-ZH-5eh"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -633,7 +633,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWw-Mz-N0j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1621" y="-1198"/>
+            <point key="canvasLocation" x="1621" y="-1210"/>
         </scene>
         <!--Recording-->
         <scene sceneID="hNk-z0-I8u">
