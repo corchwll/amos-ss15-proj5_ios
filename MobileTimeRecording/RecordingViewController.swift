@@ -9,10 +9,8 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewProfileViewControllerDelegate
+class RecordingViewController: UIViewController
 {
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var projectsList: UITableView!
     @IBOutlet weak var startStopButton: UIButton!
 
 
@@ -50,7 +48,7 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    
+/*
     /*
         iOS life-cycle function, reloading all projects into table view everytime this view will appears.
     
@@ -249,5 +247,6 @@ class RecordingViewController: UIViewController, UITableViewDelegate, UITableVie
         
         return String(format: "%d m %0.2d s", minutes, seconds)
     }
+*/
 }
 

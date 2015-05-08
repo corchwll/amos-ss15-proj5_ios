@@ -16,6 +16,7 @@
 		E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */; };
 		E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB51AF52E25006DF820 /* ProfileDAO.swift */; };
 		E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
+		E446BFF71AFCE3DA000DBAA0 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */; };
 		E45C447B1AED83510044D25F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; };
 		E45C447C1AED835B0044D25F /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E45C447F1AED83700044D25F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C447E1AED83700044D25F /* Project.swift */; };
@@ -116,6 +117,7 @@
 		E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		E444CDB51AF52E25006DF820 /* ProfileDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDAO.swift; sourceTree = "<group>"; };
 		E444CDB71AF52EE0006DF820 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		E45C44651AED83310044D25F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
@@ -153,6 +155,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E446BFFC1AFCE402000DBAA0 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */,
+				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
+				E45E12461AEE65040081E23C /* NewProjectViewController.swift */,
+			);
+			name = Projects;
+			sourceTree = "<group>";
+		};
+		E446BFFD1AFCE410000DBAA0 /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
+				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
+				E43D51571AF4F1BC00D9FFF8 /* FromViewController.swift */,
+				E43D515D1AF4F5D500D9FFF8 /* ToViewController.swift */,
+			);
+			name = Recording;
+			sourceTree = "<group>";
+		};
+		E446BFFE1AFCE41E000DBAA0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		E45C44661AED83310044D25F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,13 +220,9 @@
 		E45E12451AEE64B30081E23C /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
-				E45E12461AEE65040081E23C /* NewProjectViewController.swift */,
-				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
-				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
-				E43D51571AF4F1BC00D9FFF8 /* FromViewController.swift */,
-				E43D515D1AF4F5D500D9FFF8 /* ToViewController.swift */,
-				E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */,
+				E446BFFE1AFCE41E000DBAA0 /* Profile */,
+				E446BFFD1AFCE410000DBAA0 /* Recording */,
+				E446BFFC1AFCE402000DBAA0 /* Projects */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -407,6 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E446BFF71AFCE3DA000DBAA0 /* ProjectsViewController.swift in Sources */,
 				E4A16AA81AE531EB006BB173 /* RecordingViewController.swift in Sources */,
 				E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */,
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
