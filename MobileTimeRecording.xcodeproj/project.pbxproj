@@ -17,6 +17,7 @@
 		E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB51AF52E25006DF820 /* ProfileDAO.swift */; };
 		E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
 		E446BFF71AFCE3DA000DBAA0 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */; };
+		E446C0001AFD18A7000DBAA0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E446BFFF1AFD18A7000DBAA0 /* ProfileTableViewController.swift */; };
 		E45C447B1AED83510044D25F /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; };
 		E45C447C1AED835B0044D25F /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = E45C446F1AED83310044D25F /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E45C447F1AED83700044D25F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C447E1AED83700044D25F /* Project.swift */; };
@@ -118,6 +119,7 @@
 		E444CDB51AF52E25006DF820 /* ProfileDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDAO.swift; sourceTree = "<group>"; };
 		E444CDB71AF52EE0006DF820 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		E446BFFF1AFD18A7000DBAA0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		E45C44651AED83310044D25F /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */,
+				E446BFFF1AFD18A7000DBAA0 /* ProfileTableViewController.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */,
 				E43D515E1AF4F5D500D9FFF8 /* ToViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */,
+				E446C0001AFD18A7000DBAA0 /* ProfileTableViewController.swift in Sources */,
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
