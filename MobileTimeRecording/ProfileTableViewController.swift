@@ -2,7 +2,7 @@
 //  ProfileTableViewController.swift
 //  MobileTimeRecording
 //
-//  Created by cdan on 08/05/15.
+//  Created by DanNglk on 08/05/15.
 //  Copyright (c) 2015 develop-group. All rights reserved.
 //
 
@@ -19,6 +19,13 @@ class ProfileTableViewController: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        loadProfile()
+    }
+    
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        super.viewDidAppear(animated)
         loadProfile()
     }
     

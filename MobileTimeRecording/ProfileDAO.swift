@@ -29,7 +29,7 @@ class ProfileDAO
         @pre -
         @post Stored user profile
     */
-    func addProfile(profile: Profile)
+    func setProfile(profile: Profile)
     {
         userDefaults.setObject(profile.forename, forKey: forenameKey)
         userDefaults.setObject(profile.surname, forKey: surnameKey)

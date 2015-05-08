@@ -28,7 +28,7 @@ class NewProfileViewController: UITableViewController
     @IBAction func done(sender: AnyObject)
     {
         let profile = Profile(forename: forenameTextField.text, surname: surnameTextField.text, employeeId: employeeIdTextField.text)
-        profileDAO.addProfile(profile)
+        profileDAO.setProfile(profile)
         performSegueWithIdentifier("main_segue", sender: nil)
     }
     
