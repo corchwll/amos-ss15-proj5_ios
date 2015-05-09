@@ -30,11 +30,11 @@ class NewSessionViewController: UITableViewController
     
     
     /*
-        iOS life-cycle function, called when view did load. Start and end-time is set to default values.
+        iOS life-cycle function. Setting up current session and ui.
         
         @methodtype Hook
         @pre -
-        @post Set default time values
+        @post Current session and ui is set up
     */
     override func viewDidLoad()
     {
@@ -47,6 +47,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Function is setting up project heading for ui.
+        
+        @methodtype Command
+        @pre Valid project has been set
+        @post Ui for project heading is set up
+    */
     func setUpProjectHeading()
     {
         projectNameLabel.text = project.name
@@ -54,6 +61,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Function is setting up date/time formatters.
+        
+        @methodtype Command
+        @pre Valid and initialized formatter objects
+        @post Date and time formatters are set up
+    */
     func setUpDateTimeFormatters()
     {
         timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
@@ -65,6 +79,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Function is setting up new session.
+        
+        @methodtype Command
+        @pre Valid session object
+        @post Session has been set up
+    */
     func setUpSession()
     {
         session.startTime = timeFormatter.dateFromString("08:00")!
@@ -72,6 +93,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Function is setting up ui for date and time.
+        
+        @methodtype Command
+        @pre Date and time formatters are set up
+        @post Ui for date and time has been set up
+    */
     func setUpTimeTextFields()
     {
         dateTextField.text = dateFormatter.stringFromDate(NSDate())
@@ -98,12 +126,26 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Listener function for date picker. Updating session date.
+        
+        @methodtype Hook
+        @pre -
+        @post -
+    */
     func datePickerDidChange()
     {
         dateTextField.text = dateFormatter.stringFromDate(datePicker.date)
     }
     
     
+    /*
+        Listener function for start time picker. Updating session start time.
+        
+        @methodtype Hook
+        @pre -
+        @post -
+    */
     func timePickerFromDidChange()
     {
         fromTextField.text = timeFormatter.stringFromDate(timePickerFrom.date)
@@ -111,6 +153,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Listener function for end time picker. Updating session end time.    
+        
+        @methodtype Hook
+        @pre -
+        @post -
+    */
     func timePickerToDidChange()
     {
         toTextField.text = timeFormatter.stringFromDate(timePickerTo.date)
@@ -118,6 +167,13 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    /*
+        Function is updating status of 'done'-button.
+        
+        @methodtype Command
+        @pre Start time must be lower than end time
+        @post 'done'-button enabled else disabled
+    */
     func updateDoneButtonState()
     {
         if timePickerFrom.date.timeIntervalSince1970 > timePickerTo.date.timeIntervalSince1970

@@ -17,12 +17,26 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     var projects: [Project]!
 
     
+    /*
+        iOS life-cycle function. Reloading all projects into ui.
+        
+        @methodtype Hook
+        @pre -
+        @post Relaoded projects
+    */
     override func viewWillAppear(animated: Bool)
     {
         reloadProjects()
     }
     
     
+    /*
+        Function is reloading all projects into ui.
+        
+        @methodtype Command
+        @pre -
+        @post Reloaded projects
+    */
     func reloadProjects()
     {
         dictionary = Dictionary<String, [Project]>()
@@ -33,6 +47,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Function is archiving all project into a dictionary for alphabetical grouping.
+        
+        @methodtype Command
+        @pre Initialized dictionary
+        @post Archived projects
+    */
     func archiveProjectsIntoDictionary()
     {
         for project in projects
@@ -48,6 +69,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        iOS Listener function. Setting up popover view for adding new projects.
+        
+        @methodtype Hook
+        @pre Identifier is set
+        @post Popover is shown
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "popover_test"
@@ -62,24 +90,52 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Callback function from adding new project. Reloading all projects.
+        
+        @methodtype Hook
+        @pre -
+        @post Reloaded projects
+    */
     func didAddNewProject()
     {
         reloadProjects()
     }
     
     
+    /*
+        
+        
+        @methodtype
+        @pre
+        @post
+    */
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
     {
         return UIModalPresentationStyle.None
     }
     
     
+    /*
+        iOS function for handling number of sections in table views.
+        
+        @methodtype Getter
+        @pre -
+        @post Get number of sections
+    */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
         return alphabet.count
     }
     
     
+    /*
+        iOS function for handling section header titles in table views.
+        
+        @methodtype Getter
+        @pre -
+        @post Get section header title
+    */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if dictionary[alphabet[section]] != nil
@@ -87,6 +143,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             return alphabet[section]
         }
         return nil
+    }
+    
+    
+    /*
+        iOS function for handling index titles in table views.
+        
+        @methodtype Getter
+        @pre -
+        @post Get list of titles
+    */
+    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]!
+    {
+        return alphabet
     }
     
     

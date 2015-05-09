@@ -18,12 +18,11 @@ class NewProfileViewController: UITableViewController
 
     
     /*
-        Function is called when pressing 'done'-button. Creates new profile and delegates registration feedback
-        back to view controller.
+        iOS listener function. Called when pressing 'done'-button, creating new profile.
         
         @methodtype Command
-        @pre Valid ProfileDAO singleton, view controller must implement delegate protocol
-        @post New profile is created, delegate back to view controller
+        @pre Valid ProfileDAO singleton
+        @post Initial user profile is created
     */
     @IBAction func done(sender: AnyObject)
     {
@@ -33,18 +32,39 @@ class NewProfileViewController: UITableViewController
     }
     
     
+    /*
+        iOS listener function. Called when editing forename, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
     @IBAction func forenameChanged(sender: AnyObject)
     {
         refreshDoneButtonState()
     }
     
     
+    /*
+        
+        iOS listener function. Called when editing surname, refreshes 'done'-button state.
+        @methodtype Command
+        @pre -
+        @post -
+    */
     @IBAction func surnameChanged(sender: AnyObject)
     {
         refreshDoneButtonState()
     }
     
     
+    /*
+        iOS listener function. Called when editing employee id, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
     @IBAction func employeeIdChanged(sender: AnyObject)
     {
         refreshDoneButtonState()
@@ -52,7 +72,7 @@ class NewProfileViewController: UITableViewController
     
     
     /*
-        Function for enabling 'done'-button. If necessary text field are filled, button will be enabled.
+        Function for enabling 'done'-button. Button will be enabled when all mandatory text fiels are filled.
         
         @methodtype Command
         @pre Text field are not empty

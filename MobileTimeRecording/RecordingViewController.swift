@@ -23,13 +23,18 @@ class RecordingViewController: UIViewController
     var isRunning: Bool = false
     
     
+    /*
+        Setting new active project, ready for recording.
+        
+        @methodtype Setter
+        @pre -
+        @post New project is set
+    */
     func setProject(project: Project)
     {
         self.project = project
         projectIdLabel.text = String(project.id)
         projectNameLabel.text = project.name
-        
-        println(profileDAO.getProfile().asString())
     }
     
     
@@ -57,7 +62,7 @@ class RecordingViewController: UIViewController
         
         @methodtype Command
         @pre -
-        @post -
+        @post Time recording is toggled
     */
     @IBAction func toggleTimeRecording(sender: AnyObject)
     {

@@ -40,6 +40,13 @@ class NewProjectViewController: UIViewController
     }
     
     
+    /*
+        iOS listener function. Called when pressing 'cancel'-button, dismissing current view.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
     @IBAction func cancel(sender: AnyObject)
     {
         self.dismissViewControllerAnimated(true, completion: {})

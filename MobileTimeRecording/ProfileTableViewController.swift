@@ -16,6 +16,13 @@ class ProfileTableViewController: UITableViewController
     @IBOutlet weak var vacationLabel: UILabel!
     
     
+    /*
+        iOS life-cycle function. Loads user profile.
+        
+        @methodtype Hook
+        @pre Initial user profile is set
+        @post User profile loaded
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -23,6 +30,13 @@ class ProfileTableViewController: UITableViewController
     }
     
     
+    /*
+        iOS life-cycle function. Loads user profile.
+        
+        @methodtype Hook
+        @pre Initial user profile is set
+        @post User profile loaded
+    */
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
@@ -30,6 +44,13 @@ class ProfileTableViewController: UITableViewController
     }
     
     
+    /*
+        Functions is loading current user profile into ui.
+        
+        @methodtype Command
+        @pre Valid user profile
+        @post User profile was loaded into ui
+    */
     func loadProfile()
     {
         let profile = profileDAO.getProfile()

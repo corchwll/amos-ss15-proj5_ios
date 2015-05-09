@@ -17,6 +17,13 @@ class EditProfileTableViewController: UITableViewController
     @IBOutlet weak var vacationTextField: UITextField!
     
     
+    /*
+        iOS life-cycle function. Loading user profile.
+    
+        @methodtype Hook
+        @pre Initial user profile is set
+        @post User profile loaded
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -24,6 +31,13 @@ class EditProfileTableViewController: UITableViewController
     }
     
     
+    /*
+        Functions is loading current user profile into ui.
+        
+        @methodtype Command
+        @pre Valid user profile
+        @post User profile was loaded into ui
+    */
     func loadProfile()
     {
         let profile = profileDAO.getProfile()
@@ -36,6 +50,13 @@ class EditProfileTableViewController: UITableViewController
     }
     
     
+    /*
+        iOS listener function. Called when pressing 'done'-button, updating user profile.
+        
+        @methodtype Command
+        @pre -
+        @post User update will be set
+    */
     @IBAction func done(sender: AnyObject)
     {
         let profile = Profile()
@@ -50,6 +71,13 @@ class EditProfileTableViewController: UITableViewController
     }
     
     
+    /*
+        iOS listener function. Called when pressing 'cancel'-button, dismisses current view.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
     @IBAction func cancel(sender: AnyObject)
     {
         dismissViewControllerAnimated(true, completion: {})
