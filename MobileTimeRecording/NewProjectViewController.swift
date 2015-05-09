@@ -9,10 +9,17 @@
 import UIKit
 
 
+protocol NewProjectDelegate
+{
+    func didAddNewProject()
+}
+
+
 class NewProjectViewController: UIViewController
 {
     @IBOutlet weak var projectIdTextField: UITextField!
     @IBOutlet weak var projectNameTextField: UITextField!
+    var delegate: NewProjectDelegate!
     
     
     /*
@@ -27,7 +34,14 @@ class NewProjectViewController: UIViewController
     {
         let newProject = Project(id: projectIdTextField.text.toInt()!, name: projectNameTextField.text)
         projectDAO.addProject(newProject)
+        delegate.didAddNewProject()
         
-        navigationController?.popViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: {})
+    }
+    
+    
+    @IBAction func cancel(sender: AnyObject)
+    {
+        self.dismissViewControllerAnimated(true, completion: {})
     }
 }

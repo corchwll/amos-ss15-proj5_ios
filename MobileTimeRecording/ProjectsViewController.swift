@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
     
@@ -18,6 +18,12 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     override func viewWillAppear(animated: Bool)
+    {
+        reloadProjects()
+    }
+    
+    
+    func reloadProjects()
     {
         dictionary = Dictionary<String, [Project]>()
         projects = projectDAO.getProjects()
@@ -39,6 +45,32 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             }
             dictionary[dictIndex]?.append(project)
         }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "popover_test"
+        {
+            let popoverViewController = segue.destinationViewController as! UINavigationController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.popoverPresentationController!.delegate = self
+            
+            let newProjectViewController = popoverViewController.visibleViewController as! NewProjectViewController
+            newProjectViewController.delegate = self
+        }
+    }
+    
+    
+    func didAddNewProject()
+    {
+        reloadProjects()
+    }
+    
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
+    {
+        return UIModalPresentationStyle.None
     }
     
     
@@ -98,7 +130,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     /*
         Function is called when selecting table row.
-        
+    
         @methodtype Command
         @pre -
         @post Prevents from selecting during recording
@@ -108,7 +140,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         tabBarController?.selectedIndex = 0
         var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
         var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
-        recordingViewController.setProject(projects[indexPath.item])
+        recordingViewController.setProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
         
         return indexPath
     }

@@ -360,7 +360,9 @@
                     <navigationItem key="navigationItem" title="Projects" id="TUh-jU-TtN">
                         <barButtonItem key="rightBarButtonItem" title="New Project" id="wh8-Ih-7nu">
                             <connections>
-                                <segue destination="8hc-sO-Zki" kind="show" id="UcX-tm-eYI"/>
+                                <segue destination="hfV-Mn-rSf" kind="popoverPresentation" identifier="popover_test" popoverAnchorBarButtonItem="wh8-Ih-7nu" id="UcX-tm-eYI">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -382,7 +384,7 @@
             </objects>
             <point key="canvasLocation" x="3031" y="456"/>
         </scene>
-        <!--New Project-->
+        <!--New Project View Controller-->
         <scene sceneID="gJ6-a7-Nto">
             <objects>
                 <viewController id="8hc-sO-Zki" customClass="NewProjectViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
@@ -391,37 +393,45 @@
                         <viewControllerLayoutGuide type="bottom" id="VM2-uX-FE4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nbq-80-n46">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-o9-uky">
-                                <rect key="frame" x="77" y="117" width="446" height="30"/>
+                                <rect key="frame" x="16" y="69" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-Fg-EDa">
-                                <rect key="frame" x="77" y="192" width="446" height="30"/>
+                                <rect key="frame" x="16" y="135" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IdQ-o9-uky" firstAttribute="centerX" secondItem="Nbq-80-n46" secondAttribute="centerX" id="C6q-vU-Jh5"/>
-                            <constraint firstItem="IdQ-o9-uky" firstAttribute="top" secondItem="li8-tL-xIE" secondAttribute="bottom" constant="53" id="Qxd-1L-sqm"/>
-                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="top" secondItem="IdQ-o9-uky" secondAttribute="bottom" constant="45" id="bio-TK-Tzt"/>
-                            <constraint firstItem="IdQ-o9-uky" firstAttribute="leading" secondItem="2bx-Fg-EDa" secondAttribute="leading" id="ffb-ma-2uW"/>
-                            <constraint firstItem="IdQ-o9-uky" firstAttribute="leading" secondItem="Nbq-80-n46" secondAttribute="leadingMargin" constant="61" id="iwN-pR-H7o"/>
-                            <constraint firstItem="IdQ-o9-uky" firstAttribute="trailing" secondItem="2bx-Fg-EDa" secondAttribute="trailing" id="qsa-VZ-l9O"/>
+                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="trailing" secondItem="IdQ-o9-uky" secondAttribute="trailing" id="DLb-VK-AoL"/>
+                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="leading" secondItem="IdQ-o9-uky" secondAttribute="leading" id="Kiz-q3-Uwi"/>
+                            <constraint firstItem="IdQ-o9-uky" firstAttribute="top" secondItem="li8-tL-xIE" secondAttribute="bottom" constant="25" id="mEn-SU-ewL"/>
+                            <constraint firstItem="IdQ-o9-uky" firstAttribute="trailing" secondItem="Nbq-80-n46" secondAttribute="trailingMargin" id="rYe-5d-Xpc"/>
+                            <constraint firstItem="VM2-uX-FE4" firstAttribute="top" secondItem="2bx-Fg-EDa" secondAttribute="bottom" constant="35" id="vIf-lx-Xy1"/>
+                            <constraint firstItem="IdQ-o9-uky" firstAttribute="leading" secondItem="Nbq-80-n46" secondAttribute="leadingMargin" id="yYg-4x-94K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Project" id="7sI-nT-Wrs">
+                    <navigationItem key="navigationItem" id="7sI-nT-Wrs">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="9Jv-0r-nEf">
+                            <connections>
+                                <action selector="cancel:" destination="8hc-sO-Zki" id="ceL-M8-RQl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="FAK-8z-OX0">
                             <connections>
                                 <action selector="addProject:" destination="8hc-sO-Zki" id="pxJ-Kt-fKY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="200"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="200"/>
                     <connections>
                         <outlet property="projectIdTextField" destination="IdQ-o9-uky" id="NDM-PE-31B"/>
                         <outlet property="projectNameTextField" destination="2bx-Fg-EDa" id="LTW-Py-gEw"/>
@@ -429,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESJ-BX-Gti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031" y="1272"/>
+            <point key="canvasLocation" x="3031" y="1432"/>
         </scene>
         <!--New Session-->
         <scene sceneID="x0l-GU-mWt">
@@ -972,6 +982,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cbU-en-cbf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1621" y="1272"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6iN-ej-III">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hfV-Mn-rSf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="200"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="200"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d4p-tn-hGu">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8hc-sO-Zki" kind="relationship" relationship="rootViewController" id="vIC-rG-xa1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W9U-hZ-8Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3031" y="1080"/>
         </scene>
     </scenes>
     <resources>
