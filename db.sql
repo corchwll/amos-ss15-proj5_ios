@@ -10,3 +10,18 @@ create table sessions (
 	timestamp_end integer not null, 
 	foreign key(project_id) references projects(id)
 );
+
+insert into projects values (
+	1,
+	"Illness"
+);
+
+insert into projects values (
+	2,
+	"Holiday"
+);
+
+insert into projects values (
+	3,
+	"Training"
+);

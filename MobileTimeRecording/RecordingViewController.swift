@@ -89,6 +89,7 @@ class RecordingViewController: UIViewController
     func startVisualizingTimer()
     {
         startStopButton.setTitle("STOP", forState: .Normal)
+        startStopButton.backgroundColor = UIColor.redColor()
         timeLabel.text = formatTimeToString(0)
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
     }
@@ -121,6 +122,7 @@ class RecordingViewController: UIViewController
         if(timer != nil)
         {
             startStopButton.setTitle("START", forState: .Normal)
+            startStopButton.backgroundColor = UIColor(red: 0x00, green: 0xcc/0xff, blue: 0x66/0xff, alpha: 0xff)
             timer.invalidate()
             timer = nil
         }

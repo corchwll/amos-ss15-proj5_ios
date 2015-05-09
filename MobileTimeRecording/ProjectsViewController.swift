@@ -12,13 +12,49 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
 {
     @IBOutlet weak var projectsTableView: UITableView!
     
-    var projects: [Project] = []
+    var alphabet = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    var dictionary: Dictionary<String, [Project]>!
+    var projects: [Project]!
 
     
     override func viewWillAppear(animated: Bool)
     {
+        dictionary = Dictionary<String, [Project]>()
         projects = projectDAO.getProjects()
+        
+        archiveProjectsIntoDictionary()
         projectsTableView.reloadData()
+    }
+    
+    
+    func archiveProjectsIntoDictionary()
+    {
+        for project in projects
+        {
+            let index = project.name.startIndex
+            let dictIndex = String(project.name.capitalizedString[index])
+            if dictionary[dictIndex] == nil
+            {
+                dictionary[dictIndex] = [Project]()
+            }
+            dictionary[dictIndex]?.append(project)
+        }
+    }
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return alphabet.count
+    }
+    
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        if dictionary[alphabet[section]] != nil
+        {
+            return alphabet[section]
+        }
+        return nil
     }
     
     
@@ -31,7 +67,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return projects.count
+        if let projects = dictionary[alphabet[section]]
+        {
+            return projects.count
+        }
+        return 0
     }
     
     
@@ -46,9 +86,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         let cell: ProjectTableViewCell = projectsTableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
         
-        var project = projects[indexPath.item]
-        cell.projectID.text = "\(project.id)"
-        cell.projectName.text = project.name
+        if let project = dictionary[alphabet[indexPath.section]]?[indexPath.row]
+        {
+            cell.projectID.text = "\(project.id)"
+            cell.projectName.text = project.name
+        }
         
         return cell
     }
