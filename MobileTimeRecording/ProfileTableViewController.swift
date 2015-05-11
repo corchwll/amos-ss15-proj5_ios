@@ -12,8 +12,8 @@ class ProfileTableViewController: UITableViewController
 {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var employeeIdLabel: UILabel!
-    @IBOutlet weak var hoursPerWeekLabel: UILabel!
-    @IBOutlet weak var vacationLabel: UILabel!
+    @IBOutlet weak var weeklyWorkingTimeLabel: UILabel!
+    @IBOutlet weak var totalVacationTimeLabel: UILabel!
     
     
     /*
@@ -54,9 +54,9 @@ class ProfileTableViewController: UITableViewController
     func loadProfile()
     {
         let profile = profileDAO.getProfile()
-        nameLabel.text = profile.forename + " " + profile.surname
+        nameLabel.text = profile.firstname + " " + profile.lastname
         employeeIdLabel.text = profile.employeeId
-        hoursPerWeekLabel.text = profile.hoursPerWeek
-        vacationLabel.text = profile.vacation
+        weeklyWorkingTimeLabel.text = profile.weeklyWorkingTime
+        totalVacationTimeLabel.text = profile.totalVacationTime
     }
 }

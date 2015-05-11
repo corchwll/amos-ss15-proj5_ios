@@ -11,12 +11,14 @@ import Foundation
 
 class Profile
 {
-    var forename: String
-    var surname: String
+    var firstname: String
+    var lastname: String
     var employeeId: String
     
-    var hoursPerWeek: String?
-    var vacation: String?
+    var weeklyWorkingTime: String?
+    var totalVacationTime: String?
+    var currentVacationTime: String?
+    var currentOvertime: String?
    
     
     /*
@@ -28,8 +30,8 @@ class Profile
     */
     init()
     {
-        self.forename = "default"
-        self.surname = "default"
+        self.firstname = "default"
+        self.lastname = "default"
         self.employeeId = "0"
     }
     
@@ -41,10 +43,10 @@ class Profile
         @pre Correct paramters != nil
         @post Initialized profile
     */
-    init(forename: String, surname: String, employeeId: String)
+    init(firstname: String, lastname: String, employeeId: String)
     {
-        self.forename = forename
-        self.surname = surname
+        self.firstname = firstname
+        self.lastname = lastname
         self.employeeId = employeeId
     }
     
@@ -56,11 +58,13 @@ class Profile
         @pre Correct paramters != nil
         @post Initialized profile
     */
-    convenience init(forename: String, surname: String, employeeId: String, hoursPerWeek: String, vacation: String)
+    convenience init(firstname: String, lastname: String, employeeId: String, weeklyWorkingTime: String, totalVacationTime: String, currentVacationTime: String, currentOvertime: String)
     {
-        self.init(forename: forename, surname: surname, employeeId: employeeId)
-        self.hoursPerWeek = hoursPerWeek
-        self.vacation = vacation
+        self.init(firstname: firstname, lastname: lastname, employeeId: employeeId)
+        self.weeklyWorkingTime = weeklyWorkingTime
+        self.totalVacationTime = totalVacationTime
+        self.currentVacationTime = currentVacationTime
+        self.currentOvertime = currentOvertime
     }
     
     
@@ -73,6 +77,6 @@ class Profile
     */
     func asString()->String
     {
-        return "\(forename) \(surname); \(employeeId); \(hoursPerWeek); \(vacation)"
+        return "\(firstname) \(lastname); \(employeeId); \(weeklyWorkingTime); \(totalVacationTime); \(currentVacationTime); \(currentOvertime)"
     }
 }

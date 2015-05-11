@@ -15,11 +15,15 @@ let profileDAO = ProfileDAO()
 class ProfileDAO
 {
     var userDefaults = NSUserDefaults()
-    private var forenameKey = "forename_key"
-    private var surnameKey = "surname_key"
-    private var employeeIdKey = "employeeId_key"
-    private var hoursPerWeekKey = "hoursPerWeek_key"
-    private var vacationKey = "vacation_key"
+    private var firstnameKey = "firstname_key"
+    private var lastnameKey = "lastname_key"
+    private var employeeIdKey = "employee_id_key"
+    private var weeklyWorkingTimeKey = "weekly_working_time_key"
+    private var totalVacationTimeKey = "total_vacation_time_key"
+    private var currentVacationTimeKey = "current_vacation_time_key"
+    private var currentOvertimeKey = "current_overtime_key"
+    
+    private var userRegisteredKey = "user_registered"
     
     
     /*
@@ -31,13 +35,15 @@ class ProfileDAO
     */
     func setProfile(profile: Profile)
     {
-        userDefaults.setObject(profile.forename, forKey: forenameKey)
-        userDefaults.setObject(profile.surname, forKey: surnameKey)
+        userDefaults.setObject(profile.firstname, forKey: firstnameKey)
+        userDefaults.setObject(profile.lastname, forKey: lastnameKey)
         userDefaults.setObject(profile.employeeId, forKey: employeeIdKey)
-        userDefaults.setObject(profile.hoursPerWeek, forKey: hoursPerWeekKey)
-        userDefaults.setObject(profile.vacation, forKey: vacationKey)
+        userDefaults.setObject(profile.weeklyWorkingTime, forKey: weeklyWorkingTimeKey)
+        userDefaults.setObject(profile.totalVacationTime, forKey: totalVacationTimeKey)
+        userDefaults.setObject(profile.currentVacationTime, forKey: currentVacationTimeKey)
+        userDefaults.setObject(profile.currentOvertime, forKey: currentOvertimeKey)
         
-        userDefaults.setBool(true, forKey: "registered")
+        userDefaults.setBool(true, forKey: userRegisteredKey)
     }
     
     
@@ -51,11 +57,13 @@ class ProfileDAO
     func getProfile()->Profile
     {
         var profile = Profile()
-        profile.forename = userDefaults.stringForKey(forenameKey)!
-        profile.surname = userDefaults.stringForKey(surnameKey)!
+        profile.firstname = userDefaults.stringForKey(firstnameKey)!
+        profile.lastname = userDefaults.stringForKey(lastnameKey)!
         profile.employeeId = userDefaults.stringForKey(employeeIdKey)!
-        profile.hoursPerWeek = userDefaults.stringForKey(hoursPerWeekKey)
-        profile.vacation = userDefaults.stringForKey(vacationKey)
+        profile.weeklyWorkingTime = userDefaults.stringForKey(weeklyWorkingTimeKey)
+        profile.totalVacationTime = userDefaults.stringForKey(totalVacationTimeKey)
+        profile.currentVacationTime = userDefaults.stringForKey(currentVacationTimeKey)
+        profile.currentOvertime = userDefaults.stringForKey(currentOvertimeKey)
         
         return profile
     }
@@ -63,6 +71,6 @@ class ProfileDAO
     
     func isRegistered()->Bool
     {
-        return userDefaults.boolForKey("registered")
+        return userDefaults.boolForKey(userRegisteredKey)
     }
 }

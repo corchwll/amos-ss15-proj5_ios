@@ -10,11 +10,11 @@ import UIKit
 
 class EditProfileTableViewController: UITableViewController
 {
-    @IBOutlet weak var forenameTextField: UITextField!
-    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var firstnameTextField: UITextField!
+    @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var employeeIdTextField: UITextField!
-    @IBOutlet weak var hoursPerWeekTextField: UITextField!
-    @IBOutlet weak var vacationTextField: UITextField!
+    @IBOutlet weak var weeklyWorkingTimeTextField: UITextField!
+    @IBOutlet weak var totalVacationTimeTextField: UITextField!
     
     
     /*
@@ -42,11 +42,11 @@ class EditProfileTableViewController: UITableViewController
     {
         let profile = profileDAO.getProfile()
         
-        forenameTextField.text = profile.forename
-        surnameTextField.text = profile.surname
+        firstnameTextField.text = profile.firstname
+        lastnameTextField.text = profile.lastname
         employeeIdTextField.text = profile.employeeId
-        hoursPerWeekTextField.text = profile.hoursPerWeek
-        vacationTextField.text = profile.vacation
+        weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime
+        totalVacationTimeTextField.text = profile.totalVacationTime
     }
     
     
@@ -60,11 +60,11 @@ class EditProfileTableViewController: UITableViewController
     @IBAction func done(sender: AnyObject)
     {
         let profile = Profile()
-        profile.forename = forenameTextField.text
-        profile.surname = surnameTextField.text
+        profile.firstname = firstnameTextField.text
+        profile.lastname = lastnameTextField.text
         profile.employeeId = employeeIdTextField.text
-        profile.hoursPerWeek = hoursPerWeekTextField.text
-        profile.vacation = vacationTextField.text
+        profile.weeklyWorkingTime = weeklyWorkingTimeTextField.text
+        profile.totalVacationTime = totalVacationTimeTextField.text
         profileDAO.setProfile(profile)
         
         dismissViewControllerAnimated(true, completion: {})

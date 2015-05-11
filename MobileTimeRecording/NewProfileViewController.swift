@@ -11,9 +11,13 @@ import UIKit
 
 class NewProfileViewController: UITableViewController
 {
-    @IBOutlet weak var forenameTextField: UITextField!
-    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var firstnameTextField: UITextField!
+    @IBOutlet weak var lastnameTextField: UITextField!
     @IBOutlet weak var employeeIdTextField: UITextField!
+    @IBOutlet weak var weeklyWorkingTimeTextField: UITextField!
+    @IBOutlet weak var totalVacationTimeTextField: UITextField!
+    @IBOutlet weak var currentVacationTimeTextField: UITextField!
+    @IBOutlet weak var currentOvertimeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
     
@@ -26,7 +30,7 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func done(sender: AnyObject)
     {
-        let profile = Profile(forename: forenameTextField.text, surname: surnameTextField.text, employeeId: employeeIdTextField.text)
+        let profile = Profile(firstname: firstnameTextField.text, lastname: lastnameTextField.text, employeeId: employeeIdTextField.text, weeklyWorkingTime: weeklyWorkingTimeTextField.text, totalVacationTime: totalVacationTimeTextField.text, currentVacationTime: currentVacationTimeTextField.text, currentOvertime: currentOvertimeTextField.text)
         profileDAO.setProfile(profile)
         performSegueWithIdentifier("main_segue", sender: nil)
     }
@@ -39,7 +43,7 @@ class NewProfileViewController: UITableViewController
         @pre -
         @post -
     */
-    @IBAction func forenameChanged(sender: AnyObject)
+    @IBAction func firstnameChanged(sender: AnyObject)
     {
         refreshDoneButtonState()
     }
@@ -52,7 +56,7 @@ class NewProfileViewController: UITableViewController
         @pre -
         @post -
     */
-    @IBAction func surnameChanged(sender: AnyObject)
+    @IBAction func lastnameChanged(sender: AnyObject)
     {
         refreshDoneButtonState()
     }
@@ -80,7 +84,7 @@ class NewProfileViewController: UITableViewController
     */
     func refreshDoneButtonState()
     {
-        if !forenameTextField.text.isEmpty && !surnameTextField.text.isEmpty && !employeeIdTextField.text.isEmpty
+        if !firstnameTextField.text.isEmpty && !lastnameTextField.text.isEmpty && !employeeIdTextField.text.isEmpty
         {
             doneButton.enabled = true
         }
