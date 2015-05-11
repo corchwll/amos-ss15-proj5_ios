@@ -55,4 +55,14 @@ class ProjectDAO
         }
         return queriedProjects
     }
+    
+    
+    func getProject(projectId: Int)->Project
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        let query = projects.filter(id == projectId)
+        return Project(id: query.first![id], name: query.first![name])
+    }
 }

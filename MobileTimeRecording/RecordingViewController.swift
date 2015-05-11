@@ -13,14 +13,76 @@ class RecordingViewController: UIViewController
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
+    @IBOutlet weak var newSessionButton: UIBarButtonItem!
+    @IBOutlet weak var chooseProjectButton: UIButton!
     @IBOutlet weak var projectIdLabel: UILabel!
     @IBOutlet weak var projectNameLabel: UILabel!
 
-
-    var timer : NSTimer!
+    let nsUserDefaults = NSUserDefaults()
+    let RECENT_PROJECT_ID_KEY = "last_project_id_key"
+    
+    var timer: NSTimer!
     var project: Project!
     var session: Session = Session()
     var isRunning: Bool = false
+    
+    
+    override func viewDidLoad()
+    {
+        if nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY) != 0
+        {
+            setButtonStateForHasProject(true)
+            loadRecentProject()
+            setProjectHeading()
+        }
+        else
+        {
+            setButtonStateForHasProject(false)
+        }
+    }
+    
+    
+    /*
+        iOS life-cycle function, called when view did appear.
+        Enables/Hides all buttons based on current project situation (if a project is active or not).
+        
+        @methodtype Hook
+        @pre -
+        @post Buttons are enabled/disabled/hidden/visible
+    */
+    override func viewDidAppear(animated: Bool)
+    {
+        if let project = project
+        {
+            setButtonStateForHasProject(true)
+            setProjectHeading()
+        }
+    }
+    
+    
+    func setButtonStateForHasProject(hasProject: Bool)
+    {
+        startStopButton.enabled = hasProject
+        newSessionButton.enabled = hasProject
+        chooseProjectButton.hidden = hasProject
+    }
+    
+    
+    func setProjectHeading()
+    {
+        if let project = project
+        {
+            projectIdLabel.text = String(project.id)
+            projectNameLabel.text = project.name
+        }
+    }
+    
+    
+    func loadRecentProject()
+    {
+        let recentProjectId = nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY)
+        setProject(projectDAO.getProject(recentProjectId))
+    }
     
     
     /*
@@ -28,16 +90,15 @@ class RecordingViewController: UIViewController
         
         @methodtype Setter
         @pre -
-        @post New project is set
+        @post New project is set, along with recent project id
     */
     func setProject(project: Project)
     {
         self.project = project
-        projectIdLabel.text = String(project.id)
-        projectNameLabel.text = project.name
+        nsUserDefaults.setInteger(project.id, forKey: RECENT_PROJECT_ID_KEY)
     }
     
-    
+
     /*
         iOS life-cycle function, called right before performing a segue.
         
@@ -53,6 +114,20 @@ class RecordingViewController: UIViewController
             var viewController = navigationController.visibleViewController as! NewSessionViewController
             viewController.project = project
         }
+    }
+    
+    
+    /*
+        Function is called when pressing 'Choose project'-button.
+        If this button is visible, it means that no project is currently active, switches to 'Projects'-tab.
+        
+        @methodtype Command
+        @pre -
+        @post 'Projects'-tab is active
+    */
+    @IBAction func chooseProjectForRecording(sender: AnyObject)
+    {
+        tabBarController?.selectedIndex = 1
     }
     
     

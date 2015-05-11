@@ -20,7 +20,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIc-OJ-l4A">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12399920" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06a-Jv-4gh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06a-Jv-4gh">
                                         <rect key="frame" x="20" y="65" width="452" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="gEl-lw-TXB"/>
@@ -54,14 +54,14 @@
                                             <action selector="toggleTimeRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="yjH-0K-4NP"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Default Project at Apple" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-3I-KX2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgw-3I-KX2">
                                         <rect key="frame" x="20" y="40" width="452" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="buq-Zf-PJz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
+                                        <color key="highlightedColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bag-Qp-Vrq">
                                         <rect key="frame" x="0.0" y="140" width="600" height="396"/>
@@ -84,6 +84,16 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWn-JE-8xh">
+                                        <rect key="frame" x="20" y="36" width="142" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Choose project">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseProjectForRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Tju-gD-lOn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -121,8 +131,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="projectIdLabel" destination="06a-Jv-4gh" id="Wk4-Re-Rz1"/>
-                        <outlet property="projectNameLabel" destination="Pgw-3I-KX2" id="9kH-CY-LQg"/>
+                        <outlet property="chooseProjectButton" destination="cWn-JE-8xh" id="5dS-6r-R1w"/>
+                        <outlet property="newSessionButton" destination="pEA-2N-gnt" id="4gy-pe-lTV"/>
+                        <outlet property="projectIdLabel" destination="06a-Jv-4gh" id="TZo-go-Wcn"/>
+                        <outlet property="projectNameLabel" destination="Pgw-3I-KX2" id="xAj-h8-CqF"/>
                         <outlet property="startStopButton" destination="H8l-0h-Mge" id="fZ2-ja-5bf"/>
                         <outlet property="timeLabel" destination="mI9-Yu-DZX" id="hoZ-W4-cZd"/>
                     </connections>
