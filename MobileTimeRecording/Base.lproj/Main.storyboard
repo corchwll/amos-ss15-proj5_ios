@@ -526,11 +526,17 @@
                                 <rect key="frame" x="16" y="69" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="projectIdTimeChanged:" destination="8hc-sO-Zki" eventType="editingChanged" id="OCn-jO-mh2"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-Fg-EDa">
                                 <rect key="frame" x="16" y="135" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="projectNameChanged:" destination="8hc-sO-Zki" eventType="editingChanged" id="5lj-yB-SgV"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -548,7 +554,7 @@
                                 <action selector="cancel:" destination="8hc-sO-Zki" id="ceL-M8-RQl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="FAK-8z-OX0">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="FAK-8z-OX0">
                             <connections>
                                 <action selector="addProject:" destination="8hc-sO-Zki" id="pxJ-Kt-fKY"/>
                             </connections>
@@ -559,6 +565,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="250" height="200"/>
                     <connections>
+                        <outlet property="doneButton" destination="FAK-8z-OX0" id="Qm2-n2-b3V"/>
                         <outlet property="projectIdTextField" destination="IdQ-o9-uky" id="NDM-PE-31B"/>
                         <outlet property="projectNameTextField" destination="2bx-Fg-EDa" id="LTW-Py-gEw"/>
                     </connections>

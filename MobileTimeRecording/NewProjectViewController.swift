@@ -19,7 +19,60 @@ class NewProjectViewController: UIViewController
 {
     @IBOutlet weak var projectIdTextField: UITextField!
     @IBOutlet weak var projectNameTextField: UITextField!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     var delegate: NewProjectDelegate!
+    
+    
+    /*
+        iOS listener function. Called when editing project id, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func projectIdTimeChanged(sender: AnyObject)
+    {
+        if Project.isValidId(projectIdTextField.text)
+        {
+            projectIdTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            projectIdTextField.textColor = UIColor.redColor()
+        }
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing project name, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func projectNameChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        Function for enabling 'done'-button. Button will be enabled when all mandatory text fiels are filled.
+        
+        @methodtype Command
+        @pre Text field are not empty
+        @post Button will be enabled
+    */
+    func refreshDoneButtonState()
+    {
+        var isEmpty = false
+        
+        isEmpty = isEmpty || projectIdTextField.text.isEmpty
+        isEmpty = isEmpty || projectNameTextField.text.isEmpty
+    
+        doneButton.enabled = !isEmpty
+    }
     
     
     /*
