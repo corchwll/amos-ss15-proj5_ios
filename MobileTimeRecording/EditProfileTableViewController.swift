@@ -15,6 +15,7 @@ class EditProfileTableViewController: UITableViewController
     @IBOutlet weak var employeeIdTextField: UITextField!
     @IBOutlet weak var weeklyWorkingTimeTextField: UITextField!
     @IBOutlet weak var totalVacationTimeTextField: UITextField!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     
     /*
@@ -28,6 +29,7 @@ class EditProfileTableViewController: UITableViewController
     {
         super.viewDidLoad()
         loadProfile()
+        refreshDoneButtonState()
     }
     
     
@@ -48,6 +50,93 @@ class EditProfileTableViewController: UITableViewController
         weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime
         totalVacationTimeTextField.text = profile.totalVacationTime
     }
+    
+    
+    /*
+        iOS listener function. Called when editing firstname, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func firstnameChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing lastname, refreshes 'done'-button state.
+      
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func lastnameChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing employee id, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func employeeIdChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing weekly working time, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func weeklyWorkingTimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing total vacation time, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func totalVacationTimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        Function for enabling 'done'-button. Button will be enabled when all mandatory text fiels are filled.
+        
+        @methodtype Command
+        @pre Text field are not empty
+        @post Button will be enabled
+    */
+    func refreshDoneButtonState()
+    {
+        var isEmpty = false
+        
+        isEmpty = isEmpty || firstnameTextField.text.isEmpty
+        isEmpty = isEmpty || lastnameTextField.text.isEmpty
+        isEmpty = isEmpty || employeeIdTextField.text.isEmpty
+        isEmpty = isEmpty || weeklyWorkingTimeTextField.text.isEmpty
+        isEmpty = isEmpty || totalVacationTimeTextField.text.isEmpty
+        
+        doneButton.enabled = !isEmpty
+    }
+    
     
     
     /*

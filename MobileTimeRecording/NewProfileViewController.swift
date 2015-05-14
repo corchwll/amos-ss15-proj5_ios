@@ -37,7 +37,7 @@ class NewProfileViewController: UITableViewController
     
     
     /*
-        iOS listener function. Called when editing forename, refreshes 'done'-button state.
+        iOS listener function. Called when editing firstname, refreshes 'done'-button state.
         
         @methodtype Command
         @pre -
@@ -51,7 +51,7 @@ class NewProfileViewController: UITableViewController
     
     /*
         
-        iOS listener function. Called when editing surname, refreshes 'done'-button state.
+        iOS listener function. Called when editing lastname, refreshes 'done'-button state.
         @methodtype Command
         @pre -
         @post -
@@ -73,6 +73,58 @@ class NewProfileViewController: UITableViewController
     {
         refreshDoneButtonState()
     }
+
+    
+    /*
+        iOS listener function. Called when editing weekly working time, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func weeklyWorkingTimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing total vacation time, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func totalVacationTimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+    
+    
+    /*
+        iOS listener function. Called when editing current vacation time, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func currentVacationTimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
+   
+    
+    /*
+        iOS listener function. Called when editing current overtime, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func currentOvertimeChanged(sender: AnyObject)
+    {
+        refreshDoneButtonState()
+    }
     
     
     /*
@@ -84,13 +136,16 @@ class NewProfileViewController: UITableViewController
     */
     func refreshDoneButtonState()
     {
-        if !firstnameTextField.text.isEmpty && !lastnameTextField.text.isEmpty && !employeeIdTextField.text.isEmpty
-        {
-            doneButton.enabled = true
-        }
-        else
-        {
-            doneButton.enabled = false
-        }
+        var isEmpty = false
+        
+        isEmpty = isEmpty || firstnameTextField.text.isEmpty
+        isEmpty = isEmpty || lastnameTextField.text.isEmpty
+        isEmpty = isEmpty || employeeIdTextField.text.isEmpty
+        isEmpty = isEmpty || weeklyWorkingTimeTextField.text.isEmpty
+        isEmpty = isEmpty || totalVacationTimeTextField.text.isEmpty
+        isEmpty = isEmpty || currentVacationTimeTextField.text.isEmpty
+        isEmpty = isEmpty || currentOvertimeTextField.text.isEmpty
+        
+        doneButton.enabled = !isEmpty
     }
 }

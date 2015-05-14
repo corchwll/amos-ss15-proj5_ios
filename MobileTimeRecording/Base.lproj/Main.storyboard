@@ -240,6 +240,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="weeklyWorkingTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="CTm-MK-RQZ"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekly Working Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wzb-zF-Cyb">
                                                     <rect key="frame" x="15" y="41" width="349" height="25"/>
@@ -283,6 +286,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="totalVacationTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="QnE-gx-JdP"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -317,6 +323,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="currentVacationTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="ere-z2-4Z7"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -351,6 +360,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="currentOvertimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="smN-c8-RTj"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -891,6 +903,9 @@
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="firstnameChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="D8i-nU-EOa"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -911,6 +926,9 @@
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="lastnameChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="wwA-5F-8OO"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -931,6 +949,9 @@
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="employeeIdChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="IYP-1F-0T5"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -954,6 +975,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="weeklyWorkingTimeChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="pyE-lc-vdc"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weekly Working Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Zg-o1-6Vq">
                                                     <rect key="frame" x="15" y="41" width="349" height="25"/>
@@ -997,6 +1021,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="totalVacationTimeChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="9Va-oE-oXf"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1031,6 +1058,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="C6V-1h-Vs7" id="b6f-mj-da1"/>
                         <outlet property="employeeIdTextField" destination="Zv9-ah-lgu" id="djc-R2-4Xa"/>
                         <outlet property="firstnameTextField" destination="zVa-pA-02o" id="cOf-HF-4LI"/>
                         <outlet property="lastnameTextField" destination="tcB-zL-wBh" id="Tfw-KH-irs"/>
