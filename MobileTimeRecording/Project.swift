@@ -27,4 +27,10 @@ class Project
         self.id = id
         self.name = name
     }
+    
+    
+    static func isValidId(id: String)->Bool
+    {
+        return id.toInt() != nil && count(id) == 5
+    }
 }

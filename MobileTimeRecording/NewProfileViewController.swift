@@ -71,7 +71,15 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func employeeIdChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidId(employeeIdTextField.text)
+        {
+            employeeIdTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            employeeIdTextField.textColor = UIColor.redColor()
+        }
     }
 
     

@@ -68,6 +68,12 @@ class Profile
     }
     
     
+    static func isValidId(id: String)->Bool
+    {
+        return id.toInt() != nil && count(id) == 5
+    }
+    
+    
     /*
         Returns string representation of user profile
         
