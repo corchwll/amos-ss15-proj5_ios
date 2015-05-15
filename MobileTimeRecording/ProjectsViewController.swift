@@ -11,11 +11,18 @@ import UIKit
 class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var alphabet = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     var dictionary: Dictionary<String, [Project]>!
     var projects: [Project]!
 
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+    }
     
     /*
         iOS life-cycle function. Reloading all projects into ui.
@@ -26,6 +33,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     override func viewWillAppear(animated: Bool)
     {
+        super.viewWillAppear(animated)
         reloadProjects()
     }
     
@@ -215,15 +223,25 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    func edit()
     {
-        return true
+        projectsTableView.setEditing(true, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done")), animated: true)
+    }
+    
+    
+    func done()
+    {
+        projectsTableView.setEditing(false, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
     }
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         projectDAO.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
-        reloadProjects()
+        
+        dictionary[alphabet[indexPath.section]]!.removeAtIndex(indexPath.row)
+        projectsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
 }
