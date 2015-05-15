@@ -13,6 +13,22 @@ class Project
 {
     var id: Int
     var name: String
+    var isArchived: Bool
+
+    
+    /*
+    Constructor for model class, representing projects.
+    
+    @methodtype Constructor
+    @pre Correct paramters != nil
+    @post Initialized project
+    */
+    init(id: Int, name: String)
+    {
+        self.id = id
+        self.name = name
+        self.isArchived = false
+    }
     
     
     /*
@@ -22,10 +38,10 @@ class Project
         @pre Correct paramters != nil
         @post Initialized project
     */
-    init(id: Int, name: String)
+    convenience init(id: Int, name: String, isArchived: Bool)
     {
-        self.id = id
-        self.name = name
+        self.init(id: id, name: name)
+        self.isArchived = isArchived
     }
     
     

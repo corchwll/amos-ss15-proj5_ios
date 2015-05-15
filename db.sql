@@ -1,6 +1,7 @@
 create table projects (
 	id integer primary key, 
-	name text
+	name text,
+	is_archived boolean
 );
 
 create table sessions (
@@ -13,15 +14,18 @@ create table sessions (
 
 insert into projects values (
 	1,
-	"Illness"
+	"Illness",
+	0
 );
 
 insert into projects values (
 	2,
-	"Holiday"
+	"Holiday",
+	0
 );
 
 insert into projects values (
 	3,
-	"Training"
+	"Training",
+	0
 );

@@ -17,6 +17,7 @@ class ProjectDAO
 {
     let id = Expression<Int>("id")
     let name = Expression<String>("name")
+    let isArchived = Expression<Bool>("is_archived")
     
     
     /*
@@ -31,7 +32,7 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.insert(id <- project.id, name <- project.name)!
+        projects.insert(id <- project.id, name <- project.name, isArchived <- project.isArchived)!
     }
     
     
@@ -50,7 +51,7 @@ class ProjectDAO
         var queriedProjects: [Project] = []
         for projectRow in projects
         {
-            var project = Project(id: projectRow[id], name: projectRow[name])
+            var project = Project(id: projectRow[id], name: projectRow[name], isArchived: projectRow[isArchived])
             queriedProjects.append(project)
         }
         return queriedProjects
@@ -63,6 +64,12 @@ class ProjectDAO
         let projects = database["projects"]
         
         let query = projects.filter(id == projectId)
-        return Project(id: query.first![id], name: query.first![name])
+        return Project(id: query.first![id], name: query.first![name], isArchived: query.first![isArchived])
+    }
+    
+    
+    func archiveProject(project: Project)
+    {
+        //todo: archive project...
     }
 }
