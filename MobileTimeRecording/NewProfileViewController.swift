@@ -92,7 +92,16 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func weeklyWorkingTimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidWeeklyWorkingTime(weeklyWorkingTimeTextField.text)
+        {
+            weeklyWorkingTimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            weeklyWorkingTimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
     
     
@@ -105,7 +114,16 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func totalVacationTimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidTotalVacationTime(totalVacationTimeTextField.text)
+        {
+            totalVacationTimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            totalVacationTimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
     
     
@@ -118,7 +136,16 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func currentVacationTimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidCurrentVacationTime(currentVacationTimeTextField.text)
+        {
+            currentVacationTimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            currentVacationTimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
    
     
@@ -131,7 +158,16 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func currentOvertimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidCurrentOvertime(currentOvertimeTextField.text)
+        {
+            currentOvertimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            currentOvertimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
     
     

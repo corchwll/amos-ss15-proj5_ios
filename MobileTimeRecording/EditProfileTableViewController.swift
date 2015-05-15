@@ -95,6 +95,7 @@ class EditProfileTableViewController: UITableViewController
         else
         {
             employeeIdTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
         }
     }
     
@@ -108,7 +109,16 @@ class EditProfileTableViewController: UITableViewController
     */
     @IBAction func weeklyWorkingTimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidWeeklyWorkingTime(weeklyWorkingTimeTextField.text)
+        {
+            weeklyWorkingTimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            weeklyWorkingTimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
     
     
@@ -121,7 +131,16 @@ class EditProfileTableViewController: UITableViewController
     */
     @IBAction func totalVacationTimeChanged(sender: AnyObject)
     {
-        refreshDoneButtonState()
+        if Profile.isValidTotalVacationTime(totalVacationTimeTextField.text)
+        {
+            totalVacationTimeTextField.textColor = UIColor.blackColor()
+            refreshDoneButtonState()
+        }
+        else
+        {
+            totalVacationTimeTextField.textColor = UIColor.redColor()
+            doneButton.enabled = false
+        }
     }
     
     

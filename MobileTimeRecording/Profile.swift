@@ -74,6 +74,46 @@ class Profile
     }
     
     
+    static func isValidWeeklyWorkingTime(weeklyWorkingTime: String)->Bool
+    {
+        if let time = weeklyWorkingTime.toInt()
+        {
+            return time >= 10 && time <= 50
+        }
+        return false
+    }
+    
+    
+    static func isValidTotalVacationTime(totalVacationTime: String)->Bool
+    {
+        if let time = totalVacationTime.toInt()
+        {
+            return time >= 0 && time <= 40
+        }
+        return false
+    }
+    
+    
+    static func isValidCurrentVacationTime(currentVacationTime: String)->Bool
+    {
+        if let time = currentVacationTime.toInt()
+        {
+            return time >= 0
+        }
+        return false
+    }
+    
+    
+    static func isValidCurrentOvertime(currentOvertime: String)->Bool
+    {
+        if let time = currentOvertime.toInt()
+        {
+            return time >= 0
+        }
+        return false
+    }
+    
+    
     /*
         Returns string representation of user profile
         
