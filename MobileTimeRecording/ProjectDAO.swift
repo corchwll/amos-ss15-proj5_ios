@@ -73,6 +73,6 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.filter(id == project.id).update(isArchived <- project.isArchived)!
+        projects.filter(id == project.id).update(isArchived <- true)!
     }
 }

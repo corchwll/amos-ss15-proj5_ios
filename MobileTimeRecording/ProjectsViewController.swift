@@ -213,4 +213,17 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         return indexPath
     }
+    
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return true
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        projectDAO.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
+        reloadProjects()
+    }
 }
