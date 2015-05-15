@@ -49,7 +49,7 @@ class ProjectDAO
         let projects = database["projects"]
         
         var queriedProjects: [Project] = []
-        for projectRow in projects
+        for projectRow in projects.filter(isArchived == false)
         {
             var project = Project(id: projectRow[id], name: projectRow[name], isArchived: projectRow[isArchived])
             queriedProjects.append(project)
@@ -70,6 +70,9 @@ class ProjectDAO
     
     func archiveProject(project: Project)
     {
-        //todo: archive project...
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        projects.filter(id == project.id).update(isArchived <- project.isArchived)!
     }
 }
