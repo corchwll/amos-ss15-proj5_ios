@@ -273,4 +273,29 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         dictionary[alphabet[indexPath.section]]!.removeAtIndex(indexPath.row)
         projectsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
+    
+    
+    /*
+        Function is called when checking if row can be edited. Disables editing for default projects.
+        
+        @methodtype Command
+        @pre -
+        @post Editing for default projects has been disabled
+    */
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        if projectsTableView.editing
+        {
+            var project = dictionary[alphabet[indexPath.section]]![indexPath.row]
+            if project.id == 1 || project.id == 2 || project.id == 3
+            {
+                return false
+            }
+            else
+            {
+                return true
+            }
+        }
+        return false
+    }
 }
