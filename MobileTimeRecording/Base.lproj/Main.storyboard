@@ -150,7 +150,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zts-No-ONg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="eSr-nY-ips">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -515,6 +515,25 @@
             </objects>
             <point key="canvasLocation" x="3031" y="456"/>
         </scene>
+        <!--Dashboard-->
+        <scene sceneID="56F-lN-IMx">
+            <objects>
+                <viewController id="8ug-hc-h7P" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Doq-o8-zMU"/>
+                        <viewControllerLayoutGuide type="bottom" id="cn4-lY-4wZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cPb-vb-aU2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dashboard" id="GvA-dK-aRf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="07F-ao-P0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4367" y="456"/>
+        </scene>
         <!--New Project View Controller-->
         <scene sceneID="gJ6-a7-Nto">
             <objects>
@@ -755,6 +774,7 @@
                     <connections>
                         <segue destination="o7A-aY-Diy" kind="relationship" relationship="viewControllers" id="gba-a5-9O1"/>
                         <segue destination="o2c-7h-p7n" kind="relationship" relationship="viewControllers" id="ey0-JB-LLN"/>
+                        <segue destination="CSr-Sy-cjq" kind="relationship" relationship="viewControllers" id="S5Z-9P-GYM"/>
                         <segue destination="ye7-lK-hpn" kind="relationship" relationship="viewControllers" id="sTa-wT-FtW"/>
                     </connections>
                 </tabBarController>
@@ -900,7 +920,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Jr-vm-zvX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4409" y="456"/>
+            <point key="canvasLocation" x="5753" y="456"/>
         </scene>
         <!--Edit Profile Table View Controller-->
         <scene sceneID="VRX-zG-6ms">
@@ -1092,13 +1112,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSw-Sg-8de" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4409" y="2115"/>
+            <point key="canvasLocation" x="5753" y="2076"/>
         </scene>
-        <!--Profile-->
+        <!--Settings-->
         <scene sceneID="1RS-Jr-RD0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ye7-lK-hpn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileIcon" id="g0y-08-17C"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="ProfileIcon" id="g0y-08-17C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T69-cT-qkc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1111,7 +1131,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6t-sR-cQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4409" y="-366"/>
+            <point key="canvasLocation" x="5753" y="-366"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IEV-iX-edO">
@@ -1129,7 +1149,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BE0-tp-OAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4409" y="1272"/>
+            <point key="canvasLocation" x="5753" y="1272"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4tg-n4-agG">
@@ -1171,8 +1191,28 @@
             </objects>
             <point key="canvasLocation" x="3031" y="1080"/>
         </scene>
+        <!--Dashboard-->
+        <scene sceneID="Ove-D1-4t8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CSr-Sy-cjq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="DashboardIcon" id="orQ-5T-Kfw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wfy-VT-p8m">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8ug-hc-h7P" kind="relationship" relationship="rootViewController" id="0SI-F4-1e0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JxP-Ev-Qro" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4367" y="-366"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="DashboardIcon" width="31" height="31"/>
         <image name="ProfileIcon" width="31" height="31"/>
         <image name="ProjectsIcon" width="31" height="31"/>
         <image name="RecordingIcon" width="31" height="31"/>
