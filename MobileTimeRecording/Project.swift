@@ -13,6 +13,7 @@ class Project
 {
     var id: String
     var name: String
+    var finalDate: NSDate
     var isArchived: Bool
 
     
@@ -23,10 +24,11 @@ class Project
     @pre Correct paramters != nil
     @post Initialized project
     */
-    init(id: String, name: String)
+    init(id: String, name: String, finalDate: NSDate)
     {
         self.id = id
         self.name = name
+        self.finalDate = finalDate
         self.isArchived = false
     }
     
@@ -38,9 +40,9 @@ class Project
         @pre Correct paramters != nil
         @post Initialized project
     */
-    convenience init(id: String, name: String, isArchived: Bool)
+    convenience init(id: String, name: String, finalDate: NSDate, isArchived: Bool)
     {
-        self.init(id: id, name: name)
+        self.init(id: id, name: name, finalDate: finalDate)
         self.isArchived = isArchived
     }
     

@@ -85,7 +85,8 @@ class NewProjectViewController: UIViewController
     */
     @IBAction func addProject(sender: AnyObject)
     {
-        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text)
+        //todo: need to update ui and insert user input date...
+        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text, finalDate: NSDate())
         projectDAO.addProject(newProject)
         delegate.didAddNewProject()
         
