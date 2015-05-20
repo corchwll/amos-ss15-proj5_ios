@@ -19,8 +19,42 @@ class NewProjectViewController: UIViewController
 {
     @IBOutlet weak var projectIdTextField: UITextField!
     @IBOutlet weak var projectNameTextField: UITextField!
+    @IBOutlet weak var projectFinalDateTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     var delegate: NewProjectDelegate!
+    let datePicker = UIDatePicker()
+    let dateFormatter = NSDateFormatter()
+    
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        setUpDateFormatter()
+        setUpDatePickerInputView()
+    }
+    
+    
+    func setUpDateFormatter()
+    {
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+    }
+    
+    
+    func setUpDatePickerInputView()
+    {
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        datePicker.addTarget(self, action: Selector("datePickerDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        projectFinalDateTextField.inputView = datePicker
+    }
+    
+    
+    func datePickerDidChange()
+    {
+        projectFinalDateTextField.text = dateFormatter.stringFromDate(datePicker.date)
+        refreshDoneButtonState()
+    }
     
     
     /*
@@ -58,6 +92,19 @@ class NewProjectViewController: UIViewController
     
     
     /*
+        iOS listener function. Called when editing project final date, refreshes 'done'-button state.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    @IBAction func projectFinalDateChanged(sender: AnyObject)
+    {
+        projectFinalDateTextField.text = dateFormatter.stringFromDate(datePicker.date)
+    }
+    
+    
+    /*
         Function for enabling 'done'-button. Button will be enabled when all mandatory text fiels are filled.
         
         @methodtype Command
@@ -70,6 +117,7 @@ class NewProjectViewController: UIViewController
         
         isEmpty = isEmpty || projectIdTextField.text.isEmpty
         isEmpty = isEmpty || projectNameTextField.text.isEmpty
+        isEmpty = isEmpty || projectFinalDateTextField.text.isEmpty
     
         doneButton.enabled = !isEmpty
     }
@@ -85,8 +133,7 @@ class NewProjectViewController: UIViewController
     */
     @IBAction func addProject(sender: AnyObject)
     {
-        //todo: need to update ui and insert user input date...
-        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text, finalDate: NSDate())
+        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text, finalDate: dateFormatter.dateFromString(projectFinalDateTextField.text)!)
         projectDAO.addProject(newProject)
         delegate.didAddNewProject()
         

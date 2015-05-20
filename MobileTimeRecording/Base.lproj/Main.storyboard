@@ -524,7 +524,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VM2-uX-FE4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nbq-80-n46">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IdQ-o9-uky">
@@ -536,20 +536,31 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Project name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2bx-Fg-EDa">
-                                <rect key="frame" x="16" y="135" width="218" height="30"/>
+                                <rect key="frame" x="16" y="126" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="projectNameChanged:" destination="8hc-sO-Zki" eventType="editingChanged" id="5lj-yB-SgV"/>
                                 </connections>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ca-lM-3EP">
+                                <rect key="frame" x="16" y="186" width="218" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="projectFinalDateChanged:" destination="8hc-sO-Zki" eventType="editingDidBegin" id="9RA-Mo-xcC"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="trailing" secondItem="IdQ-o9-uky" secondAttribute="trailing" id="DLb-VK-AoL"/>
-                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="leading" secondItem="IdQ-o9-uky" secondAttribute="leading" id="Kiz-q3-Uwi"/>
+                            <constraint firstItem="4Ca-lM-3EP" firstAttribute="top" secondItem="2bx-Fg-EDa" secondAttribute="bottom" constant="30" id="0GA-xU-jTK"/>
+                            <constraint firstItem="4Ca-lM-3EP" firstAttribute="leading" secondItem="2bx-Fg-EDa" secondAttribute="leading" id="DH8-TT-Orc"/>
+                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="trailing" secondItem="IdQ-o9-uky" secondAttribute="trailing" id="Kdy-78-LIs"/>
+                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="top" secondItem="IdQ-o9-uky" secondAttribute="bottom" constant="27" id="Rab-i0-LdV"/>
+                            <constraint firstItem="4Ca-lM-3EP" firstAttribute="trailing" secondItem="2bx-Fg-EDa" secondAttribute="trailing" id="X1x-ju-Jco"/>
                             <constraint firstItem="IdQ-o9-uky" firstAttribute="top" secondItem="li8-tL-xIE" secondAttribute="bottom" constant="25" id="mEn-SU-ewL"/>
+                            <constraint firstItem="2bx-Fg-EDa" firstAttribute="leading" secondItem="IdQ-o9-uky" secondAttribute="leading" id="rU6-WM-zTt"/>
                             <constraint firstItem="IdQ-o9-uky" firstAttribute="trailing" secondItem="Nbq-80-n46" secondAttribute="trailingMargin" id="rYe-5d-Xpc"/>
-                            <constraint firstItem="VM2-uX-FE4" firstAttribute="top" secondItem="2bx-Fg-EDa" secondAttribute="bottom" constant="35" id="vIf-lx-Xy1"/>
                             <constraint firstItem="IdQ-o9-uky" firstAttribute="leading" secondItem="Nbq-80-n46" secondAttribute="leadingMargin" id="yYg-4x-94K"/>
                         </constraints>
                     </view>
@@ -565,19 +576,20 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="200"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="250"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="200"/>
+                    <size key="freeformSize" width="250" height="250"/>
                     <connections>
                         <outlet property="doneButton" destination="FAK-8z-OX0" id="Qm2-n2-b3V"/>
+                        <outlet property="projectFinalDateTextField" destination="4Ca-lM-3EP" id="GQx-g7-BQ5"/>
                         <outlet property="projectIdTextField" destination="IdQ-o9-uky" id="NDM-PE-31B"/>
                         <outlet property="projectNameTextField" destination="2bx-Fg-EDa" id="LTW-Py-gEw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESJ-BX-Gti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031" y="1432"/>
+            <point key="canvasLocation" x="3031" y="1506"/>
         </scene>
         <!--New Session-->
         <scene sceneID="x0l-GU-mWt">
@@ -1142,10 +1154,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hfV-Mn-rSf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="200"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="250"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="250" height="200"/>
+                    <size key="freeformSize" width="250" height="250"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d4p-tn-hGu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
