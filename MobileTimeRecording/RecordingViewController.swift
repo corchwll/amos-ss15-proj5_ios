@@ -9,7 +9,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController
+class RecordingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -17,12 +17,15 @@ class RecordingViewController: UIViewController
     @IBOutlet weak var chooseProjectButton: UIButton!
     @IBOutlet weak var projectIdLabel: UILabel!
     @IBOutlet weak var projectNameLabel: UILabel!
+    @IBOutlet weak var projectSessionsTableView: UITableView!
+    
 
     let nsUserDefaults = NSUserDefaults()
     let RECENT_PROJECT_ID_KEY = "last_project_id_key"
     
     var timer: NSTimer!
     var project: Project!
+    var projectSessions: [Session]!
     var session: Session = Session()
     var isRunning: Bool = false
     
@@ -63,6 +66,8 @@ class RecordingViewController: UIViewController
         {
             setButtonStateForHasProject(true)
             setProjectHeading()
+            loadProjectSessions()
+            projectSessionsTableView.reloadData()
         }
     }
     
@@ -96,6 +101,12 @@ class RecordingViewController: UIViewController
             projectIdLabel.text = String(project.id)
             projectNameLabel.text = project.name
         }
+    }
+    
+    
+    func loadProjectSessions()
+    {
+        projectSessions = sessionDAO.getSessions(project)
     }
     
     
@@ -141,6 +152,28 @@ class RecordingViewController: UIViewController
             var navigationController = segue.destinationViewController as! UINavigationController
             var viewController = navigationController.visibleViewController as! NewSessionViewController
             viewController.project = project
+        }
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell: SessionTableViewCell = projectSessionsTableView.dequeueReusableCellWithIdentifier("session_cell", forIndexPath: indexPath) as! SessionTableViewCell
+        cell.sessionDate.text = projectSessions[indexPath.row].startTime.description
+        
+        return cell
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if let projectSessions = self.projectSessions
+        {
+            return projectSessions.count
+        }
+        else
+        {
+            return 0
         }
     }
     

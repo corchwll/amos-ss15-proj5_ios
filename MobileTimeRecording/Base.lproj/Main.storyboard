@@ -63,18 +63,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="highlightedColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bag-Qp-Vrq">
-                                        <rect key="frame" x="0.0" y="140" width="600" height="396"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="session_cell" id="O2P-sZ-SSr">
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2P-sZ-SSr" id="ah2-b8-5sT">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mI9-Yu-DZX">
                                         <rect key="frame" x="468" y="36" width="125" height="54"/>
                                         <constraints>
@@ -94,6 +82,38 @@
                                             <action selector="chooseProjectForRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Tju-gD-lOn"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bag-Qp-Vrq">
+                                        <rect key="frame" x="0.0" y="140" width="600" height="396"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="session_cell" id="O2P-sZ-SSr" customClass="SessionTableViewCell" customModule="MobileTimeRecording" customModuleProvider="target">
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2P-sZ-SSr" id="ah2-b8-5sT">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-6g-32z">
+                                                            <rect key="frame" x="0.0" y="11" width="600" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="o6E-6g-32z" firstAttribute="centerY" secondItem="ah2-b8-5sT" secondAttribute="centerY" id="Cfh-01-gIs"/>
+                                                        <constraint firstAttribute="trailing" secondItem="o6E-6g-32z" secondAttribute="trailing" id="VB8-p7-pr7"/>
+                                                        <constraint firstItem="o6E-6g-32z" firstAttribute="leading" secondItem="ah2-b8-5sT" secondAttribute="leading" id="buH-la-Qu7"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="sessionDate" destination="o6E-6g-32z" id="zpn-fb-9S7"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="X7i-jv-jPV"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="RXe-qy-yO5"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -135,6 +155,7 @@
                         <outlet property="newSessionButton" destination="pEA-2N-gnt" id="4gy-pe-lTV"/>
                         <outlet property="projectIdLabel" destination="06a-Jv-4gh" id="TZo-go-Wcn"/>
                         <outlet property="projectNameLabel" destination="Pgw-3I-KX2" id="xAj-h8-CqF"/>
+                        <outlet property="projectSessionsTableView" destination="bag-Qp-Vrq" id="o7r-6e-PBt"/>
                         <outlet property="startStopButton" destination="H8l-0h-Mge" id="fZ2-ja-5bf"/>
                         <outlet property="timeLabel" destination="mI9-Yu-DZX" id="hoZ-W4-cZd"/>
                     </connections>

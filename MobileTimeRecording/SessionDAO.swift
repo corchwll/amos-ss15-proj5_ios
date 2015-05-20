@@ -47,13 +47,13 @@ class SessionDAO
         @pre -
         @post Every session from database
     */
-    func getSessions()->[Session]
+    func getSessions(project: Project)->[Session]
     {
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
         
         var queriedSessions: [Session] = []
-        for sessionRow in sessions
+        for sessionRow in sessions.filter(projectId == project.id)
         {
             var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))

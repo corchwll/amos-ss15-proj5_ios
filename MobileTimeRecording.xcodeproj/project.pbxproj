@@ -11,6 +11,7 @@
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
 		E41B9C391AEFA61300EE9CFD /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E41B9C381AEFA60600EE9CFD /* db.sqlite3 */; };
 		E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */; };
+		E44092D01B0D0F19006CE944 /* SessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44092CF1B0D0F19006CE944 /* SessionTableViewCell.swift */; };
 		E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */; };
 		E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB51AF52E25006DF820 /* ProfileDAO.swift */; };
 		E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
@@ -112,6 +113,7 @@
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		E41B9C381AEFA60600EE9CFD /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		E44092CF1B0D0F19006CE944 /* SessionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTableViewCell.swift; sourceTree = "<group>"; };
 		E444CDAF1AF51F6F006DF820 /* NewProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProfileViewController.swift; sourceTree = "<group>"; };
 		E444CDB51AF52E25006DF820 /* ProfileDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileDAO.swift; sourceTree = "<group>"; };
 		E444CDB71AF52EE0006DF820 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		E446BFFD1AFCE410000DBAA0 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
+				E44092CF1B0D0F19006CE944 /* SessionTableViewCell.swift */,
 				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
 				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
 			);
@@ -437,6 +440,7 @@
 				E446BFF71AFCE3DA000DBAA0 /* ProjectsViewController.swift in Sources */,
 				E4A16AA81AE531EB006BB173 /* RecordingViewController.swift in Sources */,
 				E444CDB81AF52EE0006DF820 /* Profile.swift in Sources */,
+				E44092D01B0D0F19006CE944 /* SessionTableViewCell.swift in Sources */,
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
 				E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */,
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
