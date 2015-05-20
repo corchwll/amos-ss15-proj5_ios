@@ -36,7 +36,7 @@ class RecordingViewController: UIViewController
     */
     override func viewDidLoad()
     {
-        if nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY) != 0
+        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
         {
             setButtonStateForHasProject(true)
             loadRecentProject()
@@ -108,8 +108,8 @@ class RecordingViewController: UIViewController
     */
     func loadRecentProject()
     {
-        let recentProjectId = nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY)
-        setProject(projectDAO.getProject(recentProjectId))
+        let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
+        setProject(projectDAO.getProject(recentProjectId!))
     }
     
     
@@ -123,7 +123,7 @@ class RecordingViewController: UIViewController
     func setProject(project: Project)
     {
         self.project = project
-        nsUserDefaults.setInteger(project.id, forKey: RECENT_PROJECT_ID_KEY)
+        nsUserDefaults.setObject(project.id, forKey: RECENT_PROJECT_ID_KEY)
     }
     
 

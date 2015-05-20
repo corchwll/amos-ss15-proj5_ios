@@ -15,7 +15,7 @@ let projectDAO = ProjectDAO()
 
 class ProjectDAO
 {
-    let id = Expression<Int>("id")
+    let id = Expression<String>("id")
     let name = Expression<String>("name")
     let isArchived = Expression<Bool>("is_archived")
     
@@ -65,7 +65,7 @@ class ProjectDAO
         @pre Valid database connection, id must be valid
         @post Return requested project
     */
-    func getProject(projectId: Int)->Project
+    func getProject(projectId: String)->Project
     {
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]

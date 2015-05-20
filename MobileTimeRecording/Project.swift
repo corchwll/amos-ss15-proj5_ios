@@ -11,7 +11,7 @@ import Foundation
 
 class Project
 {
-    var id: Int
+    var id: String
     var name: String
     var isArchived: Bool
 
@@ -23,7 +23,7 @@ class Project
     @pre Correct paramters != nil
     @post Initialized project
     */
-    init(id: Int, name: String)
+    init(id: String, name: String)
     {
         self.id = id
         self.name = name
@@ -38,7 +38,7 @@ class Project
         @pre Correct paramters != nil
         @post Initialized project
     */
-    convenience init(id: Int, name: String, isArchived: Bool)
+    convenience init(id: String, name: String, isArchived: Bool)
     {
         self.init(id: id, name: name)
         self.isArchived = isArchived

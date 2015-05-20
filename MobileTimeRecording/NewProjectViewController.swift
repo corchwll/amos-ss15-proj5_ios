@@ -85,7 +85,7 @@ class NewProjectViewController: UIViewController
     */
     @IBAction func addProject(sender: AnyObject)
     {
-        let newProject = Project(id: projectIdTextField.text.toInt()!, name: projectNameTextField.text)
+        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text)
         projectDAO.addProject(newProject)
         delegate.didAddNewProject()
         

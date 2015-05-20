@@ -16,7 +16,7 @@ let sessionDAO = SessionDAO()
 class SessionDAO
 {
     let id = Expression<Int>("id")
-    let projectId = Expression<Int>("project_id")
+    let projectId = Expression<String>("project_id")
     let startTime = Expression<Int>("timestamp_start")
     let endTime = Expression<Int>("timestamp_end")
     

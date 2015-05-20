@@ -287,7 +287,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         if projectsTableView.editing
         {
             var project = dictionary[alphabet[indexPath.section]]![indexPath.row]
-            if project.id == 1 || project.id == 2 || project.id == 3
+            if project.id == "00001" || project.id == "00002" || project.id == "00003"
             {
                 return false
             }
