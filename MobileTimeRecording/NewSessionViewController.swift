@@ -198,8 +198,8 @@ class NewSessionViewController: UITableViewController
     {
         var calendar = NSCalendar.currentCalendar()
         var dateComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: dateFormatter.dateFromString(dateTextField.text)!)
-        var fromTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.startTime)
-        var toTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: session.endTime)
+        var fromTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: timeFormatter.dateFromString(fromTextField.text)!)
+        var toTimeComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitHour | .CalendarUnitMinute, fromDate: timeFormatter.dateFromString(toTextField.text)!)
         
         fromTimeComponent.day = dateComponent.day
         fromTimeComponent.month = dateComponent.month
@@ -208,6 +208,9 @@ class NewSessionViewController: UITableViewController
         toTimeComponent.day = dateComponent.day
         toTimeComponent.month = dateComponent.month
         toTimeComponent.year = dateComponent.year
+        
+        session.startTime = calendar.dateFromComponents(fromTimeComponent)!
+        session.endTime = calendar.dateFromComponents(toTimeComponent)!
         
         sessionDAO.addSession(session, project: project!)
         self.dismissViewControllerAnimated(true, completion: {})
