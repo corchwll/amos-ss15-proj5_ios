@@ -45,6 +45,13 @@ class Project
     }
     
     
+    /*
+        Asserts if id is valid string(consists only of digits with length 5).
+        
+        @methodtype Assertion
+        @pre -
+        @post Returns if id is valid
+    */
     static func isValidId(id: String)->Bool
     {
         return id.toInt() != nil && count(id) == 5

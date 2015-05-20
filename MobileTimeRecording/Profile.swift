@@ -68,12 +68,26 @@ class Profile
     }
     
     
+    /*
+        Asserts wether id is valid or not(consists only of digits of length 5).
+        
+        @methodtype Assertion
+        @pre -
+        @post -
+    */
     static func isValidId(id: String)->Bool
     {
         return id.toInt() != nil && count(id) == 5
     }
     
     
+    /*
+        Asserts wether weekly working time is valid or not(must be a number between 10 and 50).
+        
+        @methodtype Assertion
+        @pre -
+        @post -
+    */
     static func isValidWeeklyWorkingTime(weeklyWorkingTime: String)->Bool
     {
         if let time = weeklyWorkingTime.toInt()
@@ -84,6 +98,13 @@ class Profile
     }
     
     
+    /*
+        Asserts wether total vacation time is valid or not(must be a number between 0 and 40).
+        
+        @methodtype Assertion
+        @pre -
+        @post -
+    */
     static func isValidTotalVacationTime(totalVacationTime: String)->Bool
     {
         if let time = totalVacationTime.toInt()
@@ -94,6 +115,13 @@ class Profile
     }
     
     
+    /*
+        Asserts wether current vacation time is valid or not(must be a number greater or equals 0).
+        
+        @methodtype Assertion
+        @pre -
+        @post -
+    */
     static func isValidCurrentVacationTime(currentVacationTime: String)->Bool
     {
         if let time = currentVacationTime.toInt()
@@ -104,11 +132,18 @@ class Profile
     }
     
     
+    /*
+        Asserts wether current over time is valid or not(must be a number).
+        
+        @methodtype Assertion
+        @pre -
+        @post -
+    */
     static func isValidCurrentOvertime(currentOvertime: String)->Bool
     {
         if let time = currentOvertime.toInt()
         {
-            return time >= 0
+            return true
         }
         return false
     }

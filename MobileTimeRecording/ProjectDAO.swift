@@ -24,7 +24,7 @@ class ProjectDAO
         Stores given project into sqlite database.
     
         @methodtype Command
-        @pre Project paramter != nil
+        @pre Valid database connection
         @post Persistent project
     */
     func addProject(project: Project)
@@ -40,7 +40,7 @@ class ProjectDAO
         Returns all projects from sqlite database.
     
         @methodtype Query
-        @pre -
+        @pre Valid database connection
         @post All projects from database
     */
     func getProjects()->[Project]
@@ -58,6 +58,13 @@ class ProjectDAO
     }
     
     
+    /*
+        Returns project with the given id if available.
+        
+        @methodtype Query
+        @pre Valid database connection, id must be valid
+        @post Return requested project
+    */
     func getProject(projectId: Int)->Project
     {
         let database = sqliteHelper.getSQLiteDatabase()
@@ -68,6 +75,13 @@ class ProjectDAO
     }
     
     
+    /*
+        Archives project, meaning that the projects 'isArchived' flag is set to true.
+        
+        @methodtype Command
+        @pre Valid database connection
+        @post Project has been archived
+    */
     func archiveProject(project: Project)
     {
         let database = sqliteHelper.getSQLiteDatabase()

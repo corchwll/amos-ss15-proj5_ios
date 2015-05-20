@@ -18,11 +18,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     var projects: [Project]!
 
     
+    /*
+        iOS life-cycle function. Initializes 'edit'-button on the left side of the bar.
+        
+        @methodtype Hook
+        @pre Selector function must be implemented
+        @post Button for editing projects has been initialized
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
     }
+    
     
     /*
         iOS life-cycle function. Reloading all projects into ui.
@@ -223,6 +231,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Function for 'edit'-button selector. Enables editing of projects and morphs 'edit' into 'done'.
+        
+        @methodtype Command
+        @pre -
+        @post Editing of projects enabled
+    */
     func edit()
     {
         projectsTableView.setEditing(true, animated: true)
@@ -230,6 +245,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Function for 'done'-button selector. Disables editing of projects and morphs 'done' into 'edit'.
+        
+        @methodtype Command
+        @pre -
+        @post Editing of projects disabled
+    */
     func done()
     {
         projectsTableView.setEditing(false, animated: true)
@@ -237,6 +259,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Function is called when editing table cell. Archives the selected project and removes corrosponding table cell.
+        
+        @methodtype Command
+        @pre -
+        @post Table cell removed, project archived
+    */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
         projectDAO.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])

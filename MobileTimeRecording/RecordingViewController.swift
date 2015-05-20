@@ -27,6 +27,13 @@ class RecordingViewController: UIViewController
     var isRunning: Bool = false
     
     
+    /*
+        iOS life-cycle function. Looks up recent project and handles what to do if no recent projects was found.
+        
+        @methodtype Hook
+        @pre -
+        @post -
+    */
     override func viewDidLoad()
     {
         if nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY) != 0
@@ -60,6 +67,13 @@ class RecordingViewController: UIViewController
     }
     
     
+    /*
+        Function is setting the button status of 'start'/'stop'-button, 'new session'-button and 'choose project'-button.
+        
+        @methodtype Command
+        @pre Buttons are available
+        @post Status of buttons has been changed
+    */
     func setButtonStateForHasProject(hasProject: Bool)
     {
         startStopButton.enabled = hasProject
@@ -68,6 +82,13 @@ class RecordingViewController: UIViewController
     }
     
     
+    /*
+        Function is setting the heading for projects.
+        
+        @methodtype Command
+        @pre Project must be set
+        @post Heading has been set
+    */
     func setProjectHeading()
     {
         if let project = project
@@ -78,6 +99,13 @@ class RecordingViewController: UIViewController
     }
     
     
+    /*
+        Function is loading the most recent project.
+        
+        @methodtype Command
+        @pre There must be a recent project
+        @post Recent project has been set
+    */
     func loadRecentProject()
     {
         let recentProjectId = nsUserDefaults.integerForKey(RECENT_PROJECT_ID_KEY)
