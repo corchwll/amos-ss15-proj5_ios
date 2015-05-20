@@ -91,21 +91,38 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2P-sZ-SSr" id="ah2-b8-5sT">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-6g-32z">
-                                                            <rect key="frame" x="0.0" y="11" width="600" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4x-RL-Z8Z">
+                                                            <rect key="frame" x="15" y="11" width="142" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="emX-iT-oI4"/>
+                                                                <constraint firstAttribute="width" constant="142" id="pbr-SV-eRJ"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-6g-32z">
+                                                            <rect key="frame" x="240" y="11" width="314" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="314" id="CHX-vR-hRN"/>
+                                                                <constraint firstAttribute="height" constant="21" id="LbF-z3-OYi"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="o6E-6g-32z" firstAttribute="centerY" secondItem="ah2-b8-5sT" secondAttribute="centerY" id="Cfh-01-gIs"/>
-                                                        <constraint firstAttribute="trailing" secondItem="o6E-6g-32z" secondAttribute="trailing" id="VB8-p7-pr7"/>
-                                                        <constraint firstItem="o6E-6g-32z" firstAttribute="leading" secondItem="ah2-b8-5sT" secondAttribute="leading" id="buH-la-Qu7"/>
+                                                        <constraint firstItem="o6E-6g-32z" firstAttribute="top" secondItem="ah2-b8-5sT" secondAttribute="top" constant="11" id="3XR-yL-73r"/>
+                                                        <constraint firstItem="U4x-RL-Z8Z" firstAttribute="leading" secondItem="ah2-b8-5sT" secondAttribute="leading" constant="15" id="JpW-1Z-Rg7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="U4x-RL-Z8Z" secondAttribute="trailing" constant="443" id="MWG-p8-V5T"/>
+                                                        <constraint firstAttribute="trailing" secondItem="o6E-6g-32z" secondAttribute="trailing" constant="46" id="Ul7-LN-vcV"/>
+                                                        <constraint firstItem="U4x-RL-Z8Z" firstAttribute="top" secondItem="ah2-b8-5sT" secondAttribute="top" constant="11" id="b5o-7P-Uec"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="sessionDate" destination="o6E-6g-32z" id="zpn-fb-9S7"/>
+                                                    <outlet property="sessionDate" destination="U4x-RL-Z8Z" id="bBD-6D-Gtm"/>
+                                                    <outlet property="sessionStartTime" destination="o6E-6g-32z" id="pcx-Z2-9Iy"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

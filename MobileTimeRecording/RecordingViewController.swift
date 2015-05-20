@@ -159,7 +159,19 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell: SessionTableViewCell = projectSessionsTableView.dequeueReusableCellWithIdentifier("session_cell", forIndexPath: indexPath) as! SessionTableViewCell
-        cell.sessionDate.text = projectSessions[indexPath.row].startTime.description
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_DE")
+        
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        timeFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+        timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
+        
+        cell.sessionDate.text = dateFormatter.stringFromDate(projectSessions[indexPath.row].startTime)
+        cell.sessionStartTime.text = timeFormatter.stringFromDate(projectSessions[indexPath.row].startTime) + " - " + timeFormatter.stringFromDate(projectSessions[indexPath.row].endTime)
         
         return cell
     }
