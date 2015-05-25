@@ -93,4 +93,20 @@ class ProjectDAO
         
         projects.filter(id == project.id).update(isArchived <- true)!
     }
+    
+    
+    /*
+        Removes given project completely from database.
+        
+        @methodtype Command
+        @pre Valid database connection
+        @post Project has been removed
+    */
+    func removeProject(project: Project)
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        projects.filter(id == project.id).delete()!
+    }
 }
