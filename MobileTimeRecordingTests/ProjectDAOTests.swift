@@ -41,7 +41,7 @@ class ProjectDAOTests: XCTestCase
         for project in projects
         {
             projectDAO.addProject(project)
-            pass = pass && projectDAO.getProject(project.id).id == project.id
+            pass = pass && projectDAO.getProject(project.id)!.id == project.id
         }
 
         XCTAssert(pass, "Pass")

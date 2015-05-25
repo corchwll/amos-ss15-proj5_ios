@@ -119,8 +119,11 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func loadRecentProject()
     {
-        let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
-        setProject(projectDAO.getProject(recentProjectId!))
+        let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)!
+        if let project = projectDAO.getProject(recentProjectId)
+        {
+            setProject(project)
+        }
     }
     
     

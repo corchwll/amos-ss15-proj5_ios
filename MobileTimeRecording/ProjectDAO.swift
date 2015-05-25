@@ -68,14 +68,21 @@ class ProjectDAO
         @pre Valid database connection, id must be valid
         @post Return requested project
     */
-    func getProject(projectId: String)->Project
+    func getProject(projectId: String)->Project?
     {
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
         let query = projects.filter(id == projectId)
-        return Project(id: query.first![id], name: query.first![name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(query.first![finalDate])),
-            isArchived: query.first![isArchived])
+        if let row = query.first
+        {
+            return Project(id: row[id], name: row[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(row[finalDate])),
+                isArchived: row[isArchived])
+        }
+        else
+        {
+            return nil
+        }
     }
     
     
