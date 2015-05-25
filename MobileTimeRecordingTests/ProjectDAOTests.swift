@@ -25,6 +25,12 @@ class ProjectDAOTests: XCTestCase
     
     override func tearDown()
     {
+        for project in projects
+        {
+            projectDAO.removeProject(project)
+        }
+        projects.removeAll(keepCapacity: false)
+        
         super.tearDown()
     }
 
