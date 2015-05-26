@@ -24,14 +24,92 @@ class ProfileDAOTests: XCTestCase
     
     override func tearDown()
     {
+        if profileDAO.isRegistered()
+        {
+            profileDAO.removeProfile()
+        }
         profiles.removeAll(keepCapacity: false)
         
         super.tearDown()
     }
     
     
-    func testAddProfile_Valid_Pass()
+    func testSetProfile_Valid_Pass()
     {
-        XCTAssert(true, "Pass")
+        profileDAO.setProfile(profiles.first!)
+        
+        var pass = true
+        if let profile = profileDAO.getProfile()
+        {
+            pass = pass && profile.firstname == profiles.first?.firstname
+            pass = pass && profile.lastname == profiles.first?.lastname
+            pass = pass && profile.employeeId == profiles.first?.employeeId
+            pass = pass && profile.weeklyWorkingTime == profiles.first?.weeklyWorkingTime
+            pass = pass && profile.totalVacationTime == profiles.first?.totalVacationTime
+            pass = pass && profile.currentVacationTime == profiles.first?.currentVacationTime
+            pass = pass && profile.currentOvertime == profiles.first?.currentOvertime
+        }
+        else
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testGetProfile_NoProfileSet_Fail()
+    {
+        var pass = true
+        if let profile = profileDAO.getProfile()
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testRemoveProfile_Valid_Pass()
+    {
+        profileDAO.setProfile(profiles.first!)
+        profileDAO.removeProfile()
+        
+        var pass = true
+        if let profile = profileDAO.getProfile()
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testIsRegistered_ProfileSet_Pass()
+    {
+        profileDAO.setProfile(profiles.first!)
+        
+        var pass = true
+        if !profileDAO.isRegistered()
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testIsRegistered_ProfileRemoved_Pass()
+    {
+        profileDAO.setProfile(profiles.first!)
+        profileDAO.removeProfile()
+        
+        var pass = true
+        if profileDAO.isRegistered()
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
     }
 }
