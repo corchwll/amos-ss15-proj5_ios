@@ -64,11 +64,39 @@ class ProfileDAO
         profile.totalVacationTime = userDefaults.stringForKey(totalVacationTimeKey)
         profile.currentVacationTime = userDefaults.stringForKey(currentVacationTimeKey)
         profile.currentOvertime = userDefaults.stringForKey(currentOvertimeKey)
-        
+
         return profile
     }
     
     
+    /*
+        Removes profile from user defaults.
+        
+        @methodtype Command
+        @pre -
+        @post All objects are removed, profile is not registered anymore
+    */
+    func removeProfile()
+    {
+        userDefaults.removeObjectForKey(firstnameKey)
+        userDefaults.removeObjectForKey(lastnameKey)
+        userDefaults.removeObjectForKey(employeeIdKey)
+        userDefaults.removeObjectForKey(weeklyWorkingTimeKey)
+        userDefaults.removeObjectForKey(totalVacationTimeKey)
+        userDefaults.removeObjectForKey(currentVacationTimeKey)
+        userDefaults.removeObjectForKey(currentOvertimeKey)
+        
+        userDefaults.setBool(false, forKey: userRegisteredKey)
+    }
+    
+    
+    /*
+        Asserts if profile is already available, meaning user is registered or not.
+        
+        @methodtype Assertion
+        @pre -
+        @post Assert if user is registered or not
+    */
     func isRegistered()->Bool
     {
         return userDefaults.boolForKey(userRegisteredKey)

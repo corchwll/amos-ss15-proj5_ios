@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController = storyboard.instantiateViewControllerWithIdentifier("main") as! UITabBarController
             window?.rootViewController = mainViewController
-            
-            //debug: prints user account
-            println(profileDAO.getProfile().asString())
         }
         else
         {
