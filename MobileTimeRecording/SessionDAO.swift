@@ -36,7 +36,7 @@ class SessionDAO
         var start = (Int(session.startTime.timeIntervalSince1970))
         var end = (Int(session.endTime.timeIntervalSince1970))
 
-        sessions.insert(projectId <- project.id, startTime <- start, endTime <- end)!
+        if let insert = sessions.insert(projectId <- project.id, startTime <- start, endTime <- end){}
     }
     
     

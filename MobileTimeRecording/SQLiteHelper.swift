@@ -33,6 +33,7 @@ class SQLiteHelper
         databasePath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String + "/\(databaseFileName).\(databaseFileExtension)"
         copyDatabaseIfNotExist()
         sqliteDatabase = Database("\(databasePath)")
+        sqliteDatabase.foreignKeys = true
     }
     
     
