@@ -9,6 +9,10 @@
 import UIKit
 import XCTest
 
+
+/*
+    Naming convention for all tests: 'UnitOfWork_StateUnderTest_ExpectedBehavior'
+*/
 class ProjectDAOTests: XCTestCase
 {
     var projects: [Project] = []
@@ -39,7 +43,7 @@ class ProjectDAOTests: XCTestCase
     }
 
     
-    func testAddProject_Valid_Pass()
+    func testAddProject_ValidProjects_ProjectsAdded()
     {
         for project in projects
         {
@@ -63,7 +67,7 @@ class ProjectDAOTests: XCTestCase
     }
     
     
-    func testAddProject_Valid_Fail()
+    func testAddProject_MissingProject_FoundNilBecauseOfMissingProject()
     {
         projectDAO.addProject(projects[0])
         projectDAO.addProject(projects[1])
@@ -85,7 +89,7 @@ class ProjectDAOTests: XCTestCase
     }
 
     
-    func testGetProject_Valid_Pass()
+    func testGetProject_ValidProjectsAdded_GetAllProjects()
     {
         projectDAO.addProject(projects[0])
         
@@ -103,7 +107,7 @@ class ProjectDAOTests: XCTestCase
     }
     
     
-    func testGetProject_Valid_Fail()
+    func testGetProject_NoProjectWasAdded_NoProjectCanBeFound()
     {
         var pass = true
         for project in projects
@@ -122,7 +126,7 @@ class ProjectDAOTests: XCTestCase
     }
     
     
-    func testArchiveProject_Valid_Pass()
+    func testArchiveProject_ValidProjectsWereAdded_ProjectsAreArchived()
     {
         for project in projects
         {
@@ -147,13 +151,15 @@ class ProjectDAOTests: XCTestCase
     }
     
     
-    func testArchiveProject_Valid_Fail()
+    func testArchiveProject_NotAllProjectsWereAdded_AvailabeProjectsAreArchived()
     {
         projectDAO.addProject(projects[0])
-        projectDAO.archiveProject(projects[0])
-        
         projectDAO.addProject(projects[1])
-        projectDAO.archiveProject(projects[1])
+        
+        for project in projects
+        {
+            projectDAO.archiveProject(project)
+        }
         
         var pass = true
         for project in projects
@@ -172,7 +178,7 @@ class ProjectDAOTests: XCTestCase
     }
     
     
-    func testRemoveProject_Valid_Pass()
+    func testRemoveProject_ValidProjectsWereAdded_AllProjectsAreRemoved()
     {
         for project in projects
         {
