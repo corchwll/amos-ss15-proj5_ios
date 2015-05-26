@@ -54,18 +54,22 @@ class ProfileDAO
         @pre -
         @post Get user profile
     */
-    func getProfile()->Profile
+    func getProfile()->Profile?
     {
-        var profile = Profile()
-        profile.firstname = userDefaults.stringForKey(firstnameKey)!
-        profile.lastname = userDefaults.stringForKey(lastnameKey)!
-        profile.employeeId = userDefaults.stringForKey(employeeIdKey)!
-        profile.weeklyWorkingTime = userDefaults.stringForKey(weeklyWorkingTimeKey)
-        profile.totalVacationTime = userDefaults.stringForKey(totalVacationTimeKey)
-        profile.currentVacationTime = userDefaults.stringForKey(currentVacationTimeKey)
-        profile.currentOvertime = userDefaults.stringForKey(currentOvertimeKey)
-
-        return profile
+        if let employeeId = userDefaults.stringForKey(employeeIdKey)
+        {
+            var profile = Profile()
+            profile.firstname = userDefaults.stringForKey(firstnameKey)!
+            profile.lastname = userDefaults.stringForKey(lastnameKey)!
+            profile.employeeId = userDefaults.stringForKey(employeeIdKey)!
+            profile.weeklyWorkingTime = userDefaults.stringForKey(weeklyWorkingTimeKey)
+            profile.totalVacationTime = userDefaults.stringForKey(totalVacationTimeKey)
+            profile.currentVacationTime = userDefaults.stringForKey(currentVacationTimeKey)
+            profile.currentOvertime = userDefaults.stringForKey(currentOvertimeKey)
+            
+            return profile
+        }
+        return nil
     }
     
     

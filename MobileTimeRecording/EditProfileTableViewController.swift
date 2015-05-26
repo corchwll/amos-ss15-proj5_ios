@@ -42,13 +42,14 @@ class EditProfileTableViewController: UITableViewController
     */
     func loadProfile()
     {
-        let profile = profileDAO.getProfile()
-        
-        firstnameTextField.text = profile.firstname
-        lastnameTextField.text = profile.lastname
-        employeeIdTextField.text = profile.employeeId
-        weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime
-        totalVacationTimeTextField.text = profile.totalVacationTime
+        if let profile = profileDAO.getProfile()
+        {
+            firstnameTextField.text = profile.firstname
+            lastnameTextField.text = profile.lastname
+            employeeIdTextField.text = profile.employeeId
+            weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime
+            totalVacationTimeTextField.text = profile.totalVacationTime
+        }
     }
     
     

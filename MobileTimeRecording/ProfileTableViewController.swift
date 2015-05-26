@@ -53,10 +53,12 @@ class ProfileTableViewController: UITableViewController
     */
     func loadProfile()
     {
-        let profile = profileDAO.getProfile()
-        nameLabel.text = profile.firstname + " " + profile.lastname
-        employeeIdLabel.text = profile.employeeId
-        weeklyWorkingTimeLabel.text = profile.weeklyWorkingTime
-        totalVacationTimeLabel.text = profile.totalVacationTime
+        if let profile = profileDAO.getProfile()
+        {
+            nameLabel.text = profile.firstname + " " + profile.lastname
+            employeeIdLabel.text = profile.employeeId
+            weeklyWorkingTimeLabel.text = profile.weeklyWorkingTime
+            totalVacationTimeLabel.text = profile.totalVacationTime
+        }
     }
 }
