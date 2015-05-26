@@ -9,6 +9,10 @@
 import UIKit
 import XCTest
 
+
+/*
+    Naming convention for all tests: 'UnitOfWork_StateUnderTest_ExpectedBehavior'
+*/
 class ProfileDAOTests: XCTestCase
 {
     var profiles: [Profile] = []
@@ -34,7 +38,7 @@ class ProfileDAOTests: XCTestCase
     }
     
     
-    func testSetProfile_Valid_Pass()
+    func testSetProfile_ValidProfile_ProfileIsSet()
     {
         profileDAO.setProfile(profiles.first!)
         
@@ -58,7 +62,7 @@ class ProfileDAOTests: XCTestCase
     }
     
     
-    func testGetProfile_NoProfileSet_Fail()
+    func testGetProfile_NoProfileIsSet_FoundNilBecauseOfMissingProfile()
     {
         var pass = true
         if let profile = profileDAO.getProfile()
@@ -70,7 +74,7 @@ class ProfileDAOTests: XCTestCase
     }
     
     
-    func testRemoveProfile_Valid_Pass()
+    func testRemoveProfile_ProfileIsSet_ProfileIsRemoved()
     {
         profileDAO.setProfile(profiles.first!)
         profileDAO.removeProfile()
@@ -85,7 +89,7 @@ class ProfileDAOTests: XCTestCase
     }
     
     
-    func testIsRegistered_ProfileSet_Pass()
+    func testIsRegistered_ProfileIsSet_ProfileIsRegistered()
     {
         profileDAO.setProfile(profiles.first!)
         
@@ -99,7 +103,7 @@ class ProfileDAOTests: XCTestCase
     }
     
     
-    func testIsRegistered_ProfileRemoved_Pass()
+    func testIsRegistered_ProfileWasRemoved_ProfileIsNotRegisteredAnymore()
     {
         profileDAO.setProfile(profiles.first!)
         profileDAO.removeProfile()
