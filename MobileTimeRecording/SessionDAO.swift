@@ -61,4 +61,20 @@ class SessionDAO
         }
         return queriedSessions
     }
+    
+    
+    /*
+        Removes all sessions from the given project.
+        
+        @methodtype Command
+        @pre -
+        @post All sessions have been removed from project
+    */
+    func removeSessions(project: Project)
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        sessions.filter(projectId == project.id).delete()!
+    }
 }
