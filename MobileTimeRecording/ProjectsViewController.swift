@@ -120,11 +120,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
+        Function is called when asking the UIModalPresentationStyle. Returns 'none' in order to display popup window properly.
         
-        
-        @methodtype
-        @pre
-        @post
+        @methodtype Command
+        @pre -
+        @post -
     */
     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
     {
@@ -287,7 +287,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         if projectsTableView.editing
         {
             var project = dictionary[alphabet[indexPath.section]]![indexPath.row]
-            if project.id == "00001" || project.id == "00002" || project.id == "00003"
+            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
             {
                 return false
             }
