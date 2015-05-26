@@ -159,6 +159,13 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /*
+        Function is called when populating table row cells. Project session are loaded into table view cells.
+        
+        @methodtype Command
+        @pre Project sessions are available
+        @post Session cell has been created
+    */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell: SessionTableViewCell = projectSessionsTableView.dequeueReusableCellWithIdentifier("session_cell", forIndexPath: indexPath) as! SessionTableViewCell
@@ -180,6 +187,13 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /*
+        Function is called when asking the total number of cells in table view.
+        
+        @methodtype Command
+        @pre -
+        @post Session count is returned
+    */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let projectSessions = self.projectSessions
