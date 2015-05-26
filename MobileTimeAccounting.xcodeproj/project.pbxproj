@@ -90,7 +90,7 @@
 			containerPortal = E4A16A981AE531EB006BB173 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E4A16A9F1AE531EB006BB173;
-			remoteInfo = MobileTimeRecording;
+			remoteInfo = MobileTimeAccounting;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -135,14 +135,14 @@
 		E45C44911AED8AB10044D25F /* SQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
 		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
-		E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeRecording.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4A16AA01AE531EB006BB173 /* MobileTimeAccounting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeAccounting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16AA41AE531EB006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4A16AA51AE531EB006BB173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewController.swift; sourceTree = "<group>"; };
 		E4A16AAA1AE531EC006BB173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4A16AAC1AE531EC006BB173 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4A16AAF1AE531EC006BB173 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E4A16AB51AE531EC006BB173 /* MobileTimeRecordingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTimeRecordingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4A16AB51AE531EC006BB173 /* MobileTimeAccountingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTimeAccountingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16ABA1AE531EC006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDAOTests.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
@@ -244,8 +244,8 @@
 		E4A16A971AE531EB006BB173 = {
 			isa = PBXGroup;
 			children = (
-				E4A16AA21AE531EB006BB173 /* MobileTimeRecording */,
-				E4A16AB81AE531EC006BB173 /* MobileTimeRecordingTests */,
+				E4A16AA21AE531EB006BB173 /* MobileTimeAccounting */,
+				E4A16AB81AE531EC006BB173 /* MobileTimeAccountingTests */,
 				E4A16AA11AE531EB006BB173 /* Products */,
 				E45C44651AED83310044D25F /* SQLite.xcodeproj */,
 			);
@@ -254,13 +254,13 @@
 		E4A16AA11AE531EB006BB173 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */,
-				E4A16AB51AE531EC006BB173 /* MobileTimeRecordingTests.xctest */,
+				E4A16AA01AE531EB006BB173 /* MobileTimeAccounting.app */,
+				E4A16AB51AE531EC006BB173 /* MobileTimeAccountingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E4A16AA21AE531EB006BB173 /* MobileTimeRecording */ = {
+		E4A16AA21AE531EB006BB173 /* MobileTimeAccounting */ = {
 			isa = PBXGroup;
 			children = (
 				E45E12451AEE64B30081E23C /* UserInterface */,
@@ -272,7 +272,8 @@
 				E4A16AAC1AE531EC006BB173 /* Images.xcassets */,
 				E4A16AA31AE531EB006BB173 /* Supporting Files */,
 			);
-			path = MobileTimeRecording;
+			name = MobileTimeAccounting;
+			path = MobileTimeAccounting;
 			sourceTree = "<group>";
 		};
 		E4A16AA31AE531EB006BB173 /* Supporting Files */ = {
@@ -284,7 +285,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E4A16AB81AE531EC006BB173 /* MobileTimeRecordingTests */ = {
+		E4A16AB81AE531EC006BB173 /* MobileTimeAccountingTests */ = {
 			isa = PBXGroup;
 			children = (
 				E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */,
@@ -292,7 +293,8 @@
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
-			path = MobileTimeRecordingTests;
+			name = MobileTimeAccountingTests;
+			path = MobileTimeAccountingTests;
 			sourceTree = "<group>";
 		};
 		E4A16AB91AE531EC006BB173 /* Supporting Files */ = {
@@ -306,9 +308,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4A16A9F1AE531EB006BB173 /* MobileTimeRecording */ = {
+		E4A16A9F1AE531EB006BB173 /* MobileTimeAccounting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4A16ABF1AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeRecording" */;
+			buildConfigurationList = E4A16ABF1AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeAccounting" */;
 			buildPhases = (
 				E4A16A9C1AE531EB006BB173 /* Sources */,
 				E4A16A9D1AE531EB006BB173 /* Frameworks */,
@@ -321,14 +323,14 @@
 			dependencies = (
 				E45C447A1AED83480044D25F /* PBXTargetDependency */,
 			);
-			name = MobileTimeRecording;
-			productName = MobileTimeRecording;
-			productReference = E4A16AA01AE531EB006BB173 /* MobileTimeRecording.app */;
+			name = MobileTimeAccounting;
+			productName = MobileTimeAccounting;
+			productReference = E4A16AA01AE531EB006BB173 /* MobileTimeAccounting.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E4A16AB41AE531EC006BB173 /* MobileTimeRecordingTests */ = {
+		E4A16AB41AE531EC006BB173 /* MobileTimeAccountingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4A16AC21AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeRecordingTests" */;
+			buildConfigurationList = E4A16AC21AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeAccountingTests" */;
 			buildPhases = (
 				E4A16AB11AE531EC006BB173 /* Sources */,
 				E4A16AB21AE531EC006BB173 /* Frameworks */,
@@ -339,9 +341,9 @@
 			dependencies = (
 				E4A16AB71AE531EC006BB173 /* PBXTargetDependency */,
 			);
-			name = MobileTimeRecordingTests;
-			productName = MobileTimeRecordingTests;
-			productReference = E4A16AB51AE531EC006BB173 /* MobileTimeRecordingTests.xctest */;
+			name = MobileTimeAccountingTests;
+			productName = MobileTimeAccountingTests;
+			productReference = E4A16AB51AE531EC006BB173 /* MobileTimeAccountingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -362,7 +364,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E4A16A9B1AE531EB006BB173 /* Build configuration list for PBXProject "MobileTimeRecording" */;
+			buildConfigurationList = E4A16A9B1AE531EB006BB173 /* Build configuration list for PBXProject "MobileTimeAccounting" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -381,8 +383,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				E4A16A9F1AE531EB006BB173 /* MobileTimeRecording */,
-				E4A16AB41AE531EC006BB173 /* MobileTimeRecordingTests */,
+				E4A16A9F1AE531EB006BB173 /* MobileTimeAccounting */,
+				E4A16AB41AE531EC006BB173 /* MobileTimeAccountingTests */,
 			);
 		};
 /* End PBXProject section */
@@ -497,7 +499,7 @@
 		};
 		E4A16AB71AE531EC006BB173 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E4A16A9F1AE531EB006BB173 /* MobileTimeRecording */;
+			target = E4A16A9F1AE531EB006BB173 /* MobileTimeAccounting */;
 			targetProxy = E4A16AB61AE531EC006BB173 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -607,9 +609,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MobileTimeRecording/Info.plist;
+				INFOPLIST_FILE = MobileTimeAccounting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MobileTimeAccounting;
 			};
 			name = Debug;
 		};
@@ -617,9 +619,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = MobileTimeRecording/Info.plist;
+				INFOPLIST_FILE = MobileTimeAccounting/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MobileTimeAccounting;
 			};
 			name = Release;
 		};
@@ -635,10 +637,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = MobileTimeRecordingTests/Info.plist;
+				INFOPLIST_FILE = MobileTimeAccountingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTimeRecording.app/MobileTimeRecording";
+				PRODUCT_NAME = MobileTimeAccountingTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTimeAccounting.app/MobileTimeAccounting";
 			};
 			name = Debug;
 		};
@@ -650,17 +652,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = MobileTimeRecordingTests/Info.plist;
+				INFOPLIST_FILE = MobileTimeAccountingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTimeRecording.app/MobileTimeRecording";
+				PRODUCT_NAME = MobileTimeAccountingTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobileTimeAccounting.app/MobileTimeAccounting";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4A16A9B1AE531EB006BB173 /* Build configuration list for PBXProject "MobileTimeRecording" */ = {
+		E4A16A9B1AE531EB006BB173 /* Build configuration list for PBXProject "MobileTimeAccounting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4A16ABD1AE531EC006BB173 /* Debug */,
@@ -669,7 +671,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4A16ABF1AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeRecording" */ = {
+		E4A16ABF1AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeAccounting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4A16AC01AE531EC006BB173 /* Debug */,
@@ -678,7 +680,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4A16AC21AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeRecordingTests" */ = {
+		E4A16AC21AE531EC006BB173 /* Build configuration list for PBXNativeTarget "MobileTimeAccountingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4A16AC31AE531EC006BB173 /* Debug */,
