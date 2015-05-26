@@ -27,6 +27,13 @@ class NewProjectViewController: UIViewController
     let dateFormatter = NSDateFormatter()
     
     
+    /*
+        iOS life-cycle function, called when view did load. Sets up date formatter and input view for date picker.
+        
+        @methodtype Hook
+        @pre -
+        @post -
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -35,6 +42,13 @@ class NewProjectViewController: UIViewController
     }
     
     
+    /*
+        Function is called to set up date formatter.
+        
+        @methodtype Command
+        @pre -
+        @post Date formatter has been set up
+    */
     func setUpDateFormatter()
     {
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
@@ -42,6 +56,13 @@ class NewProjectViewController: UIViewController
     }
     
     
+    /*
+        Function is called to set up date picker input view.
+        
+        @methodtype Command
+        @pre -
+        @post Input view has been set up
+    */
     func setUpDatePickerInputView()
     {
         datePicker.datePickerMode = UIDatePickerMode.Date
@@ -50,6 +71,13 @@ class NewProjectViewController: UIViewController
     }
     
     
+    /*
+        Function is called when date picker has changed. Sets text field to selected date.
+        
+        @methodtype Hook
+        @pre -
+        @post Final date text field has been set to selected date
+    */
     func datePickerDidChange()
     {
         projectFinalDateTextField.text = dateFormatter.stringFromDate(datePicker.date)
