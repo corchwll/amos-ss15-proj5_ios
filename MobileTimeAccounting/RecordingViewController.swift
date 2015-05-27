@@ -77,7 +77,6 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
             setButtonStateForHasProject(true)
             setProjectHeading()
             loadProjectSessions()
-            projectSessionsTableView.reloadData()
         }
     }
     
@@ -117,6 +116,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     func loadProjectSessions()
     {
         projectSessions = sessionDAO.getSessions(project)
+        projectSessionsTableView.reloadData()
     }
     
     
@@ -245,6 +245,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         {
             session.endTime = NSDate()
             sessionDAO.addSession(session, project: project!)
+            loadProjectSessions()
         
             stopVisualizingTimer()
             isRunning = false
