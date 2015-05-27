@@ -63,7 +63,7 @@ class SessionDAO
         let sessions = database["sessions"]
         
         var queriedSessions: [Session] = []
-        for sessionRow in sessions.filter(projectId == project.id)
+        for sessionRow in sessions.filter(projectId == project.id).order(startTime.desc)
         {
             var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
