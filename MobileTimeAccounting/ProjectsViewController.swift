@@ -24,7 +24,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
-    var alphabet = [ "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    var alphabet = [ "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     var dictionary: Dictionary<String, [Project]>!
     var projects: [Project]!
 
@@ -85,13 +85,24 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         for project in projects
         {
-            let index = project.name.startIndex
-            let dictIndex = String(project.name.capitalizedString[index])
-            if dictionary[dictIndex] == nil
+            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
             {
-                dictionary[dictIndex] = [Project]()
+                if dictionary["#"] == nil
+                {
+                    dictionary["#"] = [Project]()
+                }
+                dictionary["#"]?.append(project)
             }
-            dictionary[dictIndex]?.append(project)
+            else
+            {
+                let index = project.name.startIndex
+                let dictIndex = String(project.name.capitalizedString[index])
+                if dictionary[dictIndex] == nil
+                {
+                    dictionary[dictIndex] = [Project]()
+                }
+                dictionary[dictIndex]?.append(project)
+            }
         }
     }
     
