@@ -19,7 +19,7 @@
 import UIKit
 
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchResultsUpdating
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchResultsUpdating, UITabBarControllerDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -47,6 +47,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         setUpNavigationItemButton()
         setUpSearchController()
+        tabBarController!.delegate = self
+    }
+    
+    
+    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController)
+    {
+        searchController.active = false
     }
     
     
@@ -281,7 +288,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
     {
+        searchController.active = false
         tabBarController?.selectedIndex = 0
+        
         var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
         var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
         recordingViewController.setProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
