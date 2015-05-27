@@ -457,15 +457,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HHH-5S-U0D">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="j01-bn-Da3" id="fDl-ST-N9N"/>
-                                </connections>
-                            </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-C5-aP9">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-C5-aP9">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="75" id="7Y6-Ja-glC" customClass="ProjectTableViewCell" customModule="MobileTimeAccounting" customModuleProvider="target">
@@ -511,16 +504,20 @@
                                     <outlet property="delegate" destination="j01-bn-Da3" id="mp5-Kh-2o4"/>
                                 </connections>
                             </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uts-NL-27u">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2F8-C5-aP9" secondAttribute="trailing" id="5Nn-lA-Tto"/>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="HHH-5S-U0D" secondAttribute="leading" id="BYk-Ke-awU"/>
-                            <constraint firstAttribute="bottom" secondItem="2F8-C5-aP9" secondAttribute="bottom" id="DU4-Wt-gVW"/>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="trailing" secondItem="HHH-5S-U0D" secondAttribute="trailing" id="OmA-o8-5vj"/>
-                            <constraint firstItem="HHH-5S-U0D" firstAttribute="top" secondItem="66b-jH-nYG" secondAttribute="bottom" id="SYm-Vl-NJy"/>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="jOJ-CZ-28n" secondAttribute="leading" id="XtP-dk-OVB"/>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="top" secondItem="HHH-5S-U0D" secondAttribute="bottom" id="tLX-Ge-Ft6"/>
+                            <constraint firstItem="uts-NL-27u" firstAttribute="top" secondItem="66b-jH-nYG" secondAttribute="bottom" id="Auv-b8-0MD"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="jOJ-CZ-28n" secondAttribute="leading" id="Sce-FF-KG1"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="uts-NL-27u" secondAttribute="leading" id="Uw0-n0-tmc"/>
+                            <constraint firstAttribute="bottom" secondItem="2F8-C5-aP9" secondAttribute="bottom" id="hhz-mz-2vs"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="top" secondItem="jOJ-CZ-28n" secondAttribute="topMargin" constant="44" id="mM0-Pq-9Cj"/>
+                            <constraint firstAttribute="trailing" secondItem="2F8-C5-aP9" secondAttribute="trailing" id="rAI-sv-5fV"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="trailing" secondItem="uts-NL-27u" secondAttribute="trailing" id="s9L-sQ-Gv7"/>
+                            <constraint firstItem="M36-yE-4KG" firstAttribute="top" secondItem="uts-NL-27u" secondAttribute="bottom" constant="443" id="x9t-NS-DVM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="TUh-jU-TtN">
@@ -539,19 +536,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="projectsTableView" destination="2F8-C5-aP9" id="p9W-xu-3HC"/>
-                        <outlet property="searchDisplayController" destination="cSM-44-3FO" id="sQJ-he-69U"/>
+                        <outlet property="searchBarContainer" destination="uts-NL-27u" id="AFa-On-zyw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gul-8j-Ogl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="cSM-44-3FO">
-                    <connections>
-                        <outlet property="delegate" destination="j01-bn-Da3" id="aXT-Mx-68I"/>
-                        <outlet property="searchBar" destination="HHH-5S-U0D" id="Lif-c6-OQR"/>
-                        <outlet property="searchContentsController" destination="j01-bn-Da3" id="XJi-gq-oKV"/>
-                        <outlet property="searchResultsDataSource" destination="j01-bn-Da3" id="mjh-WH-6P9"/>
-                        <outlet property="searchResultsDelegate" destination="j01-bn-Da3" id="aOR-D3-aww"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3031" y="456"/>
         </scene>

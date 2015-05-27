@@ -19,15 +19,19 @@
 import UIKit
 
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchBarDelegate, UISearchDisplayDelegate
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchResultsUpdating
 {
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var searchBarContainer: UIView!
     
     var alphabet = [ "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    var dictionary: Dictionary<String, [Project]>!
-    var projects: [Project]!
-    var filteredProjects: [Project]!
+    var dictionary = Dictionary<String, [Project]>()
+    var projects = [Project]()
+    
+    var searchController = UISearchController(searchResultsController: nil)
+    var filteredDictionary = Dictionary<String, [Project]>()
+    var filteredProjects = [Project]()
 
     
     /*
@@ -40,9 +44,28 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        setUpNavigationItemButton()
+        setUpSearchController()
+    }
+    
+    
+    func setUpNavigationItemButton()
+    {
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
     }
     
+    
+    func setUpSearchController()
+    {
+        searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.searchBarStyle = UISearchBarStyle.Default
+        searchController.searchBar.sizeToFit()
+        searchBarContainer.addSubview(searchController.searchBar)
+    }
+
     
     /*
         iOS life-cycle function. Reloading all projects into ui.
@@ -54,6 +77,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        
         reloadProjects()
     }
     
@@ -67,23 +91,22 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func reloadProjects()
     {
-        dictionary = Dictionary<String, [Project]>()
         projects = projectDAO.getProjects()
-        
-        archiveProjectsIntoDictionary()
+        archiveProjectsIntoDictionary(projects, dictionary: &dictionary)
         projectsTableView.reloadData()
     }
     
     
     /*
-        Function is archiving all project into a dictionary for alphabetical grouping.
+        Function is archiving all given projects into a dictionary for alphabetical grouping.
         
         @methodtype Command
         @pre Initialized dictionary
         @post Archived projects
     */
-    func archiveProjectsIntoDictionary()
+    func archiveProjectsIntoDictionary(projects: [Project], inout dictionary: Dictionary<String, [Project]>)
     {
+        dictionary.removeAll(keepCapacity: false)
         for project in projects
         {
             if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
@@ -177,7 +200,8 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        if dictionary[alphabet[section]] != nil
+        let selectedDictionary = searchController.active ? filteredDictionary : dictionary
+        if selectedDictionary[alphabet[section]] != nil
         {
             return alphabet[section]
         }
@@ -207,11 +231,22 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let projects = dictionary[alphabet[section]]
+        if searchController.active
         {
-            return projects.count
+            if let projects = filteredDictionary[alphabet[section]]
+            {
+                return projects.count
+            }
+            return 0
         }
-        return 0
+        else
+        {
+            if let projects = dictionary[alphabet[section]]
+            {
+                return projects.count
+            }
+            return 0
+        }
     }
     
     
@@ -225,8 +260,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let cell: ProjectTableViewCell = projectsTableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
+        let selectedDictionary =  searchController.active ? filteredDictionary : dictionary
         
-        if let project = dictionary[alphabet[indexPath.section]]?[indexPath.row]
+        if let project = selectedDictionary[alphabet[indexPath.section]]?[indexPath.row]
         {
             cell.projectID.text = "\(project.id)"
             cell.projectName.text = project.name
@@ -320,5 +356,24 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         return false
+    }
+    
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        filteredProjects.removeAll(keepCapacity: false)
+        filterProjectsForSearchText(searchController.searchBar.text)
+        archiveProjectsIntoDictionary(filteredProjects, dictionary: &filteredDictionary)
+        projectsTableView.reloadData()
+    }
+    
+    
+    func filterProjectsForSearchText(searchText: String)
+    {
+        filteredProjects = projects.filter({(project: Project)->Bool in
+            let nameMatch = project.name.rangeOfString(searchText)
+            let idMatch = project.id.rangeOfString(searchText)
+            return nameMatch != nil || idMatch != nil || searchText == ""
+        })
     }
 }
