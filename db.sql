@@ -15,28 +15,28 @@ create table sessions (
 
 insert into projects values (
 	"00001",
-	"Illness",
-	0,
-	0
-);
-
-insert into projects values (
-	"00002",
 	"Holiday",
 	0,
 	0
 );
 
 insert into projects values (
+	"00002",
+	"Illness",
+	0,
+	0
+);
+
+insert into projects values (
 	"00003",
-	"Training",
+	"Office",
 	0,
 	0
 );
 
 insert into projects values (
         "00004",
-        "Office",
+        "Training",
 	0,
         0
 );
