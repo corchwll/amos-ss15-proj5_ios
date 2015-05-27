@@ -41,6 +41,7 @@
 		E4E0EF891B135504000C17F8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
 		E4F02E021B149F3300493452 /* SessionDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02E011B149F3300493452 /* SessionDAOTests.swift */; };
 		E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */; };
+		E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
+		E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 		E4A16AA21AE531EB006BB173 /* MobileTimeAccounting */ = {
 			isa = PBXGroup;
 			children = (
+				E4F54CAD1B167640008E92C2 /* BusinessLogic */,
 				E45E12451AEE64B30081E23C /* UserInterface */,
 				E45C448A1AED8A1D0044D25F /* Database */,
 				E45C447D1AED83610044D25F /* Model */,
@@ -312,6 +315,14 @@
 				E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */,
 			);
 			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		E4F54CAD1B167640008E92C2 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */,
+			);
+			name = BusinessLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,6 +484,7 @@
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
+				E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */,
 				E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */,
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
 				E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */,
