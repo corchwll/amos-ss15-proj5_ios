@@ -51,6 +51,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     {
         if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
         {
+            setUpNavigationItemButton()
             setButtonStateForHasProject(true)
             loadRecentProject()
             setProjectHeading()
@@ -58,6 +59,15 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         else
         {
             setButtonStateForHasProject(false)
+        }
+    }
+    
+    
+    func setUpNavigationItemButton()
+    {
+        if navigationItem.leftBarButtonItem == nil
+        {
+            navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
         }
     }
     
@@ -74,6 +84,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     {
         if let project = project
         {
+            setUpNavigationItemButton()
             setButtonStateForHasProject(true)
             setProjectHeading()
             loadProjectSessions()
@@ -324,6 +335,50 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         var seconds = elapsedTime%60
         
         return String(format: "%d:%0.2d", minutes, seconds)
+    }
+    
+    
+    /*
+        Function for 'edit'-button selector. Enables editing of projects and morphs 'edit' into 'done'.
+        
+        @methodtype Command
+        @pre -
+        @post Editing of projects enabled
+    */
+    func edit()
+    {
+        projectSessionsTableView.setEditing(true, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done")), animated: true)
+    }
+    
+    
+    /*
+        Function for 'done'-button selector. Disables editing of projects and morphs 'done' into 'edit'.
+        
+        @methodtype Command
+        @pre -
+        @post Editing of projects disabled
+    */
+    func done()
+    {
+        projectSessionsTableView.setEditing(false, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+    }
+    
+    
+    /*
+        Function is called when editing table cell. Deletes the selected session and removes corrosponding table cell.
+        
+        @methodtype Command
+        @pre -
+        @post Table cell removed, project archived
+    */
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        sessionDAO.removeSession(projectSessions[indexPath.row])
+        
+        projectSessions.removeAtIndex(indexPath.row)
+        projectSessionsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
 }
 
