@@ -118,4 +118,29 @@ class SessionDAOTests: XCTestCase
         
         XCTAssert(pass, "Pass")
     }
+    
+    
+    func testRemoveSession_ValidProject_SessionsWereRemoved()
+    {
+        let project = projects.first!
+        projectDAO.addProject(project)
+        
+        for session in sessions
+        {
+            sessionDAO.addSession(session, project: project)
+        }
+        
+        for session in sessionDAO.getSessions(project)
+        {
+            sessionDAO.removeSession(session)
+        }
+        
+        var pass = false
+        if sessionDAO.getSessions(project).isEmpty
+        {
+            pass = true
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
 }

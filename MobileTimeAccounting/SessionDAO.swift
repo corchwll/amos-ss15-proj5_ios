@@ -74,6 +74,22 @@ class SessionDAO
     
     
     /*
+        Removes given session from database.
+    
+        @methodtype Command
+        @pre Session is existing
+        @post Session has been removed
+    */
+    func removeSession(session: Session)
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        sessions.filter(id == session.id).delete()!
+    }
+    
+    
+    /*
         Removes all sessions from the given project.
         
         @methodtype Command
