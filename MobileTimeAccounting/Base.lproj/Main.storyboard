@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WV2-Pg-Tb1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WV2-Pg-Tb1">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Recording-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="RecordingViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="RecordingViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -86,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="140" width="600" height="396"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="session_cell" id="O2P-sZ-SSr" customClass="SessionTableViewCell" customModule="MobileTimeRecording" customModuleProvider="target">
+                                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="session_cell" id="O2P-sZ-SSr" customClass="SessionTableViewCell" customModule="MobileTimeAccounting" customModuleProvider="target">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2P-sZ-SSr" id="ah2-b8-5sT">
                                                     <autoresizingMask key="autoresizingMask"/>
@@ -184,7 +184,7 @@
         <!--New Profile-->
         <scene sceneID="u9q-My-DO5">
             <objects>
-                <tableViewController id="Xb3-LR-W1x" customClass="NewProfileViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Xb3-LR-W1x" customClass="NewProfileViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zts-No-ONg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -448,7 +448,7 @@
         <!--Projects-->
         <scene sceneID="Nj0-9g-Wvo">
             <objects>
-                <viewController id="j01-bn-Da3" customClass="ProjectsViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j01-bn-Da3" customClass="ProjectsViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="66b-jH-nYG"/>
                         <viewControllerLayoutGuide type="bottom" id="M36-yE-4KG"/>
@@ -457,19 +457,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="HHH-5S-U0D">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="j01-bn-Da3" id="fDl-ST-N9N"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2F8-C5-aP9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="Search" id="L18-ms-Pz9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="j01-bn-Da3" id="1aT-cl-Bht"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="75" id="7Y6-Ja-glC" customClass="ProjectTableViewCell" customModule="MobileTimeRecording" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="75" id="7Y6-Ja-glC" customClass="ProjectTableViewCell" customModule="MobileTimeAccounting" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Y6-Ja-glC" id="Kc9-AG-iNG">
@@ -515,10 +514,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="jOJ-CZ-28n" secondAttribute="leading" id="TjD-DT-pHF"/>
-                            <constraint firstAttribute="trailing" secondItem="2F8-C5-aP9" secondAttribute="trailing" id="afi-ly-JsA"/>
-                            <constraint firstItem="2F8-C5-aP9" firstAttribute="top" secondItem="jOJ-CZ-28n" secondAttribute="top" id="nsC-HB-qWG"/>
-                            <constraint firstAttribute="bottom" secondItem="2F8-C5-aP9" secondAttribute="bottom" id="qcW-I8-oY7"/>
+                            <constraint firstAttribute="trailing" secondItem="2F8-C5-aP9" secondAttribute="trailing" id="5Nn-lA-Tto"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="HHH-5S-U0D" secondAttribute="leading" id="BYk-Ke-awU"/>
+                            <constraint firstAttribute="bottom" secondItem="2F8-C5-aP9" secondAttribute="bottom" id="DU4-Wt-gVW"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="trailing" secondItem="HHH-5S-U0D" secondAttribute="trailing" id="OmA-o8-5vj"/>
+                            <constraint firstItem="HHH-5S-U0D" firstAttribute="top" secondItem="66b-jH-nYG" secondAttribute="bottom" id="SYm-Vl-NJy"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="leading" secondItem="jOJ-CZ-28n" secondAttribute="leading" id="XtP-dk-OVB"/>
+                            <constraint firstItem="2F8-C5-aP9" firstAttribute="top" secondItem="HHH-5S-U0D" secondAttribute="bottom" id="tLX-Ge-Ft6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="TUh-jU-TtN">
@@ -537,17 +539,17 @@
                     </navigationItem>
                     <connections>
                         <outlet property="projectsTableView" destination="2F8-C5-aP9" id="p9W-xu-3HC"/>
-                        <outlet property="searchDisplayController" destination="dAE-O3-Eag" id="cbn-Nq-KK8"/>
+                        <outlet property="searchDisplayController" destination="cSM-44-3FO" id="sQJ-he-69U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gul-8j-Ogl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="dAE-O3-Eag">
+                <searchDisplayController id="cSM-44-3FO">
                     <connections>
-                        <outlet property="delegate" destination="j01-bn-Da3" id="17p-39-jp8"/>
-                        <outlet property="searchBar" destination="L18-ms-Pz9" id="OiM-Ag-BFi"/>
-                        <outlet property="searchContentsController" destination="j01-bn-Da3" id="7vC-lh-BMf"/>
-                        <outlet property="searchResultsDataSource" destination="j01-bn-Da3" id="6ez-nC-PMY"/>
-                        <outlet property="searchResultsDelegate" destination="j01-bn-Da3" id="WJ3-L1-tx6"/>
+                        <outlet property="delegate" destination="j01-bn-Da3" id="aXT-Mx-68I"/>
+                        <outlet property="searchBar" destination="HHH-5S-U0D" id="Lif-c6-OQR"/>
+                        <outlet property="searchContentsController" destination="j01-bn-Da3" id="XJi-gq-oKV"/>
+                        <outlet property="searchResultsDataSource" destination="j01-bn-Da3" id="mjh-WH-6P9"/>
+                        <outlet property="searchResultsDelegate" destination="j01-bn-Da3" id="aOR-D3-aww"/>
                     </connections>
                 </searchDisplayController>
             </objects>
@@ -575,7 +577,7 @@
         <!--New Project View Controller-->
         <scene sceneID="gJ6-a7-Nto">
             <objects>
-                <viewController id="8hc-sO-Zki" customClass="NewProjectViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8hc-sO-Zki" customClass="NewProjectViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="li8-tL-xIE"/>
                         <viewControllerLayoutGuide type="bottom" id="VM2-uX-FE4"/>
@@ -651,7 +653,7 @@
         <!--New Session-->
         <scene sceneID="x0l-GU-mWt">
             <objects>
-                <tableViewController id="o6a-X0-WUt" customClass="NewSessionViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="o6a-X0-WUt" customClass="NewSessionViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OIp-cU-lvg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -861,7 +863,7 @@
         <!--Profile-->
         <scene sceneID="z5e-aN-NqS">
             <objects>
-                <tableViewController id="cay-tG-61e" customClass="ProfileTableViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="cay-tG-61e" customClass="ProfileTableViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AVL-cF-uIQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -963,7 +965,7 @@
         <!--Edit Profile Table View Controller-->
         <scene sceneID="VRX-zG-6ms">
             <objects>
-                <tableViewController id="Pnj-a9-IxL" customClass="EditProfileTableViewController" customModule="MobileTimeRecording" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Pnj-a9-IxL" customClass="EditProfileTableViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cEm-h4-1Tb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

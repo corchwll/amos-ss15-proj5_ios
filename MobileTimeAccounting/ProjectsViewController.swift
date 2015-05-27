@@ -19,7 +19,7 @@
 import UIKit
 
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchBarDelegate, UISearchDisplayDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -27,6 +27,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     var alphabet = [ "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
     var dictionary: Dictionary<String, [Project]>!
     var projects: [Project]!
+    var filteredProjects: [Project]!
 
     
     /*
