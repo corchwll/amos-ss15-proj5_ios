@@ -40,6 +40,7 @@
 		E4E0EF881B135501000C17F8 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E4E0EF891B135504000C17F8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
 		E4F02E021B149F3300493452 /* SessionDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02E011B149F3300493452 /* SessionDAOTests.swift */; };
+		E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDAOTests.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
+		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,9 +236,10 @@
 		E45E12451AEE64B30081E23C /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				E446BFFE1AFCE41E000DBAA0 /* Profile */,
 				E446BFFD1AFCE410000DBAA0 /* Recording */,
 				E446BFFC1AFCE402000DBAA0 /* Projects */,
+				E4F54CA61B166FF7008E92C2 /* Dashboard */,
+				E446BFFE1AFCE41E000DBAA0 /* Profile */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -272,7 +275,6 @@
 				E4A16AAC1AE531EC006BB173 /* Images.xcassets */,
 				E4A16AA31AE531EB006BB173 /* Supporting Files */,
 			);
-			name = MobileTimeAccounting;
 			path = MobileTimeAccounting;
 			sourceTree = "<group>";
 		};
@@ -293,7 +295,6 @@
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
-			name = MobileTimeAccountingTests;
 			path = MobileTimeAccountingTests;
 			sourceTree = "<group>";
 		};
@@ -303,6 +304,14 @@
 				E4A16ABA1AE531EC006BB173 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E4F54CA61B166FF7008E92C2 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -468,6 +477,7 @@
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
 				E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */,
 				E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */,
+				E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */,
 				E45C447F1AED83700044D25F /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
