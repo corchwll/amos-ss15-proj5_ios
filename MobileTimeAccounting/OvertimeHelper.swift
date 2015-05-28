@@ -1,10 +1,20 @@
-//
-//  OvertimeHelper.swift
-//  MobileTimeAccounting
-//
-//  Created by cdan on 28/05/15.
-//  Copyright (c) 2015 develop-group. All rights reserved.
-//
+/*
+    Mobile Time Accounting
+    Copyright (C) 2015
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 
 import Foundation
 
@@ -23,8 +33,10 @@ class OvertimeHelper
     {
         loadAllSessions()
         calculatePublicHolidaysPerYear()
-            
-        return 0
+        let currentWorkingTime = calculateCurrentWorkingTime()
+        let currentWorkingTimeDebt = calculateCurrentWorkingTimeDebt()
+        
+        return currentWorkingTime - currentWorkingTimeDebt
     }
     
     
@@ -58,6 +70,14 @@ class OvertimeHelper
     }
     
     
+    private func calculateCurrentWorkingTime()->Int
+    {
+        let currentWorkingTimeInSeconds = calculateCurrentWorkingTimeInSeconds()
+        let currentWorkingTimeInHours = (Double(currentWorkingTimeInSeconds)) / 3600.0
+        return (Int(currentWorkingTimeInHours))
+    }
+    
+    
     private func calculateCurrentWorkingTimeInSeconds()->Int
     {
         var workingTimeInSeconds = 0
@@ -66,6 +86,15 @@ class OvertimeHelper
             workingTimeInSeconds += (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))
         }
         return workingTimeInSeconds
+    }
+    
+    
+    private func calculateCurrentWorkingTimeDebt()->Int
+    {
+        let currentWorkingTimeDebtInDays = calculateCurrentWorkingTimeDebtInDays()
+        let dailyWorkingTime = (Double(profileDAO.getProfile()!.weeklyWorkingTime!.toInt()!)) / 5.0
+        let currentWorkingTimeDebtInHours = (Double(currentWorkingTimeDebtInDays)) * dailyWorkingTime
+        return (Int(currentWorkingTimeDebtInHours))
     }
     
     
@@ -80,7 +109,7 @@ class OvertimeHelper
         var endDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
         
         var workingTimeDebtInDays = 0
-        while (startDateComponents.day != endDateComponents.day || startDateComponents.month != endDateComponents.month || startDateComponents.year != endDateComponents.year)
+        while(startDateComponents.day <= endDateComponents.day || startDateComponents.month < endDateComponents.month || startDateComponents.year < endDateComponents.year)
         {
             if startDateComponents.weekday != 1 && startDateComponents.weekday != 7
             {
@@ -89,6 +118,7 @@ class OvertimeHelper
             startDateComponents.day += 1
             startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calendar.dateFromComponents(startDateComponents)!)
         }
+        
         return workingTimeDebtInDays
     }
 }
