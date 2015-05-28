@@ -36,7 +36,7 @@ class SessionDAO
     
         @methodtype Command
         @pre Existing project (foreign-key relationship)
-        @post Stored session
+        @post Session has been stored
     */
     func addSession(session: Session, project: Project)
     {
@@ -51,11 +51,11 @@ class SessionDAO
     
     
     /*
-        Returns every session from sqlite database.
+        Returns every session of given project from sqlite database.
     
         @methodtype Query
-        @pre -
-        @post Every session from database
+        @pre Project must exist
+        @post Every session of given project has been returned
     */
     func getSessions(project: Project)->[Session]
     {
@@ -74,10 +74,33 @@ class SessionDAO
     
     
     /*
+        Returns every session of all prjects from sqlite database.
+        
+        @methodtype Query
+        @pre -
+        @post Every session has been returned
+    */
+    func getAllSessions()->[Session]
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        var queriedSessions: [Session] = []
+        for sessionRow in sessions.order(startTime.desc)
+        {
+            var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
+                endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
+            queriedSessions.append(session)
+        }
+        return queriedSessions
+    }
+    
+    
+    /*
         Removes given session from database.
     
         @methodtype Command
-        @pre Session is existing
+        @pre Session must exist
         @post Session has been removed
     */
     func removeSession(session: Session)

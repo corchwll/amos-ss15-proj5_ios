@@ -120,6 +120,35 @@ class SessionDAOTests: XCTestCase
     }
     
     
+    func testGetAllSessions_MultipleProjectsWithSessions_AllSessionsWereReturned()
+    {
+        for project in projects
+        {
+            projectDAO.addProject(project)
+            for session in sessions
+            {
+                sessionDAO.addSession(session, project: project)
+            }
+        }
+        
+        var pass = true
+        for session in sessions
+        {
+            var hasElement = 0
+            for requestedSession in sessionDAO.getAllSessions()
+            {
+                if requestedSession.startTime == session.startTime && requestedSession.endTime == session.endTime
+                {
+                    hasElement += 1
+                }
+            }
+            pass = pass && hasElement == projects.count
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
     func testRemoveSession_ValidProject_SessionsWereRemoved()
     {
         let project = projects.first!
