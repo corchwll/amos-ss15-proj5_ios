@@ -32,7 +32,6 @@ class OvertimeHelper
     func getCurrentOvertime()->Int
     {
         loadAllSessions()
-        calculatePublicHolidaysPerYear()
         let currentWorkingTime = calculateCurrentWorkingTime()
         let currentWorkingTimeDebt = calculateCurrentWorkingTimeDebt()
         
@@ -42,31 +41,7 @@ class OvertimeHelper
     
     private func loadAllSessions()
     {
-        sessions = sessionDAO.getSessions(Project(id: "00004", name: "", finalDate: NSDate()))
-    }
-    
-    
-    private func calculatePublicHolidaysPerYear()
-    {
-        let startDate = sessions.first!.startTime
-        let endDate = sessions.last!.endTime
-        
-        let startDateComponents = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: startDate)
-        let endDateComponents = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
-        
-        let startYear = startDateComponents.year
-        let endYear = endDateComponents.year
-        
-        for year in startYear...endYear
-        {
-            calculatePublicHolidaysForYear(year)
-        }
-    }
-    
-    
-    private func calculatePublicHolidaysForYear(year: Int)
-    {
-        //todo: calc holidays
+        sessions = sessionDAO.getAllSessions()
     }
     
     
