@@ -28,7 +28,7 @@ class PublicHolidays
         var publicHolidaysCount = 0
         for publicHoliday in publicHolidays
         {
-            if startDate.timeIntervalSince1970 >= publicHoliday.timeIntervalSince1970 && endDate.timeIntervalSince1970 <= publicHoliday.timeIntervalSince1970
+            if startDate.timeIntervalSince1970 <= publicHoliday.timeIntervalSince1970 && endDate.timeIntervalSince1970 >= publicHoliday.timeIntervalSince1970
             {
                 publicHolidaysCount++
             }
@@ -37,7 +37,7 @@ class PublicHolidays
     }
     
     
-    private func calculatePublicHolidaysForYear(year: Int)->[NSDate]
+    func calculatePublicHolidaysForYear(year: Int)->[NSDate]
     {
         var publicHolidays = [NSDate]()
  
@@ -85,20 +85,20 @@ class PublicHolidays
         
         //Christmas Day
         var christmasDay = NSDateComponents()
-        christmasDay.day = 1
-        christmasDay.month = 11
+        christmasDay.day = 25
+        christmasDay.month = 12
         christmasDay.year = year
         publicHolidays.append(calendar.dateFromComponents(christmasDay)!)
         
         //Boxing Day
         var boxingDay = NSDateComponents()
-        boxingDay.day = 1
-        boxingDay.month = 11
+        boxingDay.day = 26
+        boxingDay.month = 12
         boxingDay.year = year
         publicHolidays.append(calendar.dateFromComponents(boxingDay)!)
       
         
-        let eastern = calendar.components(.CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calculateEastern(year))
+        var eastern = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: calculateEastern(year))
         
         //Good Friday
         eastern.day -= 2

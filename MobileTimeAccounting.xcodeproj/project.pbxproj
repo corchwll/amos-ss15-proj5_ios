@@ -25,6 +25,8 @@
 		E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E12461AEE65040081E23C /* NewProjectViewController.swift */; };
 		E46CB7A01B17370700EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
+		E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */; };
+		E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
 		E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */; };
 		E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA51AE531EB006BB173 /* AppDelegate.swift */; };
 		E4A16AA81AE531EB006BB173 /* RecordingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */; };
@@ -138,6 +140,7 @@
 		E45C44911AED8AB10044D25F /* SQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
 		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		E46CB79F1B17370700EC198D /* PublicHolidays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidays.swift; sourceTree = "<group>"; };
+		E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidaysTests.swift; sourceTree = "<group>"; };
 		E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
 		E4A16AA01AE531EB006BB173 /* MobileTimeAccounting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTimeAccounting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4A16AA41AE531EB006BB173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 				E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */,
 				E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */,
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
+				E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
 			path = MobileTimeAccountingTests;
@@ -504,6 +508,8 @@
 			files = (
 				E4E0EF851B1354F6000C17F8 /* SessionDAO.swift in Sources */,
 				E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */,
+				E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */,
+				E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */,
 				E4E0EF861B1354FA000C17F8 /* ProfileDAO.swift in Sources */,
 				E4A16ABC1AE531EC006BB173 /* ProfileDAOTests.swift in Sources */,
 				E4E0EF881B135501000C17F8 /* Session.swift in Sources */,
