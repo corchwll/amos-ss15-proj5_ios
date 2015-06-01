@@ -36,12 +36,12 @@ class DashboardTableViewController: UITableViewController
     
     func setUpOvertimeLabel()
     {
-        overtimeLabel.text = "0"
+        overtimeLabel.text = String(overtimeHelper.getCurrentOvertime())
     }
     
     
     func setUpVacationDaysLabel()
     {
-        vacationDaysLabel.text = "0"
+        vacationDaysLabel.text = String(vacationTimeHelper.getCurrentVacationDays())
     }
 }

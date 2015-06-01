@@ -76,22 +76,26 @@ class OvertimeHelper
     private func calculateCurrentWorkingTimeDebtInDays()->Int
     {
         let weeklyWorkingTime = profileDAO.getProfile()?.weeklyWorkingTime?.toInt()
-        
-        let startDate = sessions.last!.startTime
-        let endDate = sessions.first!.endTime
-        
-        var startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: startDate)
-        var endDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
-        
         var workingTimeDebtInDays = 0
-        while(startDateComponents.day <= endDateComponents.day || startDateComponents.month < endDateComponents.month || startDateComponents.year < endDateComponents.year)
+        
+        if !sessions.isEmpty
         {
-            if startDateComponents.weekday != 1 && startDateComponents.weekday != 7
+            let startDate = sessions.last!.startTime
+            let endDate = sessions.first!.endTime
+            
+            var startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: startDate)
+            var endDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
+            
+            
+            while(startDateComponents.day <= endDateComponents.day || startDateComponents.month < endDateComponents.month || startDateComponents.year < endDateComponents.year)
             {
-                workingTimeDebtInDays += 1
+                if startDateComponents.weekday != 1 && startDateComponents.weekday != 7
+                {
+                    workingTimeDebtInDays += 1
+                }
+                startDateComponents.day += 1
+                startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calendar.dateFromComponents(startDateComponents)!)
             }
-            startDateComponents.day += 1
-            startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calendar.dateFromComponents(startDateComponents)!)
         }
         
         return workingTimeDebtInDays
