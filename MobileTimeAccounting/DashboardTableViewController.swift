@@ -42,6 +42,6 @@ class DashboardTableViewController: UITableViewController
     
     func setUpVacationDaysLabel()
     {
-        vacationDaysLabel.text = String(vacationTimeHelper.getCurrentVacationDays())
+        vacationDaysLabel.text = "\(vacationTimeHelper.getCurrentVacationDays()) / \(profileDAO.getProfile()!.totalVacationTime!)"
     }
 }
