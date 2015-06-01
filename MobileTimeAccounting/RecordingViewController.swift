@@ -55,6 +55,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
             setButtonStateForHasProject(true)
             loadRecentProject()
             setProjectHeading()
+            loadProjectSessions()
         }
         else
         {

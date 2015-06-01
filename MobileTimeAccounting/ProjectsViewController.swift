@@ -380,7 +380,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     func filterProjectsForSearchText(searchText: String)
     {
         filteredProjects = projects.filter({(project: Project)->Bool in
-            let nameMatch = project.name.rangeOfString(searchText)
+            let nameMatch = project.name.lowercaseString.rangeOfString(searchText.lowercaseString)
             let idMatch = project.id.rangeOfString(searchText)
             return nameMatch != nil || idMatch != nil || searchText == ""
         })
