@@ -506,6 +506,9 @@
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uts-NL-27u">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6dw-Vm-jo3"/>
+                                </constraints>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -517,7 +520,6 @@
                             <constraint firstItem="2F8-C5-aP9" firstAttribute="top" secondItem="jOJ-CZ-28n" secondAttribute="topMargin" constant="44" id="mM0-Pq-9Cj"/>
                             <constraint firstAttribute="trailing" secondItem="2F8-C5-aP9" secondAttribute="trailing" id="rAI-sv-5fV"/>
                             <constraint firstItem="2F8-C5-aP9" firstAttribute="trailing" secondItem="uts-NL-27u" secondAttribute="trailing" id="s9L-sQ-Gv7"/>
-                            <constraint firstItem="M36-yE-4KG" firstAttribute="top" secondItem="uts-NL-27u" secondAttribute="bottom" constant="443" id="x9t-NS-DVM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="TUh-jU-TtN">
