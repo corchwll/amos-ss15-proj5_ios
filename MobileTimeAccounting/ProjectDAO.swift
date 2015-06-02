@@ -43,7 +43,7 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.insert(id <- project.id, name <- project.name, finalDate <- 10,
+        projects.insert(id <- project.id, name <- project.name, finalDate <- (Int(project.finalDate.timeIntervalSince1970)),
             isArchived <- project.isArchived)!
     }
     

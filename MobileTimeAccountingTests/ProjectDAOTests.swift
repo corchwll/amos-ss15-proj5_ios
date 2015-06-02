@@ -32,9 +32,20 @@ class ProjectDAOTests: XCTestCase
     {
         super.setUp()
         
-        projects.append(Project(id: "10001", name: "Test Project 1", finalDate: NSDate()))
-        projects.append(Project(id: "10002", name: "Test Project 2", finalDate: NSDate()))
-        projects.append(Project(id: "10003", name: "Test Project 3", finalDate: NSDate()))
+        let finalDate = NSDateComponents()
+        let calendar = NSCalendar.currentCalendar()
+        
+        finalDate.day = 1
+        finalDate.month = 1
+        finalDate.year = 2015
+        projects.append(Project(id: "10001", name: "Test Project 1", finalDate: calendar.dateFromComponents(finalDate)!))
+
+        finalDate.day = 2
+        finalDate.month = 2
+        finalDate.year = 2015
+        projects.append(Project(id: "10002", name: "Test Project 2", finalDate: calendar.dateFromComponents(finalDate)!))
+
+        projects.append(Project(id: "10003", name: "Test Project 3"))
     }
  
     
@@ -101,16 +112,25 @@ class ProjectDAOTests: XCTestCase
     
     func testGetProject_ValidProjectsAdded_GetAllProjects()
     {
-        projectDAO.addProject(projects[0])
+        for project in projects
+        {
+            projectDAO.addProject(project)
+        }
         
         var pass = true
-        if let project = projectDAO.getProject(projects[0].id)
+        for project in projects
         {
-            pass = pass && projectDAO.getProject(project.id)!.id == project.id
-        }
-        else
-        {
-            pass = false
+            if let requestedProject = projectDAO.getProject(project.id)
+            {
+                pass = pass && requestedProject.id == project.id
+                pass = pass && requestedProject.name == project.name
+                pass = pass && requestedProject.finalDate.timeIntervalSince1970 == project.finalDate.timeIntervalSince1970
+                pass = pass && requestedProject.isArchived == project.isArchived
+            }
+            else
+            {
+                pass = false
+            }
         }
         
         XCTAssert(pass, "Pass")

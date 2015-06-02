@@ -26,18 +26,33 @@ class Project
     var finalDate: NSDate
     var isArchived: Bool
 
-    
+
     /*
-    Constructor for model class, representing projects.
-    
-    @methodtype Constructor
-    @pre Correct paramters != nil
-    @post Initialized project
+        Constructor for model class, representing projects.
+        
+        @methodtype Constructor
+        @pre Correct paramters != nil
+        @post Initialized project
     */
-    init(id: String, name: String, finalDate: NSDate)
+    init(id: String, name: String)
     {
         self.id = id
         self.name = name
+        self.finalDate = NSDate(timeIntervalSince1970: NSTimeInterval(0))
+        self.isArchived = false
+    }
+    
+    
+    /*
+        Constructor for model class, representing projects.
+        
+        @methodtype Constructor
+        @pre Correct paramters != nil
+        @post Initialized project
+    */
+    convenience init(id: String, name: String, finalDate: NSDate)
+    {
+        self.init(id: id, name: name)
         self.finalDate = finalDate
         self.isArchived = false
     }

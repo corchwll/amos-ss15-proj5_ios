@@ -155,7 +155,6 @@ class NewProjectViewController: UIViewController
         
         isEmpty = isEmpty || projectIdTextField.text.isEmpty
         isEmpty = isEmpty || projectNameTextField.text.isEmpty
-        isEmpty = isEmpty || projectFinalDateTextField.text.isEmpty
     
         doneButton.enabled = !isEmpty
     }
@@ -171,7 +170,11 @@ class NewProjectViewController: UIViewController
     */
     @IBAction func addProject(sender: AnyObject)
     {
-        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text, finalDate: dateFormatter.dateFromString(projectFinalDateTextField.text)!)
+        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text)
+        if let finalDate = dateFormatter.dateFromString(projectFinalDateTextField.text)
+        {
+            newProject.finalDate = finalDate
+        }
         projectDAO.addProject(newProject)
         delegate.didAddNewProject()
         
