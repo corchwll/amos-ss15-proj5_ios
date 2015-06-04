@@ -37,6 +37,7 @@
 		E4A8A5EA1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */; };
 		E4A8A5EB1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */; };
 		E4A8A5F11B1BB8FB00AB1183 /* VacationTimeHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */; };
+		E4B1C0F51B2087750025283C /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0F41B2087750025283C /* CSVBuilder.swift */; };
 		E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */; };
 		E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E4E0EF841B1354F3000C17F8 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
@@ -157,6 +158,7 @@
 		E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDAOTests.swift; sourceTree = "<group>"; };
 		E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationTimeHelper.swift; sourceTree = "<group>"; };
 		E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationTimeHelperTests.swift; sourceTree = "<group>"; };
+		E4B1C0F41B2087750025283C /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				E46CB79F1B17370700EC198D /* PublicHolidays.swift */,
 				E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */,
 				E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */,
+				E4B1C0F41B2087750025283C /* CSVBuilder.swift */,
 			);
 			name = BusinessLogic;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */,
 				E446C0001AFD18A7000DBAA0 /* ProfileTableViewController.swift in Sources */,
+				E4B1C0F51B2087750025283C /* CSVBuilder.swift in Sources */,
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
