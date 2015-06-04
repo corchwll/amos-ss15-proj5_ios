@@ -21,14 +21,7 @@ import Foundation
 
 class CSVBuilder
 {
-    var header = [String]()
     var rows = [[String]]()
-    
-    
-    func setHeader(header: String...)
-    {
-        self.header += header
-    }
     
     
     func addRow(row: String...)
@@ -37,48 +30,80 @@ class CSVBuilder
     }
     
     
+    func setRow(rowIndex: Int, row: String...)
+    {
+        AppendEmptyRowsIfNeeded(rowIndex)
+        rows[rowIndex] = row
+    }
+    
+    
+    func addRowItem(rowIndex: Int, rowItem: String)
+    {
+        AppendEmptyRowsIfNeeded(rowIndex)
+        rows[rowIndex].append(rowItem)
+    }
+    
+    
+    func setRowItem(rowIndex: Int, rowItemIndex: Int, rowItem: String)
+    {
+        AppendEmptyRowsIfNeeded(rowIndex)
+        AppendEmptyRowItemsIfNeeded(rowIndex, toIndex: rowItemIndex)
+        
+        rows[rowIndex][rowItemIndex] = rowItem
+    }
+    
+    
+    private func AppendEmptyRowsIfNeeded(toIndex: Int)
+    {
+        for index in rows.count...toIndex
+        {
+            rows.append([String]())
+        }
+    }
+    
+    
+    private func AppendEmptyRowItemsIfNeeded(rowIndex: Int, toIndex: Int)
+    {
+        for index in rows[rowIndex].count...toIndex
+        {
+            rows[rowIndex].append("")
+        }
+    }
+    
+    
     func build()->String
     {
-        var csvString = generateHeader()
-        csvString += generateRows()
+        var csvString = ""
+        let columnCount = getColumnCount()
+
+        for row in rows
+        {
+            csvString += "\(getCSVRow(row, size: columnCount))\n"
+        }
         
         return csvString
     }
     
     
-    private func generateHeader()->String
+    private func getColumnCount()->Int
     {
-        var csvHeader = ""
-        
-        if !header.isEmpty
+        var maxCount = 0
+        for row in rows
         {
-            for heading in header
-            {
-                csvHeader += "\(heading),"
-            }
-            csvHeader.removeAtIndex(csvHeader.endIndex.predecessor())
-            csvHeader.append(Character("\n"))
+            maxCount = row.count > maxCount ? row.count : maxCount
         }
-        return csvHeader
+        return maxCount
     }
     
     
-    private func generateRows()->String
+    private func getCSVRow(row: [String], size: Int)->String
     {
-        var csvRows = ""
-        
-        if !rows.isEmpty
+        var csvRow = ""
+        for column in 0..<size
         {
-            for row in rows
-            {
-                for item in row
-                {
-                    csvRows += "\(item),"
-                }
-                csvRows.removeAtIndex(csvRows.endIndex.predecessor())
-                csvRows.append(Character("\n"))
-            }
+            csvRow += column < row.count ? "\(row[column])," : ","
         }
-        return csvRows
+        csvRow.removeAtIndex(csvRow.endIndex.predecessor())
+        return csvRow
     }
 }
