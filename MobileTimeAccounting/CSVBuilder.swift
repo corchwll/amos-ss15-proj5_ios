@@ -25,7 +25,7 @@ class CSVBuilder
     var rows = [[String]]()
     
     
-    func setHeaders(header: String...)
+    func setHeader(header: String...)
     {
         self.header += header
     }
@@ -50,13 +50,15 @@ class CSVBuilder
     {
         var csvHeader = ""
         
-        for heading in header
+        if !header.isEmpty
         {
-            csvHeader += "\(heading),"
+            for heading in header
+            {
+                csvHeader += "\(heading),"
+            }
+            csvHeader.removeAtIndex(csvHeader.endIndex.predecessor())
+            csvHeader.append(Character("\n"))
         }
-        csvHeader.removeAtIndex(csvHeader.endIndex)
-        csvHeader.append(Character("/n"))
-        
         return csvHeader
     }
     
@@ -65,16 +67,18 @@ class CSVBuilder
     {
         var csvRows = ""
         
-        for row in rows
+        if !rows.isEmpty
         {
-            for item in row
+            for row in rows
             {
-                csvRows += "\(item)),"
+                for item in row
+                {
+                    csvRows += "\(item),"
+                }
+                csvRows.removeAtIndex(csvRows.endIndex.predecessor())
+                csvRows.append(Character("\n"))
             }
-            csvRows.removeAtIndex(csvRows.endIndex)
-            csvRows.append(Character("/n"))
         }
-        
         return csvRows
     }
 }

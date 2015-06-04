@@ -38,6 +38,8 @@
 		E4A8A5EB1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */; };
 		E4A8A5F11B1BB8FB00AB1183 /* VacationTimeHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */; };
 		E4B1C0F51B2087750025283C /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0F41B2087750025283C /* CSVBuilder.swift */; };
+		E4B1C0FA1B208E7E0025283C /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0F41B2087750025283C /* CSVBuilder.swift */; };
+		E4B1C0FC1B208E910025283C /* CSVBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */; };
 		E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */; };
 		E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E4E0EF841B1354F3000C17F8 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
@@ -159,6 +161,7 @@
 		E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationTimeHelper.swift; sourceTree = "<group>"; };
 		E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationTimeHelperTests.swift; sourceTree = "<group>"; };
 		E4B1C0F41B2087750025283C /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
+		E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilderTests.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +313,7 @@
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
 				E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */,
 				E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */,
+				E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
 			path = MobileTimeAccountingTests;
@@ -524,9 +528,11 @@
 				E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */,
 				E4E0EF861B1354FA000C17F8 /* ProfileDAO.swift in Sources */,
 				E4A16ABC1AE531EC006BB173 /* ProfileDAOTests.swift in Sources */,
+				E4B1C0FC1B208E910025283C /* CSVBuilderTests.swift in Sources */,
 				E4E0EF881B135501000C17F8 /* Session.swift in Sources */,
 				E4E0EF841B1354F3000C17F8 /* ProjectDAO.swift in Sources */,
 				E4E0EF871B1354FE000C17F8 /* Project.swift in Sources */,
+				E4B1C0FA1B208E7E0025283C /* CSVBuilder.swift in Sources */,
 				E4A8A5F11B1BB8FB00AB1183 /* VacationTimeHelperTests.swift in Sources */,
 				E4E0EF891B135504000C17F8 /* Profile.swift in Sources */,
 				E4A8A5EB1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */,
