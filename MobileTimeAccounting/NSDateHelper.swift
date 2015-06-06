@@ -30,6 +30,29 @@ extension NSDate
     }
     
     
+    convenience init(day: Int, month: Int, year: Int, calendar: NSCalendar)
+    {
+        var date = NSDateComponents()
+        date.day = day
+        date.month = month
+        date.year = year
+        self.init(timeIntervalSince1970: calendar.dateFromComponents(date)!.timeIntervalSince1970)
+    }
+    
+    
+    convenience init(hour: Int, minute: Int, second: Int, day: Int, month: Int, year: Int, calendar: NSCalendar)
+    {
+        var date = NSDateComponents()
+        date.hour = hour
+        date.minute = minute
+        date.second = second
+        date.day = day
+        date.month = month
+        date.year = year
+        self.init(timeIntervalSince1970: calendar.dateFromComponents(date)!.timeIntervalSince1970)
+    }
+
+    
     func startOfMonth() -> NSDate?
     {
         let calendar = NSCalendar.currentCalendar()
