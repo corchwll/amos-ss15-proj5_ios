@@ -55,7 +55,7 @@ class CSVBuilder
     
     private func AppendEmptyRowsIfNeeded(toIndex: Int)
     {
-        for index in rows.count...toIndex
+        for var index = rows.count; index <= toIndex; ++index
         {
             rows.append([String]())
         }
@@ -64,7 +64,7 @@ class CSVBuilder
     
     private func AppendEmptyRowItemsIfNeeded(rowIndex: Int, toIndex: Int)
     {
-        for index in rows[rowIndex].count...toIndex
+        for var index = rows[rowIndex].count; index <= toIndex; ++index
         {
             rows[rowIndex].append("")
         }

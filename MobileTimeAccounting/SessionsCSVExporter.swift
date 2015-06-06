@@ -23,8 +23,12 @@ class SessionsCSVExporter
 {
     let csvBuilder = CSVBuilder()
     let dateFormatter = NSDateFormatter()
+    let calendar = NSCalendar.currentCalendar()
     var month = 0
     var year = 0
+    
+    var projects = [Project]()
+    var sessions = [[Session]]()
     
     
     init()
@@ -40,6 +44,7 @@ class SessionsCSVExporter
         self.year = year
         
         let csvString = doExportCSV()
+        println(csvString)
         return csvString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
     }
     
@@ -47,7 +52,9 @@ class SessionsCSVExporter
     func doExportCSV()->String
     {
         setHeading()
-        setProjectColumns()
+        setProjectsRow()
+        setSessionRows()
+
         return csvBuilder.build()
     }
     
@@ -59,37 +66,47 @@ class SessionsCSVExporter
     }
     
     
-    private func setProjectColumns()
+    private func setProjectsRow()
     {
-        //Need to replace with other function
-        let projects = projectDAO.getProjects()
+        projects = projectDAO.getProjects(month, year: year)
         
-        for index in 1...projects.count
+        csvBuilder.addRow("")
+        for project in projects
         {
-            setProjectColumn(projects[index-1], columnIndex: index)
+            csvBuilder.addRowItem(1, rowItem: project.name)
+            sessions.append(sessionDAO.getSessions(project, month: month, year: year))
         }
     }
     
     
-    private func setProjectColumn(project: Project, columnIndex: Int)
+    private func setSessionRows()
     {
-        //set project column header
-        csvBuilder.setRowItem(2, rowItemIndex: columnIndex, rowItem: project.name)
+        var currentRow = 2
+        let startOfMonth = NSDate(month: month, year: year, calendar: calendar).startOfMonth()!
+        let endOfMonth = NSDate(month: month, year: year, calendar: calendar).endOfMonth()!
         
-        var currentRow = 3
-        //Need to replace with other function
-        let sessions = sessionDAO.getSessions(project)
-        
-        for session in sessions
+        for var date = startOfMonth; date.timeIntervalSince1970 < endOfMonth.timeIntervalSince1970; date = date.dateByAddingDays(1)!
         {
-            //set date for row
-            csvBuilder.addRowItem(currentRow, rowItem: dateFormatter.stringFromDate(session.startTime))
-            
-            //set accumulated time in row
-            let accumulatedTime = (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))
-            csvBuilder.setRowItem(currentRow, rowItemIndex: columnIndex, rowItem: String(accumulatedTime))
-            
+            csvBuilder.addRow(dateFormatter.stringFromDate(date))
+            setSessionRow(date, rowIndex: currentRow)
             currentRow++
+        }
+    }
+    
+    
+    private func setSessionRow(date: NSDate, rowIndex: Int)
+    {
+        for columnIndex in 1...sessions.count
+        {
+            var accumulatedTime = 0
+            for session in sessions[columnIndex-1]
+            {
+                if calendar.components(.CalendarUnitDay, fromDate: session.startTime).day == calendar.components(.CalendarUnitDay, fromDate: date).day
+                {
+                    accumulatedTime += (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))
+                }
+            }
+            csvBuilder.setRowItem(rowIndex, rowItemIndex: columnIndex, rowItem: String(accumulatedTime))
         }
     }
 }

@@ -87,4 +87,14 @@ extension NSDate
         
         return calendar.dateByAddingComponents(months, toDate: self, options: nil)
     }
+    
+    
+    func dateByAddingDays(daysToAdd: Int) -> NSDate?
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let days = NSDateComponents()
+        days.day = daysToAdd
+        
+        return calendar.dateByAddingComponents(days, toDate: self, options: nil)
+    }
 }
