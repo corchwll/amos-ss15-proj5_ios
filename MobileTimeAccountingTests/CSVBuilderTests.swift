@@ -56,9 +56,7 @@ class CSVBuilderTests: XCTestCase
         csvBuilder.addRow(row4[0], row4[1], row4[2], row4[3])
         csvBuilder.addRow(row5[0], row5[1], row5[2], row5[3])
         let csvString = csvBuilder.build()
-        
-        println(csvString)
-        
+
         XCTAssert(csvString == self.csvString, "Pass")
     }
     
