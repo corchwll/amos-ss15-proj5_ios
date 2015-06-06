@@ -148,11 +148,16 @@ class ProjectDAOTests: XCTestCase
     func testGetProjects_ValidProjectsAndSessionsAdded_GetProjectInGivenPeriod()
     {
         var pass = false
-        for project in projectDAO.getProjects(1, year: 2015)
+        var projects = projectDAO.getProjects(1, year: 2015)
+        
+        if projects.count == 1
         {
-            if project.id == projects[0].id && project.name == projects[0].name
+            for project in projects
             {
-                pass = true
+                if project.id == projects[0].id && project.name == projects[0].name
+                {
+                    pass = true
+                }
             }
         }
         

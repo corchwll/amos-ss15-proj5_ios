@@ -87,9 +87,8 @@ class ProjectDAO
         let startOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).startOfMonth()!
         let endOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).endOfMonth()!
         
-        for projectRow in projects.join(database["sessions"], on: projects[id] == sessionDAO.projectId).filter(sessionDAO.startTime >= (Int(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Int(endOfMonth.timeIntervalSince1970)))
+        for projectRow in projects.join(database["sessions"], on: projects[id] == sessionDAO.projectId).filter(sessionDAO.startTime >= (Int(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Int(endOfMonth.timeIntervalSince1970))).group(projects[id])
         {
-            
             var project = Project(id: projectRow[projects[id]], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])),
                 isArchived: projectRow[isArchived])
             queriedProjects.append(project)
