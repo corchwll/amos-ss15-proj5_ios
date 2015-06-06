@@ -25,6 +25,7 @@ import XCTest
 */
 class SessionDAOTests: XCTestCase
 {
+    let calendar = NSCalendar.currentCalendar()
     var projects: [Project] = []
     var sessions: [Session] = []
 
@@ -36,9 +37,11 @@ class SessionDAOTests: XCTestCase
         projects.append(Project(id: "10001", name: "Test Project1", finalDate: NSDate()))
         projects.append(Project(id: "10002", name: "Test Project2", finalDate: NSDate()))
         
-        sessions.append(Session(id: 0, startTime: NSDate(timeIntervalSinceReferenceDate: 10), endTime: NSDate(timeIntervalSinceReferenceDate: 20)))
-        sessions.append(Session(id: 0, startTime: NSDate(timeIntervalSinceReferenceDate: 30), endTime: NSDate(timeIntervalSinceReferenceDate: 40)))
-        sessions.append(Session(id: 0, startTime: NSDate(timeIntervalSinceReferenceDate: 40), endTime: NSDate(timeIntervalSinceReferenceDate: 60)))
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 16, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
+        
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 5, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 16, minute: 0, second: 0, day: 5, month: 5, year: 2015, calendar: calendar)))
+        
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 17, month: 3, year: 2015, calendar: calendar), endTime: NSDate(hour: 16, minute: 0, second: 0, day: 17, month: 3, year: 2015, calendar: calendar)))
     }
     
     
@@ -128,6 +131,27 @@ class SessionDAOTests: XCTestCase
                 }
                 pass = pass && hasElement
             }
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+
+    
+    func testGetSessions_MultipleProjectsWithSessions_SessionsInMonthReturned()
+    {
+        projectDAO.addProject(projects[0])
+        for session in self.sessions
+        {
+            sessionDAO.addSession(session, project: projects[0])
+        }
+    
+        let sessions = sessionDAO.getSessions(projects[0], month: 5, year: 2015)
+        var pass = false
+        
+        if sessions.count == 2
+        {
+            pass = sessions[0].startTime == self.sessions[0].startTime
+            pass = sessions[1].startTime == self.sessions[1].startTime
         }
         
         XCTAssert(pass, "Pass")

@@ -74,6 +74,32 @@ class SessionDAO
     
     
     /*
+        Returns every session of given project in a given month from sqlite database.
+        
+        @methodtype Query
+        @pre Project must exist
+        @post Every session of given project has been returned
+    */
+    func getSessions(project: Project, month: Int, year: Int)->[Session]
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        var queriedSessions: [Session] = []
+        let startOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).startOfMonth()!
+        let endOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).endOfMonth()!
+        
+        for sessionRow in sessions.filter(projectId == project.id && startTime >= (Int(startOfMonth.timeIntervalSince1970)) && endTime <= (Int(endOfMonth.timeIntervalSince1970))).order(startTime.asc)
+        {
+            var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
+                endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
+            queriedSessions.append(session)
+        }
+        return queriedSessions
+    }
+    
+    
+    /*
         Returns every session of all prjects from sqlite database.
         
         @methodtype Query
