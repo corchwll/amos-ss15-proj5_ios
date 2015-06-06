@@ -17,9 +17,10 @@
 */
 
 import UIKit
+import MessageUI
 
 
-class DashboardTableViewController: UITableViewController
+class DashboardTableViewController: UITableViewController, MFMailComposeViewControllerDelegate
 {
     @IBOutlet weak var overtimeLabel: UILabel!
     @IBOutlet weak var vacationDaysLabel: UILabel!
@@ -43,5 +44,41 @@ class DashboardTableViewController: UITableViewController
     func setUpVacationDaysLabel()
     {
         vacationDaysLabel.text = "\(vacationTimeHelper.getCurrentVacationDays()) / \(profileDAO.getProfile()!.totalVacationTime!)"
+    }
+    
+    
+    @IBAction func sendEmail(sender: AnyObject)
+    {
+        let emailTitle = "Test Email"
+        let messageBody = "This is a test email body"
+        let toRecipents = ["blabla@mail.com"]
+        
+        let mailComposeViewController = MFMailComposeViewController()
+        mailComposeViewController.mailComposeDelegate = self
+        mailComposeViewController.setSubject(emailTitle)
+        mailComposeViewController.setMessageBody(messageBody, isHTML: false)
+        mailComposeViewController.setToRecipients(toRecipents)
+        
+        mailComposeViewController.navigationBar.barStyle = UIBarStyle.Black
+        self.presentViewController(mailComposeViewController, animated: true, completion: {UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)})
+    }
+    
+    
+    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError)
+    {
+        switch result.value
+        {
+            case MFMailComposeResultCancelled.value:
+                println("Mail cancelled")
+            case MFMailComposeResultSaved.value:
+                println("Mail saved")
+            case MFMailComposeResultSent.value:
+                println("Mail sent")
+            case MFMailComposeResultFailed.value:
+                println("Mail sent failure: \(error.localizedDescription)")
+            default:
+                break
+        }
+        self.dismissViewControllerAnimated(false, completion: nil)
     }
 }

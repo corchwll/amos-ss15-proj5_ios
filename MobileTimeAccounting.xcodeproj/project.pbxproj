@@ -274,10 +274,10 @@
 		E4A16A971AE531EB006BB173 = {
 			isa = PBXGroup;
 			children = (
+				E45C44651AED83310044D25F /* SQLite.xcodeproj */,
 				E4A16AA21AE531EB006BB173 /* MobileTimeAccounting */,
 				E4A16AB81AE531EC006BB173 /* MobileTimeAccountingTests */,
 				E4A16AA11AE531EB006BB173 /* Products */,
-				E45C44651AED83310044D25F /* SQLite.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};

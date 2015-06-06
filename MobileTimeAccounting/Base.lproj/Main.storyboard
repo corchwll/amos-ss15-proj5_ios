@@ -551,8 +551,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="2Ng-Fh-Nzd">
-                            <rect key="frame" x="0.0" y="8" width="600" height="44"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="mDE-dz-6js">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
@@ -607,7 +607,13 @@
                             <outlet property="delegate" destination="ekC-ZK-Wn5" id="AAo-oE-Jpo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Dashboard" id="CUT-A0-ll9"/>
+                    <navigationItem key="navigationItem" title="Dashboard" id="CUT-A0-ll9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="gaj-as-Oud">
+                            <connections>
+                                <action selector="sendEmail:" destination="ekC-ZK-Wn5" id="yDB-d1-h77"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="overtimeLabel" destination="tOb-Oy-OeZ" id="S2Q-8L-TJz"/>
                         <outlet property="vacationDaysLabel" destination="vaO-r8-k1J" id="Bmz-oc-JaX"/>
