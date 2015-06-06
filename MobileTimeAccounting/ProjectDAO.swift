@@ -72,6 +72,32 @@ class ProjectDAO
     
     
     /*
+        Returns all projects from sqlite database, which were active in the given month of the given year.
+        
+        @methodtype Query
+        @pre Valid database connection
+        @post All projects from database
+    */
+    func getProjects(month: Int, year: Int)->[Project]
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        var queriedProjects: [Project] = []
+        let startOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).startOfMonth()!
+        let endOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).endOfMonth()!
+        
+        for projectRow in projects.join(database["sessions"], on: id == sessionDAO.projectId).filter(sessionDAO.startTime >= (Int(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Int(endOfMonth.timeIntervalSince1970)))
+        {
+            var project = Project(id: projectRow[id], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])),
+                isArchived: projectRow[isArchived])
+            queriedProjects.append(project)
+        }
+        return queriedProjects
+    }
+    
+    
+    /*
         Returns project with the given id if available.
         
         @methodtype Query
