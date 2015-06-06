@@ -34,7 +34,7 @@ class SessionsCSVExporter
     init()
     {
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
     }
     
     
@@ -44,7 +44,6 @@ class SessionsCSVExporter
         self.year = year
         
         let csvString = doExportCSV()
-        println(csvString)
         return csvString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
     }
     
@@ -103,7 +102,7 @@ class SessionsCSVExporter
             {
                 if calendar.components(.CalendarUnitDay, fromDate: session.startTime).day == calendar.components(.CalendarUnitDay, fromDate: date).day
                 {
-                    accumulatedTime += (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))
+                    accumulatedTime += (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))/60/60
                 }
             }
             csvBuilder.setRowItem(rowIndex, rowItemIndex: columnIndex, rowItem: String(accumulatedTime))
