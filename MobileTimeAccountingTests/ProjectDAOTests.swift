@@ -143,6 +143,21 @@ class ProjectDAOTests: XCTestCase
         
         XCTAssert(!pass, "Pass")
     }
+
+    
+    func testGetProjects_ValidProjectsAndSessionsAdded_GetProjectInGivenPeriod()
+    {
+        var pass = false
+        for project in projectDAO.getProjects(1, year: 2015)
+        {
+            if project.id == projects[0].id && project.name == projects[0].name
+            {
+                pass = true
+            }
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
     
     
     func testArchiveProject_ValidProjectsWereAdded_ProjectsAreArchived()
