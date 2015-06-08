@@ -31,6 +31,13 @@ class SessionsCSVExporter
     var sessions = [[Session]]()
     
     
+    /*
+        Constructor, setting up date formatter.
+        
+        @methodtype Constructor
+        @pre Date formatter has been initialized
+        @post Date formatter is set up
+    */
     init()
     {
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
@@ -38,6 +45,13 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Exports all sessions of a given month in a given year as csv file.
+        
+        @methodtype Helper
+        @pre Valid values for month (>0) and year
+        @post Returns csv file as NSData
+    */
     func exportCSV(month: Int, year: Int)->NSData
     {
         self.month = month
@@ -48,6 +62,13 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Exports all sessions of a given month in a given year as csv string by using CSVBuilder.
+        
+        @methodtype Command
+        @pre CSVBuilder has been initialized
+        @post Returns csv string
+    */
     func doExportCSV()->String
     {
         setHeading()
@@ -58,6 +79,13 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Sets heading of csv file like: 'profile_firstname','profile_lastname','month','year'
+        
+        @methodtype Command
+        @pre Profile has been set
+        @post Heading is set
+    */
     private func setHeading()
     {
         let profile = profileDAO.getProfile()!
@@ -65,6 +93,13 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Sets all active projects of the given month into a row like: '','project1','project2',...
+    
+        @methodtype Command
+        @pre Active projects are available
+        @post Projects are added into row
+    */
     private func setProjectsRow()
     {
         projects = projectDAO.getProjects(month, year: year)
@@ -78,6 +113,15 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Sets all dates of all session rows of the given month like: '1/1/2015','8'
+                                                                    '1/2/2015','0'
+                                                                    ...
+        
+        @methodtype Command
+        @pre -
+        @post All session rows are set
+    */
     private func setSessionRows()
     {
         var currentRow = 2
@@ -93,6 +137,13 @@ class SessionsCSVExporter
     }
     
     
+    /*
+        Sets accumulated times of all sessions into csv rows.
+        
+        @methodtype Command
+        @pre -
+        @post Accumulated times of all sessions are set
+    */
     private func setSessionRow(date: NSDate, rowIndex: Int)
     {
         for var columnIndex = 1; columnIndex <= sessions.count; ++columnIndex

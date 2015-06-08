@@ -29,6 +29,13 @@ class OvertimeHelper
     var sessions = [Session]()
     
     
+    /*
+        Calculates current overtime in hours.
+        
+        @methodtype Helper
+        @pre Profile must be available
+        @post Returns current overtime
+    */
     func getCurrentOvertime()->Int
     {
         loadAllSessions()
@@ -39,12 +46,26 @@ class OvertimeHelper
     }
     
     
+    /*
+        Loads all sessions from database.
+        
+        @methodtype Command
+        @pre SessionDAO initialized
+        @post All sessions are set
+    */
     private func loadAllSessions()
     {
         sessions = sessionDAO.getAllSessions()
     }
     
     
+    /*
+        Calculates current working time in hours.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns current working time in hours
+    */
     private func calculateCurrentWorkingTime()->Int
     {
         let currentWorkingTimeInSeconds = calculateCurrentWorkingTimeInSeconds()
@@ -53,6 +74,13 @@ class OvertimeHelper
     }
     
     
+    /*
+        Calculates current working time in seconds.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns current working time in seconds
+    */
     private func calculateCurrentWorkingTimeInSeconds()->Int
     {
         var workingTimeInSeconds = 0
@@ -64,6 +92,13 @@ class OvertimeHelper
     }
     
     
+    /*
+        Calculates current working time debt in hours.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns current working time dept in hours
+    */
     private func calculateCurrentWorkingTimeDebt()->Int
     {
         let currentWorkingTimeDebtInDays = calculateCurrentWorkingTimeDebtInDays()
@@ -73,6 +108,13 @@ class OvertimeHelper
     }
     
     
+    /*
+        Calculates current working time dept in days.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns current working time dept in days
+    */
     private func calculateCurrentWorkingTimeDebtInDays()->Int
     {
         let weeklyWorkingTime = profileDAO.getProfile()?.weeklyWorkingTime?.toInt()
@@ -97,7 +139,6 @@ class OvertimeHelper
                 startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calendar.dateFromComponents(startDateComponents)!)
             }
         }
-        
         return workingTimeDebtInDays
     }
 }

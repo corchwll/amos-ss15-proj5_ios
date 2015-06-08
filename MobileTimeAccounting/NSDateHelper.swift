@@ -21,6 +21,13 @@ import Foundation
 
 extension NSDate
 {
+    /*
+        Constructor for initializing dates only by setting month and year.
+        
+        @methodtype Constructor
+        @pre Valid calendar
+        @post Initializes date for given month and year
+    */
     convenience init(month: Int, year: Int, calendar: NSCalendar)
     {
         var date = NSDateComponents()
@@ -30,6 +37,13 @@ extension NSDate
     }
     
     
+    /*
+        Constructor for initializing dates only by setting day, month and year.
+        
+        @methodtype Constructor
+        @pre Valid calendar
+        @post Initializes date for given day, month and year
+    */
     convenience init(day: Int, month: Int, year: Int, calendar: NSCalendar)
     {
         var date = NSDateComponents()
@@ -40,6 +54,13 @@ extension NSDate
     }
     
     
+    /*
+        Constructor for initializing dates by setting hour, minute, second, day, month and year.
+        
+        @methodtype Constructor
+        @pre Valid calendar
+        @post Initializes date for given hour, minute, second, day, month and year
+    */
     convenience init(hour: Int, minute: Int, second: Int, day: Int, month: Int, year: Int, calendar: NSCalendar)
     {
         var date = NSDateComponents()
@@ -53,6 +74,13 @@ extension NSDate
     }
 
     
+    /*
+        Returns start date of the current month.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns start of month
+    */
     func startOfMonth() -> NSDate?
     {
         let calendar = NSCalendar.currentCalendar()
@@ -63,6 +91,13 @@ extension NSDate
     }
     
     
+    /*
+        Returns end date of the current month.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns end of month
+    */
     func endOfMonth() -> NSDate?
     {
         let calendar = NSCalendar.currentCalendar()
@@ -79,6 +114,13 @@ extension NSDate
     }
     
     
+    /*
+        Returns date after adding an amount of months
+        
+        @methodtype Helper
+        @pre Month must be a value between 1 and 12
+        @post Returns date after adding months
+    */
     func dateByAddingMonths(monthsToAdd: Int) -> NSDate?
     {
         let calendar = NSCalendar.currentCalendar()
@@ -89,6 +131,13 @@ extension NSDate
     }
     
     
+    /*
+        Returns date after adding an amount of days
+    
+        @methodtype Helper
+        @pre Days must be a valid value (>0)
+        @post Returns date after adding days
+    */
     func dateByAddingDays(daysToAdd: Int) -> NSDate?
     {
         let calendar = NSCalendar.currentCalendar()

@@ -27,6 +27,13 @@ class VacationTimeHelper
     let vacationProject = Project(id: "00001", name: "Holiday", finalDate: NSDate(timeIntervalSinceReferenceDate: 0))
     
     
+    /*
+        Calculates current vacation days left.
+        
+        @methodtype Helper
+        @pre Profile is set
+        @post Returns current vacation days left
+    */
     func getCurrentVacationDays()->Int
     {
         let vacationSessions = sessionDAO.getSessions(vacationProject)
@@ -36,7 +43,6 @@ class VacationTimeHelper
         {
             vacationDays++
         }
-        
         return vacationDays
     }
 }

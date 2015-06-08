@@ -24,6 +24,13 @@ class PublicHolidays
     let calendar = NSCalendar.currentCalendar()
     
     
+    /*
+        Calculates amount of holidays in a given time span from start to end.
+        
+        @methodtype Helper
+        @pre Start before End
+        @post Returns amount of holidays in time span
+    */
     func calculatePublicHolidaysInDays(startDate: NSDate, endDate: NSDate)->Int
     {
         let startDateComponents = calendar.components(.CalendarUnitYear, fromDate: startDate)
@@ -47,6 +54,13 @@ class PublicHolidays
     }
     
     
+    /*
+        Calculates all holidays for a given year.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns all holidays of the given year
+    */
     func calculatePublicHolidaysForYear(year: Int)->[NSDate]
     {
         var publicHolidays = [NSDate]()
@@ -140,6 +154,13 @@ class PublicHolidays
     }
     
     
+    /*
+        Calculates eastern for a given year.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns eastern date
+    */
     private func calculateEastern(year: Int)->NSDate
     {
         let a = year % 19;
