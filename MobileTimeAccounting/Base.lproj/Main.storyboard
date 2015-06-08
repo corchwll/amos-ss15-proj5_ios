@@ -610,7 +610,9 @@
                     <navigationItem key="navigationItem" title="Dashboard" id="CUT-A0-ll9">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="gaj-as-Oud">
                             <connections>
-                                <action selector="sendEmail:" destination="ekC-ZK-Wn5" id="yDB-d1-h77"/>
+                                <segue destination="pLT-M8-kHe" kind="popoverPresentation" identifier="csv_mail_popover" popoverAnchorBarButtonItem="gaj-as-Oud" id="cJu-aY-JEx">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -697,7 +699,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ESJ-BX-Gti" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031" y="1506"/>
+            <point key="canvasLocation" x="3031" y="1550"/>
+        </scene>
+        <!--CSV Mail-->
+        <scene sceneID="rve-14-ylw">
+            <objects>
+                <viewController id="fHM-OT-WGn" customClass="SendCSVMailViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TCq-HG-zdW"/>
+                        <viewControllerLayoutGuide type="bottom" id="8eP-PW-sdE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4BN-n0-QaG">
+                        <rect key="frame" x="0.0" y="44" width="250" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6D-Yr-Cuf" customClass="UIMonthPickerView" customModule="MobileTimeAccounting" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="250" height="206"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i6D-Yr-Cuf" firstAttribute="top" secondItem="TCq-HG-zdW" secondAttribute="bottom" id="F34-P2-0SL"/>
+                            <constraint firstAttribute="trailing" secondItem="i6D-Yr-Cuf" secondAttribute="trailing" id="Qoc-NY-sJ7"/>
+                            <constraint firstItem="i6D-Yr-Cuf" firstAttribute="leading" secondItem="4BN-n0-QaG" secondAttribute="leading" id="VuV-yZ-YhC"/>
+                            <constraint firstItem="i6D-Yr-Cuf" firstAttribute="bottom" secondItem="8eP-PW-sdE" secondAttribute="top" id="wmt-Ry-NBv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="CSV Mail" id="Sca-O2-koI">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="WVB-Km-h4d">
+                            <connections>
+                                <action selector="cancel:" destination="fHM-OT-WGn" id="gEV-zy-6wX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="J6Q-Lk-esy">
+                            <connections>
+                                <action selector="sendEmail:" destination="fHM-OT-WGn" id="tND-uP-ZmT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="250"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
+                    <connections>
+                        <outlet property="monthPicker" destination="i6D-Yr-Cuf" id="dng-pa-eD0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YUF-WT-Dgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4367" y="1906"/>
         </scene>
         <!--New Session-->
         <scene sceneID="x0l-GU-mWt">
@@ -1238,7 +1289,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BE0-tp-OAq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5753" y="1272"/>
+            <point key="canvasLocation" x="6565" y="1272"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4tg-n4-agG">
@@ -1278,7 +1329,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W9U-hZ-8Yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031" y="1080"/>
+            <point key="canvasLocation" x="3031" y="1097"/>
         </scene>
         <!--Dashboard-->
         <scene sceneID="Ove-D1-4t8">
@@ -1298,6 +1349,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JxP-Ev-Qro" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4367" y="-366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ob9-fo-yX4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pLT-M8-kHe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="250"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="250" height="250"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hPl-aI-Xag">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fHM-OT-WGn" kind="relationship" relationship="rootViewController" id="SnZ-SJ-uTQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4mo-Y1-10l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4367" y="1137"/>
         </scene>
     </scenes>
     <resources>

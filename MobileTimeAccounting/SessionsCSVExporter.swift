@@ -95,7 +95,7 @@ class SessionsCSVExporter
     
     private func setSessionRow(date: NSDate, rowIndex: Int)
     {
-        for columnIndex in 1...sessions.count
+        for var columnIndex = 1; columnIndex <= sessions.count; ++columnIndex
         {
             var accumulatedTime = 0
             for session in sessions[columnIndex-1]

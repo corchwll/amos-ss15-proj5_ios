@@ -20,7 +20,7 @@ import UIKit
 import MessageUI
 
 
-class DashboardTableViewController: UITableViewController, MFMailComposeViewControllerDelegate
+class DashboardTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate
 {
     @IBOutlet weak var overtimeLabel: UILabel!
     @IBOutlet weak var vacationDaysLabel: UILabel!
@@ -47,38 +47,31 @@ class DashboardTableViewController: UITableViewController, MFMailComposeViewCont
     }
     
     
-    @IBAction func sendEmail(sender: AnyObject)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        let emailTitle = "Test Email"
-        let messageBody = "This is a test email body"
-        let toRecipents = ["blabla@mail.com"]
-        
-        let mailComposeViewController = MFMailComposeViewController()
-        mailComposeViewController.mailComposeDelegate = self
-        mailComposeViewController.setSubject(emailTitle)
-        mailComposeViewController.setMessageBody(messageBody, isHTML: false)
-        mailComposeViewController.setToRecipients(toRecipents)
-        
-        mailComposeViewController.navigationBar.barStyle = UIBarStyle.Black
-        self.presentViewController(mailComposeViewController, animated: true, completion: {UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)})
+        if segue.identifier == "csv_mail_popover"
+        {
+            let popoverViewController = segue.destinationViewController as! UINavigationController
+            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
+            popoverViewController.popoverPresentationController!.delegate = self
+            
+            popoverViewController.navigationBar.barStyle = UIBarStyle.Default
+            popoverViewController.navigationBar.translucent = true
+            popoverViewController.navigationBar.barTintColor = UIToolbar.appearance().barTintColor
+            popoverViewController.popoverPresentationController?.backgroundColor = UIToolbar.appearance().barTintColor
+        }
     }
     
     
-    func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError)
+    /*
+        Function is called when asking the UIModalPresentationStyle. Returns 'none' in order to display popup window properly.
+        
+        @methodtype Command
+        @pre -
+        @post -
+    */
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
     {
-        switch result.value
-        {
-            case MFMailComposeResultCancelled.value:
-                println("Mail cancelled")
-            case MFMailComposeResultSaved.value:
-                println("Mail saved")
-            case MFMailComposeResultSent.value:
-                println("Mail sent")
-            case MFMailComposeResultFailed.value:
-                println("Mail sent failure: \(error.localizedDescription)")
-            default:
-                break
-        }
-        self.dismissViewControllerAnimated(false, completion: nil)
+        return UIModalPresentationStyle.None
     }
 }
