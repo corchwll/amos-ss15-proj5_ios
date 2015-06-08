@@ -27,6 +27,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     let picker = UIPickerView()
     
     
+    /*
+        Constructor for initializing month picker view.
+        
+        @methodtype Constructor
+        @pre -
+        @post -
+    */
     override init(frame: CGRect)
     {
         super.init(frame: frame)
@@ -35,6 +42,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Constructor for initializing month picker view.
+        
+        @methodtype Constructor
+        @pre -
+        @post 0
+    */
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
@@ -43,6 +57,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Sets up internal picker.
+        
+        @methodtype Command
+        @pre -
+        @post Picker is set up
+    */
     func setUpPicker()
     {
         setUpPickerView()
@@ -52,6 +73,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Sets up internal picker view, by providing delegate and data source.
+        
+        @methodtype Command
+        @pre -
+        @post Picker view is set up
+    */
     func setUpPickerView()
     {
         picker.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height-26)
@@ -61,6 +89,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
 
     
+    /*
+        Sets up date formatter, used to format dates in picker view.
+        
+        @methodtype Command
+        @pre -
+        @post Date formatter is set up
+    */
     func setUpDateFormatter()
     {
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -69,6 +104,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Sets up months shown in picker view. Default range from 'Jan 1' to 'Dec 10000'
+        
+        @methodtype Command
+        @pre -
+        @post Months for picker are set up
+    */
     func setUpMonts()
     {
         var month = NSDateComponents()
@@ -86,6 +128,13 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Sets current selection in picker view.
+        
+        @methodtype Setter
+        @pre Month and year must be in default range
+        @post Picker view selection is set
+    */
     func setSelection(month: Int, year: Int)
     {
         let index = (year - 1) * 12 + month
@@ -93,32 +142,52 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     
+    /*
+        Returns current selection as date.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns current selection
+    */
     func getSelection()->NSDate
     {
         return months[picker.selectedRowInComponent(0)]
     }
     
     
-    func setUpPickerSelection()
-    {
-        let currentDate = calendar.components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: NSDate())
+    /*
+        UIPickerViewDataSource protocol function. Returns number of components in picker view. (1 component)
         
-        picker.selectRow(currentDate.year, inComponent: 1, animated: false)
-    }
-    
-    
+        @methodtype Getter
+        @pre -
+        @post Returns number of components
+    */
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
         return 1
     }
     
     
+    /*
+        UIPickerViewDataSource protocol function. Returns number of rows in component.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns number of rows
+    */
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
         return months.count
     }
     
     
+    /*
+        UIPickerViewDelegate protocol function. Returns formatted date title for each row.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns title for each row
+    */
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
     {
         return dateFormatter.stringFromDate(months[row])

@@ -64,6 +64,13 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
+    /*
+        Sets up left navigation item button for editing recorded sessions.
+        
+        @methodtype Command
+        @pre Left navigation item button isn't already set up
+        @post Sets up left navigation item button
+    */
     func setUpNavigationItemButton()
     {
         if navigationItem.leftBarButtonItem == nil

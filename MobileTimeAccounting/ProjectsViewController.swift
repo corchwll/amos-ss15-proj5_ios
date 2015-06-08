@@ -51,18 +51,39 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Sets search controller inactive because of ui issues if tab was changed and search is still active.
+        
+        @methodtype Command
+        @pre -
+        @post SearchController is inactive
+    */
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController)
     {
         searchController.active = false
     }
     
     
+    /*
+        Sets left navigation item button for editing projects.
+        
+        @methodtype Command
+        @pre -
+        @post Left navigation item button is set
+    */
     func setUpNavigationItemButton()
     {
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
     }
     
     
+    /*
+        Sets up search controller.
+        
+        @methodtype Command
+        @pre -
+        @post Search controller is set up
+    */
     func setUpSearchController()
     {
         searchController.searchResultsUpdater = self
@@ -368,6 +389,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Updates search results after user input is changed
+        
+        @methodtype Command
+        @pre User input is changed
+        @post Updates search results
+    */
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         filteredProjects.removeAll(keepCapacity: false)
@@ -377,6 +405,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Filters projects by a given case insensitive search string.
+        
+        @methodtype Command
+        @pre -
+        @post Sets filtered projects
+    */
     func filterProjectsForSearchText(searchText: String)
     {
         filteredProjects = projects.filter({(project: Project)->Bool in

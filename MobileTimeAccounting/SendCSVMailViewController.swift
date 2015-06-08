@@ -25,12 +25,28 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     @IBOutlet weak var monthPicker: UIMonthPickerView!
     
     
+    /*
+        iOS life-cycle function, called when view did load. Sets month picker selection to current date.
+        
+        @methodtype Hook
+        @pre -
+        @post Month picker selection is set to current date
+    */
     override func viewDidLoad()
     {
-        monthPicker.setSelection(6, year: 2015)
+        let currentDate = NSDate()
+        let currentDateComponents = NSCalendar.currentCalendar().components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: currentDate)
+        monthPicker.setSelection(currentDateComponents.month, year: currentDateComponents.year)
     }
     
     
+    /*
+        Function is called when pressing 'done'-button. Delegates mailing functionality to iOS MessageUI API.
+        
+        @methodtype Command
+        @pre -
+        @post Mail composer is initialized and shown
+    */
     @IBAction func sendEmail(sender: AnyObject)
     {
         let emailTitle = "Test Email"
@@ -52,12 +68,26 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     }
     
     
+    /*
+        Function is called when pressing 'cancel'-button. Dismisses current view.
+        
+        @methodtype Command
+        @pre -
+        @post View controller dismissed
+    */
     @IBAction func cancel(sender: AnyObject)
     {
         dismissViewControllerAnimated(false, completion: nil)
     }
     
     
+    /*
+        Function is called when mail composer did finish. Dismisses all view controllers and prints out current mailing status.
+        
+        @methodtype Command
+        @pre -
+        @post Mailing status is printed out, view controllers are dismissed
+    */
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError)
     {
         switch result.value

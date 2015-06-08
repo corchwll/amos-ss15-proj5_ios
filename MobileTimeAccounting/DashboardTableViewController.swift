@@ -26,6 +26,13 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     @IBOutlet weak var vacationDaysLabel: UILabel!
 
     
+    /*
+        iOS life-cycle function, called when view did appear. Sets up labels.
+        
+        @methodtype Hook
+        @pre -
+        @post Labels are set up
+    */
     override func viewDidAppear(animated: Bool)
     {
         super.viewDidAppear(animated)
@@ -35,18 +42,39 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     }
     
     
+    /*
+        Sets up overtime label.
+        
+        @methodtype Command
+        @pre OvertimeHelper is initialized
+        @post Overtime label is set up
+    */
     func setUpOvertimeLabel()
     {
         overtimeLabel.text = String(overtimeHelper.getCurrentOvertime())
     }
     
     
+    /*
+        Sets up vacation days label.
+    
+        @methodtype Command
+        @pre VacationTimeHelper is initialized
+        @post Vacation days label is set up
+    */
     func setUpVacationDaysLabel()
     {
         vacationDaysLabel.text = "\(vacationTimeHelper.getCurrentVacationDays()) / \(profileDAO.getProfile()!.totalVacationTime!)"
     }
     
     
+    /*
+        iOS life-cycle function, called when performing a segue. Sets up popover view for mailing csv file.
+        
+        @methodtype Hook
+        @pre Segue has valid identifier
+        @post Popover is shown properly
+    */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
         if segue.identifier == "csv_mail_popover"
