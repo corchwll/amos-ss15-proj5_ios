@@ -35,8 +35,8 @@ insert into projects values (
 );
 
 insert into projects values (
-        "00004",
-        "Training",
+    "00004",
+    "Training",
 	0,
-        0
+    0
 );

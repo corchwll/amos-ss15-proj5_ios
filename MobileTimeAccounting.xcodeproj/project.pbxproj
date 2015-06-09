@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
-		E41B9C391AEFA61300EE9CFD /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E41B9C381AEFA60600EE9CFD /* db.sqlite3 */; };
 		E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */; };
 		E4401A851B23140500029D8F /* NSDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4401A841B23140500029D8F /* NSDateHelper.swift */; };
 		E4401A8A1B23149800029D8F /* NSDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4401A841B23140500029D8F /* NSDateHelper.swift */; };
@@ -30,6 +29,7 @@
 		E46CB7A01B17370700EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
 		E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */; };
 		E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
+		E46D50A51B272A040029101E /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E46D50A31B2729E70029101E /* db.sqlite3 */; };
 		E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */; };
 		E48BC39B1B245D9C005EF91F /* SendCSVMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48BC39A1B245D9C005EF91F /* SendCSVMailViewController.swift */; };
 		E48CD2C31B2356070051BF2A /* SessionsCSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C1001B20BADD0025283C /* SessionsCSVExporter.swift */; };
@@ -120,7 +120,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				E41B9C391AEFA61300EE9CFD /* db.sqlite3 in CopyFiles */,
+				E46D50A51B272A040029101E /* db.sqlite3 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +137,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E4045D551B2723C20020D85B /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sql; sourceTree = SOURCE_ROOT; };
 		E41B9C2C1AEF833600EE9CFD /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
-		E41B9C381AEFA60600EE9CFD /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		E4401A841B23140500029D8F /* NSDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateHelper.swift; sourceTree = "<group>"; };
 		E4401A8B1B2314AF00029D8F /* NSDateHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateHelperTests.swift; sourceTree = "<group>"; };
@@ -157,6 +157,7 @@
 		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
 		E46CB79F1B17370700EC198D /* PublicHolidays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidays.swift; sourceTree = "<group>"; };
 		E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidaysTests.swift; sourceTree = "<group>"; };
+		E46D50A31B2729E70029101E /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
 		E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
 		E48BC39A1B245D9C005EF91F /* SendCSVMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCSVMailViewController.swift; sourceTree = "<group>"; };
 		E48CD2C81B23562B0051BF2A /* SessionsCSVExporterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCSVExporterTests.swift; sourceTree = "<group>"; };
@@ -313,7 +314,8 @@
 		E4A16AA31AE531EB006BB173 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E41B9C381AEFA60600EE9CFD /* db.sqlite3 */,
+				E46D50A31B2729E70029101E /* db.sqlite3 */,
+				E4045D551B2723C20020D85B /* db.sql */,
 				E4A16AA41AE531EB006BB173 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -385,6 +387,7 @@
 				E4A16A9D1AE531EB006BB173 /* Frameworks */,
 				E4A16A9E1AE531EB006BB173 /* Resources */,
 				E45C44781AED83410044D25F /* CopyFiles */,
+				E46D509E1B2725D90029101E /* ShellScript */,
 				E41B9C351AEF994D00EE9CFD /* CopyFiles */,
 			);
 			buildRules = (
@@ -516,6 +519,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E46D509E1B2725D90029101E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm MobileTimeAccounting/db.sqlite3\nsqlite3 MobileTimeAccounting/db.sqlite3 '.read db.sql'";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E4A16A9C1AE531EB006BB173 /* Sources */ = {
