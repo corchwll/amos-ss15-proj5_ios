@@ -31,7 +31,8 @@ class CSVBuilderTests: XCTestCase
     let row4 = ["Holger", "Unze", "2010", "30"]
     let row5 = ["Walter", "Herzog", "1999", "35"]
     
-    let csvString = "Vorname,Name,Datum,Alter\nMax,Lieb,2015,43\nHeinz,Schlosser,2014,19\nFriedrich,Mueller,2011,23\nHolger,Unze,2010,30\nWalter,Herzog,1999,35\n"
+    let csvString1 = "Vorname,Name,Datum,Alter\nMax,Lieb,2015,43\nHeinz,Schlosser,2014,19\nFriedrich,Mueller,2011,23\nHolger,Unze,2010,30\nWalter,Herzog,1999,35\n"
+    let csvString2 = "Vorname,Name,Datum,Alter,,\nMax,Lieb,2015,43,test1,\nHeinz,Schlosser,2014,19,,\nFriedrich,Mueller,2011,23,test2,test3\nHolger,Unze,2010,30,,\nWalter,Herzog,1999,35,,\n"
     
     
     override func setUp()
@@ -46,7 +47,7 @@ class CSVBuilderTests: XCTestCase
     }
 
     
-    func testBuild_ValidHeaderAndRowsAreGiven_ValidCSVStringGenerated()
+    func testBuild_ValidRowsAreGiven_ValidCSVStringGenerated()
     {
         let csvBuilder = CSVBuilder()
         csvBuilder.addRow(header[0], header[1], header[2], header[3])
@@ -57,11 +58,26 @@ class CSVBuilderTests: XCTestCase
         csvBuilder.addRow(row5[0], row5[1], row5[2], row5[3])
         let csvString = csvBuilder.build()
 
-        XCTAssert(csvString == self.csvString, "Pass")
+        XCTAssert(csvString == csvString1, "Pass")
     }
     
     
-    func testBuild_ValidHeaderAndRowsAreGivenButRow4IsMissing_CSVStringNotGenerated()
+    func testBuild_ValidRowsAreGivenButSomeRowsAreLongerThanOthers_ValidCSVStringGenerated()
+    {
+        let csvBuilder = CSVBuilder()
+        csvBuilder.addRow(header[0], header[1], header[2], header[3])
+        csvBuilder.addRow(row1[0], row1[1], row1[2], row1[3], "test1")
+        csvBuilder.addRow(row2[0], row2[1], row2[2], row2[3])
+        csvBuilder.addRow(row3[0], row3[1], row3[2], row3[3], "test2", "test3")
+        csvBuilder.addRow(row4[0], row4[1], row4[2], row4[3])
+        csvBuilder.addRow(row5[0], row5[1], row5[2], row5[3])
+        let csvString = csvBuilder.build()
+        
+        XCTAssert(csvString == csvString2, "Pass")
+    }
+    
+    
+    func testBuild_ValidRowsAreGivenButRow4IsMissing_CSVStringNotGenerated()
     {
         let csvBuilder = CSVBuilder()
         csvBuilder.addRow(header[0], header[1], header[2], header[3])
@@ -71,11 +87,11 @@ class CSVBuilderTests: XCTestCase
         csvBuilder.addRow(row5[0], row5[1], row5[2], row5[3])
         let csvString = csvBuilder.build()
         
-        XCTAssert(csvString != self.csvString, "Pass")
+        XCTAssert(csvString != csvString1, "Pass")
     }
     
     
-    func testBuild_HeaderAndRowsAreNotSet_EmptyStringIsGenerated()
+    func testBuild_RowsAreNotSet_EmptyStringIsGenerated()
     {
         let csvBuilder = CSVBuilder()
         let csvString = csvBuilder.build()

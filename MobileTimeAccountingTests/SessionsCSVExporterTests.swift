@@ -23,8 +23,8 @@ class SessionsCSVExporterTests: XCTestCase
 {
     let calendar = NSCalendar.currentCalendar()
     var projects = [Project]()
-    var csvData = NSData()
-    let csvString = "Max,Mueller,1,2015\n,Test Project 1,Test Project 2,\n1/1/15,0,0,\n1/2/15,0,0,\n1/3/15,0,0,\n1/4/15,0,0,\n1/5/15,0,0,\n1/6/15,0,0,\n1/7/15,0,0,\n1/8/15,0,0,\n1/9/15,0,0,\n1/10/15,0,0,\n1/11/15,0,0,\n1/12/15,0,0,\n1/13/15,0,0,\n1/14/15,0,0,\n1/15/15,0,0,\n1/16/15,0,0,\n1/17/15,0,0,\n1/18/15,0,0,\n1/19/15,0,0,\n1/20/15,0,8,\n1/21/15,0,8,\n1/22/15,0,8,\n1/23/15,0,0,\n1/24/15,0,0,\n1/25/15,0,0,\n1/26/15,0,0,\n1/27/15,0,0,\n1/28/15,0,0,\n1/29/15,8,0,\n1/30/15,8,0,\n1/31/15,0,0,\n"
+    let csvString1 = "Max,Mueller,1,2015\n,Test Project 1,Test Project 2,\n1/1/15,0,0,\n1/2/15,0,0,\n1/3/15,0,0,\n1/4/15,0,0,\n1/5/15,0,0,\n1/6/15,0,0,\n1/7/15,0,0,\n1/8/15,0,0,\n1/9/15,0,0,\n1/10/15,0,0,\n1/11/15,0,0,\n1/12/15,0,0,\n1/13/15,0,0,\n1/14/15,0,0,\n1/15/15,0,0,\n1/16/15,0,0,\n1/17/15,0,0,\n1/18/15,0,0,\n1/19/15,0,0,\n1/20/15,0,8,\n1/21/15,0,8,\n1/22/15,0,8,\n1/23/15,0,0,\n1/24/15,0,0,\n1/25/15,0,0,\n1/26/15,0,0,\n1/27/15,0,0,\n1/28/15,0,0,\n1/29/15,8,0,\n1/30/15,8,0,\n1/31/15,0,0,\n"
+    let csvString2 = "Max,Mueller,2,2015\n,,,\n2/1/15,,,\n2/2/15,,,\n2/3/15,,,\n2/4/15,,,\n2/5/15,,,\n2/6/15,,,\n2/7/15,,,\n2/8/15,,,\n2/9/15,,,\n2/10/15,,,\n2/11/15,,,\n2/12/15,,,\n2/13/15,,,\n2/14/15,,,\n2/15/15,,,\n2/16/15,,,\n2/17/15,,,\n2/18/15,,,\n2/19/15,,,\n2/20/15,,,\n2/21/15,,,\n2/22/15,,,\n2/23/15,,,\n2/24/15,,,\n2/25/15,,,\n2/26/15,,,\n2/27/15,,,\n2/28/15,,,\n"
     
     
     override func setUp()
@@ -34,7 +34,6 @@ class SessionsCSVExporterTests: XCTestCase
         setUpProfile()
         setUpProject1()
         setUpProject2()
-        csvData = csvString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
     }
     
     
@@ -93,6 +92,15 @@ class SessionsCSVExporterTests: XCTestCase
         let sessionCSVExporter = SessionsCSVExporter()
         let csvData = sessionCSVExporter.exportCSV(1, year: 2015)
        
-        XCTAssert(csvData == self.csvData, "Pass")
+        XCTAssert(csvData == csvString1.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), "Pass")
+    }
+    
+    
+    func testExportCSV_ProjectsAndSessionsAreNotAvailable_CSVCreatedAndValidButWithoutSessionData()
+    {
+        let sessionCSVExporter = SessionsCSVExporter()
+        let csvData = sessionCSVExporter.exportCSV(2, year: 2015)
+        
+        XCTAssert(csvData == csvString2.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), "Pass")
     }
 }

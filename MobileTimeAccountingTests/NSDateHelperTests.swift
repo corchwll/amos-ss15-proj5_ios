@@ -37,7 +37,7 @@ class NSDateHelperTests: XCTestCase
     }
 
     
-    func testStartOfMonth()
+    func testStartOfMonth_DateInitialized_StartOfMonthReturned()
     {
         var startOfMonthComponents = NSDateComponents()
         startOfMonthComponents.hour = 0
@@ -52,7 +52,7 @@ class NSDateHelperTests: XCTestCase
     }
     
     
-    func testEndOfMonth()
+    func testEndOfMonth_DateInitialized_EndOfMonthReturned()
     {
         var endOfMonthComponents = NSDateComponents()
         endOfMonthComponents.hour = 23
@@ -64,5 +64,37 @@ class NSDateHelperTests: XCTestCase
         let endOfMonth = calendar.dateFromComponents(endOfMonthComponents)!
         
         XCTAssert(endOfMonth.timeIntervalSince1970 == date.endOfMonth()!.timeIntervalSince1970, "Pass")
+    }
+    
+    
+    func testDateByAddinMonths_MonthsAdded_DateIncrementedByAmountOfMonths()
+    {
+        let incrementedDate = date.dateByAddingMonths(2)
+        
+        XCTAssert(incrementedDate == NSDate(month: 8, year: 2015, calendar: calendar), "Pass")
+    }
+    
+    
+    func testDateByAddinMonths_MoreMonthsThanInYearAdded_DateIncrementedByAmountOfMonths()
+    {
+        let incrementedDate = date.dateByAddingMonths(14)
+        
+        XCTAssert(incrementedDate == NSDate(month: 8, year: 2016, calendar: calendar), "Pass")
+    }
+    
+    
+    func testDateByAddingDays_DaysAdded_DateIcrementedByAmountOfDays()
+    {
+        let incrementedDate = date.dateByAddingDays(20)
+        
+        XCTAssert(incrementedDate == NSDate(day: 21, month: 6, year: 2015, calendar: calendar), "Pass")
+    }
+    
+    
+    func testDateByAddingDays_MoreDaysThanInMonthAdded_DateIcrementedByAmountOfDays()
+    {
+        let incrementedDate = date.dateByAddingDays(40)
+        
+        XCTAssert(incrementedDate == NSDate(day: 11, month: 7, year: 2015, calendar: calendar), "Pass")
     }
 }
