@@ -189,35 +189,6 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     /*
-        Function is called when populating table row cells. Project session are loaded into table view cells.
-        
-        @methodtype Command
-        @pre Project sessions are available
-        @post Session cell has been created
-    */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        let cell: SessionTableViewCell = projectSessionsTableView.dequeueReusableCellWithIdentifier("session_cell", forIndexPath: indexPath) as! SessionTableViewCell
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.locale = NSLocale(localeIdentifier: "en_DE")
-        
-        let timeFormatter = NSDateFormatter()
-        timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        timeFormatter.dateStyle = NSDateFormatterStyle.NoStyle
-        timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
-        
-        cell.sessionDate.text = dateFormatter.stringFromDate(projectSessions[indexPath.row].startTime)
-        cell.sessionTime.text = timeFormatter.stringFromDate(projectSessions[indexPath.row].startTime) + " - " + timeFormatter.stringFromDate(projectSessions[indexPath.row].endTime)
-        cell.sessionDuration.text = "\((Int(projectSessions[indexPath.row].endTime.timeIntervalSince1970 - projectSessions[indexPath.row].startTime.timeIntervalSince1970))/60/60) h"
-        
-        return cell
-    }
-    
-    
-    /*
         Function is called when asking the total number of cells in table view.
         
         @methodtype Command
@@ -234,6 +205,93 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         {
             return 0
         }
+    }
+    
+    
+    /*
+        Function is called when populating table row cells. Project session are loaded into table view cells.
+        
+        @methodtype Command
+        @pre Project sessions are available
+        @post Session cell has been created
+    */
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell: SessionTableViewCell = projectSessionsTableView.dequeueReusableCellWithIdentifier("session_cell", forIndexPath: indexPath) as! SessionTableViewCell
+        let startTime = projectSessions[indexPath.row].startTime
+        let endTime = projectSessions[indexPath.row].endTime
+        
+        cell.sessionDate.text = getCellStringForDate(startTime)
+        cell.sessionTime.text = getCellStringforTime(startTime, endTime: endTime)
+        cell.sessionDuration.text = getCellStringForDuration(startTime, endTime: endTime)
+        
+        return cell
+    }
+    
+    
+    /*
+        Returns string representation of a given date.
+        
+        @methodtype Conversion
+        @pre -
+        @post Returns string representation of date
+    */
+    func getCellStringForDate(date: NSDate)->String
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_DE")
+        
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    
+    /*
+        Returns string representation of a given start and end time.
+        
+        @methodtype Conversion
+        @pre -
+        @post Returns string representation of start and end time
+    */
+    func getCellStringforTime(startTime: NSDate, endTime: NSDate)->String
+    {
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        timeFormatter.dateStyle = NSDateFormatterStyle.NoStyle
+        timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
+        
+        return "\(timeFormatter.stringFromDate(startTime)) - \(timeFormatter.stringFromDate(endTime))"
+    }
+    
+    
+    /*
+        Returns string representation of a duration in hours from a given start to a given end time.
+        
+        @methodtype Conversion
+        @pre -
+        @post Returns string representation of duration from start to end time.
+    */
+    func getCellStringForDuration(startTime: NSDate, endTime: NSDate)->String
+    {
+        let durationInHours = (Int(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)) / 3600
+        return "\(durationInHours) h"
+    }
+    
+    
+    /*
+        Function is called when editing table cell. Deletes the selected session and removes corrosponding table cell.
+        
+        @methodtype Command
+        @pre -
+        @post Table cell removed, project archived
+    */
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    {
+        sessionDAO.removeSession(projectSessions[indexPath.row])
+        
+        projectSessions.removeAtIndex(indexPath.row)
+        projectSessionsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
     
     
@@ -372,22 +430,6 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     {
         projectSessionsTableView.setEditing(false, animated: true)
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
-    }
-    
-    
-    /*
-        Function is called when editing table cell. Deletes the selected session and removes corrosponding table cell.
-        
-        @methodtype Command
-        @pre -
-        @post Table cell removed, project archived
-    */
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        sessionDAO.removeSession(projectSessions[indexPath.row])
-        
-        projectSessions.removeAtIndex(indexPath.row)
-        projectSessionsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
 }
 
