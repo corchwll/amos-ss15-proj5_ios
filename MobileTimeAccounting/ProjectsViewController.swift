@@ -168,11 +168,16 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if segue.identifier == "popover_test"
+        if segue.identifier == "new_project_popover"
         {
             let popoverViewController = segue.destinationViewController as! UINavigationController
             popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
             popoverViewController.popoverPresentationController!.delegate = self
+            
+            popoverViewController.navigationBar.barStyle = UIBarStyle.Default
+            popoverViewController.navigationBar.translucent = true
+            popoverViewController.navigationBar.barTintColor = UIToolbar.appearance().barTintColor
+            popoverViewController.popoverPresentationController?.backgroundColor = UIToolbar.appearance().barTintColor
             
             let newProjectViewController = popoverViewController.visibleViewController as! NewProjectViewController
             newProjectViewController.delegate = self

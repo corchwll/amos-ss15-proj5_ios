@@ -539,7 +539,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="New Project" id="wh8-Ih-7nu">
                             <connections>
-                                <segue destination="hfV-Mn-rSf" kind="popoverPresentation" identifier="popover_test" popoverAnchorBarButtonItem="wh8-Ih-7nu" id="UcX-tm-eYI">
+                                <segue destination="hfV-Mn-rSf" kind="popoverPresentation" identifier="new_project_popover" popoverAnchorBarButtonItem="wh8-Ih-7nu" id="UcX-tm-eYI">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -664,7 +664,7 @@
                                     <action selector="projectNameChanged:" destination="8hc-sO-Zki" eventType="editingChanged" id="5lj-yB-SgV"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final date" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ca-lM-3EP">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Final date (optional)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ca-lM-3EP">
                                 <rect key="frame" x="16" y="186" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
