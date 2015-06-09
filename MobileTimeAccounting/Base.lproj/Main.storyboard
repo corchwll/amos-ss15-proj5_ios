@@ -92,19 +92,27 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4x-RL-Z8Z">
-                                                            <rect key="frame" x="15" y="11" width="142" height="21"/>
+                                                            <rect key="frame" x="15" y="11" width="100" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="N6O-fO-zJ3"/>
-                                                                <constraint firstAttribute="width" constant="142" id="THj-3L-L81"/>
+                                                                <constraint firstAttribute="width" constant="100" id="THj-3L-L81"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-6g-32z">
-                                                            <rect key="frame" x="391" y="11" width="191" height="21"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6E-6g-32z">
+                                                            <rect key="frame" x="482" y="11" width="100" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="191" id="2wC-Bb-7RW"/>
+                                                                <constraint firstAttribute="width" constant="100" id="2wC-Bb-7RW"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMC-wx-7KI">
+                                                            <rect key="frame" x="180" y="11" width="300" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="300" id="z6e-5K-P0w"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,11 +124,14 @@
                                                         <constraint firstAttribute="trailingMargin" secondItem="o6E-6g-32z" secondAttribute="trailing" constant="10" id="5mR-7t-ZOX"/>
                                                         <constraint firstItem="U4x-RL-Z8Z" firstAttribute="leading" secondItem="ah2-b8-5sT" secondAttribute="leading" constant="15" id="Xhz-d4-cB2"/>
                                                         <constraint firstItem="o6E-6g-32z" firstAttribute="centerY" secondItem="ah2-b8-5sT" secondAttribute="centerY" id="dfB-kL-vqA"/>
+                                                        <constraint firstAttribute="centerY" secondItem="NMC-wx-7KI" secondAttribute="centerY" id="wc6-2H-Q23"/>
+                                                        <constraint firstAttribute="centerX" secondItem="NMC-wx-7KI" secondAttribute="centerX" constant="-30" id="yqQ-N1-KsZ"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="sessionDate" destination="U4x-RL-Z8Z" id="bBD-6D-Gtm"/>
-                                                    <outlet property="sessionStartTime" destination="o6E-6g-32z" id="pcx-Z2-9Iy"/>
+                                                    <outlet property="sessionDuration" destination="o6E-6g-32z" id="7ba-R0-cVW"/>
+                                                    <outlet property="sessionTime" destination="NMC-wx-7KI" id="Uiu-Fw-A21"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

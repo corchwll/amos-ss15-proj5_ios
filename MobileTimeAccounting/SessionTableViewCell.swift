@@ -22,6 +22,6 @@ import UIKit
 class SessionTableViewCell: UITableViewCell
 {
     @IBOutlet weak var sessionDate: UILabel!
-    @IBOutlet weak var sessionStartTime: UILabel!
-    @IBOutlet weak var sessionEndTime: UILabel!
+    @IBOutlet weak var sessionTime: UILabel!
+    @IBOutlet weak var sessionDuration: UILabel!
 }

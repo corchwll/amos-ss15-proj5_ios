@@ -210,7 +210,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
         
         cell.sessionDate.text = dateFormatter.stringFromDate(projectSessions[indexPath.row].startTime)
-        cell.sessionStartTime.text = timeFormatter.stringFromDate(projectSessions[indexPath.row].startTime) + " - " + timeFormatter.stringFromDate(projectSessions[indexPath.row].endTime)
+        cell.sessionTime.text = timeFormatter.stringFromDate(projectSessions[indexPath.row].startTime) + " - " + timeFormatter.stringFromDate(projectSessions[indexPath.row].endTime)
+        cell.sessionDuration.text = "\((Int(projectSessions[indexPath.row].endTime.timeIntervalSince1970 - projectSessions[indexPath.row].startTime.timeIntervalSince1970))/60/60) h"
         
         return cell
     }
