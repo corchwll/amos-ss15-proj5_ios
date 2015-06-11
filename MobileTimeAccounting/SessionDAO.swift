@@ -100,7 +100,34 @@ class SessionDAO
     
     
     /*
-        Returns every session of all prjects from sqlite database.
+        Returns every session of all prjoects from sqlite database in between a given time range.
+        
+        @methodtype Query
+        @pre -
+        @post Every session has been returned
+    */
+    func getSessions(fromTime: NSDate, toTime: NSDate)->[Session]
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        let fromTimeSince1970 = Int(fromTime.timeIntervalSince1970)
+        let toTimeSince1970 = Int(toTime.timeIntervalSince1970)
+        
+        var queriedSessions: [Session] = []
+        for sessionRow in sessions.filter(startTime >= fromTimeSince1970 && startTime <= toTimeSince1970 || endTime >= fromTimeSince1970 && endTime <= toTimeSince1970)
+        {
+            var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
+                endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
+            queriedSessions.append(session)
+        }
+        return queriedSessions
+    }
+    
+    
+    
+    /*
+        Returns every session of all prjoects from sqlite database.
         
         @methodtype Query
         @pre -

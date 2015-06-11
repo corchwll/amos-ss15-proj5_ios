@@ -137,7 +137,7 @@ class SessionDAOTests: XCTestCase
     }
 
     
-    func testGetSessions_MultipleProjectsWithSessions_SessionsInMonthReturned()
+    func testGetSessions_ProjectsWithMultipleSessions_SessionsOfMonthReturned()
     {
         projectDAO.addProject(projects[0])
         for session in self.sessions
@@ -150,8 +150,30 @@ class SessionDAOTests: XCTestCase
         
         if sessions.count == 2
         {
-            pass = sessions[0].startTime == self.sessions[0].startTime
-            pass = sessions[1].startTime == self.sessions[1].startTime
+            pass = sessions[0].startTime == self.sessions[0].startTime && sessions[1].startTime == self.sessions[1].startTime
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testGetSessions_ProjectWithMultipleSessions_SessionsInBetweenRangeReturned()
+    {
+        projectDAO.addProject(projects[0])
+        for session in self.sessions
+        {
+            sessionDAO.addSession(session, project: projects[0])
+        }
+        
+        let fromTime = NSDate(hour: 10, minute: 0, second: 0, day: 17, month: 3, year: 2015, calendar: calendar)
+        let toTime = NSDate(hour: 19, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)
+        
+        let sessions = sessionDAO.getSessions(fromTime, toTime: toTime)
+        var pass = false
+        
+        if sessions.count == 2
+        {
+            pass = sessions.filter({(session: Session)->Bool in return session.startTime == self.sessions[0].startTime && session.endTime == self.sessions[0].endTime}).count == 1 && sessions.filter({(session: Session)->Bool in return session.startTime == self.sessions[2].startTime && session.endTime == self.sessions[2].endTime}).count == 1
         }
         
         XCTAssert(pass, "Pass")
