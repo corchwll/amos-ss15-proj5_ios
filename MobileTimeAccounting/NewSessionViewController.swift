@@ -234,16 +234,6 @@ class NewSessionViewController: UITableViewController
     }
     
     
-    func showAlert(message: String)
-    {
-        let alertView = UIAlertView()
-        alertView.title = "Error"
-        alertView.message = message
-        alertView.addButtonWithTitle("OK")
-        alertView.show()
-    }
-    
-    
     /*
         Function is called when pressing the 'cancel'-button. Dismisses the current view controller and returns to recording.
         

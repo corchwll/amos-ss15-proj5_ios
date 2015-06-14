@@ -322,7 +322,16 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         if isRunning
         {
             session.endTime = NSDate()
-            sessionDAO.addSession(session, project: project!)
+            
+            if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count == 0
+            {
+                sessionDAO.addSession(session, project: project!)
+            }
+            else
+            {
+                showAlert("New session is overlapping with other session!")
+            }
+            
             loadProjectSessions()
         
             stopVisualizingTimer()

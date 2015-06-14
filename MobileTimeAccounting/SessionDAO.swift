@@ -100,7 +100,7 @@ class SessionDAO
     
     
     /*
-        Returns every session of all prjoects from sqlite database in between a given time range.
+        Returns every session of all prjoects from sqlite database in a given time range.
         
         @methodtype Query
         @pre -
@@ -115,12 +115,13 @@ class SessionDAO
         let toTimeSince1970 = Int(toTime.timeIntervalSince1970)
         
         var queriedSessions: [Session] = []
-        for sessionRow in sessions.filter(startTime >= fromTimeSince1970 && startTime <= toTimeSince1970 || endTime >= fromTimeSince1970 && endTime <= toTimeSince1970)
+        for sessionRow in sessions.filter(!(startTime <= fromTimeSince1970 && endTime <= fromTimeSince1970) && !(startTime >= toTimeSince1970 && endTime >= toTimeSince1970))
         {
             var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
             queriedSessions.append(session)
         }
+        println("\(fromTimeSince1970) \(toTimeSince1970)")
         return queriedSessions
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E405609E1B2E15850009362C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405609D1B2E15850009362C /* Alerts.swift */; };
 		E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
 		E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */; };
@@ -138,6 +139,7 @@
 
 /* Begin PBXFileReference section */
 		E4045D551B2723C20020D85B /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sql; sourceTree = SOURCE_ROOT; };
+		E405609D1B2E15850009362C /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		E41B9C2C1AEF833600EE9CFD /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
@@ -202,6 +204,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E40560981B2E154F0009362C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E405609D1B2E15850009362C /* Alerts.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		E446BFFC1AFCE402000DBAA0 /* Projects */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,6 +282,7 @@
 				E446BFFC1AFCE402000DBAA0 /* Projects */,
 				E4F54CA61B166FF7008E92C2 /* Dashboard */,
 				E446BFFE1AFCE41E000DBAA0 /* Profile */,
+				E40560981B2E154F0009362C /* Utilities */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -557,6 +568,7 @@
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
+				E405609E1B2E15850009362C /* Alerts.swift in Sources */,
 				E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */,
 				E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */,
 				E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */,
