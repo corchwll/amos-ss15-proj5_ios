@@ -222,8 +222,25 @@ class NewSessionViewController: UITableViewController
         session.startTime = calendar.dateFromComponents(fromTimeComponent)!
         session.endTime = calendar.dateFromComponents(toTimeComponent)!
         
-        sessionDAO.addSession(session, project: project!)
-        self.dismissViewControllerAnimated(true, completion: {})
+        if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count == 0
+        {
+            sessionDAO.addSession(session, project: project!)
+            self.dismissViewControllerAnimated(true, completion: {})
+        }
+        else
+        {
+            showAlert("New session is overlapping with other session!")
+        }
+    }
+    
+    
+    func showAlert(message: String)
+    {
+        let alertView = UIAlertView()
+        alertView.title = "Error"
+        alertView.message = message
+        alertView.addButtonWithTitle("OK")
+        alertView.show()
     }
     
     
