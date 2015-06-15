@@ -18,7 +18,9 @@
 
 import XCTest
 
-
+/*
+    Naming convention for all tests: 'UnitOfWork_StateUnderTest_ExpectedBehavior'
+*/
 class SessionsCSVExporterTests: XCTestCase
 {
     let calendar = NSCalendar.currentCalendar()

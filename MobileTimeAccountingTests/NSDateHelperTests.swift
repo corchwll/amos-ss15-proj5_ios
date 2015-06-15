@@ -18,7 +18,9 @@
 
 import XCTest
 
-
+/*
+    Naming convention for all tests: 'UnitOfWork_StateUnderTest_ExpectedBehavior'
+*/
 class NSDateHelperTests: XCTestCase
 {
     let calendar = NSCalendar.currentCalendar()
