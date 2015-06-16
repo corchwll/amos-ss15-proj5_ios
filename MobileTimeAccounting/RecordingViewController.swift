@@ -322,14 +322,30 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         if isRunning
         {
             session.endTime = NSDate()
-            
-            if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count == 0
+            let remainingSessionTime = SessionHelper().calculateRemainingSessionTimeLeftForADay(session.startTime)
+
+            if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count != 0
             {
-                sessionDAO.addSession(session, project: project!)
+                showAlert("New session is overlapping with other session!")
+            }
+            else if remainingSessionTime == 0
+            {
+                showAlert("Session exceeds limit of 10 hour per day!")
             }
             else
             {
-                showAlert("New session is overlapping with other session!")
+                let sessionDuration = Int(session.endTime.timeIntervalSince1970) - Int(session.startTime.timeIntervalSince1970)
+                let exceedingSessionTime = 0
+
+                if sessionDuration > remainingSessionTime
+                {
+                    let exceedingSessionTime = sessionDuration - remainingSessionTime
+                    session.endTime = NSDate(timeIntervalSince1970: session.endTime.timeIntervalSince1970 - NSTimeInterval(exceedingSessionTime))
+                    showAlert("Session exceeds 10 hours per day and was cut off!")
+                }
+                
+                sessionDAO.addSession(session, project: project!)
+                self.dismissViewControllerAnimated(true, completion: {})
             }
             
             loadProjectSessions()
