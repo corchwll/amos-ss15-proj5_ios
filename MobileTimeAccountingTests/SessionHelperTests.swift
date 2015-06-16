@@ -34,6 +34,7 @@ class SessionHelperTests: XCTestCase
     
     override func setUp()
     {
+        super.setUp()
         projectDAO.addProject(project)
         
         sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 12, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
@@ -48,8 +49,6 @@ class SessionHelperTests: XCTestCase
         {
             sessionDAO.addSession(session, project: project)
         }
-        
-        super.setUp()
     }
     
     

@@ -65,6 +65,9 @@
 		E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */; };
 		E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */; };
 		E4F666B51B30BE150000F395 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F666B41B30BE150000F395 /* SessionTests.swift */; };
+		E4F666B71B30C4AD0000F395 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */; };
+		E4F666B91B30C5CA0000F395 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48516F41B3023F500F54F9A /* SessionManager.swift */; };
+		E4F666BA1B30C5D70000F395 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405609D1B2E15850009362C /* Alerts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,7 @@
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelper.swift; sourceTree = "<group>"; };
 		E4F666B41B30BE150000F395 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
+		E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +358,7 @@
 				E4401A8B1B2314AF00029D8F /* NSDateHelperTests.swift */,
 				E48CD2C81B23562B0051BF2A /* SessionsCSVExporterTests.swift */,
 				E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */,
+				E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
 			path = MobileTimeAccountingTests;
@@ -612,10 +617,12 @@
 				E4E0EF851B1354F6000C17F8 /* SessionDAO.swift in Sources */,
 				E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */,
 				E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */,
+				E4F666B91B30C5CA0000F395 /* SessionManager.swift in Sources */,
 				E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */,
 				E4E0EF861B1354FA000C17F8 /* ProfileDAO.swift in Sources */,
 				E4C9D35A1B2F15F600B1A461 /* SessionHelperTests.swift in Sources */,
 				E4A16ABC1AE531EC006BB173 /* ProfileDAOTests.swift in Sources */,
+				E4F666BA1B30C5D70000F395 /* Alerts.swift in Sources */,
 				E4B1C0FC1B208E910025283C /* CSVBuilderTests.swift in Sources */,
 				E4C9D35B1B2F15FA00B1A461 /* SessionHelper.swift in Sources */,
 				E4E0EF881B135501000C17F8 /* Session.swift in Sources */,
@@ -631,6 +638,7 @@
 				E4A8A5EB1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */,
 				E48CD2C31B2356070051BF2A /* SessionsCSVExporter.swift in Sources */,
 				E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */,
+				E4F666B71B30C4AD0000F395 /* SessionManagerTests.swift in Sources */,
 				E4F02E021B149F3300493452 /* SessionDAOTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
