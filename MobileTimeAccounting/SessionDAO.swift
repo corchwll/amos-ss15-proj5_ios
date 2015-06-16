@@ -121,7 +121,6 @@ class SessionDAO
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
             queriedSessions.append(session)
         }
-        println("\(fromTimeSince1970) \(toTimeSince1970)")
         return queriedSessions
     }
     

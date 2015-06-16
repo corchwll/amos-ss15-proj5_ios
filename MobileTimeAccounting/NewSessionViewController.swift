@@ -222,14 +222,26 @@ class NewSessionViewController: UITableViewController
         session.startTime = calendar.dateFromComponents(fromTimeComponent)!
         session.endTime = calendar.dateFromComponents(toTimeComponent)!
         
-        if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count == 0
+        if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count != 0
         {
-            sessionDAO.addSession(session, project: project!)
-            self.dismissViewControllerAnimated(true, completion: {})
+            showAlert("New session is overlapping with other session!")
         }
         else
         {
-            showAlert("New session is overlapping with other session!")
+            let sessionHelper = SessionHelper()
+            let remainingSessionTime = sessionHelper.calculateRemainingSessionTimeLeftForADay(session.startTime)
+            let sessionDuration = Int(session.endTime.timeIntervalSince1970) - Int(session.startTime.timeIntervalSince1970)
+            let exceedingSessionTime = 0
+            
+            if sessionDuration > remainingSessionTime
+            {
+                let exceedingSessionTime = sessionDuration - remainingSessionTime
+                session.endTime = NSDate(timeIntervalSince1970: session.endTime.timeIntervalSince1970 - NSTimeInterval(exceedingSessionTime))
+                showAlert("Session exceeded 10 hours and was cut off!")
+            }
+            
+            sessionDAO.addSession(session, project: project!)
+            self.dismissViewControllerAnimated(true, completion: {})
         }
     }
     

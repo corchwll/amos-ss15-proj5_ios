@@ -22,7 +22,7 @@ import Foundation
 class SessionHelper
 {
     /*
-        Returns remaining session time in hours for a given day. If there are already sessions stored and the total duration of all sessions in that day exceeds 10 hours, 0 is returned.
+        Returns remaining session time in seconds for a given day. If there are already sessions stored and the total duration of all sessions in that day exceeds 10 hours, 0 is returned.
         Else the remaining time until 10 hours are reached is returned.
         
         @methodtype Boolean Query
@@ -31,28 +31,28 @@ class SessionHelper
     */
     func calculateRemainingSessionTimeLeftForADay(day: NSDate)->Int
     {
-        let currentSessionsDurationInHours = calculateAccumulatedSessionsDurationInMinutesForADay(day) / 60
+        let currentSessionsDurationInHours = calculateAccumulatedSessionsDurationInSecondsForADay(day)
         
-        if currentSessionsDurationInHours > 10
+        if currentSessionsDurationInHours > 36000
         {
             return 0
         }
         else
         {
-            return 10 - currentSessionsDurationInHours
+            return 36000 - currentSessionsDurationInHours
         }
     }
     
     
     /*
-        Returns accumulated sessions duration in minutes for a given day. All session concerning the given day are accumulated, but only times lying in that day are taken.
+        Returns accumulated sessions duration in seconds for a given day. All session concerning the given day are accumulated, but only times lying in that day are taken.
         If a session exceeds the given day, time is cut off at the exceedance point.
         
         @methodtype Helper
         @pre -
         @post Returns accumulated sessions duration in minutes for a given day
     */
-    private func calculateAccumulatedSessionsDurationInMinutesForADay(day: NSDate)->Int
+    private func calculateAccumulatedSessionsDurationInSecondsForADay(day: NSDate)->Int
     {
         let calendar = NSCalendar.currentCalendar()
         let dateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: day)
@@ -66,7 +66,7 @@ class SessionHelper
             durationInSeconds += getSessionDurationInTimeSpan(session, startTime: startTime, endTime: endTime)
         }
         
-        return durationInSeconds/60
+        return durationInSeconds
     }
     
     
