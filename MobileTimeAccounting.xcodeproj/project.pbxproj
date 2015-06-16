@@ -64,6 +64,7 @@
 		E4F02E021B149F3300493452 /* SessionDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02E011B149F3300493452 /* SessionDAOTests.swift */; };
 		E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */; };
 		E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */; };
+		E4F666B51B30BE150000F395 /* SessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F666B41B30BE150000F395 /* SessionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +191,7 @@
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelper.swift; sourceTree = "<group>"; };
+		E4F666B41B30BE150000F395 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 		E4A16AB81AE531EC006BB173 /* MobileTimeAccountingTests */ = {
 			isa = PBXGroup;
 			children = (
+				E4F666B41B30BE150000F395 /* SessionTests.swift */,
 				E4A16ABB1AE531EC006BB173 /* ProfileDAOTests.swift */,
 				E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */,
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
@@ -621,6 +624,7 @@
 				E4E0EF871B1354FE000C17F8 /* Project.swift in Sources */,
 				E4B1C0FA1B208E7E0025283C /* CSVBuilder.swift in Sources */,
 				E48CD2C91B23562B0051BF2A /* SessionsCSVExporterTests.swift in Sources */,
+				E4F666B51B30BE150000F395 /* SessionTests.swift in Sources */,
 				E4A8A5F11B1BB8FB00AB1183 /* VacationTimeHelperTests.swift in Sources */,
 				E4E0EF891B135504000C17F8 /* Profile.swift in Sources */,
 				E4401A8C1B2314AF00029D8F /* NSDateHelperTests.swift in Sources */,

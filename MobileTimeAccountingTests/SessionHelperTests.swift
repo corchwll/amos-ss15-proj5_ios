@@ -71,7 +71,7 @@ class SessionHelperTests: XCTestCase
     
     func testCalculateRemainingSessionTimeLeftForADay_DayAlmostFullSessionDoesExceed_RemainingSessionTimeLeft()
     {
-        let remainingTime = sessionHelper.calculateRemainingSessionTimeLeftForADay(NSDate(day: 5, month: 5, year: 2015, calendar: calendar))
-        XCTAssert(remainingTime == 3, "Pass")
+        let remainingTimeInSeconds = sessionHelper.calculateRemainingSessionTimeLeftForADay(NSDate(day: 5, month: 5, year: 2015, calendar: calendar))
+        XCTAssert(remainingTimeInSeconds == 10800, "Pass")
     }
 }
