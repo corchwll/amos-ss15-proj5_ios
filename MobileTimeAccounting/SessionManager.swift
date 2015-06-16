@@ -31,33 +31,67 @@ class SessionManager
     let sessionHelper = SessionHelper()
     
     
+    /*
+        Adds new session to the given project into database. Some validation tests verify if a session is valid and can be stored into database.
+        
+        @methodtype Command
+        @pre Session is not overlapping
+        @post Session is stored into database
+    */
     func addSession(session: Session, project: Project)->Bool
+    {
+        if isOverlappingSession(session)
+        {
+            return false
+        }
+        return doAddSession(session, project: project)
+    }
+    
+    
+    /*
+        Verifies if a session is overlapping with other sessions or not.
+        
+        @methodtype Boolean Query
+        @pre No overlapping sessions
+        @post Returns if session is overlapping
+    */
+    private func isOverlappingSession(session: Session)->Bool
     {
         if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count != 0
         {
             showAlert(OVERLAPPING_SESSION_MESSAGE)
-            return false
+            return true
         }
+        return false
+    }
+    
+    
+    /*
+        Stores session for a given project into database. If the total session limit for a day is already reached, no session will be stored. 
+        If there is some time left, a session is cut off at the end time and stored into database.
         
-        let remainingSessionTime = SessionHelper().calculateRemainingSessionTimeLeftForADay(session.startTime)
-            
-        if remainingSessionTime == 0
+        @methodtype Command
+        @pre Some session time left before daily limit is reached
+        @post Session is stored into database
+    */
+    private func doAddSession(session: Session, project: Project)->Bool
+    {
+        let remainingSessionTimeInSeconds = SessionHelper().calculateRemainingSessionTimeLeftForADay(session.startTime)
+        if remainingSessionTimeInSeconds == 0
         {
             showAlert(SESSION_OVERFLOW_MESSAGE)
             return false
         }
-
-        let sessionDuration = Int(session.endTime.timeIntervalSince1970) - Int(session.startTime.timeIntervalSince1970)
-        let exceedingSessionTime = 0
         
-        if sessionDuration > remainingSessionTime
+        var exceedingSessionTimeInSeconds = 0
+        let sessionDurationInSeconds = session.getDurationInSeconds()
+        if sessionDurationInSeconds > remainingSessionTimeInSeconds
         {
             showAlert(SESSION_CUT_OFF_MESSAGE)
-            let exceedingSessionTime = sessionDuration - remainingSessionTime
-            session.endTime = NSDate(timeIntervalSince1970: session.endTime.timeIntervalSince1970 - NSTimeInterval(exceedingSessionTime))
+            exceedingSessionTimeInSeconds = sessionDurationInSeconds - remainingSessionTimeInSeconds
         }
         
-        sessionDAO.addSession(session, project: project)
+        sessionDAO.addSession(session.sessionByDecreasingEndTime(exceedingSessionTimeInSeconds), project: project)
         return true
     }
 }

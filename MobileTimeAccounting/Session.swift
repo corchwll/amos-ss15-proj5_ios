@@ -54,4 +54,32 @@ class Session
         self.startTime = startTime
         self.endTime = endTime
     }
+    
+    
+    /*
+        Returns duration in seconds from start to end time.
+        
+        @methodtype Getter
+        @pre Start before end
+        @post Return duration in seconds
+    */
+    func getDurationInSeconds()->Int
+    {
+        return Int(endTime.timeIntervalSince1970) - Int(startTime.timeIntervalSince1970)
+    }
+    
+    
+    
+    /*
+        Decreases end time by a given time interval value in seconds.
+        
+        @methodtype Helper
+        @pre Interval in seconds must be lower than total duration from start to end
+        @post Returns decreased session
+    */
+    func sessionByDecreasingEndTime(intervalInSeconds: Int)->Session
+    {
+        endTime = NSDate(timeIntervalSince1970: endTime.timeIntervalSince1970 - NSTimeInterval(intervalInSeconds))
+        return self
+    }
 }
