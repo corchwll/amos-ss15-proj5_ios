@@ -15,7 +15,7 @@ create table sessions (
 
 insert into projects values (
 	"00001",
-	"Holiday",
+	"Vacation",
 	0,
 	0
 );
