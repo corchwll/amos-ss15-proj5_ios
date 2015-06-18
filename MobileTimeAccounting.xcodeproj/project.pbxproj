@@ -372,6 +372,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E4B119B31B335EAE00A41CD1 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E46CB79F1B17370700EC198D /* PublicHolidays.swift */,
+				E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */,
+				E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */,
+				E4401A841B23140500029D8F /* NSDateHelper.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		E4B1C0FD1B20BA460025283C /* CSV */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,12 +414,9 @@
 		E4F54CAD1B167640008E92C2 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				E4B119B31B335EAE00A41CD1 /* Utilities */,
 				E4C9D3521B2EEECD00B1A461 /* Recording */,
 				E4B1C0FD1B20BA460025283C /* CSV */,
-				E46CB79F1B17370700EC198D /* PublicHolidays.swift */,
-				E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */,
-				E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */,
-				E4401A841B23140500029D8F /* NSDateHelper.swift */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";

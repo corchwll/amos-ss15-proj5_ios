@@ -214,7 +214,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Firstname" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="b1G-2t-o1A">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
                                                         <action selector="firstnameChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="ywu-J3-YfB"/>
                                                     </connections>
@@ -237,7 +237,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lastname" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lgy-IC-SMb">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
                                                         <action selector="lastnameChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="h1k-6T-z6h"/>
                                                     </connections>
@@ -260,7 +260,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Employee Id" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cZP-Km-JJ7">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="employeeIdChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="BFg-eD-0hu"/>
                                                     </connections>
@@ -286,7 +286,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="8HG-Iz-RxU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="weeklyWorkingTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="CTm-MK-RQZ"/>
                                                     </connections>
@@ -332,7 +332,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="nQK-1O-6lu"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="totalVacationTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="QnE-gx-JdP"/>
                                                     </connections>
@@ -369,7 +369,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="CRz-ZN-pLd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="currentVacationTimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="ere-z2-4Z7"/>
                                                     </connections>
@@ -406,7 +406,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="CdY-Qb-E7Q"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="currentOvertimeChanged:" destination="Xb3-LR-W1x" eventType="editingChanged" id="smN-c8-RTj"/>
                                                     </connections>
@@ -1077,7 +1077,7 @@
         <scene sceneID="VRX-zG-6ms">
             <objects>
                 <tableViewController id="Pnj-a9-IxL" customClass="EditProfileTableViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cEm-h4-1Tb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cEm-h4-1Tb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -1097,7 +1097,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Firstname" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zVa-pA-02o">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
                                                         <action selector="firstnameChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="D8i-nU-EOa"/>
                                                     </connections>
@@ -1120,7 +1120,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Lastname" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tcB-zL-wBh">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
                                                         <action selector="lastnameChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="wwA-5F-8OO"/>
                                                     </connections>
@@ -1143,7 +1143,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Employee Id" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zv9-ah-lgu">
                                                     <rect key="frame" x="100" y="7" width="500" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="employeeIdChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="IYP-1F-0T5"/>
                                                     </connections>
@@ -1169,7 +1169,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="fEz-uo-Tdz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="weeklyWorkingTimeChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="pyE-lc-vdc"/>
                                                     </connections>
@@ -1215,7 +1215,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="5gS-c9-xq4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                     <connections>
                                                         <action selector="totalVacationTimeChanged:" destination="Pnj-a9-IxL" eventType="editingChanged" id="9Va-oE-oXf"/>
                                                     </connections>
