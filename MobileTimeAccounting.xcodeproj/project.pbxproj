@@ -146,7 +146,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E4045D551B2723C20020D85B /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = db.sql; sourceTree = SOURCE_ROOT; };
+		E4045D551B2723C20020D85B /* db.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = db.sql; path = MobileTimeAccounting/db.sql; sourceTree = SOURCE_ROOT; };
 		E405609D1B2E15850009362C /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		E41B9C2C1AEF833600EE9CFD /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 			children = (
 				E405609D1B2E15850009362C /* Alerts.swift */,
 			);
-			name = Utilities;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		E446BFFC1AFCE402000DBAA0 /* Projects */ = {
@@ -232,7 +232,7 @@
 				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
 				E45E12461AEE65040081E23C /* NewProjectViewController.swift */,
 			);
-			name = Projects;
+			path = Projects;
 			sourceTree = "<group>";
 		};
 		E446BFFD1AFCE410000DBAA0 /* Recording */ = {
@@ -242,7 +242,7 @@
 				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
 				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
 			);
-			name = Recording;
+			path = Recording;
 			sourceTree = "<group>";
 		};
 		E446BFFE1AFCE41E000DBAA0 /* Profile */ = {
@@ -252,7 +252,7 @@
 				E446BFFF1AFD18A7000DBAA0 /* ProfileTableViewController.swift */,
 				E446C0011AFD1C96000DBAA0 /* EditProfileTableViewController.swift */,
 			);
-			name = Profile;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		E45C44661AED83310044D25F /* Products */ = {
@@ -274,7 +274,7 @@
 				E41B9C2C1AEF833600EE9CFD /* Session.swift */,
 				E444CDB71AF52EE0006DF820 /* Profile.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E45C448A1AED8A1D0044D25F /* Database */ = {
@@ -285,7 +285,7 @@
 				E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */,
 				E444CDB51AF52E25006DF820 /* ProfileDAO.swift */,
 			);
-			name = Database;
+			path = Database;
 			sourceTree = "<group>";
 		};
 		E45E12451AEE64B30081E23C /* UserInterface */ = {
@@ -297,7 +297,7 @@
 				E446BFFE1AFCE41E000DBAA0 /* Profile */,
 				E40560981B2E154F0009362C /* Utilities */,
 			);
-			name = UserInterface;
+			path = UserInterface;
 			sourceTree = "<group>";
 		};
 		E4A16A971AE531EB006BB173 = {
@@ -378,7 +378,7 @@
 				E4B1C0F41B2087750025283C /* CSVBuilder.swift */,
 				E4B1C1001B20BADD0025283C /* SessionsCSVExporter.swift */,
 			);
-			name = CSV;
+			path = CSV;
 			sourceTree = "<group>";
 		};
 		E4C9D3521B2EEECD00B1A461 /* Recording */ = {
@@ -387,7 +387,7 @@
 				E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */,
 				E48516F41B3023F500F54F9A /* SessionManager.swift */,
 			);
-			name = Recording;
+			path = Recording;
 			sourceTree = "<group>";
 		};
 		E4F54CA61B166FF7008E92C2 /* Dashboard */ = {
@@ -397,7 +397,7 @@
 				E48BC39A1B245D9C005EF91F /* SendCSVMailViewController.swift */,
 				E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */,
 			);
-			name = Dashboard;
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		E4F54CAD1B167640008E92C2 /* BusinessLogic */ = {
@@ -410,7 +410,7 @@
 				E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */,
 				E4401A841B23140500029D8F /* NSDateHelper.swift */,
 			);
-			name = BusinessLogic;
+			path = BusinessLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -569,7 +569,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm MobileTimeAccounting/db.sqlite3\nsqlite3 MobileTimeAccounting/db.sqlite3 '.read db.sql'";
+			shellScript = "rm MobileTimeAccounting/db.sqlite3\nsqlite3 MobileTimeAccounting/db.sqlite3 '.read MobileTimeAccounting/db.sql'";
 		};
 /* End PBXShellScriptBuildPhase section */
 
