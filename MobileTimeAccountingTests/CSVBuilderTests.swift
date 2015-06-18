@@ -31,8 +31,8 @@ class CSVBuilderTests: XCTestCase
     let row4 = ["Holger", "Unze", "2010", "30"]
     let row5 = ["Walter", "Herzog", "1999", "35"]
     
-    let csvString1 = "Vorname,Name,Datum,Alter\nMax,Lieb,2015,43\nHeinz,Schlosser,2014,19\nFriedrich,Mueller,2011,23\nHolger,Unze,2010,30\nWalter,Herzog,1999,35\n"
-    let csvString2 = "Vorname,Name,Datum,Alter,,\nMax,Lieb,2015,43,test1,\nHeinz,Schlosser,2014,19,,\nFriedrich,Mueller,2011,23,test2,test3\nHolger,Unze,2010,30,,\nWalter,Herzog,1999,35,,\n"
+    let csvString1 = "Vorname;Name;Datum;Alter\nMax;Lieb;2015;43\nHeinz;Schlosser;2014;19\nFriedrich;Mueller;2011;23\nHolger;Unze;2010;30\nWalter;Herzog;1999;35\n"
+    let csvString2 = "Vorname;Name;Datum;Alter;;\nMax;Lieb;2015;43;test1;\nHeinz;Schlosser;2014;19;;\nFriedrich;Mueller;2011;23;test2;test3\nHolger;Unze;2010;30;;\nWalter;Herzog;1999;35;;\n"
     
     
     override func setUp()

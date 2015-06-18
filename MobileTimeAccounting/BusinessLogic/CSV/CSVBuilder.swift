@@ -21,6 +21,7 @@ import Foundation
 
 class CSVBuilder
 {
+    let SEPERATOR = ";"
     var rows = [[String]]()
     
     
@@ -164,7 +165,7 @@ class CSVBuilder
         var csvRow = ""
         for column in 0..<size
         {
-            csvRow += column < row.count ? "\(row[column])," : ","
+            csvRow += column < row.count ? "\(row[column])" + SEPERATOR : SEPERATOR
         }
         csvRow.removeAtIndex(csvRow.endIndex.predecessor())
         return csvRow
