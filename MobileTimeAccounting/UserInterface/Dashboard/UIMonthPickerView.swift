@@ -115,7 +115,7 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     {
         var month = NSDateComponents()
         
-        for year in 1...10000
+        for year in 2000...3000
         {
             for index in 1...12
             {
@@ -138,7 +138,7 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     func setSelection(month: Int, year: Int)
     {
         let index = (year - 1) * 12 + month
-        picker.selectRow(index, inComponent: 0, animated: false)
+        picker.selectRow(index - 2000*12, inComponent: 0, animated: false)
     }
     
     
