@@ -34,6 +34,8 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     @IBOutlet weak var projectLatitudeTextField: UITextField!
     @IBOutlet weak var projectLongitudeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var locationProcessIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var findLocationButton: UIButton!
     
     var delegate: NewProjectDelegate!
     let datePicker = UIDatePicker()
@@ -160,20 +162,38 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     }
     
     
+    /*
+        Determines current location and fills in coordinates into ui. Start process indicator animation and hides button.
+        
+        @methodtype Command
+        @pre Location manager has been initialized
+        @post Finding location process is triggered
+    */
     @IBAction func getCurrentLocation(sender: AnyObject)
     {
         locationManager.startUpdatingLocation()
+        findLocationButton.hidden = true
+        locationProcessIndicatorView.startAnimating()
     }
     
     
+    /*
+        Function is called when location is found. Updated coordinates text fields and stops process indicator animation.
+        Also stops the process of finding new locations.
+        
+        @methodtype Command
+        @pre Location was found
+        @post Coordinates has been printed
+    */
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
-        println("ready")
         let location = locations.last as! CLLocation
         projectLatitudeTextField.text = "\(location.coordinate.latitude)"
         projectLongitudeTextField.text = "\(location.coordinate.longitude)"
         
-        locationManager.startUpdatingLocation()
+        locationManager.stopUpdatingLocation()
+        locationProcessIndicatorView.stopAnimating()
+        findLocationButton.hidden = false
     }
     
     
