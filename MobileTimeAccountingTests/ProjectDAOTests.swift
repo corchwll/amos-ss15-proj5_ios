@@ -41,7 +41,7 @@ class ProjectDAOTests: XCTestCase
     
     func setUpProject1()
     {
-        let project1 = Project(id: "10001", name: "Test Project 1", finalDate: NSDate(day: 2, month: 2, year: 2015, calendar: calendar))
+        let project1 = Project(id: "10001", name: "Test Project 1", finalDate: NSDate(day: 2, month: 2, year: 2015, calendar: calendar), latitude: 34.235344, longitude: 54.23455)
         projects.append(project1)
         projectDAO.addProject(project1)
      
@@ -53,7 +53,7 @@ class ProjectDAOTests: XCTestCase
     
     func setUpProject2()
     {
-        let project2 = Project(id: "10002", name: "Test Project 2", finalDate: NSDate(day: 3, month: 3, year: 2015, calendar: calendar))
+        let project2 = Project(id: "10002", name: "Test Project 2", finalDate: NSDate(day: 3, month: 3, year: 2015, calendar: calendar), latitude: 3.245342, longitude: 6.342344)
         projects.append(project2)
         projectDAO.addProject(project2)
         

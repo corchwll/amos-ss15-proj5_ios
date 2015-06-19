@@ -34,8 +34,8 @@ class SessionDAOTests: XCTestCase
     {
         super.setUp()
         
-        projects.append(Project(id: "10001", name: "Test Project1", finalDate: NSDate()))
-        projects.append(Project(id: "10002", name: "Test Project2", finalDate: NSDate()))
+        projects.append(Project(id: "10001", name: "Test Project1"))
+        projects.append(Project(id: "10002", name: "Test Project2"))
         
         sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 16, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
         

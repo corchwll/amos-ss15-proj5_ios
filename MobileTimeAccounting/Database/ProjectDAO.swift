@@ -28,6 +28,8 @@ class ProjectDAO
     let id = Expression<String>("id")
     let name = Expression<String>("name")
     let finalDate = Expression<Int>("final_date")
+    let latitude = Expression<Double>("latitude")
+    let longitude = Expression<Double>("longitude")
     let isArchived = Expression<Bool>("is_archived")
     
     
@@ -43,8 +45,8 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.insert(id <- project.id, name <- project.name, finalDate <- (Int(project.finalDate.timeIntervalSince1970)),
-            isArchived <- project.isArchived)!
+        projects.insert(id <- project.id, name <- project.name, finalDate <- Int(project.finalDate.timeIntervalSince1970),
+            latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)!
     }
     
     
@@ -63,8 +65,7 @@ class ProjectDAO
         var queriedProjects: [Project] = []
         for projectRow in projects.filter(isArchived == false)
         {
-            var project = Project(id: projectRow[id], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])),
-                isArchived: projectRow[isArchived])
+            var project = Project(id: projectRow[id], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])), latitude: projectRow[latitude], longitude: projectRow[longitude], isArchived: projectRow[isArchived])
             queriedProjects.append(project)
         }
         return queriedProjects
@@ -89,8 +90,7 @@ class ProjectDAO
         
         for projectRow in projects.join(database["sessions"], on: projects[id] == sessionDAO.projectId).filter(sessionDAO.startTime >= (Int(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Int(endOfMonth.timeIntervalSince1970))).group(projects[id])
         {
-            var project = Project(id: projectRow[projects[id]], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])),
-                isArchived: projectRow[isArchived])
+            var project = Project(id: projectRow[projects[id]], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])), latitude: projectRow[latitude], longitude: projectRow[longitude], isArchived: projectRow[isArchived])
             queriedProjects.append(project)
         }
         return queriedProjects
@@ -110,15 +110,11 @@ class ProjectDAO
         let projects = database["projects"]
         
         let query = projects.filter(id == projectId)
-        if let row = query.first
+        if let projectRow = query.first
         {
-            return Project(id: row[id], name: row[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(row[finalDate])),
-                isArchived: row[isArchived])
+            return Project(id: projectRow[id], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])), latitude: projectRow[latitude], longitude: projectRow[longitude], isArchived: projectRow[isArchived])
         }
-        else
-        {
-            return nil
-        }
+        return nil
     }
     
     

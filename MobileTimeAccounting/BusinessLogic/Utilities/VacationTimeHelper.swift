@@ -24,7 +24,7 @@ let vacationTimeHelper = VacationTimeHelper()
 
 class VacationTimeHelper
 {
-    let vacationProject = Project(id: "00001", name: "Holiday", finalDate: NSDate(timeIntervalSinceReferenceDate: 0))
+    let vacationProject = Project(id: "00001", name: "Holiday")
     
     
     /*

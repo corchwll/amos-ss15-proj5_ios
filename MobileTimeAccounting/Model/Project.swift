@@ -17,6 +17,7 @@
 */
 
 import Foundation
+import MapKit
 
 
 class Project
@@ -24,9 +25,10 @@ class Project
     var id: String
     var name: String
     var finalDate: NSDate
+    var location: CLLocation
     var isArchived: Bool
 
-
+    
     /*
         Constructor for model class, representing projects.
         
@@ -39,6 +41,7 @@ class Project
         self.id = id
         self.name = name
         self.finalDate = NSDate(timeIntervalSince1970: NSTimeInterval(0))
+        self.location = CLLocation(latitude: 0.0, longitude: 0.0)
         self.isArchived = false
     }
     
@@ -50,11 +53,19 @@ class Project
         @pre Correct paramters != nil
         @post Initialized project
     */
-    convenience init(id: String, name: String, finalDate: NSDate)
+    convenience init(id: String, name: String, finalDate: NSDate?, latitude: Double?, longitude: Double?)
     {
         self.init(id: id, name: name)
-        self.finalDate = finalDate
-        self.isArchived = false
+        
+        if finalDate != nil
+        {
+            self.finalDate = finalDate!
+        }
+        
+        if latitude != nil && longitude != nil
+        {
+            self.location = CLLocation(latitude: latitude!, longitude: longitude!)
+        }
     }
     
     
@@ -65,9 +76,9 @@ class Project
         @pre Correct paramters != nil
         @post Initialized project
     */
-    convenience init(id: String, name: String, finalDate: NSDate, isArchived: Bool)
+    convenience init(id: String, name: String, finalDate: NSDate?, latitude: Double?, longitude: Double?, isArchived: Bool)
     {
-        self.init(id: id, name: name, finalDate: finalDate)
+        self.init(id: id, name: name, finalDate: finalDate, latitude: latitude, longitude: longitude)
         self.isArchived = isArchived
     }
     

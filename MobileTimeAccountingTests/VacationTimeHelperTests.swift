@@ -24,7 +24,7 @@ import XCTest
 */
 class VacationTimeHelperTests: XCTestCase
 {
-    let vacationProject = Project(id: "00001", name: "Holiday", finalDate: NSDate(timeIntervalSinceReferenceDate: 0))
+    let vacationProject = Project(id: "00001", name: "Holiday")
     var vacationSessions =
     [
         (day: 1, month: 1, year: 2015), //1
