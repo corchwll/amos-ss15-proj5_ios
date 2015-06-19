@@ -26,7 +26,7 @@
 		E45C447F1AED83700044D25F /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C447E1AED83700044D25F /* Project.swift */; };
 		E45C44901AED8A350044D25F /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
 		E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
-		E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E12461AEE65040081E23C /* NewProjectViewController.swift */; };
+		E45E12471AEE65040081E23C /* NewProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45E12461AEE65040081E23C /* NewProjectTableViewController.swift */; };
 		E46CB7A01B17370700EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
 		E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */; };
 		E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
@@ -53,6 +53,7 @@
 		E4C9D35A1B2F15F600B1A461 /* SessionHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */; };
 		E4C9D35B1B2F15FA00B1A461 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */; };
 		E4CAC4A81B24FFBA00D3D5D1 /* UIMonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */; };
+		E4CDFD381B34705C008EC26B /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CDFD371B34705C008EC26B /* StringHelper.swift */; };
 		E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */; };
 		E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E4E0EF841B1354F3000C17F8 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
@@ -164,7 +165,7 @@
 		E45C447E1AED83700044D25F /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E45C448F1AED8A350044D25F /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
 		E45C44911AED8AB10044D25F /* SQLiteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteHelper.swift; sourceTree = "<group>"; };
-		E45E12461AEE65040081E23C /* NewProjectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectViewController.swift; sourceTree = "<group>"; };
+		E45E12461AEE65040081E23C /* NewProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewProjectTableViewController.swift; sourceTree = "<group>"; };
 		E46CB79F1B17370700EC198D /* PublicHolidays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidays.swift; sourceTree = "<group>"; };
 		E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidaysTests.swift; sourceTree = "<group>"; };
 		E46D50A31B2729E70029101E /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
@@ -190,6 +191,7 @@
 		E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelper.swift; sourceTree = "<group>"; };
 		E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelperTests.swift; sourceTree = "<group>"; };
 		E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMonthPickerView.swift; sourceTree = "<group>"; };
+		E4CDFD371B34705C008EC26B /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +232,7 @@
 			children = (
 				E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */,
 				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
-				E45E12461AEE65040081E23C /* NewProjectViewController.swift */,
+				E45E12461AEE65040081E23C /* NewProjectTableViewController.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -379,6 +381,7 @@
 				E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */,
 				E4A8A5E91B1BB67C00AB1183 /* VacationTimeHelper.swift */,
 				E4401A841B23140500029D8F /* NSDateHelper.swift */,
+				E4CDFD371B34705C008EC26B /* StringHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -595,7 +598,7 @@
 				E44092D01B0D0F19006CE944 /* SessionTableViewCell.swift in Sources */,
 				E4B1C1011B20BADD0025283C /* SessionsCSVExporter.swift in Sources */,
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
-				E45E12471AEE65040081E23C /* NewProjectViewController.swift in Sources */,
+				E45E12471AEE65040081E23C /* NewProjectTableViewController.swift in Sources */,
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
 				E48BC39B1B245D9C005EF91F /* SendCSVMailViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */,
@@ -604,6 +607,7 @@
 				E4A16AA61AE531EB006BB173 /* AppDelegate.swift in Sources */,
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
+				E4CDFD381B34705C008EC26B /* StringHelper.swift in Sources */,
 				E405609E1B2E15850009362C /* Alerts.swift in Sources */,
 				E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */,
 				E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */,

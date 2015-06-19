@@ -25,11 +25,13 @@ protocol NewProjectDelegate
 }
 
 
-class NewProjectViewController: UIViewController
+class NewProjectTableViewController: UITableViewController
 {
     @IBOutlet weak var projectIdTextField: UITextField!
     @IBOutlet weak var projectNameTextField: UITextField!
     @IBOutlet weak var projectFinalDateTextField: UITextField!
+    @IBOutlet weak var projectLatitudeTextField: UITextField!
+    @IBOutlet weak var projectLongitudeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var delegate: NewProjectDelegate!
@@ -49,6 +51,7 @@ class NewProjectViewController: UIViewController
         super.viewDidLoad()
         setUpDateFormatter()
         setUpDatePickerInputView()
+        refreshDoneButtonState()
     }
     
     
@@ -91,7 +94,6 @@ class NewProjectViewController: UIViewController
     func datePickerDidChange()
     {
         projectFinalDateTextField.text = dateFormatter.stringFromDate(datePicker.date)
-        refreshDoneButtonState()
     }
     
     
@@ -130,19 +132,6 @@ class NewProjectViewController: UIViewController
     
     
     /*
-        iOS listener function. Called when editing project final date, refreshes 'done'-button state.
-        
-        @methodtype Command
-        @pre -
-        @post -
-    */
-    @IBAction func projectFinalDateChanged(sender: AnyObject)
-    {
-        projectFinalDateTextField.text = dateFormatter.stringFromDate(datePicker.date)
-    }
-    
-    
-    /*
         Function for enabling 'done'-button. Button will be enabled when all mandatory text fiels are filled.
         
         @methodtype Command
@@ -170,14 +159,10 @@ class NewProjectViewController: UIViewController
     */
     @IBAction func addProject(sender: AnyObject)
     {
-        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text)
-        if let finalDate = dateFormatter.dateFromString(projectFinalDateTextField.text)
-        {
-            newProject.finalDate = finalDate
-        }
+        let newProject = Project(id: projectIdTextField.text, name: projectNameTextField.text, finalDate: dateFormatter.dateFromString(projectFinalDateTextField.text), latitude: projectLatitudeTextField.text.toDouble(), longitude: projectLongitudeTextField.text.toDouble())
+
         projectDAO.addProject(newProject)
         delegate.didAddNewProject()
-        
         dismissViewControllerAnimated(true, completion: {})
     }
     
