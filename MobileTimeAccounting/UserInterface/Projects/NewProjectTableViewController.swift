@@ -17,6 +17,7 @@
 */
 
 import UIKit
+import MapKit
 
 
 protocol NewProjectDelegate
@@ -25,7 +26,7 @@ protocol NewProjectDelegate
 }
 
 
-class NewProjectTableViewController: UITableViewController
+class NewProjectTableViewController: UITableViewController, CLLocationManagerDelegate
 {
     @IBOutlet weak var projectIdTextField: UITextField!
     @IBOutlet weak var projectNameTextField: UITextField!
@@ -37,6 +38,7 @@ class NewProjectTableViewController: UITableViewController
     var delegate: NewProjectDelegate!
     let datePicker = UIDatePicker()
     let dateFormatter = NSDateFormatter()
+    let locationManager = CLLocationManager()
     
     
     /*
@@ -51,6 +53,7 @@ class NewProjectTableViewController: UITableViewController
         super.viewDidLoad()
         setUpDateFormatter()
         setUpDatePickerInputView()
+        setUpLocationManager()
         refreshDoneButtonState()
     }
     
@@ -81,6 +84,14 @@ class NewProjectTableViewController: UITableViewController
         datePicker.datePickerMode = UIDatePickerMode.Date
         datePicker.addTarget(self, action: Selector("datePickerDidChange"), forControlEvents: UIControlEvents.ValueChanged)
         projectFinalDateTextField.inputView = datePicker
+    }
+    
+    
+    func setUpLocationManager()
+    {
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
     
@@ -146,6 +157,23 @@ class NewProjectTableViewController: UITableViewController
         isEmpty = isEmpty || projectNameTextField.text.isEmpty
     
         doneButton.enabled = !isEmpty
+    }
+    
+    
+    @IBAction func getCurrentLocation(sender: AnyObject)
+    {
+        locationManager.startUpdatingLocation()
+    }
+    
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        println("ready")
+        let location = locations.last as! CLLocation
+        projectLatitudeTextField.text = "\(location.coordinate.latitude)"
+        projectLongitudeTextField.text = "\(location.coordinate.longitude)"
+        
+        locationManager.startUpdatingLocation()
     }
     
     
