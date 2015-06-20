@@ -19,7 +19,7 @@
 import UIKit
 
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPopoverPresentationControllerDelegate, NewProjectDelegate, UISearchResultsUpdating, UITabBarControllerDelegate
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewProjectDelegate, UISearchResultsUpdating, UITabBarControllerDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -47,7 +47,23 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         setUpNavigationItemButton()
         setUpSearchController()
-        tabBarController!.delegate = self
+        setUpTabBarController()
+    }
+    
+    
+    /*
+        Sets up tab bar controller by setting delegate.
+        
+        @methodtype Command
+        @pre Tab bar controller available
+        @post Delegate is set
+    */
+    func setUpTabBarController()
+    {
+        if tabBarController != nil
+        {
+            tabBarController!.delegate = self
+        }
     }
     
     
@@ -73,7 +89,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func setUpNavigationItemButton()
     {
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+        if let leftBarButtonItem = navigationItem.leftBarButtonItem
+        {
+            leftBarButtonItem.target = self
+            leftBarButtonItem.action = Selector("edit")
+        }
     }
     
     
@@ -191,19 +211,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
-        Function is called when asking the UIModalPresentationStyle. Returns 'none' in order to display popup window properly.
-        
-        @methodtype Command
-        @pre -
-        @post -
-    */
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
-    {
-        return UIModalPresentationStyle.None
-    }
-    
-    
-    /*
         iOS function for handling number of sections in table views.
         
         @methodtype Getter
@@ -262,7 +269,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             {
                 return projects.count
             }
-            return 0
         }
         else
         {
@@ -270,8 +276,8 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             {
                 return projects.count
             }
-            return 0
         }
+        return 0
     }
     
     
@@ -365,7 +371,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         Function is called when checking if row can be edited. Disables editing for default projects.
         
         @methodtype Command
-        @pre -
+        @pre Needs default project ids for exclusion
         @post Editing for default projects has been disabled
     */
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
@@ -406,7 +412,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         Filters projects by a given case insensitive search string.
         
         @methodtype Command
-        @pre -
+        @pre All input strings are valid
         @post Sets filtered projects
     */
     func filterProjectsForSearchText(searchText: String)

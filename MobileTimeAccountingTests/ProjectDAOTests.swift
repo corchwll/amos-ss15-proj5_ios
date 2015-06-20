@@ -77,11 +77,8 @@ class ProjectDAOTests: XCTestCase
     {
         for project in projects
         {
-            if let project = projectDAO.getProject(project.id)
-            {
-                sessionDAO.removeSessions(project)
-                projectDAO.removeProject(project)
-            }
+            sessionDAO.removeSessions(project)
+            projectDAO.removeProject(project)
         }
         projects.removeAll(keepCapacity: false)
         

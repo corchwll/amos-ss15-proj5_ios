@@ -532,11 +532,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Projects" id="TUh-jU-TtN">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="NDV-dB-9PF">
-                            <connections>
-                                <action selector="edit:" destination="j01-bn-Da3" id="ZIX-4j-26A"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="NDV-dB-9PF"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wh8-Ih-7nu">
                             <connections>
                                 <segue destination="peB-uz-9jT" kind="presentation" identifier="new_project_segue" id="mIh-Fv-ZoU"/>

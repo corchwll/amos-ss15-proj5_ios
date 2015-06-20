@@ -10,6 +10,9 @@
 		E405609E1B2E15850009362C /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405609D1B2E15850009362C /* Alerts.swift */; };
 		E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */; };
+		E421EE471B3572EC00ECC448 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E421EE461B3572EC00ECC448 /* ProjectManager.swift */; };
+		E421EE491B357A0A00ECC448 /* ProjectManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E421EE481B357A0A00ECC448 /* ProjectManagerTests.swift */; };
+		E421EE4A1B357A3400ECC448 /* ProjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E421EE461B3572EC00ECC448 /* ProjectManager.swift */; };
 		E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */; };
 		E4401A851B23140500029D8F /* NSDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4401A841B23140500029D8F /* NSDateHelper.swift */; };
 		E4401A8A1B23149800029D8F /* NSDateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4401A841B23140500029D8F /* NSDateHelper.swift */; };
@@ -151,6 +154,8 @@
 		E405609D1B2E15850009362C /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		E41B9C2C1AEF833600EE9CFD /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		E41B9C321AEF8AC600EE9CFD /* SessionDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAO.swift; sourceTree = "<group>"; };
+		E421EE461B3572EC00ECC448 /* ProjectManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManager.swift; sourceTree = "<group>"; };
+		E421EE481B357A0A00ECC448 /* ProjectManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectManagerTests.swift; sourceTree = "<group>"; };
 		E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		E4401A841B23140500029D8F /* NSDateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateHelper.swift; sourceTree = "<group>"; };
 		E4401A8B1B2314AF00029D8F /* NSDateHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateHelperTests.swift; sourceTree = "<group>"; };
@@ -225,6 +230,14 @@
 				E405609D1B2E15850009362C /* Alerts.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E421EE411B3572BD00ECC448 /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				E421EE461B3572EC00ECC448 /* ProjectManager.swift */,
+			);
+			path = Projects;
 			sourceTree = "<group>";
 		};
 		E446BFFC1AFCE402000DBAA0 /* Projects */ = {
@@ -361,6 +374,7 @@
 				E48CD2C81B23562B0051BF2A /* SessionsCSVExporterTests.swift */,
 				E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */,
 				E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */,
+				E421EE481B357A0A00ECC448 /* ProjectManagerTests.swift */,
 				E4A16AB91AE531EC006BB173 /* Supporting Files */,
 			);
 			path = MobileTimeAccountingTests;
@@ -417,6 +431,7 @@
 		E4F54CAD1B167640008E92C2 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				E421EE411B3572BD00ECC448 /* Projects */,
 				E4B119B31B335EAE00A41CD1 /* Utilities */,
 				E4C9D3521B2EEECD00B1A461 /* Recording */,
 				E4B1C0FD1B20BA460025283C /* CSV */,
@@ -615,6 +630,7 @@
 				E4A8A5EA1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */,
 				E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */,
 				E4401A851B23140500029D8F /* NSDateHelper.swift in Sources */,
+				E421EE471B3572EC00ECC448 /* ProjectManager.swift in Sources */,
 				E444CDB01AF51F6F006DF820 /* NewProfileViewController.swift in Sources */,
 				E4CAC4A81B24FFBA00D3D5D1 /* UIMonthPickerView.swift in Sources */,
 				E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */,
@@ -631,10 +647,12 @@
 				E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */,
 				E4F666B91B30C5CA0000F395 /* SessionManager.swift in Sources */,
 				E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */,
+				E421EE4A1B357A3400ECC448 /* ProjectManager.swift in Sources */,
 				E4E0EF861B1354FA000C17F8 /* ProfileDAO.swift in Sources */,
 				E4C9D35A1B2F15F600B1A461 /* SessionHelperTests.swift in Sources */,
 				E4A16ABC1AE531EC006BB173 /* ProfileDAOTests.swift in Sources */,
 				E4F666BA1B30C5D70000F395 /* Alerts.swift in Sources */,
+				E421EE491B357A0A00ECC448 /* ProjectManagerTests.swift in Sources */,
 				E4B1C0FC1B208E910025283C /* CSVBuilderTests.swift in Sources */,
 				E4C9D35B1B2F15FA00B1A461 /* SessionHelper.swift in Sources */,
 				E4E0EF881B135501000C17F8 /* Session.swift in Sources */,

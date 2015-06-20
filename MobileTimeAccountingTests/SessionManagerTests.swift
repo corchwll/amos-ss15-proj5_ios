@@ -51,6 +51,7 @@ class SessionManagerTests: XCTestCase
     {
         sessionDAO.removeSessions(project)
         projectDAO.removeProject(project)
+        sessions.removeAll(keepCapacity: false)
         
         super.tearDown()
     }
