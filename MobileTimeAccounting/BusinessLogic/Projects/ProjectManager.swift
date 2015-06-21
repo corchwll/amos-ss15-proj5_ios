@@ -20,6 +20,9 @@ import Foundation
 import MapKit
 
 
+let projectManager = ProjectManager()
+
+
 class ProjectManager
 {
     func getProjectsSortedByDistance(currentLocation: CLLocation)->[Project]
