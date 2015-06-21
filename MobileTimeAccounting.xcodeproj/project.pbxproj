@@ -35,6 +35,7 @@
 		E46CB7A61B17435D00EC198D /* PublicHolidaysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */; };
 		E46CB7A71B1744A500EC198D /* PublicHolidays.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CB79F1B17370700EC198D /* PublicHolidays.swift */; };
 		E46D50A51B272A040029101E /* db.sqlite3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = E46D50A31B2729E70029101E /* db.sqlite3 */; };
+		E480DE131B36FD65005CC4C4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E480DE121B36FD65005CC4C4 /* Settings.swift */; };
 		E48516F51B3023F500F54F9A /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48516F41B3023F500F54F9A /* SessionManager.swift */; };
 		E485BC921AF2353A00CE7F72 /* NewSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */; };
 		E48BC39B1B245D9C005EF91F /* SendCSVMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48BC39A1B245D9C005EF91F /* SendCSVMailViewController.swift */; };
@@ -176,6 +177,7 @@
 		E46CB79F1B17370700EC198D /* PublicHolidays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidays.swift; sourceTree = "<group>"; };
 		E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHolidaysTests.swift; sourceTree = "<group>"; };
 		E46D50A31B2729E70029101E /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
+		E480DE121B36FD65005CC4C4 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		E48516F41B3023F500F54F9A /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSessionViewController.swift; sourceTree = "<group>"; };
 		E48BC39A1B245D9C005EF91F /* SendCSVMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCSVMailViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,14 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
+		E480DE0D1B36FD1F005CC4C4 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E480DE121B36FD65005CC4C4 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		E4A16A971AE531EB006BB173 = {
 			isa = PBXGroup;
 			children = (
@@ -442,9 +452,10 @@
 		E4F54CAD1B167640008E92C2 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				E421EE411B3572BD00ECC448 /* Projects */,
-				E4B119B31B335EAE00A41CD1 /* Utilities */,
 				E4C9D3521B2EEECD00B1A461 /* Recording */,
+				E421EE411B3572BD00ECC448 /* Projects */,
+				E480DE0D1B36FD1F005CC4C4 /* Settings */,
+				E4B119B31B335EAE00A41CD1 /* Utilities */,
 				E4B1C0FD1B20BA460025283C /* CSV */,
 			);
 			path = BusinessLogic;
@@ -624,6 +635,7 @@
 				E44092D01B0D0F19006CE944 /* SessionTableViewCell.swift in Sources */,
 				E4B1C1011B20BADD0025283C /* SessionsCSVExporter.swift in Sources */,
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
+				E480DE131B36FD65005CC4C4 /* Settings.swift in Sources */,
 				E45E12471AEE65040081E23C /* NewProjectTableViewController.swift in Sources */,
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
 				E48BC39B1B245D9C005EF91F /* SendCSVMailViewController.swift in Sources */,

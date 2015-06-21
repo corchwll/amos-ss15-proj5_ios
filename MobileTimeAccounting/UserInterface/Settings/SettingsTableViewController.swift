@@ -21,8 +21,45 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController
 {
+    @IBOutlet weak var enableProjectsSortingByDistanceSwitch: UISwitch!
+    
+    
+    /*
+        iOS life-cycle function, called when view did load. Sets up preferences.
+        
+        @methodtype Hook
+        @pre -
+        @post Preferences are set up
+    */
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        setUpPreferences()
+    }
+    
+    
+    /*
+        Sets up prefrence switch by querying prefrence boolean and setting state.
+        
+        @methodtype Command
+        @pre Preference is available
+        @post Switch is set
+    */
+    func setUpPreferences()
+    {
+        enableProjectsSortingByDistanceSwitch.setOn(settings.getPreference(Settings.EnableProjectsSortingByDistance), animated: false)
+    }
+    
+    
+    /*
+        Called when switch value did change Updates prefrence by setting boolean for preference key.
+        
+        @methodtype Command
+        @pre Switch value did change
+        @post Preference is updated
+    */
+    @IBAction func valueDidChange(sender: AnyObject)
+    {
+        settings.setPreference(Settings.EnableProjectsSortingByDistance, value: enableProjectsSortingByDistanceSwitch.on)
     }
 }

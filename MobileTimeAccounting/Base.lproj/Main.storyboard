@@ -1403,11 +1403,11 @@
             </objects>
             <point key="canvasLocation" x="5753" y="1272"/>
         </scene>
-        <!--Settings Table View Controller-->
+        <!--Settings-->
         <scene sceneID="K7F-VQ-bY5">
             <objects>
                 <tableViewController id="YlM-zj-Jsd" customClass="SettingsTableViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="24" sectionFooterHeight="10" id="pHe-6g-wUU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="24" sectionFooterHeight="10" id="pHe-6g-wUU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -1454,6 +1454,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSi-K3-MMD">
                                                     <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="valueDidChange:" destination="YlM-zj-Jsd" eventType="valueChanged" id="MYZ-NJ-Xec"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -1473,7 +1476,10 @@
                             <outlet property="delegate" destination="YlM-zj-Jsd" id="zE8-e3-6xx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="7TE-y3-j3j"/>
+                    <navigationItem key="navigationItem" title="Settings" id="7TE-y3-j3j"/>
+                    <connections>
+                        <outlet property="enableProjectsSortingByDistanceSwitch" destination="jSi-K3-MMD" id="8nV-7O-jwt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sC2-Ji-3n9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
