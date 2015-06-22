@@ -26,7 +26,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var searchBarContainer: UIView!
     
-    var alphabet = [ "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    let alphabet = [ "#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    let headers = [ "#", "Projects"]
+    
+    var sectionHeaders = [String]()
     var dictionary = Dictionary<String, [Project]>()
     var projects = [Project]()
     
@@ -86,6 +89,8 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillDisappear(animated: Bool)
     {
+        projectsTableView.setEditing(false, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
         locationManager.stopUpdatingLocation()
     }
     
@@ -135,7 +140,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
+        println("location manager running")
         projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
+        archiveProjectsIntoSortedByDistanceDictionary(projects, dictionary: &dictionary)
         projectsTableView.reloadData()
     }
 
@@ -153,11 +160,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         if settings.getPreference(Settings.EnableProjectsSortingByDistance)
         {
+            sectionHeaders = headers
             locationManager.startUpdatingLocation()
             projectsTableView.reloadData()
         }
         else
         {
+            sectionHeaders = alphabet
             reloadProjects()
         }
     }
@@ -211,6 +220,37 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    /*
+        Function is archiving all given projects into a dictionary for sorting by distance.
+        
+        @methodtype Command
+        @pre Initialized dictionary
+        @post Archived projects
+    */
+    func archiveProjectsIntoSortedByDistanceDictionary(projects: [Project], inout dictionary: Dictionary<String, [Project]>)
+    {
+        dictionary.removeAll(keepCapacity: false)
+        for project in projects
+        {
+            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
+            {
+                if dictionary[headers[0]] == nil
+                {
+                    dictionary[headers[0]] = [Project]()
+                }
+                dictionary[headers[0]]?.append(project)
+            }
+            else
+            {
+                if dictionary[headers[1]] == nil
+                {
+                    dictionary[headers[1]] = [Project]()
+                }
+                dictionary[headers[1]]?.append(project)
+            }
+        }
+    }
+    
     
     /*
         iOS Listener function. Setting up popover view for adding new projects.
@@ -252,14 +292,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
-        {
-            return 1
-        }
-        else
-        {
-            return alphabet.count
-        }
+        return sectionHeaders.count
     }
     
     
@@ -272,19 +305,12 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        let selectedDictionary = searchController.active ? filteredDictionary : dictionary
+        if selectedDictionary[sectionHeaders[section]] != nil
         {
-            return nil
+            return sectionHeaders[section]
         }
-        else
-        {
-            let selectedDictionary = searchController.active ? filteredDictionary : dictionary
-            if selectedDictionary[alphabet[section]] != nil
-            {
-                return alphabet[section]
-            }
-            return nil
-        }
+        return nil
     }
     
     
@@ -317,28 +343,21 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        if searchController.active
         {
-            return projects.count
+            if let projects = filteredDictionary[sectionHeaders[section]]
+            {
+                return projects.count
+            }
         }
         else
         {
-            if searchController.active
+            if let projects = dictionary[sectionHeaders[section]]
             {
-                if let projects = filteredDictionary[alphabet[section]]
-                {
-                    return projects.count
-                }
+                return projects.count
             }
-            else
-            {
-                if let projects = dictionary[alphabet[section]]
-                {
-                    return projects.count
-                }
-            }
-            return 0
         }
+        return 0
     }
     
     
@@ -353,19 +372,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         let cell: ProjectTableViewCell = projectsTableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProjectTableViewCell
 
-        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        let selectedDictionary =  searchController.active ? filteredDictionary : dictionary
+        if let project = selectedDictionary[sectionHeaders[indexPath.section]]?[indexPath.row]
         {
-            cell.projectID.text = "\(projects[indexPath.row].id)"
-            cell.projectName.text = projects[indexPath.row].name
-        }
-        else
-        {
-            let selectedDictionary =  searchController.active ? filteredDictionary : dictionary
-            if let project = selectedDictionary[alphabet[indexPath.section]]?[indexPath.row]
-            {
-                cell.projectID.text = "\(project.id)"
-                cell.projectName.text = project.name
-            }
+            cell.projectID.text = "\(project.id)"
+            cell.projectName.text = project.name
         }
         
         return cell
@@ -387,15 +398,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
         var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
         
-        var project: Project!
-        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
-        {
-            project = projects[indexPath.row]
-        }
-        else
-        {
-            project = dictionary[alphabet[indexPath.section]]![indexPath.row]
-        }
+        let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
         
         recordingViewController.setProject(project)
         return indexPath
@@ -413,6 +416,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         projectsTableView.setEditing(true, animated: true)
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done")), animated: true)
+        locationManager.stopUpdatingLocation()
     }
     
     
@@ -427,6 +431,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         projectsTableView.setEditing(false, animated: true)
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+        locationManager.startUpdatingLocation()
     }
     
     
@@ -457,7 +462,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         if projectsTableView.editing
         {
-            var project = dictionary[alphabet[indexPath.section]]![indexPath.row]
+            var project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
             if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
             {
                 return false
@@ -482,7 +487,16 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         filteredProjects.removeAll(keepCapacity: false)
         filterProjectsForSearchText(searchController.searchBar.text)
-        archiveProjectsIntoDictionary(filteredProjects, dictionary: &filteredDictionary)
+        
+        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        {
+            archiveProjectsIntoSortedByDistanceDictionary(filteredProjects, dictionary: &filteredDictionary)
+        }
+        else
+        {
+            archiveProjectsIntoDictionary(filteredProjects, dictionary: &filteredDictionary)
+        }
+        
         projectsTableView.reloadData()
     }
     
