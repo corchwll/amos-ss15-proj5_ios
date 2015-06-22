@@ -135,7 +135,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
-        println("update")
         projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
         projectsTableView.reloadData()
     }
@@ -387,8 +386,18 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         
         var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
         var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
-        recordingViewController.setProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
         
+        var project: Project!
+        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        {
+            project = projects[indexPath.row]
+        }
+        else
+        {
+            project = dictionary[alphabet[indexPath.section]]![indexPath.row]
+        }
+        
+        recordingViewController.setProject(project)
         return indexPath
     }
     

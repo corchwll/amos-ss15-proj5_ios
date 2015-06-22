@@ -30,7 +30,10 @@ extension String
     */
     func toDouble()->Double?
     {
-        if let number = NSNumberFormatter().numberFromString(self)
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.locale = NSLocale(localeIdentifier: "en_US")
+        
+        if let number = numberFormatter.numberFromString(self)
         {
             return number.doubleValue
         }
