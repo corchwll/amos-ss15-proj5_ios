@@ -188,12 +188,28 @@ extension NSDate
         Returns date after setting time (hours,minutes,seconds).
     
         @methodtype Helper
-        @pre Valid time
+        @pre Valid time paramters
         @post Returns date after setting time
     */
     func dateBySettingTime(hour: Int, minute: Int, second: Int)->NSDate?
     {
         let calendar = NSCalendar.currentCalendar()
         return calendar.dateBySettingHour(hour, minute: minute, second: second, ofDate: self, options: nil)
+    }
+    
+    
+    
+    /*
+        Returns weekday of the current date.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns weekday
+    */
+    func weekday()->Int
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let weekDayDateComponent = calendar.components(.CalendarUnitWeekday, fromDate: self)
+        return weekDayDateComponent.weekday
     }
 }

@@ -33,7 +33,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     let nsUserDefaults = NSUserDefaults()
     let RECENT_PROJECT_ID_KEY = "last_project_id_key"
     
-    let notificationTime = (hour: 18, minute: 0, seconds: 0)
+    let notificationTime = (hour: 21, minute: 23, seconds: 0)
     
     var timer: NSTimer!
     var project: Project!
@@ -68,7 +68,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     /*
-        Sets new notifaction for a given time after canceling all other local notifiactions.
+        Sets new notifaction for a given time after canceling all other local notifiactions. 
+        If the given time is not an empty day it will check day after day unitl a valid day for setting a notifiaction is found.
         
         @methodtype Command
         @pre -
@@ -76,12 +77,17 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func setNotification(time: NSDate)
     {
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        
+        var fireDate = time
+        while !sessionManager.isEmptySessionDay(fireDate)
+        {
+            fireDate = fireDate.dateByAddingDays(1)!
+        }
+    
         var notification = UILocalNotification()
         notification.alertBody = "You did not record any time for today!"
-        notification.fireDate = time
+        notification.fireDate = fireDate
         
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     

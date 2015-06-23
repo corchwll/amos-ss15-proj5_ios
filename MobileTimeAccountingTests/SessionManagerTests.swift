@@ -29,6 +29,7 @@ class SessionManagerTests: XCTestCase
     let calendar = NSCalendar.currentCalendar()
     let project = Project(id: "12345", name: "Test Project 1")
     var sessions = [Session]()
+    var dates = [NSDate]()
     
     
     override func setUp()
@@ -44,6 +45,18 @@ class SessionManagerTests: XCTestCase
         sessions.append(Session(id: 0, startTime: NSDate(hour: 18, minute: 30, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 20, minute: 30, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
         
         sessions.append(Session(id: 0, startTime: NSDate(hour: 21, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 23, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
+        
+        //valid
+        dates.append(NSDate(day: 4, month: 5, year: 2015, calendar: calendar))
+        
+        //saturday
+        dates.append(NSDate(day: 20, month: 6, year: 2015, calendar: calendar))
+        
+        //sunday
+        dates.append(NSDate(day: 21, month: 6, year: 2015, calendar: calendar))
+        
+        //holiday easter monday
+        dates.append(NSDate(day: 6, month: 4, year: 2015, calendar: calendar))
     }
     
     
@@ -52,6 +65,7 @@ class SessionManagerTests: XCTestCase
         sessionDAO.removeSessions(project)
         projectDAO.removeProject(project)
         sessions.removeAll(keepCapacity: false)
+        dates.removeAll(keepCapacity: false)
         
         super.tearDown()
     }
@@ -136,5 +150,46 @@ class SessionManagerTests: XCTestCase
         }
         
         XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testIsEmptySessionDay_DayIsValid_DayIsEmpty()
+    {
+        var pass = sessionManager.isEmptySessionDay(dates[0])
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testIsEmptySessionDay_DayIsValidButSessionsHasBeenRecorded_DayIsNotEmpty()
+    {
+        sessionManager.addSession(sessions[0], project: project)
+        var pass = sessionManager.isEmptySessionDay(dates[0])
+        
+        XCTAssert(!pass, "Pass")
+    }
+    
+    
+    func testIsEmptySessionDay_DayIsSaturday_DayIsNotEmpty()
+    {
+        var pass = sessionManager.isEmptySessionDay(dates[1])
+        
+        XCTAssert(!pass, "Pass")
+    }
+    
+    
+    func testIsEmptySessionDay_DayIsSunday_DayIsNotEmpty()
+    {
+        var pass = sessionManager.isEmptySessionDay(dates[2])
+        
+        XCTAssert(!pass, "Pass")
+    }
+    
+    
+    func testIsEmptySessionDay_DayIsHoliday_DayIsNotEmpty()
+    {
+        var pass = sessionManager.isEmptySessionDay(dates[3])
+        
+        XCTAssert(!pass, "Pass")
     }
 }

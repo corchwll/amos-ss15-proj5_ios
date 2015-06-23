@@ -94,4 +94,21 @@ class SessionManager
         sessionDAO.addSession(session.sessionByDecreasingEndTime(exceedingSessionTimeInSeconds), project: project)
         return true
     }
+    
+    
+    /*
+        Validated if the given day is empty, meaning that no session has been recorded for that day and the day is no holiday.
+        
+        @methodtype Boolean Query
+        @pre SessionDAO needs to be initialized
+        @post Return if day is empty
+    */
+    func isEmptySessionDay(day: NSDate)->Bool
+    {
+        let hasNoSessions = sessionDAO.getSessions(day.startOfDay()!, toTime: day.endOfDay()!).isEmpty
+        let isNoHoliday = PublicHolidays().calculatePublicHolidaysInDays(day.startOfDay()!, endDate: day.endOfDay()!) == 0
+        let isNoWeekendDay = day.weekday() != 7 && day.weekday() != 1
+        
+        return hasNoSessions && isNoHoliday && isNoWeekendDay
+    }
 }
