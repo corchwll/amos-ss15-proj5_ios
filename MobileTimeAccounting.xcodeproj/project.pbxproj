@@ -67,6 +67,7 @@
 		E4E0EF871B1354FE000C17F8 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C447E1AED83700044D25F /* Project.swift */; };
 		E4E0EF881B135501000C17F8 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41B9C2C1AEF833600EE9CFD /* Session.swift */; };
 		E4E0EF891B135504000C17F8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E444CDB71AF52EE0006DF820 /* Profile.swift */; };
+		E4EC18C91B39F4D8008111EB /* EditProjectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC18C81B39F4D8008111EB /* EditProjectTableViewController.swift */; };
 		E4F02E021B149F3300493452 /* SessionDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F02E011B149F3300493452 /* SessionDAOTests.swift */; };
 		E4F54CAC1B1672F2008E92C2 /* DashboardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */; };
 		E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */; };
@@ -202,6 +203,7 @@
 		E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMonthPickerView.swift; sourceTree = "<group>"; };
 		E4CDFD371B34705C008EC26B /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
+		E4EC18C81B39F4D8008111EB /* EditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProjectTableViewController.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
 		E4F54CAB1B1672F2008E92C2 /* DashboardTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewController.swift; sourceTree = "<group>"; };
 		E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelper.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				E446BFF61AFCE3DA000DBAA0 /* ProjectsViewController.swift */,
 				E42BF14C1AEEF61400337385 /* ProjectTableViewCell.swift */,
 				E45E12461AEE65040081E23C /* NewProjectTableViewController.swift */,
+				E4EC18C81B39F4D8008111EB /* EditProjectTableViewController.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
 				E480DE131B36FD65005CC4C4 /* Settings.swift in Sources */,
 				E45E12471AEE65040081E23C /* NewProjectTableViewController.swift in Sources */,
+				E4EC18C91B39F4D8008111EB /* EditProjectTableViewController.swift in Sources */,
 				E446C0021AFD1C96000DBAA0 /* EditProfileTableViewController.swift in Sources */,
 				E48BC39B1B245D9C005EF91F /* SendCSVMailViewController.swift in Sources */,
 				E42BF14D1AEEF61400337385 /* ProjectTableViewCell.swift in Sources */,

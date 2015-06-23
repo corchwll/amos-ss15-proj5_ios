@@ -392,16 +392,24 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
     {
-        searchController.active = false
-        tabBarController?.selectedIndex = 0
-        
-        var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
-        var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
-        
-        let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
-        
-        recordingViewController.setProject(project)
-        return indexPath
+        if projectsTableView.editing
+        {
+            performSegueWithIdentifier("edit_project_segue", sender: self)
+            return indexPath
+        }
+        else
+        {
+            searchController.active = false
+            tabBarController?.selectedIndex = 0
+            
+            var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
+            var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
+            
+            let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
+            
+            recordingViewController.setProject(project)
+            return indexPath
+        }
     }
     
     
