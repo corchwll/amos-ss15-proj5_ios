@@ -209,4 +209,25 @@ class ProjectDAOTests: XCTestCase
         
         XCTAssert(pass, "Pass")
     }
+    
+    
+    func testUpdateProject_ProjectAlreadyInDatabase_ProjectHasBeenUpdated()
+    {
+        var updatedProject = Project(id: projects[0].id, name: "Updated Test Project 1", finalDate: NSDate(), latitude: 1.245342, longitude: 10.342344)
+        projectDAO.updateProject(updatedProject)
+        
+        var pass = false
+        if let project = projectDAO.getProject(projects[0].id)
+        {
+            pass = true
+            pass = pass && updatedProject.id == project.id
+            pass = pass && updatedProject.name == project.name
+            pass = pass && Int(updatedProject.finalDate.timeIntervalSince1970) == Int(project.finalDate.timeIntervalSince1970)
+            pass = pass && updatedProject.location.coordinate.latitude == project.location.coordinate.latitude
+            pass = pass && updatedProject.location.coordinate.longitude == project.location.coordinate.longitude
+            pass = pass && updatedProject.isArchived == project.isArchived
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
 }

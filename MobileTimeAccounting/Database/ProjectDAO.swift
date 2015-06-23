@@ -119,6 +119,23 @@ class ProjectDAO
     
     
     /*
+        Updates project that is already in database. Project id can not be modified.
+        
+        @methodtype Command
+        @pre Valid project id
+        @post Project has been updated
+    */
+    func updateProject(project: Project)
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let projects = database["projects"]
+        
+        projects.filter(id == project.id).update(name <- project.name, finalDate <- Int(project.finalDate.timeIntervalSince1970),
+            latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)!
+    }
+    
+    
+    /*
         Archives project, meaning that the projects 'isArchived' flag is set to true.
         
         @methodtype Command
