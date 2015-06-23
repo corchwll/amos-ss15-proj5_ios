@@ -20,7 +20,7 @@ import UIKit
 import MapKit
 
 
-class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewProjectDelegate, UISearchResultsUpdating, UITabBarControllerDelegate, CLLocationManagerDelegate
+class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, NewProjectDelegate, EditProjectDelegate, UISearchResultsUpdating, UITabBarControllerDelegate, CLLocationManagerDelegate
 {
     @IBOutlet weak var projectsTableView: UITableView!
     @IBOutlet weak var editButton: UIBarButtonItem!
@@ -267,6 +267,17 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             let newProjectTableViewController = navigationViewController.visibleViewController as! NewProjectTableViewController
             newProjectTableViewController.delegate = self
         }
+        else if segue.identifier == "edit_project_segue"
+        {
+            let navigationViewController = segue.destinationViewController as! UINavigationController
+            let editProjectTableViewController = navigationViewController.visibleViewController as! EditProjectTableViewController
+
+            if let indexPath = sender as? NSIndexPath
+            {
+                editProjectTableViewController.project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
+                editProjectTableViewController.delegate = self
+            }
+        }
     }
     
     
@@ -278,6 +289,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         @post Reloaded projects
     */
     func didAddNewProject()
+    {
+        reloadProjects()
+    }
+    
+    
+    /*
+        Callback function when did edit project. Is reloading all projects.
+        
+        @methodtype Hook
+        @pre -
+        @post Reloaded projects
+    */
+    func didEditProject()
     {
         reloadProjects()
     }
@@ -394,7 +418,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         if projectsTableView.editing
         {
-            performSegueWithIdentifier("edit_project_segue", sender: self)
+            performSegueWithIdentifier("edit_project_segue", sender: indexPath)
             return indexPath
         }
         else
@@ -454,7 +478,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         projectDAO.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
         
-        dictionary[alphabet[indexPath.section]]!.removeAtIndex(indexPath.row)
+        dictionary[sectionHeaders[indexPath.section]]!.removeAtIndex(indexPath.row)
         projectsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)
     }
     

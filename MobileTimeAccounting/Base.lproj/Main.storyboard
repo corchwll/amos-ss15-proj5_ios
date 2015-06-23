@@ -1029,6 +1029,28 @@
                         <sections>
                             <tableViewSection id="AMB-6b-lgI">
                                 <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="BWL-xh-y6U">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BWL-xh-y6U" id="j7V-p7-bQU">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8O4-4H-Pq2">
+                                                    <rect key="frame" x="100" y="11" width="155" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="155" id="2zr-bY-SIb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8O4-4H-Pq2" firstAttribute="leading" secondItem="j7V-p7-bQU" secondAttribute="leading" constant="100" id="JyU-H1-rKI"/>
+                                                <constraint firstItem="8O4-4H-Pq2" firstAttribute="centerY" secondItem="j7V-p7-bQU" secondAttribute="centerY" id="pVR-yX-X30"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="100" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="9BU-qv-zhK">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9BU-qv-zhK" id="1bz-ty-dIi">
@@ -1039,7 +1061,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no"/>
                                                     <connections>
-                                                        <action selector="projectNameChanged:" destination="s8L-vr-zyk" eventType="editingChanged" id="sFP-DH-SP9"/>
+                                                        <action selector="projectNameChanged:" destination="sph-uP-bAJ" eventType="editingChanged" id="EXf-AR-tIJ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -1133,7 +1155,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="getCurrentLocation:" destination="s8L-vr-zyk" eventType="touchUpInside" id="f6q-bl-MsS"/>
+                                                        <action selector="getCurrentLocation:" destination="sph-uP-bAJ" eventType="touchUpInside" id="nQ7-NT-7JQ"/>
                                                     </connections>
                                                 </button>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="foz-J3-mlm">
@@ -1172,10 +1194,20 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="lxd-zP-Ygy">
                             <connections>
-                                <action selector="addProject:" destination="sph-uP-bAJ" id="mRA-JY-pGF"/>
+                                <action selector="updateProject:" destination="sph-uP-bAJ" id="Zg8-s3-nOq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="lxd-zP-Ygy" id="Uy1-KG-QNY"/>
+                        <outlet property="findLocationButton" destination="4Hi-L5-Xfc" id="nsi-HQ-c4l"/>
+                        <outlet property="locationProcessIndicatorView" destination="foz-J3-mlm" id="4FQ-5f-8hO"/>
+                        <outlet property="projectFinalDateTextField" destination="leL-0j-9AP" id="RgN-HU-zZ3"/>
+                        <outlet property="projectIDLabel" destination="8O4-4H-Pq2" id="eIE-iP-fqd"/>
+                        <outlet property="projectLatitudeTextField" destination="hWS-AK-Uo9" id="hoE-S2-EYt"/>
+                        <outlet property="projectLongitudeTextField" destination="hPL-yt-SGe" id="ALF-b3-ohU"/>
+                        <outlet property="projectNameTextField" destination="qN5-Qd-EI2" id="DIV-t1-2Lt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Th1-oM-uB6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
