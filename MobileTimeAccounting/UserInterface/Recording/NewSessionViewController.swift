@@ -19,6 +19,12 @@
 import UIKit
 
 
+protocol NewSessionDelegate
+{
+    func didAddNewSession()
+}
+
+
 class NewSessionViewController: UITableViewController
 {
     @IBOutlet weak var projectNameLabel: UILabel!
@@ -28,7 +34,8 @@ class NewSessionViewController: UITableViewController
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
 
-    
+
+    var delegate: NewSessionDelegate!
     let timeFormatter = NSDateFormatter()
     let dateFormatter = NSDateFormatter()
     var datePicker = UIDatePicker()
@@ -225,6 +232,7 @@ class NewSessionViewController: UITableViewController
         if sessionManager.addSession(session, project: project)
         {
             self.dismissViewControllerAnimated(true, completion: {})
+            delegate.didAddNewSession()
         }
     }
     

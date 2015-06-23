@@ -19,7 +19,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+class RecordingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewSessionDelegate
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -33,7 +33,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     let nsUserDefaults = NSUserDefaults()
     let RECENT_PROJECT_ID_KEY = "last_project_id_key"
     
-    let notificationTime = (hour: 16, minute: 0, seconds: 0)
+    let notificationTime = (hour: 18, minute: 0, seconds: 0)
     
     var timer: NSTimer!
     var project: Project!
@@ -206,7 +206,14 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
             var navigationController = segue.destinationViewController as! UINavigationController
             var viewController = navigationController.visibleViewController as! NewSessionViewController
             viewController.project = project
+            viewController.delegate = self
         }
+    }
+    
+    
+    func didAddNewSession()
+    {
+        setNotification(NSDate().dateByAddingDays(1)!.dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
     }
     
     
@@ -345,7 +352,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         {
             session.endTime = NSDate()
             sessionManager.addSession(session, project: project!)
-            
+            didAddNewSession()
             loadProjectSessions()
         
             stopVisualizingTimer()
