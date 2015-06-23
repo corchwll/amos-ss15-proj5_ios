@@ -267,8 +267,8 @@
 		E446BFFD1AFCE410000DBAA0 /* Recording */ = {
 			isa = PBXGroup;
 			children = (
-				E44092CF1B0D0F19006CE944 /* SessionTableViewCell.swift */,
 				E4A16AA71AE531EB006BB173 /* RecordingViewController.swift */,
+				E44092CF1B0D0F19006CE944 /* SessionTableViewCell.swift */,
 				E485BC911AF2353A00CE7F72 /* NewSessionViewController.swift */,
 			);
 			path = Recording;

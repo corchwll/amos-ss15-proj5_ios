@@ -33,6 +33,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     let nsUserDefaults = NSUserDefaults()
     let RECENT_PROJECT_ID_KEY = "last_project_id_key"
     
+    let notificationTime = (hour: 16, minute: 0, seconds: 0)
+    
     var timer: NSTimer!
     var project: Project!
     var projectSessions: [Session]!
@@ -49,6 +51,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     override func viewDidLoad()
     {
+        setNotification(NSDate().dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
         if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
         {
             setUpNavigationItemButton()
@@ -61,6 +64,25 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         {
             setButtonStateForHasProject(false)
         }
+    }
+    
+    
+    /*
+        Sets new notifaction for a given time after canceling all other local notifiactions.
+        
+        @methodtype Command
+        @pre -
+        @post Notification is set
+    */
+    func setNotification(time: NSDate)
+    {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        
+        var notification = UILocalNotification()
+        notification.alertBody = "You did not record any time for today!"
+        notification.fireDate = time
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
     
