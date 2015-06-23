@@ -25,6 +25,7 @@ class NSDateHelperTests: XCTestCase
 {
     let calendar = NSCalendar.currentCalendar()
     var date = NSDate(month: 6, year: 2015, calendar: NSCalendar.currentCalendar())
+    var day = NSDate(hour: 14, minute: 30, second: 23, day: 2, month: 4, year: 2015, calendar: NSCalendar.currentCalendar())
     
     
     override func setUp()
@@ -98,5 +99,35 @@ class NSDateHelperTests: XCTestCase
         let incrementedDate = date.dateByAddingDays(40)
         
         XCTAssert(incrementedDate == NSDate(day: 11, month: 7, year: 2015, calendar: calendar), "Pass")
+    }
+    
+    
+    func testStartOfDay_DateIsValid_StartOfDayReturned()
+    {
+        var startOfDayComponents = NSDateComponents()
+        startOfDayComponents.hour = 0
+        startOfDayComponents.minute = 0
+        startOfDayComponents.second = 0
+        startOfDayComponents.day = 2
+        startOfDayComponents.month = 4
+        startOfDayComponents.year = 2015
+        let startOfDay = calendar.dateFromComponents(startOfDayComponents)!
+        
+        XCTAssert(startOfDay.timeIntervalSince1970 == day.startOfDay()!.timeIntervalSince1970, "Pass")
+    }
+
+    
+    func testEndOfDay_DateIsValid_EndOfDayReturned()
+    {
+        var endOfDayComponents = NSDateComponents()
+        endOfDayComponents.hour = 23
+        endOfDayComponents.minute = 59
+        endOfDayComponents.second = 59
+        endOfDayComponents.day = 2
+        endOfDayComponents.month = 4
+        endOfDayComponents.year = 2015
+        let endOfDay = calendar.dateFromComponents(endOfDayComponents)!
+        
+        XCTAssert(endOfDay.timeIntervalSince1970 == day.endOfDay()!.timeIntervalSince1970, "Pass")
     }
 }

@@ -104,12 +104,48 @@ extension NSDate
         if let plusOneMonthDate = dateByAddingMonths(1)
         {
             let plusOneMonthDateComponents = calendar.components(.CalendarUnitYear | .CalendarUnitMonth, fromDate: plusOneMonthDate)
-            
             let endOfMonth = calendar.dateFromComponents(plusOneMonthDateComponents)?.dateByAddingTimeInterval(-1)
             
             return endOfMonth
         }
+        return nil
+    }
+    
+    
+    /*
+        Returns start day of the current day.
         
+        @methodtype Helper
+        @pre -
+        @post Returns start of month
+    */
+    func startOfDay() -> NSDate?
+    {
+        let calendar = NSCalendar.currentCalendar()
+        let currentDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: self)
+        let startOfDay = calendar.dateFromComponents(currentDateComponents)
+        
+        return startOfDay
+    }
+    
+    
+    /*
+        Returns end of day of the current day.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns end of month
+    */
+    func endOfDay() -> NSDate?
+    {
+        let calendar = NSCalendar.currentCalendar()
+        if let plusOneDayDate = dateByAddingDays(1)
+        {
+            let plusOneDayDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitYear | .CalendarUnitMonth, fromDate: plusOneDayDate)
+            let endOfDay = calendar.dateFromComponents(plusOneDayDateComponents)?.dateByAddingTimeInterval(-1)
+            
+            return endOfDay
+        }
         return nil
     }
     
