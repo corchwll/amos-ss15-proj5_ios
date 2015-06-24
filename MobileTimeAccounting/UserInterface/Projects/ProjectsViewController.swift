@@ -67,10 +67,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func setUpTabBarController()
     {
-        if tabBarController != nil
-        {
-            tabBarController!.delegate = self
-        }
+        tabBarController!.delegate = self
     }
     
     
@@ -87,6 +84,13 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        iOS life-cycle function, called when view will disappear. Sets editing false and stops location manager.
+        
+        @methodtype Hook
+        @pre -
+        @post Stops location manager and leaves editing mode
+    */
     override func viewWillDisappear(animated: Bool)
     {
         projectsTableView.setEditing(false, animated: true)
@@ -130,20 +134,36 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+    /*
+        Sets up location manager for updating current location.
+        
+        @methodtype Command
+        @pre Location manager protocol must be implemented
+        @post Location manager is set up
+    */
     func setUpLocationManager()
     {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
     
     
+    /*
+        Callback function, called when location manager updates current location.
+        
+        @methodtype Command
+        @pre Projects table view not editing
+        @post Refreshes project list, sorted by distance
+    */
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
     {
-        println("location manager running")
-        projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
-        archiveProjectsIntoSortedByDistanceDictionary(projects, dictionary: &dictionary)
-        projectsTableView.reloadData()
+        if !projectsTableView.editing
+        {
+            projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
+            archiveProjectsIntoSortedByDistanceDictionary(projects, dictionary: &dictionary)
+            projectsTableView.reloadData()
+        }
     }
 
     
@@ -418,6 +438,12 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         if projectsTableView.editing
         {
+            var project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
+            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
+            {
+                return nil
+            }
+            
             performSegueWithIdentifier("edit_project_segue", sender: indexPath)
             return indexPath
         }
@@ -463,7 +489,11 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     {
         projectsTableView.setEditing(false, animated: true)
         navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
-        locationManager.startUpdatingLocation()
+        
+        if settings.getPreference(Settings.EnableProjectsSortingByDistance)
+        {
+            locationManager.startUpdatingLocation()
+        }
     }
     
     

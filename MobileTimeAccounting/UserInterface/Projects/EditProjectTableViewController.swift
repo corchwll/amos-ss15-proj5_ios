@@ -49,7 +49,7 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
         
         @methodtype Hook
         @pre -
-        @post -
+        @post View is set up
     */
     override func viewDidLoad()
     {
@@ -57,8 +57,8 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
         setUpDateFormatter()
         setUpDatePickerInputView()
         setUpLocationManager()
-        refreshDoneButtonState()
         setUpProject()
+        refreshDoneButtonState()
     }
     
     
@@ -91,6 +91,13 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
     }
     
     
+    /*
+        Sets up location manager.
+        
+        @methodtype Command
+        @pre Location manager must be initialized
+        @post Location manager is set up
+    */
     func setUpLocationManager()
     {
         locationManager.delegate = self
@@ -99,6 +106,13 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
     }
     
     
+    /*
+        Sets up project that is about to be edited.
+        
+        @methodtype Command
+        @pre Project must be set
+        @post Project is set, ui is updated
+    */
     func setUpProject()
     {
         projectIDLabel.text = project.id
@@ -127,7 +141,7 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
         
         @methodtype Command
         @pre -
-        @post -
+        @post Refreshes done button
     */
     @IBAction func projectNameChanged(sender: AnyObject)
     {
@@ -208,7 +222,7 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
         
         @methodtype Command
         @pre -
-        @post -
+        @post Dismisses current view
     */
     @IBAction func cancel(sender: AnyObject)
     {
