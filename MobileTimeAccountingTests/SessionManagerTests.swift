@@ -48,7 +48,7 @@ class SessionManagerTests: XCTestCase
         
         sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 19, month: 11, year: 2015, calendar: calendar), endTime: NSDate(hour: 10, minute: 0, second: 0, day: 19, month: 11, year: 2015, calendar: calendar)))
         
-        sessions.append(Session(id: 0, startTime: NSDate(hour: 23, minute: 0, second: 0, day: 17, month: 11, year: 2015, calendar: calendar), endTime: NSDate(hour: 7, minute: 0, second: 0, day: 18, month: 11, year: 2015, calendar: calendar)))
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 23, minute: 0, second: 0, day: 18, month: 11, year: 2015, calendar: calendar), endTime: NSDate(hour: 7, minute: 0, second: 0, day: 19, month: 11, year: 2015, calendar: calendar)))
         
         //valid
         dates.append(NSDate(day: 4, month: 5, year: 2015, calendar: calendar))
