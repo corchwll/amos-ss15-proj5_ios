@@ -25,6 +25,7 @@ let sessionManager = SessionManager()
 class SessionManager
 {
     let OVERLAPPING_SESSION_MESSAGE = "New session is overlapping with other session!"
+    let EXCEEDING_SESSION_MESSAGE = "New session is exceeding project's final date!"
     let SESSION_OVERFLOW_MESSAGE = "Session exceeds limit of 10 hour per day!"
     let SESSION_CUT_OFF_MESSAGE = "Session exceeds 10 hours per day and was cut off!"
     
@@ -40,7 +41,7 @@ class SessionManager
     */
     func addSession(session: Session, project: Project)->Bool
     {
-        if isOverlappingSession(session)
+        if isOverlappingSession(session) || isExceedingFinalDate(session, project: project)
         {
             return false
         }
@@ -60,6 +61,24 @@ class SessionManager
         if sessionDAO.getSessions(session.startTime, toTime: session.endTime).count != 0
         {
             showAlert(OVERLAPPING_SESSION_MESSAGE)
+            return true
+        }
+        return false
+    }
+    
+    
+    /*
+        Verifies if a session is exceeding a project's final date
+        
+        @methodtype Boolean Query
+        @pre Session start before session end
+        @post Returns if session is exceeding final date
+    */
+    private func isExceedingFinalDate(session: Session, project: Project)->Bool
+    {
+        if session.endTime.timeIntervalSince1970 > project.finalDate.timeIntervalSince1970
+        {
+            showAlert(EXCEEDING_SESSION_MESSAGE)
             return true
         }
         return false

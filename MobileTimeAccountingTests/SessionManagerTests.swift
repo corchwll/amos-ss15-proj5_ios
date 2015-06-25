@@ -27,7 +27,7 @@ import XCTest
 class SessionManagerTests: XCTestCase
 {
     let calendar = NSCalendar.currentCalendar()
-    let project = Project(id: "12345", name: "Test Project 1")
+    let project = Project(id: "12345", name: "Test Project 1", finalDate: NSDate(day: 18, month: 11, year: 2015, calendar: NSCalendar.currentCalendar()), latitude: nil, longitude: nil)
     var sessions = [Session]()
     var dates = [NSDate]()
     
@@ -45,6 +45,10 @@ class SessionManagerTests: XCTestCase
         sessions.append(Session(id: 0, startTime: NSDate(hour: 18, minute: 30, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 20, minute: 30, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
         
         sessions.append(Session(id: 0, startTime: NSDate(hour: 21, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar), endTime: NSDate(hour: 23, minute: 0, second: 0, day: 4, month: 5, year: 2015, calendar: calendar)))
+        
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: 19, month: 11, year: 2015, calendar: calendar), endTime: NSDate(hour: 10, minute: 0, second: 0, day: 19, month: 11, year: 2015, calendar: calendar)))
+        
+        sessions.append(Session(id: 0, startTime: NSDate(hour: 23, minute: 0, second: 0, day: 17, month: 11, year: 2015, calendar: calendar), endTime: NSDate(hour: 7, minute: 0, second: 0, day: 18, month: 11, year: 2015, calendar: calendar)))
         
         //valid
         dates.append(NSDate(day: 4, month: 5, year: 2015, calendar: calendar))
@@ -143,6 +147,42 @@ class SessionManagerTests: XCTestCase
             let session = sessions.first!
             pass = pass || session.startTime == self.sessions[1].startTime && session.endTime == self.sessions[1].endTime
             pass = pass || session.startTime == self.sessions[3].startTime
+        }
+        else
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testAddSession_SessionStartExceedsFinalDate_SessionIsNotAdded()
+    {
+        var pass = sessionManager.addSession(self.sessions[4], project: project)
+        
+        let sessions = sessionDAO.getSessions(project)
+        if sessions.count == 0
+        {
+            pass = !pass
+        }
+        else
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testAddSession_SessionEndExceedsFinalDate_SessionIsNotAdded()
+    {
+        var pass = sessionManager.addSession(self.sessions[5], project: project)
+        
+        let sessions = sessionDAO.getSessions(project)
+        if sessions.count == 0
+        {
+            pass = !pass
         }
         else
         {
