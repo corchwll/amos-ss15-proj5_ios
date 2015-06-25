@@ -295,6 +295,31 @@ class SessionDAOTests: XCTestCase
     }
     
     
+    func testGetSessions_MultipleProjectWithSessionsConcerningTheGivenTimeRange_ReturnOnlySessionsInRangeOfGivenProject()
+    {
+        projectDAO.addProject(projects[0])
+        projectDAO.addProject(projects[1])
+        for session in self.sessions
+        {
+            sessionDAO.addSession(session, project: projects[0])
+            sessionDAO.addSession(session, project: projects[1])
+        }
+        
+        let fromTime = NSDate(hour: 7, minute: 0, second: 0, day: 17, month: 3, year: 2015, calendar: calendar)
+        let toTime = NSDate(hour: 11, minute: 0, second: 0, day: 17, month: 3, year: 2015, calendar: calendar)
+        
+        let sessions = sessionDAO.getSessions(fromTime, toTime: toTime, project: projects[0])
+        var pass = false
+        
+        if sessions.count == 1
+        {
+            pass = sessions[0].startTime == self.sessions[2].startTime && sessions[0].endTime == self.sessions[2].endTime
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
     func testGetAllSessions_MultipleProjectsWithSessions_AllSessionsWereReturned()
     {
         for project in projects

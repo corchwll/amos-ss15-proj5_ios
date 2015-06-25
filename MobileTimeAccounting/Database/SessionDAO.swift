@@ -104,7 +104,7 @@ class SessionDAO
         
         @methodtype Query
         @pre -
-        @post Every session has been returned
+        @post Every session is returned
     */
     func getSessions(fromTime: NSDate, toTime: NSDate)->[Session]
     {
@@ -116,6 +116,33 @@ class SessionDAO
         
         var queriedSessions: [Session] = []
         for sessionRow in sessions.filter(!(startTime <= fromTimeSince1970 && endTime <= fromTimeSince1970) && !(startTime >= toTimeSince1970 && endTime >= toTimeSince1970))
+        {
+            var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
+                endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
+            queriedSessions.append(session)
+        }
+        return queriedSessions
+    }
+    
+    
+    
+    /*
+        Returns every session of a given project from sqlite database in a given time range.
+        
+        @methodtype Query
+        @pre -
+        @post Every session is returned
+    */
+    func getSessions(fromTime: NSDate, toTime: NSDate, project: Project)->[Session]
+    {
+        let database = sqliteHelper.getSQLiteDatabase()
+        let sessions = database["sessions"]
+        
+        let fromTimeSince1970 = Int(fromTime.timeIntervalSince1970)
+        let toTimeSince1970 = Int(toTime.timeIntervalSince1970)
+        
+        var queriedSessions: [Session] = []
+        for sessionRow in sessions.filter(projectId == project.id && !(startTime <= fromTimeSince1970 && endTime <= fromTimeSince1970) && !(startTime >= toTimeSince1970 && endTime >= toTimeSince1970))
         {
             var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
