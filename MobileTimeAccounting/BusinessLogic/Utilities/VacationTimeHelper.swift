@@ -39,7 +39,7 @@ class VacationTimeHelper
     func getCurrentVacationDaysLeft(currentDate: NSDate)->Int
     {
         let totalVacationDays = profileDAO.getProfile()!.totalVacationTime!.toInt()!
-        let currentDateCompontents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: currentDate)
+        let currentDateCompontents = calendar.components(.CalendarUnitYear, fromDate: currentDate)
         var currentVacationDays = getVacationDaysForYear(currentDateCompontents.year)
         
         return profileDAO.getProfile()!.totalVacationTime!.toInt()! - currentVacationDays
@@ -79,5 +79,23 @@ class VacationTimeHelper
             vacationDays++
         }
         return vacationDays
+    }
+    
+    
+    /*
+        Validates if vacation days are about to expire, triggers in the last month before expiration.
+    
+        @methodtype Boolean Query
+        @pre -
+        @post Returns if vacation days are about to expire
+    */
+    func isExpiring(currentDate: NSDate)->Bool
+    {
+        let currentDateCompontents = calendar.components(.CalendarUnitMonth, fromDate: currentDate)
+        if currentDateCompontents.month == ExpiringMonth - 1
+        {
+            return true
+        }
+        return false
     }
 }
