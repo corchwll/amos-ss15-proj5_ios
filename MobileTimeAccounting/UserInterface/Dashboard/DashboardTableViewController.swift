@@ -24,6 +24,7 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
 {
     @IBOutlet weak var overtimeLabel: UILabel!
     @IBOutlet weak var vacationDaysLabel: UILabel!
+    @IBOutlet weak var vacationExpiringWarningLabel: UILabel!
 
     
     /*
@@ -64,9 +65,9 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     */
     func setUpVacationDaysLabel()
     {
-        let totalVacationDays = profileDAO.getProfile()!.totalVacationTime!.toInt()!
-        let currentVacationDaysLeft = totalVacationDays - vacationTimeHelper.getCurrentVacationDaysLeft(NSDate())
-        vacationDaysLabel.text = "\(currentVacationDaysLeft)"
+        let currentDate = NSDate()
+        vacationDaysLabel.text = vacationTimeHelper.getCurrentVacationDaysLeft(currentDate).description
+        vacationExpiringWarningLabel.hidden = !vacationTimeHelper.isExpiring(currentDate)
     }
     
     
