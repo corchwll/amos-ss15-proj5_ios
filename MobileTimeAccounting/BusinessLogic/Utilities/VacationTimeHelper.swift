@@ -24,7 +24,9 @@ let vacationTimeHelper = VacationTimeHelper()
 
 class VacationTimeHelper
 {
-    let vacationProject = Project(id: "00001", name: "Holiday")
+    let ExpiringMonth = 4
+    let calendar = NSCalendar.currentCalendar()
+    let vacationProject = Project(id: "00001", name: "Vacation")
     
     
     /*
@@ -34,11 +36,44 @@ class VacationTimeHelper
         @pre Profile is set
         @post Returns current vacation days left
     */
-    func getCurrentVacationDays()->Int
+    func getCurrentVacationDaysLeft(currentDate: NSDate)->Int
     {
-        let vacationSessions = sessionDAO.getSessions(vacationProject)
-        var vacationDays = 0
+        let totalVacationDays = profileDAO.getProfile()!.totalVacationTime!.toInt()!
+        let currentDateCompontents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: currentDate)
+        var currentVacationDays = getVacationDaysForYear(currentDateCompontents.year)
         
+        return profileDAO.getProfile()!.totalVacationTime!.toInt()! - currentVacationDays
+    }
+    
+    
+    /*
+        Calculates vacation days for a given year from delimiter month this year to delimiter month next year.
+        
+        @methodtype Helper
+        @pre Delimiter month set to valid month value
+        @post Returns vacation days for a given year
+    */
+    private func getVacationDaysForYear(year: Int)->Int
+    {
+        let fromTime = NSDate(month: ExpiringMonth, year: year, calendar: calendar).startOfMonth()!
+        let toTime = fromTime.dateByAddingMonths(11)!.endOfMonth()!
+        
+        return getVacationDaysInRange(fromTime, toTime: toTime)
+    }
+    
+    
+    /*
+        Calculates all vacation days in a given time range.
+        
+        @methodtype Helper
+        @pre Valid time range (from time before to time)
+        @post Vacation day in range are returned
+    */
+    private func getVacationDaysInRange(fromTime: NSDate, toTime: NSDate)->Int
+    {
+        let vacationSessions = sessionDAO.getSessions(fromTime, toTime: toTime, project: vacationProject)
+
+        var vacationDays = 0
         for vacationSession in vacationSessions
         {
             vacationDays++

@@ -65,7 +65,7 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     func setUpVacationDaysLabel()
     {
         let totalVacationDays = profileDAO.getProfile()!.totalVacationTime!.toInt()!
-        let currentVacationDaysLeft = totalVacationDays - vacationTimeHelper.getCurrentVacationDays()
+        let currentVacationDaysLeft = totalVacationDays - vacationTimeHelper.getCurrentVacationDaysLeft(NSDate())
         vacationDaysLabel.text = "\(currentVacationDaysLeft)"
     }
     

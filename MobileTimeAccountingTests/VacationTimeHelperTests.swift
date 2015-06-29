@@ -24,22 +24,23 @@ import XCTest
 */
 class VacationTimeHelperTests: XCTestCase
 {
-    let vacationProject = Project(id: "00001", name: "Holiday")
+    let profile = Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: "30", totalVacationTime: "30", currentVacationTime: "0", currentOvertime: "0")
+    let vacationProject = Project(id: "00001", name: "Vacation")
     var vacationSessions =
     [
-        (day: 1, month: 1, year: 2015), //1
-        (day: 6, month: 1, year: 2015), //2
-        (day: 1, month: 5, year: 2015), //3
-        (day: 15, month: 8, year: 2015), //4
-        (day: 3, month: 10, year: 2015), //5
-        (day: 1, month: 11, year: 2015), //6
-        (day: 25, month: 12, year: 2015), //7
-        (day: 26, month: 12, year: 2015), //8
-        (day: 3, month: 4, year: 2015), //9
-        (day: 6, month: 4, year: 2015), //10
-        (day: 14, month: 5, year: 2015), //11
-        (day: 25, month: 5, year: 2015), //12
-        (day: 4, month: 6, year: 2015)  //13
+        (day: 1, month: 4, year: 2016), //-
+        (day: 31, month: 3, year: 2015), //-
+        (day: 1, month: 4, year: 2015), //1
+        (day: 15, month: 8, year: 2015), //2
+        (day: 3, month: 10, year: 2015), //3
+        (day: 1, month: 11, year: 2015), //4
+        (day: 25, month: 12, year: 2015), //5
+        (day: 31, month: 3, year: 2016), //6
+        (day: 2, month: 4, year: 2015), //7
+        (day: 6, month: 4, year: 2015), //8
+        (day: 14, month: 5, year: 2015), //9
+        (day: 25, month: 5, year: 2015), //10
+        (day: 4, month: 6, year: 2015)  //11
     ]
     
     
@@ -47,13 +48,11 @@ class VacationTimeHelperTests: XCTestCase
     {
         super.setUp()
         
+        profileDAO.setProfile(profile)
+        
         for vacationSession in vacationSessions
         {
-            var vacationDate = NSDateComponents()
-            vacationDate.day = vacationSession.day
-            vacationDate.month = vacationSession.month
-            vacationDate.year = vacationSession.year
-            sessionDAO.addSession(Session(id: 0, startTime: NSCalendar.currentCalendar().dateFromComponents(vacationDate)!, endTime: NSCalendar.currentCalendar().dateFromComponents(vacationDate)!), project: vacationProject)
+            sessionDAO.addSession(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: vacationSession.day, month: vacationSession.month, year: vacationSession.year, calendar: NSCalendar.currentCalendar()), endTime: NSDate(hour: 16, minute: 0, second: 0, day: vacationSession.day, month: vacationSession.month, year: vacationSession.year, calendar: NSCalendar.currentCalendar())), project: vacationProject)
         }
     }
     
@@ -61,6 +60,7 @@ class VacationTimeHelperTests: XCTestCase
     override func tearDown()
     {
         sessionDAO.removeSessions(vacationProject)
+        profileDAO.removeProfile()
         
         super.tearDown()
     }
@@ -68,7 +68,8 @@ class VacationTimeHelperTests: XCTestCase
     
     func testGetCurrentVacationDays_VacationSessionsAdded_ReturnCurrentVacationDays()
     {
-        let pass = vacationTimeHelper.getCurrentVacationDays() == 13
+        let date = NSDate(month: 6, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = vacationTimeHelper.getCurrentVacationDaysLeft(date) == 19
         XCTAssert(pass, "Pass")
     }
 }
