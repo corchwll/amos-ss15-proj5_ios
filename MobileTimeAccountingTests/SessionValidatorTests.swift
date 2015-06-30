@@ -51,24 +51,31 @@ class SessionValidatorTests: XCTestCase
     }
     
     
-    func testIsExceedingFinalDate_SessionEndBeforeFinalDate_SessionDoesNotExccedFinalDate()
+    func testIsExceedingFinalDate_SessionEndBeforeFinalDate_SessionDoesNotExceedFinalDate()
     {
         var pass = sessionValidator.isExceedingFinalDate(sessions[0], project: project)
         XCTAssert(!pass, "Pass")
     }
 
     
-    func testIsExceedingFinalDate_SessionEndAfterFinalDate_SessionDoesNotExccedFinalDate()
+    func testIsExceedingFinalDate_SessionEndAfterFinalDate_SessionDoesExceedFinalDate()
     {
         var pass = sessionValidator.isExceedingFinalDate(sessions[1], project: project)
         XCTAssert(pass, "Pass")
     }
     
     
-    func testIsExceedingFinalDate_SessionStartAfterFinalDate_SessionDoesNotExccedFinalDate()
+    func testIsExceedingFinalDate_SessionStartAfterFinalDate_SessionDoesExceedFinalDate()
     {
         var pass = sessionValidator.isExceedingFinalDate(sessions[2], project: project)
         XCTAssert(pass, "Pass")
     }
+
     
+    func testIsExceedingFinalDate_ProjectFinalDateIsZero_SessionDoesNotExceedFinalDate()
+    {
+        let project = Project(id: "10002", name: "Test Project 2")
+        var pass = sessionValidator.isExceedingFinalDate(sessions[2], project: project)
+        XCTAssert(!pass, "Pass")
+    }
 }

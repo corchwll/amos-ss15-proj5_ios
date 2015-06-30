@@ -39,7 +39,7 @@ class SessionValidator
     
     
     /*
-        Verifies if a session is exceeding a project's final date
+        Verifies if a session is exceeding a project's final date. If final date is 0, that means it is not set so false is returned.
         
         @methodtype Boolean Query
         @pre Session start before session end
@@ -47,7 +47,8 @@ class SessionValidator
     */
     func isExceedingFinalDate(session: Session, project: Project)->Bool
     {
-        if session.endTime.timeIntervalSince1970 > project.finalDate.endOfDay()!.timeIntervalSince1970
+        if project.finalDate.timeIntervalSince1970 != 0 &&
+            session.endTime.timeIntervalSince1970 > project.finalDate.endOfDay()!.timeIntervalSince1970
         {
             return true
         }
