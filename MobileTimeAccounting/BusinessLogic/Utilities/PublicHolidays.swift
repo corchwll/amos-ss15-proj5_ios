@@ -25,7 +25,7 @@ class PublicHolidays
     
     
     /*
-        Calculates amount of holidays in a given time span from start to end.
+        Calculates amount of holidays in a given time span from start to end. If a holiday lies on a sunday or saturday it is not counted and ignored.
         
         @methodtype Helper
         @pre Start before End
@@ -45,7 +45,7 @@ class PublicHolidays
         var publicHolidaysCount = 0
         for publicHoliday in publicHolidays
         {
-            if startDate.timeIntervalSince1970 <= publicHoliday.timeIntervalSince1970 && endDate.timeIntervalSince1970 >= publicHoliday.timeIntervalSince1970
+            if startDate.timeIntervalSince1970 <= publicHoliday.timeIntervalSince1970 && endDate.timeIntervalSince1970 >= publicHoliday.timeIntervalSince1970 && publicHoliday.weekday() != 1 && publicHoliday.weekday() != 7
             {
                 publicHolidaysCount++
             }

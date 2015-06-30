@@ -102,6 +102,6 @@ class PublicHolidaysTests: XCTestCase
     
         let publicHolidayCount = PublicHolidays().calculatePublicHolidaysInDays(NSCalendar.currentCalendar().dateFromComponents(startDay)!, endDate: NSCalendar.currentCalendar().dateFromComponents(endDay)!)
         
-        XCTAssert(publicHolidayCount == 6, "Pass")
+        XCTAssert(publicHolidayCount == 4, "Pass")
     }
 }

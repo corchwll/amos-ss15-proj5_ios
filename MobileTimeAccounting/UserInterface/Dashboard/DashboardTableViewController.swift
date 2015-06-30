@@ -52,7 +52,8 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     */
     func setUpOvertimeLabel()
     {
-        overtimeLabel.text = String(overtimeHelper.getCurrentOvertime())
+        let currentDate = NSDate()
+        overtimeLabel.text = overtimeHelper.getCurrentOvertime(currentDate).description
     }
     
     

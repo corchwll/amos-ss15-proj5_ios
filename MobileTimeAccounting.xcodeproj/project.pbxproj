@@ -57,6 +57,8 @@
 		E4B1C0FA1B208E7E0025283C /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0F41B2087750025283C /* CSVBuilder.swift */; };
 		E4B1C0FC1B208E910025283C /* CSVBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */; };
 		E4B1C1011B20BADD0025283C /* SessionsCSVExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B1C1001B20BADD0025283C /* SessionsCSVExporter.swift */; };
+		E4BD218C1B42ECA100AE35BE /* OvertimeHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BD218B1B42ECA100AE35BE /* OvertimeHelperTests.swift */; };
+		E4BD218D1B42F05F00AE35BE /* OvertimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */; };
 		E4C9D3581B2EEF0200B1A461 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */; };
 		E4C9D35A1B2F15F600B1A461 /* SessionHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */; };
 		E4C9D35B1B2F15FA00B1A461 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */; };
@@ -203,6 +205,7 @@
 		E4B1C0F41B2087750025283C /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
 		E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilderTests.swift; sourceTree = "<group>"; };
 		E4B1C1001B20BADD0025283C /* SessionsCSVExporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionsCSVExporter.swift; sourceTree = "<group>"; };
+		E4BD218B1B42ECA100AE35BE /* OvertimeHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelperTests.swift; sourceTree = "<group>"; };
 		E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelper.swift; sourceTree = "<group>"; };
 		E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelperTests.swift; sourceTree = "<group>"; };
 		E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMonthPickerView.swift; sourceTree = "<group>"; };
@@ -398,6 +401,7 @@
 				E4F02E011B149F3300493452 /* SessionDAOTests.swift */,
 				E46CB7A51B17435D00EC198D /* PublicHolidaysTests.swift */,
 				E4A8A5F01B1BB8FB00AB1183 /* VacationTimeHelperTests.swift */,
+				E4BD218B1B42ECA100AE35BE /* OvertimeHelperTests.swift */,
 				E4B1C0FB1B208E910025283C /* CSVBuilderTests.swift */,
 				E4401A8B1B2314AF00029D8F /* NSDateHelperTests.swift */,
 				E48CD2C81B23562B0051BF2A /* SessionsCSVExporterTests.swift */,
@@ -703,6 +707,8 @@
 				E4E0EF891B135504000C17F8 /* Profile.swift in Sources */,
 				E4401A8C1B2314AF00029D8F /* NSDateHelperTests.swift in Sources */,
 				E4A8A5EB1B1BB67C00AB1183 /* VacationTimeHelper.swift in Sources */,
+				E4BD218C1B42ECA100AE35BE /* OvertimeHelperTests.swift in Sources */,
+				E4BD218D1B42F05F00AE35BE /* OvertimeHelper.swift in Sources */,
 				E49C33ED1B3C276600B1039C /* SessionValidator.swift in Sources */,
 				E48CD2C31B2356070051BF2A /* SessionsCSVExporter.swift in Sources */,
 				E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */,

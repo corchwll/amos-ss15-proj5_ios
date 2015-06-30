@@ -25,7 +25,7 @@ let overtimeHelper = OvertimeHelper()
 class OvertimeHelper
 {
     let calendar = NSCalendar.currentCalendar()
-    var holidaysPerYear = [[NSDate]]()
+    let publicHolidays = PublicHolidays()
     var sessions = [Session]()
     
     
@@ -36,11 +36,11 @@ class OvertimeHelper
         @pre Profile must be available
         @post Returns current overtime
     */
-    func getCurrentOvertime()->Int
+    func getCurrentOvertime(currentDate: NSDate)->Int
     {
         loadAllSessions()
         let currentWorkingTime = calculateCurrentWorkingTime()
-        let currentWorkingTimeDebt = calculateCurrentWorkingTimeDebt()
+        let currentWorkingTimeDebt = calculateCurrentWorkingTimeDebt(currentDate)
         
         return currentWorkingTime - currentWorkingTimeDebt
     }
@@ -69,8 +69,9 @@ class OvertimeHelper
     private func calculateCurrentWorkingTime()->Int
     {
         let currentWorkingTimeInSeconds = calculateCurrentWorkingTimeInSeconds()
-        let currentWorkingTimeInHours = (Double(currentWorkingTimeInSeconds)) / 3600.0
-        return (Int(currentWorkingTimeInHours))
+        let currentWorkingTimeInHours = Double(currentWorkingTimeInSeconds) / 3600.0
+    
+        return Int(currentWorkingTimeInHours)
     }
     
     
@@ -86,7 +87,7 @@ class OvertimeHelper
         var workingTimeInSeconds = 0
         for session in sessions
         {
-            workingTimeInSeconds += (Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970))
+            workingTimeInSeconds += Int(session.endTime.timeIntervalSince1970 - session.startTime.timeIntervalSince1970)
         }
         return workingTimeInSeconds
     }
@@ -99,12 +100,13 @@ class OvertimeHelper
         @pre -
         @post Returns current working time dept in hours
     */
-    private func calculateCurrentWorkingTimeDebt()->Int
+    private func calculateCurrentWorkingTimeDebt(currentDate: NSDate)->Int
     {
-        let currentWorkingTimeDebtInDays = calculateCurrentWorkingTimeDebtInDays()
-        let dailyWorkingTime = (Double(profileDAO.getProfile()!.weeklyWorkingTime)) / 5.0
-        let currentWorkingTimeDebtInHours = (Double(currentWorkingTimeDebtInDays)) * dailyWorkingTime
-        return (Int(currentWorkingTimeDebtInHours))
+        let currentWorkingTimeDebtInDays = calculateCurrentWorkingTimeDebtInDays(currentDate)
+    
+        let dailyWorkingTime = Double(profileDAO.getProfile()!.weeklyWorkingTime) / 5.0
+        let currentWorkingTimeDebtInHours = Double(currentWorkingTimeDebtInDays) * dailyWorkingTime
+        return Int(currentWorkingTimeDebtInHours)
     }
     
     
@@ -115,7 +117,7 @@ class OvertimeHelper
         @pre -
         @post Returns current working time dept in days
     */
-    private func calculateCurrentWorkingTimeDebtInDays()->Int
+    private func calculateCurrentWorkingTimeDebtInDays(currentDate: NSDate)->Int
     {
         let weeklyWorkingTime = profileDAO.getProfile()!.weeklyWorkingTime
         var workingTimeDebtInDays = 0
@@ -123,13 +125,13 @@ class OvertimeHelper
         if !sessions.isEmpty
         {
             let startDate = sessions.last!.startTime
-            let endDate = sessions.first!.endTime
+            let endDate = currentDate
             
             var startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: startDate)
             var endDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
             
             
-            while(startDateComponents.day <= endDateComponents.day || startDateComponents.month < endDateComponents.month || startDateComponents.year < endDateComponents.year)
+            while(startDateComponents.day < endDateComponents.day && startDateComponents.month <= endDateComponents.month && startDateComponents.year <= endDateComponents.year)
             {
                 if startDateComponents.weekday != 1 && startDateComponents.weekday != 7
                 {
@@ -138,6 +140,7 @@ class OvertimeHelper
                 startDateComponents.day += 1
                 startDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: calendar.dateFromComponents(startDateComponents)!)
             }
+            workingTimeDebtInDays -= publicHolidays.calculatePublicHolidaysInDays(startDate, endDate: endDate)
         }
         return workingTimeDebtInDays
     }
