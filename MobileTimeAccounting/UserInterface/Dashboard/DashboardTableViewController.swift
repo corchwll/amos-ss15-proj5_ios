@@ -66,8 +66,20 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
     func setUpVacationDaysLabel()
     {
         let currentDate = NSDate()
-        vacationDaysLabel.text = vacationTimeHelper.getCurrentVacationDaysLeft(currentDate).description
-        vacationExpiringWarningLabel.hidden = !vacationTimeHelper.isExpiring(currentDate)
+        let vacationDaysLeft = vacationTimeHelper.getCurrentVacationDaysLeft(currentDate).description
+        let totalVacationDays = profileDAO.getProfile()!.totalVacationTime
+        
+        if vacationTimeHelper.isExpiring(currentDate)
+        {
+            vacationExpiringWarningLabel.hidden = false
+            vacationDaysLabel.textColor = UIColor.redColor()
+        }
+        else
+        {
+            vacationExpiringWarningLabel.hidden = true
+            vacationDaysLabel.textColor = UIColor.blackColor()
+        }
+        vacationDaysLabel.text = "\(vacationDaysLeft) / \(totalVacationDays)"
     }
     
     

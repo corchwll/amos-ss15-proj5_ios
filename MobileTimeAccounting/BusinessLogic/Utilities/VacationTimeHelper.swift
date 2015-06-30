@@ -120,7 +120,7 @@ class VacationTimeHelper
     func isExpiring(currentDate: NSDate)->Bool
     {
         let currentDateCompontents = calendar.components(.CalendarUnitMonth, fromDate: currentDate)
-        if currentDateCompontents.month == ExpiringMonth - 1
+        if currentDateCompontents.month >= ExpiringMonth - 3 && currentDateCompontents.month <= ExpiringMonth - 1
         {
             return true
         }

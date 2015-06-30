@@ -137,6 +137,14 @@ class VacationTimeHelperTests: XCTestCase
     }
     
     
+    func testIsExpiring_CurrentMonthIsStartOfLastMonths_IsExpiring()
+    {
+        let date = NSDate(month: 1, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = vacationTimeHelper.isExpiring(date)
+        XCTAssert(pass, "Pass")
+    }
+    
+    
     func testIsExpiring_CurrentMonthEqualsExpiringMonth_IsNotExpiring()
     {
         let date = NSDate(month: 4, year: 2015, calendar: NSCalendar.currentCalendar())
@@ -148,6 +156,14 @@ class VacationTimeHelperTests: XCTestCase
     func testIsExpiring_CurrentMonthAfterExpiringMonth_IsNotExpiring()
     {
         let date = NSDate(month: 7, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = !vacationTimeHelper.isExpiring(date)
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testIsExpiring_CurrentMonthBeforeExpiringMonth_IsNotExpiring()
+    {
+        let date = NSDate(month: 12, year: 2014, calendar: NSCalendar.currentCalendar())
         let pass = !vacationTimeHelper.isExpiring(date)
         XCTAssert(pass, "Pass")
     }
