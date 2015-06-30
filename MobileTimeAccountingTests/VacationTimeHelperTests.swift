@@ -90,6 +90,45 @@ class VacationTimeHelperTests: XCTestCase
     }
     
     
+    func testGetCurrentVacationDays_RegistrationDateBeforeExpiringMonth_ReturnCurrentVacationDaysOfThisYearWithoutInitialVacations()
+    {
+        let profile = profileDAO.getProfile()!
+        profile.registrationDate = NSDate(day: 1, month: 3, year: 2015, calendar: NSCalendar.currentCalendar())
+        profile.currentVacationTime = 10
+        profileDAO.setProfile(profile)
+        
+        let date = NSDate(month: 5, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = vacationTimeHelper.getCurrentVacationDaysLeft(date) == 19
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testGetCurrentVacationDays_RegistrationDateAfterExpiringMonth_ReturnCurrentVacationDaysOfThisYearPlusInitialVacations()
+    {
+        let profile = profileDAO.getProfile()!
+        profile.registrationDate = NSDate(day: 1, month: 4, year: 2015, calendar: NSCalendar.currentCalendar())
+        profile.currentVacationTime = 10
+        profileDAO.setProfile(profile)
+        
+        let date = NSDate(month: 8, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = vacationTimeHelper.getCurrentVacationDaysLeft(date) == 9
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testGetCurrentVacationDays_CurrentMonthAndRegistrationDateBeforeExpiringMonth_ReturnCurrentVacationDaysOfLastYearPlusInitialVacations()
+    {
+        let profile = profileDAO.getProfile()!
+        profile.registrationDate = NSDate(day: 2, month: 2, year: 2015, calendar: NSCalendar.currentCalendar())
+        profile.currentVacationTime = 15
+        profileDAO.setProfile(profile)
+        
+        let date = NSDate(month: 3, year: 2015, calendar: NSCalendar.currentCalendar())
+        let pass = vacationTimeHelper.getCurrentVacationDaysLeft(date) == 14
+        XCTAssert(pass, "Pass")
+    }
+    
+    
     func testIsExpiring_CurrentMonthIsLastMonth_IsExpiring()
     {
         let date = NSDate(month: 3, year: 2015, calendar: NSCalendar.currentCalendar())

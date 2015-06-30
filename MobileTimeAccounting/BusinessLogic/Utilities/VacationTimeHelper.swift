@@ -67,7 +67,7 @@ class VacationTimeHelper
         let fromTime = NSDate(month: ExpiringMonth, year: year, calendar: calendar).startOfMonth()!
         let toTime = fromTime.dateByAddingMonths(11)!.endOfMonth()!
         
-        return getVacationDaysInRange(fromTime, toTime: toTime)
+        return getVacationDaysInRange(fromTime, toTime: toTime) + getInitialVacationDays(fromTime, toTime: toTime)
     }
     
     
@@ -89,8 +89,27 @@ class VacationTimeHelper
         }
         return vacationDays
     }
-
     
+    
+    /*
+        Returns initial vacation days (Vacation days on registration). If registration date is in between from and to time the users initial vacation days are returned else 0.
+        
+        @methodtype Helper
+        @pre To time after form time
+        @post Returns initial vacation days
+    */
+    private func getInitialVacationDays(fromTime: NSDate, toTime: NSDate)->Int
+    {
+        let registrationDate = profileDAO.getProfile()!.registrationDate
+        
+        if registrationDate.timeIntervalSince1970 >= fromTime.timeIntervalSince1970 && registrationDate.timeIntervalSince1970 <= toTime.timeIntervalSince1970
+        {
+            return profileDAO.getProfile()!.currentVacationTime
+        }
+        return 0
+    }
+    
+
     /*
         Validates if vacation days are about to expire, triggers in the last month before expiration.
     
