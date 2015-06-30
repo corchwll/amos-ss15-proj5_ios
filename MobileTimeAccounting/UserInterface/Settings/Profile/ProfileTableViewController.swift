@@ -68,8 +68,8 @@ class ProfileTableViewController: UITableViewController
         {
             nameLabel.text = profile.firstname + " " + profile.lastname
             employeeIdLabel.text = profile.employeeId
-            weeklyWorkingTimeLabel.text = profile.weeklyWorkingTime
-            totalVacationTimeLabel.text = profile.totalVacationTime
+            weeklyWorkingTimeLabel.text = profile.weeklyWorkingTime.description
+            totalVacationTimeLabel.text = profile.totalVacationTime.description
         }
     }
 }

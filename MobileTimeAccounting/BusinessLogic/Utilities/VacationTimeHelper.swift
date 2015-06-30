@@ -38,7 +38,7 @@ class VacationTimeHelper
     */
     func getCurrentVacationDaysLeft(currentDate: NSDate)->Int
     {
-        let totalVacationDays = profileDAO.getProfile()!.totalVacationTime!.toInt()!
+        let totalVacationDays = profileDAO.getProfile()!.totalVacationTime
         let currentDateCompontents = calendar.components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: currentDate)
         
         var currentVacationDays = 0
@@ -51,7 +51,7 @@ class VacationTimeHelper
             currentVacationDays = getVacationDaysForYear(currentDateCompontents.year - 1)
         }
         
-        return profileDAO.getProfile()!.totalVacationTime!.toInt()! - currentVacationDays
+        return profileDAO.getProfile()!.totalVacationTime - currentVacationDays
     }
     
     

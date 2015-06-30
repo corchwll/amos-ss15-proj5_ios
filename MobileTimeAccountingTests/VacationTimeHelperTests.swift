@@ -24,7 +24,7 @@ import XCTest
 */
 class VacationTimeHelperTests: XCTestCase
 {
-    let profile = Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: "30", totalVacationTime: "30", currentVacationTime: "0", currentOvertime: "0")
+    let profile = Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: 30, totalVacationTime: 30, currentVacationTime: 0, currentOvertime: 0)
     let vacationProject = Project(id: "00001", name: "Vacation")
     var vacationSessions =
     [

@@ -24,40 +24,30 @@ class Profile
     var firstname: String
     var lastname: String
     var employeeId: String
-    
-    var weeklyWorkingTime: String?
-    var totalVacationTime: String?
-    var currentVacationTime: String?
-    var currentOvertime: String?
+    var weeklyWorkingTime: Int
+    var totalVacationTime: Int
+    var currentVacationTime: Int
+    var currentOvertime: Int
+    var registrationDate: NSDate
    
-    
-    /*
-        Empty constructor for model class, representing a profile.
-        
-        @methodtype Constructor
-        @pre -
-        @post Initialized profile with default paramters
-    */
-    init()
-    {
-        self.firstname = "default"
-        self.lastname = "default"
-        self.employeeId = "0"
-    }
-    
     
     /*
         Constructor for model class, representing a profile.
         
         @methodtype Constructor
-        @pre Correct paramters != nil
+        @pre -
         @post Initialized profile
     */
-    init(firstname: String, lastname: String, employeeId: String)
+    init(firstname: String, lastname: String, employeeId: String, weeklyWorkingTime: Int, totalVacationTime: Int, currentVacationTime: Int, currentOvertime: Int)
     {
         self.firstname = firstname
         self.lastname = lastname
         self.employeeId = employeeId
+        self.weeklyWorkingTime = weeklyWorkingTime
+        self.totalVacationTime = totalVacationTime
+        self.currentVacationTime = currentVacationTime
+        self.currentOvertime = currentOvertime
+        self.registrationDate = NSDate()
     }
     
     
@@ -65,16 +55,13 @@ class Profile
         Constructor for model class, representing a profile.
         
         @methodtype Constructor
-        @pre Correct paramters != nil
+        @pre -
         @post Initialized profile
     */
-    convenience init(firstname: String, lastname: String, employeeId: String, weeklyWorkingTime: String, totalVacationTime: String, currentVacationTime: String, currentOvertime: String)
+    convenience init(firstname: String, lastname: String, employeeId: String, weeklyWorkingTime: Int, totalVacationTime: Int, currentVacationTime: Int, currentOvertime: Int, registrationDate: NSDate)
     {
-        self.init(firstname: firstname, lastname: lastname, employeeId: employeeId)
-        self.weeklyWorkingTime = weeklyWorkingTime
-        self.totalVacationTime = totalVacationTime
-        self.currentVacationTime = currentVacationTime
-        self.currentOvertime = currentOvertime
+        self.init(firstname: firstname, lastname: lastname, employeeId: employeeId, weeklyWorkingTime: weeklyWorkingTime, totalVacationTime: totalVacationTime, currentVacationTime: currentVacationTime, currentOvertime: currentOvertime)
+        self.registrationDate = registrationDate
     }
     
     

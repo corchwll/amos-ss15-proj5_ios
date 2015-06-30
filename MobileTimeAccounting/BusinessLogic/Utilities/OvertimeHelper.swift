@@ -102,7 +102,7 @@ class OvertimeHelper
     private func calculateCurrentWorkingTimeDebt()->Int
     {
         let currentWorkingTimeDebtInDays = calculateCurrentWorkingTimeDebtInDays()
-        let dailyWorkingTime = (Double(profileDAO.getProfile()!.weeklyWorkingTime!.toInt()!)) / 5.0
+        let dailyWorkingTime = (Double(profileDAO.getProfile()!.weeklyWorkingTime)) / 5.0
         let currentWorkingTimeDebtInHours = (Double(currentWorkingTimeDebtInDays)) * dailyWorkingTime
         return (Int(currentWorkingTimeDebtInHours))
     }
@@ -117,7 +117,7 @@ class OvertimeHelper
     */
     private func calculateCurrentWorkingTimeDebtInDays()->Int
     {
-        let weeklyWorkingTime = profileDAO.getProfile()?.weeklyWorkingTime?.toInt()
+        let weeklyWorkingTime = profileDAO.getProfile()!.weeklyWorkingTime
         var workingTimeDebtInDays = 0
         
         if !sessions.isEmpty

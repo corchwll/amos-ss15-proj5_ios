@@ -41,7 +41,7 @@ class SessionsCSVExporterTests: XCTestCase
     
     func setUpProfile()
     {
-        profileDAO.setProfile(Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: "30", totalVacationTime: "40", currentVacationTime: "10", currentOvertime: "20"))
+        profileDAO.setProfile(Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: 30, totalVacationTime: 40, currentVacationTime: 10, currentOvertime: 20))
     }
     
     

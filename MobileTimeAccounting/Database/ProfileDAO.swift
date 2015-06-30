@@ -32,8 +32,7 @@ class ProfileDAO
     private var totalVacationTimeKey = "total_vacation_time_key"
     private var currentVacationTimeKey = "current_vacation_time_key"
     private var currentOvertimeKey = "current_overtime_key"
-    
-    private var userRegisteredKey = "user_registered"
+    private var registrationDateKey = "registration_date_key"
     
     
     /*
@@ -52,8 +51,7 @@ class ProfileDAO
         userDefaults.setObject(profile.totalVacationTime, forKey: totalVacationTimeKey)
         userDefaults.setObject(profile.currentVacationTime, forKey: currentVacationTimeKey)
         userDefaults.setObject(profile.currentOvertime, forKey: currentOvertimeKey)
-        
-        userDefaults.setBool(true, forKey: userRegisteredKey)
+        userDefaults.setObject(Int(profile.registrationDate.timeIntervalSince1970), forKey: registrationDateKey)
     }
     
     
@@ -68,16 +66,15 @@ class ProfileDAO
     {
         if let employeeId = userDefaults.stringForKey(employeeIdKey)
         {
-            var profile = Profile()
-            profile.firstname = userDefaults.stringForKey(firstnameKey)!
-            profile.lastname = userDefaults.stringForKey(lastnameKey)!
-            profile.employeeId = userDefaults.stringForKey(employeeIdKey)!
-            profile.weeklyWorkingTime = userDefaults.stringForKey(weeklyWorkingTimeKey)
-            profile.totalVacationTime = userDefaults.stringForKey(totalVacationTimeKey)
-            profile.currentVacationTime = userDefaults.stringForKey(currentVacationTimeKey)
-            profile.currentOvertime = userDefaults.stringForKey(currentOvertimeKey)
+            let firstname = userDefaults.stringForKey(firstnameKey)!
+            let lastname = userDefaults.stringForKey(lastnameKey)!
+            let weeklyWorkingTime = userDefaults.integerForKey(weeklyWorkingTimeKey)
+            let totalVacationTime = userDefaults.integerForKey(totalVacationTimeKey)
+            let currentVacationTime = userDefaults.integerForKey(currentVacationTimeKey)
+            let currentOvertime = userDefaults.integerForKey(currentOvertimeKey)
+            let registrationDate = NSDate(timeIntervalSince1970: NSTimeInterval(userDefaults.integerForKey(registrationDateKey)))
             
-            return profile
+            return Profile(firstname: firstname, lastname: lastname, employeeId: employeeId, weeklyWorkingTime: weeklyWorkingTime, totalVacationTime: totalVacationTime, currentVacationTime: currentVacationTime, currentOvertime: currentOvertime, registrationDate: registrationDate)
         }
         return nil
     }
@@ -99,8 +96,6 @@ class ProfileDAO
         userDefaults.removeObjectForKey(totalVacationTimeKey)
         userDefaults.removeObjectForKey(currentVacationTimeKey)
         userDefaults.removeObjectForKey(currentOvertimeKey)
-        
-        userDefaults.setBool(false, forKey: userRegisteredKey)
     }
     
     
@@ -113,6 +108,10 @@ class ProfileDAO
     */
     func isRegistered()->Bool
     {
-        return userDefaults.boolForKey(userRegisteredKey)
+        if let employeeId = userDefaults.stringForKey(employeeIdKey)
+        {
+            return true
+        }
+        return false
     }
 }

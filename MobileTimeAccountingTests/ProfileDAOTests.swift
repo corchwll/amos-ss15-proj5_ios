@@ -32,7 +32,7 @@ class ProfileDAOTests: XCTestCase
     {
         super.setUp()
         
-        profiles.append(Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: "30", totalVacationTime: "40", currentVacationTime: "10", currentOvertime: "20"))
+        profiles.append(Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: 30, totalVacationTime: 40, currentVacationTime: 10, currentOvertime: 20))
     }
     
     

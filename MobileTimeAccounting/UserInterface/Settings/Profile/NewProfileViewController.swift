@@ -40,9 +40,24 @@ class NewProfileViewController: UITableViewController
     */
     @IBAction func done(sender: AnyObject)
     {
-        let profile = Profile(firstname: firstnameTextField.text, lastname: lastnameTextField.text, employeeId: employeeIdTextField.text, weeklyWorkingTime: weeklyWorkingTimeTextField.text, totalVacationTime: totalVacationTimeTextField.text, currentVacationTime: currentVacationTimeTextField.text, currentOvertime: currentOvertimeTextField.text)
-        profileDAO.setProfile(profile)
+        setUserProfile()
         performSegueWithIdentifier("main_segue", sender: nil)
+    }
+    
+    
+    func setUserProfile()
+    {
+        let firstname = firstnameTextField.text
+        let lastname = lastnameTextField.text
+        let employeeId = employeeIdTextField.text
+        let weeklyWorkingTime = weeklyWorkingTimeTextField.text.toInt()!
+        let totalVacationTime = totalVacationTimeTextField.text.toInt()!
+        let currentVacationTime = currentVacationTimeTextField.text.toInt()!
+        let currentOvertime = currentOvertimeTextField.text.toInt()!
+        let registrationDate = NSDate()
+        
+        let profile = Profile(firstname: firstname, lastname: lastname, employeeId: employeeId, weeklyWorkingTime: weeklyWorkingTime, totalVacationTime: totalVacationTime, currentVacationTime: currentVacationTime, currentOvertime: currentOvertime, registrationDate: registrationDate)
+        profileDAO.setProfile(profile)
     }
     
     

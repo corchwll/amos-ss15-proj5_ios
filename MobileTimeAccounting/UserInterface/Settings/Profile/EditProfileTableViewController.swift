@@ -58,8 +58,8 @@ class EditProfileTableViewController: UITableViewController
             firstnameTextField.text = profile.firstname
             lastnameTextField.text = profile.lastname
             employeeIdTextField.text = profile.employeeId
-            weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime
-            totalVacationTimeTextField.text = profile.totalVacationTime
+            weeklyWorkingTimeTextField.text = profile.weeklyWorkingTime.description
+            totalVacationTimeTextField.text = profile.totalVacationTime.description
         }
     }
     
@@ -187,12 +187,12 @@ class EditProfileTableViewController: UITableViewController
     */
     @IBAction func done(sender: AnyObject)
     {
-        let profile = Profile()
+        let profile = profileDAO.getProfile()!
         profile.firstname = firstnameTextField.text
         profile.lastname = lastnameTextField.text
         profile.employeeId = employeeIdTextField.text
-        profile.weeklyWorkingTime = weeklyWorkingTimeTextField.text
-        profile.totalVacationTime = totalVacationTimeTextField.text
+        profile.weeklyWorkingTime = weeklyWorkingTimeTextField.text.toInt()!
+        profile.totalVacationTime = totalVacationTimeTextField.text.toInt()!
         profileDAO.setProfile(profile)
         
         dismissViewControllerAnimated(true, completion: {})
