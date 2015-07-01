@@ -27,7 +27,7 @@ class OvertimeHelperTests: XCTestCase
 {
     let profile = Profile(firstname: "Max", lastname: "Mueller", employeeId: "12345", weeklyWorkingTime: 40, totalVacationTime: 30, currentVacationTime: 0, currentOvertime: 0, registrationDate: NSDate(hour: 8, minute: 0, second: 0, day: 1, month: 6, year: 2015, calendar: NSCalendar.currentCalendar()))
     let project = Project(id: "10001", name: "Test Project 1")
-    let currentDate = NSDate(day: 23, month: 6, year: 2015, calendar: NSCalendar.currentCalendar())
+    let currentDate = NSDate(day: 3, month: 7, year: 2015, calendar: NSCalendar.currentCalendar())
     let overtimeHelper = OvertimeHelper()
     var sessions =
     [
@@ -45,7 +45,15 @@ class OvertimeHelperTests: XCTestCase
         (day: 17, month: 6, year: 2015),
         (day: 18, month: 6, year: 2015),
         (day: 19, month: 6, year: 2015),
-        (day: 22, month: 6, year: 2015)
+        (day: 22, month: 6, year: 2015),
+        (day: 23, month: 6, year: 2015),
+        (day: 24, month: 6, year: 2015),
+        (day: 25, month: 6, year: 2015),
+        (day: 26, month: 6, year: 2015),
+        (day: 29, month: 6, year: 2015),
+        (day: 30, month: 6, year: 2015),
+        (day: 1, month: 7, year: 2015),
+        (day: 2, month: 7, year: 2015)
     ]
     
     
@@ -86,12 +94,32 @@ class OvertimeHelperTests: XCTestCase
     {
         var pass = false
         
-        for i in 0...13
+        for i in 0...21
         {
             let session = sessions[i]
             sessionDAO.addSession(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar()), endTime: NSDate(hour: 16, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar())), project: project)
         }
         pass = overtimeHelper.getCurrentOvertime(currentDate) == -8
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    func testGetCurrentOvertime_SessionAddedToProjectWithGaps_OvertimeIsNegative()
+    {
+        var pass = false
+        
+        for i in 0...10
+        {
+            let session = sessions[i]
+            sessionDAO.addSession(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar()), endTime: NSDate(hour: 16, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar())), project: project)
+        }
+        
+        for i in 13...22
+        {
+            let session = sessions[i]
+            sessionDAO.addSession(Session(id: 0, startTime: NSDate(hour: 8, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar()), endTime: NSDate(hour: 16, minute: 0, second: 0, day: session.day, month: session.month, year: session.year, calendar: NSCalendar.currentCalendar())), project: project)
+        }
+        pass = overtimeHelper.getCurrentOvertime(currentDate) == -16
         
         XCTAssert(pass, "Pass")
     }

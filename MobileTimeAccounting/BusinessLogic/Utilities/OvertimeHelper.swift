@@ -131,7 +131,7 @@ class OvertimeHelper
             var endDateComponents = calendar.components(.CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear | .CalendarUnitWeekday, fromDate: endDate)
             
             
-            while(startDateComponents.day < endDateComponents.day && startDateComponents.month <= endDateComponents.month && startDateComponents.year <= endDateComponents.year)
+            while(startDateComponents.day < endDateComponents.day || startDateComponents.month < endDateComponents.month || startDateComponents.year < endDateComponents.year)
             {
                 if startDateComponents.weekday != 1 && startDateComponents.weekday != 7
                 {
