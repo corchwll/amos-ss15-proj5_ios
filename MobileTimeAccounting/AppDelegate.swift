@@ -38,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         setUpOneTimeRegistration()
         setUpNavigationBarStyle()
+        setUpTabBarStyle()
     
         return true
     }
@@ -70,13 +71,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         
         @methodtype Command
         @pre -
-        @post UINavigation bar appearance is set
+        @post Tab bar appearance is set
     */
     func setUpNavigationBarStyle()
     {
         UINavigationBar.appearance().barStyle = UIBarStyle.Black
         UINavigationBar.appearance().translucent = false
         UINavigationBar.appearance().barTintColor = UIColor(red: 0, green: 55/255, blue: 91/255, alpha: 255)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+    }
+    
+    
+    /*
+        Function is setting up tab bar style, including tint color.
+        
+        @methodtype Command
+        @pre -
+        @post UINavigation bar appearance is set
+    */
+    func setUpTabBarStyle()
+    {
+        UITabBar.appearance().tintColor = UIColor(red: 0, green: 55/255, blue: 91/255, alpha: 255)
     }
 
     

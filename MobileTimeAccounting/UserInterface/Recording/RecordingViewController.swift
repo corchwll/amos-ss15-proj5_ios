@@ -417,7 +417,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         if(timer != nil)
         {
             startStopButton.setTitle("START", forState: .Normal)
-            startStopButton.backgroundColor = UIColor(red: 0x00, green: 0xcc/0xff, blue: 0x66/0xff, alpha: 0xff)
+            startStopButton.backgroundColor = UIColor(red: 0x00, green: 0x91/0xff, blue: 0x8e/0xff, alpha: 0xff)
             timer.invalidate()
             timer = nil
         }
