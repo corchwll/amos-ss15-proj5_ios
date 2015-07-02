@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WV2-Pg-Tb1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WV2-Pg-Tb1">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1272,7 +1272,11 @@
         <scene sceneID="hNk-z0-I8u">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o7A-aY-Diy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recording" image="RecordingIcon" id="VNW-Tn-p0Z"/>
+                    <tabBarItem key="tabBarItem" title="Recording" image="RecordingIcon" id="VNW-Tn-p0Z">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="RecordingIconFull"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kdt-zx-uUO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1291,7 +1295,11 @@
         <scene sceneID="VXE-t2-8ca">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o2c-7h-p7n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Projects" image="ProjectsIcon" id="jOv-Tl-2KS"/>
+                    <tabBarItem key="tabBarItem" title="Projects" image="ProjectsIcon" id="jOv-Tl-2KS">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="ProjectsIconFull"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G8q-5Q-9kr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1600,11 +1608,10 @@
             </objects>
             <point key="canvasLocation" x="6249" y="3752"/>
         </scene>
-        <!--Settings-->
+        <!--Navigation Controller-->
         <scene sceneID="1RS-Jr-RD0">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ye7-lK-hpn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="ProfileIcon" id="g0y-08-17C"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="T69-cT-qkc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1630,7 +1637,7 @@
                         <sections>
                             <tableViewSection id="0ud-3j-wse">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hMt-zu-AXw" imageView="mc4-sA-yFx" style="IBUITableViewCellStyleDefault" id="CqZ-CX-wEW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="hMt-zu-AXw" style="IBUITableViewCellStyleDefault" id="CqZ-CX-wEW">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CqZ-CX-wEW" id="C2w-xx-yCz">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1641,9 +1648,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="ProfileIcon" id="mc4-sA-yFx">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1741,7 +1745,11 @@
         <scene sceneID="Ove-D1-4t8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CSr-Sy-cjq" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Dashboard" image="DashboardIcon" id="orQ-5T-Kfw"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" image="DashboardIcon" id="orQ-5T-Kfw">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="DashboardIconFull"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wfy-VT-p8m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1800,7 +1808,11 @@
         <scene sceneID="SUy-vg-0XG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SdK-bl-aEZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="ProfileIcon" id="YR7-yx-fmb"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon" id="YR7-yx-fmb">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="SettingsIconFull"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hJl-v2-qci">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1835,10 +1847,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DashboardIcon" width="31" height="31"/>
+        <image name="DashboardIcon" width="25" height="25"/>
+        <image name="DashboardIconFull" width="25" height="25"/>
         <image name="GPSIcon" width="25" height="25"/>
-        <image name="ProfileIcon" width="31" height="31"/>
-        <image name="ProjectsIcon" width="31" height="31"/>
-        <image name="RecordingIcon" width="31" height="31"/>
+        <image name="ProjectsIcon" width="25" height="25"/>
+        <image name="ProjectsIconFull" width="25" height="25"/>
+        <image name="RecordingIcon" width="25" height="25"/>
+        <image name="RecordingIconFull" width="23" height="25"/>
+        <image name="SettingsIcon" width="25" height="25"/>
+        <image name="SettingsIconFull" width="25" height="25"/>
     </resources>
 </document>
