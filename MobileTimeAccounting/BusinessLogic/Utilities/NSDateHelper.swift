@@ -212,4 +212,43 @@ extension NSDate
         let weekDayDateComponent = calendar.components(.CalendarUnitWeekday, fromDate: self)
         return weekDayDateComponent.weekday
     }
+    
+    
+    /*
+        Returns if date is on a holiday.
+        
+        @methodtype Boolean Query
+        @pre -
+        @post Validates if date is on a holiday
+    */
+    func isHoliday()->Bool
+    {
+        return PublicHolidays().calculatePublicHolidaysInDays(startOfDay()!, endDate: endOfDay()!) == 1
+    }
+    
+    
+    /*
+        Returns if date is on a Sunday.
+        
+        @methodtype Boolean Query
+        @pre -
+        @post Validates if date is a Sunday
+    */
+    func isSunday()->Bool
+    {
+        return weekday() == 1
+    }
+    
+    
+    /*
+        Returns if date is on a Saturday
+        
+        @methodtype Boolean Query
+        @pre -
+        @post Validates if date is a Saturday
+    */
+    func isSaturday()->Bool
+    {
+        return weekday() == 7
+    }
 }

@@ -130,4 +130,52 @@ class NSDateHelperTests: XCTestCase
         
         XCTAssert(endOfDay.timeIntervalSince1970 == day.endOfDay()!.timeIntervalSince1970, "Pass")
     }
+    
+    
+    func testIsHoliday_DateIsOnEasterMonday_DateIsHoliday()
+    {
+        let date = NSDate(day: 6, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(date.isHoliday(), "Pass")
+    }
+    
+    
+    func testIsHoliday_DateIsOnACommonSaturday_DateIsNoHoliday()
+    {
+        let date = NSDate(day: 11, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(!date.isHoliday(), "Pass")
+    }
+    
+    
+    func testIsSaturday_DateIsOnASaturday_DateIsSaturday()
+    {
+        let date = NSDate(day: 11, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(date.isSaturday(), "Pass")
+    }
+    
+    
+    func testIsSaturday_DateIsOnEasterMonday_DateIsNoSaturday()
+    {
+        let date = NSDate(day: 6, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(!date.isSaturday(), "Pass")
+    }
+    
+    
+    func testIsSunday_DateIsOnASunday_DateIsSunday()
+    {
+        let date = NSDate(day: 26, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(date.isSunday(), "Pass")
+    }
+    
+    
+    func testIsSunday_DateIsOnASaturday_DateIsNoSunday()
+    {
+        let date = NSDate(day: 11, month: 4, year: 2015, calendar: calendar)
+        
+        XCTAssert(!date.isSunday(), "Pass")
+    }
 }

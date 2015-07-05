@@ -98,8 +98,8 @@ class SessionManager
     func isEmptySessionDay(day: NSDate)->Bool
     {
         let hasNoSessions = sessionDAO.getSessions(day.startOfDay()!, toTime: day.endOfDay()!).isEmpty
-        let isNoHoliday = PublicHolidays().calculatePublicHolidaysInDays(day.startOfDay()!, endDate: day.endOfDay()!) == 0
-        let isNoWeekendDay = day.weekday() != 7 && day.weekday() != 1
+        let isNoHoliday = !day.isHoliday()
+        let isNoWeekendDay = !day.isSaturday() && !day.isSunday()
         
         return hasNoSessions && isNoHoliday && isNoWeekendDay
     }
