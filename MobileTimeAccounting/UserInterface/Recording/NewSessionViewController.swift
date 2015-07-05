@@ -33,6 +33,7 @@ class NewSessionViewController: UITableViewController
     @IBOutlet weak var fromTextField: UITextField!
     @IBOutlet weak var toTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var dateWarningLabel: UILabel!
 
 
     var delegate: NewSessionDelegate!
@@ -119,7 +120,7 @@ class NewSessionViewController: UITableViewController
     */
     func setUpTimeTextFields()
     {
-        dateTextField.text = dateFormatter.stringFromDate(NSDate())
+        setDate(NSDate())
         fromTextField.text = timeFormatter.stringFromDate(session.startTime)
         toTextField.text = timeFormatter.stringFromDate(session.endTime)
         
@@ -143,6 +144,32 @@ class NewSessionViewController: UITableViewController
     }
     
     
+    func setDate(date: NSDate)
+    {
+        dateTextField.text = dateFormatter.stringFromDate(date)
+        
+        if date.isHoliday()
+        {
+            dateWarningLabel.text = "*Day is a Holiday"
+            dateWarningLabel.hidden = false
+        }
+        else if date.isSaturday()
+        {
+            dateWarningLabel.text = "*Day is a Saturday"
+            dateWarningLabel.hidden = false
+        }
+        else if date.isSunday()
+        {
+            dateWarningLabel.text = "*Day is a Sunday"
+            dateWarningLabel.hidden = false
+        }
+        else
+        {
+            dateWarningLabel.hidden = true
+        }
+    }
+    
+    
     /*
         Listener function for date picker. Updating session date.
         
@@ -152,7 +179,7 @@ class NewSessionViewController: UITableViewController
     */
     func datePickerDidChange()
     {
-        dateTextField.text = dateFormatter.stringFromDate(datePicker.date)
+        setDate(datePicker.date)
     }
     
     
