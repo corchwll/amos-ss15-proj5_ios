@@ -172,7 +172,9 @@
                     <navigationItem key="navigationItem" title="Recording" id="b1K-G6-r5T">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pEA-2N-gnt">
                             <connections>
-                                <segue destination="cFc-XI-2Zp" kind="presentation" identifier="new_session_segue" id="K2g-ng-eKa"/>
+                                <segue destination="cFc-XI-2Zp" kind="popoverPresentation" identifier="new_session_segue" popoverAnchorBarButtonItem="pEA-2N-gnt" id="K2g-ng-eKa">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -699,7 +701,7 @@
         <scene sceneID="x0l-GU-mWt">
             <objects>
                 <tableViewController id="o6a-X0-WUt" customClass="NewSessionViewController" customModule="MobileTimeAccounting" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OIp-cU-lvg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OIp-cU-lvg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>

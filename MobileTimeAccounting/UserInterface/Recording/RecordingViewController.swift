@@ -210,6 +210,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         if segue.identifier == "new_session_segue"
         {
             var navigationController = segue.destinationViewController as! UINavigationController
+            navigationController.popoverPresentationController!.backgroundColor = UINavigationBar.appearance().barTintColor
+            
             var viewController = navigationController.visibleViewController as! NewSessionViewController
             viewController.project = project
             viewController.delegate = self
@@ -219,6 +221,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     
     func didAddNewSession()
     {
+        loadProjectSessions()
         setNotification(NSDate().dateByAddingDays(1)!.dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
     }
     
