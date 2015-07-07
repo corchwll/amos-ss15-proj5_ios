@@ -284,6 +284,8 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "new_project_segue"
         {
             let navigationViewController = segue.destinationViewController as! UINavigationController
+            navigationViewController.popoverPresentationController!.backgroundColor = UINavigationBar.appearance().barTintColor
+            
             let newProjectTableViewController = navigationViewController.visibleViewController as! NewProjectTableViewController
             newProjectTableViewController.delegate = self
         }

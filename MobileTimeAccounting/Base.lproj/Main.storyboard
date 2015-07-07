@@ -537,7 +537,9 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="NDV-dB-9PF"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wh8-Ih-7nu">
                             <connections>
-                                <segue destination="peB-uz-9jT" kind="presentation" identifier="new_project_segue" id="mIh-Fv-ZoU"/>
+                                <segue destination="peB-uz-9jT" kind="popoverPresentation" identifier="new_project_segue" popoverAnchorBarButtonItem="wh8-Ih-7nu" id="mIh-Fv-ZoU">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
