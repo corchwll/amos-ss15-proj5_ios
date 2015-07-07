@@ -19,7 +19,7 @@
 import UIKit
 
 
-class SettingsTableViewController: UITableViewController
+class SettingsTableViewController: UITableViewController, UISplitViewControllerDelegate
 {
     @IBOutlet weak var enableProjectsSortingByDistanceSwitch: UISwitch!
     
@@ -35,6 +35,7 @@ class SettingsTableViewController: UITableViewController
     {
         super.viewDidLoad()
         setUpPreferences()
+        setUpSplitViewControllerDelegate()
     }
     
     
@@ -48,6 +49,43 @@ class SettingsTableViewController: UITableViewController
     func setUpPreferences()
     {
         enableProjectsSortingByDistanceSwitch.setOn(settings.getPreference(Settings.EnableProjectsSortingByDistance), animated: false)
+    }
+    
+    
+    /*
+        Sets up delegate for split view controller.
+        
+        @methodtype Command
+        @pre Must implement split view controller delegate
+        @post Delegate is set
+    */
+    func setUpSplitViewControllerDelegate()
+    {
+        self.splitViewController!.delegate = self
+    }
+    
+    
+    /*
+        Split view controller delegate function for determining if master view controller is hidden.
+        
+        @methodtype Command
+        @pre -
+        @post Returns boolean if view controller should hide
+    */
+    func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool {
+        return false
+    }
+    
+    
+    /*
+        Split view controller delegate function for determining if secondary view controller shoud collapse.
+        
+        @methodtype Command
+        @pre -
+        @post Returns boolean if secondary view controller should collapse
+    */
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+        return true
     }
     
     

@@ -19,6 +19,12 @@
 import UIKit
 
 
+protocol EditProfileTableViewControllerDelegate
+{
+    func didEditProfile()
+}
+
+
 class EditProfileTableViewController: UITableViewController
 {
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -27,6 +33,7 @@ class EditProfileTableViewController: UITableViewController
     @IBOutlet weak var weeklyWorkingTimeTextField: UITextField!
     @IBOutlet weak var totalVacationTimeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    var delegate: EditProfileTableViewControllerDelegate!
     
     
     /*
@@ -195,6 +202,7 @@ class EditProfileTableViewController: UITableViewController
         profile.totalVacationTime = totalVacationTimeTextField.text.toInt()!
         profileDAO.setProfile(profile)
         
+        delegate.didEditProfile()
         dismissViewControllerAnimated(true, completion: {})
     }
     

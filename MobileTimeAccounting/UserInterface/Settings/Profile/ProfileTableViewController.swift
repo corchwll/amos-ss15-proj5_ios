@@ -19,7 +19,7 @@
 import UIKit
 
 
-class ProfileTableViewController: UITableViewController
+class ProfileTableViewController: UITableViewController, EditProfileTableViewControllerDelegate
 {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var employeeIdLabel: UILabel!
@@ -42,18 +42,41 @@ class ProfileTableViewController: UITableViewController
     
     
     /*
-        iOS life-cycle function. Loads user profile.
+        iOS life-cycle function, called when segue is triggerd. Sets delegate and modal presentation style.
         
         @methodtype Hook
-        @pre Initial user profile is set
-        @post User profile loaded
+        @pre Must implement delegate protocel
+        @post Delegate and modal presentation style is set
     */
-    override func viewDidAppear(animated: Bool)
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        super.viewDidAppear(animated)
-        loadProfile()
+        let navigationViewController = segue.destinationViewController as! UINavigationController
+        let editProfileTableViewController = navigationViewController.visibleViewController as! EditProfileTableViewController
+        editProfileTableViewController.delegate = self
+        
+        if splitViewController!.collapsed
+        {
+            navigationViewController.modalPresentationStyle = UIModalPresentationStyle.FullScreen
+        }
+        else
+        {
+            navigationViewController.modalPresentationStyle = UIModalPresentationStyle.CurrentContext
+        }
     }
     
+    
+    /*
+        Callback function when did finish editing profile. Reloads user profile.
+        
+        @methodtype Command
+        @pre -
+        @post User profile reloaded
+    */
+    func didEditProfile()
+    {
+        loadProfile()
+    }
+
     
     /*
         Functions is loading current user profile into ui.
