@@ -115,11 +115,14 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
     */
     func setUpProject()
     {
+        //fixed values
         projectIDLabel.text = project.id
         projectNameTextField.text = project.name
-        projectFinalDateTextField.text = dateFormatter.stringFromDate(project.finalDate)
-        projectLatitudeTextField.text = "\(project.location.coordinate.latitude)"
-        projectLongitudeTextField.text = "\(project.location.coordinate.longitude)"
+        
+        //optional values
+        projectFinalDateTextField.text = project.finalDate.timeIntervalSince1970 == 0 ? "-" : dateFormatter.stringFromDate(project.finalDate)
+        projectLatitudeTextField.text = project.location.coordinate.latitude == 0.0 ? "-" : "\(project.location.coordinate.latitude)"
+        projectLongitudeTextField.text = project.location.coordinate.longitude == 0.0 ? "-" : "\(project.location.coordinate.longitude)"
     }
 
     
