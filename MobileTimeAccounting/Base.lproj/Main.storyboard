@@ -515,7 +515,7 @@
                                     <outlet property="delegate" destination="j01-bn-Da3" id="mp5-Kh-2o4"/>
                                 </connections>
                             </tableView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uts-NL-27u">
+                            <containerView opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uts-NL-27u">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="6dw-Vm-jo3"/>

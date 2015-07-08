@@ -135,6 +135,22 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
+        Called when orientation is changed. Sets search controller inactive and hides/resizes search bar button
+        because some ugly effects happen while searching and changing screen orientation.
+        
+        @methodtype Hook
+        @pre Orientation change
+        @post Resize search bar and set controller inactive
+    */
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    {
+        searchController.active = false
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.frame = CGRectMake(0, 0, size.width, searchController.searchBar.frame.height)
+    }
+    
+    
+    /*
         Sets up location manager for updating current location.
         
         @methodtype Command
