@@ -524,7 +524,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        projectDAO.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
+        projectManager.archiveProject(dictionary[alphabet[indexPath.section]]![indexPath.row])
         
         dictionary[sectionHeaders[indexPath.section]]!.removeAtIndex(indexPath.row)
         projectsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Bottom)

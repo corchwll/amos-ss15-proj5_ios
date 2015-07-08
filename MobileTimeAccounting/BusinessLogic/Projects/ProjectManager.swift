@@ -25,6 +25,10 @@ let projectManager = ProjectManager()
 
 class ProjectManager
 {
+    let RecentProjectIDKey = "last_project_id_key"
+    let userDefaults = NSUserDefaults()
+    
+    
     func getProjectsSortedByDistance(currentLocation: CLLocation)->[Project]
     {
         return sortProjectsByDistance(projectDAO.getProjects(), currentLocation: currentLocation)
@@ -35,5 +39,24 @@ class ProjectManager
     {
         return sorted(projects, {(project1: Project, project2: Project)->Bool in
             return currentLocation.distanceFromLocation(project1.location) < currentLocation.distanceFromLocation(project2.location)})
+    }
+    
+    
+    func archiveProject(project: Project)
+    {
+        removeRecentProjectFromUserDefaults(project)
+        projectDAO.archiveProject(project)
+    }
+    
+    
+    func removeRecentProjectFromUserDefaults(project: Project)
+    {
+        if let projectId = userDefaults.stringForKey(RecentProjectIDKey)
+        {
+            if projectId == project.id
+            {
+                userDefaults.removeObjectForKey(RecentProjectIDKey)
+            }
+        }
     }
 }

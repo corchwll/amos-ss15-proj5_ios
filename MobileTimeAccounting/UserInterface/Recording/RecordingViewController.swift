@@ -118,13 +118,19 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     override func viewDidAppear(animated: Bool)
     {
-        if let project = project
+        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
         {
             setUpNavigationItemButton()
             setButtonStateForHasProject(true)
             loadRecentProject()
             setProjectHeading()
             loadProjectSessions()
+        }
+        else
+        {
+            setButtonStateForHasProject(false)
+            projectIdLabel.text = ""
+            projectNameLabel.text = ""
         }
     }
     
@@ -177,10 +183,12 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func loadRecentProject()
     {
-        let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)!
-        if let project = projectDAO.getProject(recentProjectId)
+        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
         {
-            setProject(project)
+            if let project = projectDAO.getProject(recentProjectId)
+            {
+                setProject(project)
+            }
         }
     }
     
