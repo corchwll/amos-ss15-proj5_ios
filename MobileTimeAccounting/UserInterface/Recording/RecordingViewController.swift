@@ -122,6 +122,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
         {
             setUpNavigationItemButton()
             setButtonStateForHasProject(true)
+            loadRecentProject()
             setProjectHeading()
             loadProjectSessions()
         }
