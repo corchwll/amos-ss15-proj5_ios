@@ -25,16 +25,60 @@ let projectManager = ProjectManager()
 
 class ProjectManager
 {
-    let RecentProjectIDKey = "last_project_id_key"
+    let RecentProjectIdKey = "RecentProjectIdKey"
     let userDefaults = NSUserDefaults()
     
     
+    /*
+        Returns project with given project id form database.
+        
+        @methodtype Query
+        @pre Project id is valid
+        @post Returns project or nil if id does not exist
+    */
+    func getProject(projectId: String)->Project?
+    {
+        return projectDAO.getProject(projectId)
+    }
+    
+    
+    /*
+        Returns all projects sorted by distance to current Location parameter from nearest to furthest.
+        
+        @methodtype Query
+        @pre -
+        @post Returns projects sorted by distance
+    */
     func getProjectsSortedByDistance(currentLocation: CLLocation)->[Project]
     {
         return sortProjectsByDistance(projectDAO.getProjects(), currentLocation: currentLocation)
     }
     
     
+    /*
+        Archives project by setting boolean value 'is archived' to true.
+        
+        @methodtype Command
+        @pre Project must be existing
+        @post Archives project by setting boolean
+    */
+    func archiveProject(project: Project)
+    {
+        if project.id == getRecentProjectId()
+        {
+            removeRecentProject()
+        }
+        projectDAO.archiveProject(project)
+    }
+    
+    
+    /*
+        Sorts all projects in a given projects array by distance from nearest to furthest.
+        
+        @methodtype Helper
+        @pre -
+        @post Returns projects sorted by distance
+    */
     func sortProjectsByDistance(projects: [Project], currentLocation: CLLocation)->[Project]
     {
         return sorted(projects, {(project1: Project, project2: Project)->Bool in
@@ -42,21 +86,58 @@ class ProjectManager
     }
     
     
-    func archiveProject(project: Project)
+    /*
+        Marks project as most recent project by storing id into user defaults.
+        
+        @methodtype Command
+        @pre -
+        @post Marks project as most recent project
+    */
+    func setRecentProject(project: Project)
     {
-        removeRecentProjectFromUserDefaults(project)
-        projectDAO.archiveProject(project)
+        userDefaults.setObject(project.id, forKey: RecentProjectIdKey)
     }
     
     
-    func removeRecentProjectFromUserDefaults(project: Project)
+    /*
+        Returns most recent project by using id from user defaults and querying project form database.
+        
+        @methodtype Query
+        @pre Project must be existend and there must be a recent project
+        @post Returns most recent project or nil
+    */
+    func getRecentProject()->Project?
     {
-        if let projectId = userDefaults.stringForKey(RecentProjectIDKey)
+        if let projectId = getRecentProjectId()
         {
-            if projectId == project.id
-            {
-                userDefaults.removeObjectForKey(RecentProjectIDKey)
-            }
+            return getProject(projectId)
         }
+        return nil
+    }
+    
+    
+    /*
+        Returns id of the most recent project.
+        
+        @methodtype Query
+        @pre -
+        @post Returns recent project id or nil
+    */
+    func getRecentProjectId()->String?
+    {
+        return userDefaults.stringForKey(RecentProjectIdKey)
+    }
+    
+    
+    /*
+        Removes most recent project mark from project.
+    
+        @methodtype Command
+        @pre -
+        @post Removes recent project mark from project
+    */
+    func removeRecentProject()
+    {
+        userDefaults.removeObjectForKey(RecentProjectIdKey)
     }
 }

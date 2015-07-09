@@ -52,7 +52,9 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad()
     {
         setNotification(NSDate().dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
-        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
+        
+        loadRecentProject()
+        if project != nil
         {
             setUpNavigationItemButton()
             setButtonStateForHasProject(true)
@@ -118,7 +120,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     override func viewDidAppear(animated: Bool)
     {
-        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
+        loadRecentProject()
+        if project != nil
         {
             setUpNavigationItemButton()
             setButtonStateForHasProject(true)
@@ -183,27 +186,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func loadRecentProject()
     {
-        if let recentProjectId = nsUserDefaults.stringForKey(RECENT_PROJECT_ID_KEY)
-        {
-            if let project = projectDAO.getProject(recentProjectId)
-            {
-                setProject(project)
-            }
-        }
-    }
-    
-    
-    /*
-        Setting new active project, ready for recording.
-        
-        @methodtype Setter
-        @pre -
-        @post New project is set, along with recent project id
-    */
-    func setProject(project: Project)
-    {
-        self.project = project
-        nsUserDefaults.setObject(project.id, forKey: RECENT_PROJECT_ID_KEY)
+        project = projectManager.getRecentProject()
     }
     
 

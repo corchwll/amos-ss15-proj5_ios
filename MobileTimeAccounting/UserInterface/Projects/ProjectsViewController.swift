@@ -72,16 +72,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
+        Tab bar delegate function, called when transitioning to a new tab.
         Sets search controller inactive because of ui issues if tab was changed and search is still active.
         
         @methodtype Command
         @pre -
         @post SearchController is inactive
     */
-    func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController)
+    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
     {
         searchController.active = false
+        return nil
     }
+
     
     
     /*
@@ -461,23 +464,15 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
             {
                 return nil
             }
-            
             performSegueWithIdentifier("edit_project_segue", sender: indexPath)
-            return indexPath
         }
         else
         {
-            searchController.active = false
             tabBarController?.selectedIndex = 0
-            
-            var navigationViewController = tabBarController?.viewControllers?.first as! UINavigationController
-            var recordingViewController = navigationViewController.visibleViewController as! RecordingViewController
-            
             let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
-            
-            recordingViewController.setProject(project)
-            return indexPath
+            projectManager.setRecentProject(project)
         }
+        return indexPath
     }
     
     

@@ -68,6 +68,7 @@ class ProjectManagerTests: XCTestCase
     
     override func tearDown()
     {
+        projectManager.removeRecentProject()
         for project in projects
         {
             projectDAO.removeProject(project)
@@ -107,5 +108,39 @@ class ProjectManagerTests: XCTestCase
         pass = pass || projects[0].id == sortedProjects[5].id
         
         XCTAssert(!pass, "Pass")
+    }
+    
+    
+    func testSetRecentProject_ValidProject_RecentProjectSet()
+    {
+        var pass = false
+        projectManager.setRecentProject(projects[0])
+        
+        if let project = projectManager.getRecentProject()
+        {
+            pass = true
+            pass = pass && project.id == projects[0].id
+            pass = pass && project.name == projects[0].name
+            pass = pass && Int(project.finalDate.timeIntervalSince1970) == Int(projects[0].finalDate.timeIntervalSince1970)
+            pass = pass && project.location.coordinate.latitude == projects[0].location.coordinate.latitude
+            pass = pass && project.location.coordinate.longitude == projects[0].location.coordinate.longitude
+        }
+        
+        XCTAssert(pass, "Pass")
+    }
+    
+    
+    func testRemoveRecentProject_ProjectMarkedAsRecentProject_RecentProjectRemoved()
+    {
+        var pass = true
+        projectManager.setRecentProject(projects[0])
+        projectManager.removeRecentProject()
+        
+        if let project = projectManager.getRecentProject()
+        {
+            pass = false
+        }
+        
+        XCTAssert(pass, "Pass")
     }
 }
