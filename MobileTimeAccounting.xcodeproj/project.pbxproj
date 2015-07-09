@@ -64,6 +64,7 @@
 		E4C9D35B1B2F15FA00B1A461 /* SessionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */; };
 		E4CAC4A81B24FFBA00D3D5D1 /* UIMonthPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */; };
 		E4CDFD381B34705C008EC26B /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CDFD371B34705C008EC26B /* StringHelper.swift */; };
+		E4D5F4B21B4EC236000B32B5 /* SessionTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D5F4B11B4EC236000B32B5 /* SessionTimer.swift */; };
 		E4E0EF7E1B1353BE000C17F8 /* ProjectDAOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */; };
 		E4E0EF831B1354F0000C17F8 /* SQLiteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C44911AED8AB10044D25F /* SQLiteHelper.swift */; };
 		E4E0EF841B1354F3000C17F8 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45C448F1AED8A350044D25F /* ProjectDAO.swift */; };
@@ -210,6 +211,7 @@
 		E4C9D3591B2F15F600B1A461 /* SessionHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionHelperTests.swift; sourceTree = "<group>"; };
 		E4CAC4A71B24FFBA00D3D5D1 /* UIMonthPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIMonthPickerView.swift; sourceTree = "<group>"; };
 		E4CDFD371B34705C008EC26B /* StringHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
+		E4D5F4B11B4EC236000B32B5 /* SessionTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTimer.swift; sourceTree = "<group>"; };
 		E4E0EF7D1B1353BE000C17F8 /* ProjectDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAOTests.swift; sourceTree = "<group>"; };
 		E4EC18C81B39F4D8008111EB /* EditProjectTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProjectTableViewController.swift; sourceTree = "<group>"; };
 		E4F02E011B149F3300493452 /* SessionDAOTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDAOTests.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				E48516F41B3023F500F54F9A /* SessionManager.swift */,
 				E4C9D3571B2EEF0200B1A461 /* SessionHelper.swift */,
 				E49C33EB1B3C276600B1039C /* SessionValidator.swift */,
+				E4D5F4B11B4EC236000B32B5 /* SessionTimer.swift */,
 			);
 			path = Recording;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				E41B9C2D1AEF833600EE9CFD /* Session.swift in Sources */,
 				E45C44921AED8AB10044D25F /* SQLiteHelper.swift in Sources */,
 				E4CDFD381B34705C008EC26B /* StringHelper.swift in Sources */,
+				E4D5F4B21B4EC236000B32B5 /* SessionTimer.swift in Sources */,
 				E405609E1B2E15850009362C /* Alerts.swift in Sources */,
 				E4F54CAF1B167701008E92C2 /* OvertimeHelper.swift in Sources */,
 				E444CDB61AF52E25006DF820 /* ProfileDAO.swift in Sources */,

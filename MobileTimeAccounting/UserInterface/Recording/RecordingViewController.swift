@@ -19,7 +19,7 @@
 import UIKit
 
 
-class RecordingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewSessionDelegate
+class RecordingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NewSessionDelegate, SessionTimerDelegate
 {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var startStopButton: UIButton!
@@ -29,17 +29,11 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var projectSessionsTableView: UITableView!
     
-
-    let nsUserDefaults = NSUserDefaults()
-    let RECENT_PROJECT_ID_KEY = "last_project_id_key"
-    
     let notificationTime = (hour: 21, minute: 23, seconds: 0)
-    
-    var timer: NSTimer!
+    var sessionTimer: SessionTimer!
     var project: Project!
-    var projectSessions: [Session]!
+    var projectSessions = [Session]()
     var session: Session = Session()
-    var isRunning: Bool = false
     
     
     /*
@@ -51,26 +45,73 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     override func viewDidLoad()
     {
+        super.viewDidLoad()
+        
+        sessionTimer = SessionTimer(delegate: self)
         setNotification(NSDate().dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
         
         loadRecentProject()
         if project != nil
         {
             setUpNavigationItemButton()
-            setButtonStateForHasProject(true)
-            loadRecentProject()
-            setProjectHeading()
-            loadProjectSessions()
-        }
-        else
-        {
-            setButtonStateForHasProject(false)
         }
     }
     
     
     /*
-        Sets new notifaction for a given time after canceling all other local notifiactions. 
+        iOS life-cycle function, called when view did appear.
+        Enables/Hides all buttons based on current project situation (if a project is active or not).
+        
+        @methodtype Hook
+        @pre -
+        @post Buttons are enabled/disabled/hidden/visible
+    */
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        if sessionTimer.isPaused
+        {
+            sessionTimer.resume()
+        }
+        else
+        {
+            loadRecentProject()
+            if project != nil
+            {
+                setButtonStateForHasProject(true)
+            }
+            else
+            {
+                setButtonStateForHasProject(false)
+                projectIdLabel.text = ""
+                projectNameLabel.text = ""
+            }
+        }
+    }
+    
+    
+    /*
+        iOS life-cycle function, called when view did disappear.
+        Pauses session timer if it is running.
+        
+        @methodtype Hook
+        @pre -
+        @post Pauses session timer
+    */
+    override func viewDidDisappear(animated: Bool)
+    {
+        super.viewDidDisappear(animated)
+        
+        if sessionTimer.isRunning
+        {
+            sessionTimer.pause()
+        }
+    }
+    
+    
+    /*
+        Sets new notifaction for a given time after canceling all other local notifiactions.
         If the given time is not an empty day it will check day after day unitl a valid day for setting a notifiaction is found.
         
         @methodtype Command
@@ -103,43 +144,43 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func setUpNavigationItemButton()
     {
-        if navigationItem.leftBarButtonItem == nil
-        {
-            navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
-        }
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
     }
     
     
     /*
-        iOS life-cycle function, called when view did appear.
-        Enables/Hides all buttons based on current project situation (if a project is active or not).
+        Function for 'edit'-button selector. 
+        Enables editing of projects and morphs 'edit' into 'done'.
         
-        @methodtype Hook
+        @methodtype Command
         @pre -
-        @post Buttons are enabled/disabled/hidden/visible
+        @post Editing of projects enabled
     */
-    override func viewDidAppear(animated: Bool)
+    func edit()
     {
-        loadRecentProject()
-        if project != nil
-        {
-            setUpNavigationItemButton()
-            setButtonStateForHasProject(true)
-            loadRecentProject()
-            setProjectHeading()
-            loadProjectSessions()
-        }
-        else
-        {
-            setButtonStateForHasProject(false)
-            projectIdLabel.text = ""
-            projectNameLabel.text = ""
-        }
+        projectSessionsTableView.setEditing(true, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done")), animated: true)
     }
     
     
     /*
-        Function is setting the button status of 'start'/'stop'-button, 'new session'-button and 'choose project'-button.
+        Function for 'done'-button selector. 
+        Disables editing of projects and morphs 'done' into 'edit'.
+        
+        @methodtype Command
+        @pre -
+        @post Editing of projects disabled
+    */
+    func done()
+    {
+        projectSessionsTableView.setEditing(false, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+    }
+    
+    
+    /*
+        Function is setting the button status of 'start'/'stop'-button, 
+        'new session'-button and 'choose project'-button.
         
         @methodtype Command
         @pre Buttons are available
@@ -154,6 +195,29 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     /*
+        Function is loading the most recent project.
+        If no project can be found, it is set to nil.
+        
+        @methodtype Command
+        @pre There must be a recent project
+        @post Recent project has been set
+    */
+    func loadRecentProject()
+    {
+        if let project = projectManager.getRecentProject()
+        {
+            self.project = project
+            setProjectHeading()
+            loadProjectSessions()
+        }
+        else
+        {
+            self.project = nil
+        }
+    }
+    
+    
+    /*
         Function is setting the heading for projects.
         
         @methodtype Command
@@ -162,31 +226,22 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func setProjectHeading()
     {
-        if let project = project
-        {
-            projectIdLabel.text = String(project.id)
-            projectNameLabel.text = project.name
-        }
-    }
-    
-    
-    func loadProjectSessions()
-    {
-        projectSessions = sessionDAO.getSessions(project)
-        projectSessionsTableView.reloadData()
+        projectIdLabel.text = String(project.id)
+        projectNameLabel.text = project.name
     }
     
     
     /*
-        Function is loading the most recent project.
+        Function is loading all project sessions.
         
         @methodtype Command
-        @pre There must be a recent project
-        @post Recent project has been set
+        @pre Project must be set
+        @post Project sessions have been loaded
     */
-    func loadRecentProject()
+    func loadProjectSessions()
     {
-        project = projectManager.getRecentProject()
+        projectSessions = sessionDAO.getSessions(project)
+        projectSessionsTableView.reloadData()
     }
     
 
@@ -211,13 +266,6 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     
-    func didAddNewSession()
-    {
-        loadProjectSessions()
-        setNotification(NSDate().dateByAddingDays(1)!.dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
-    }
-    
-    
     /*
         Function is called when asking the total number of cells in table view.
         
@@ -227,19 +275,13 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        if let projectSessions = self.projectSessions
-        {
-            return projectSessions.count
-        }
-        else
-        {
-            return 0
-        }
+        return projectSessions.count
     }
     
     
     /*
-        Function is called when populating table row cells. Project session are loaded into table view cells.
+        Function is called when populating table row cells. 
+        Project session are loaded into table view cells.
         
         @methodtype Command
         @pre Project sessions are available
@@ -310,7 +352,8 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     /*
-        Function is called when editing table cell. Deletes the selected session and removes corrosponding table cell.
+        Function is called when editing table cell. 
+        Deletes the selected session and removes corrosponding table cell.
         
         @methodtype Command
         @pre -
@@ -349,118 +392,51 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     @IBAction func toggleTimeRecording(sender: AnyObject)
     {
-        if isRunning
+        if sessionTimer.isRunning
         {
-            session.endTime = NSDate()
+            session.endTime = sessionTimer.stop()
             sessionManager.addSession(session, project: project!)
             didAddNewSession()
-            loadProjectSessions()
-        
-            stopVisualizingTimer()
-            isRunning = false
+            
+            startStopButton.setTitle("START", forState: .Normal)
+            startStopButton.backgroundColor = UIColor(red: 0x00, green: 0x91/0xff, blue: 0x8e/0xff, alpha: 0xff)
         }
         else
         {
-            session.startTime = NSDate()
-        
-            startVisualizingTimer()
-            isRunning = true
+            session.startTime = sessionTimer.start()
+            
+            startStopButton.setTitle("STOP", forState: .Normal)
+            startStopButton.backgroundColor = UIColor.redColor()
+            timeLabel.text = "0:00"
         }
     }
     
     
     /*
-        Visualizes elapsed time on screen.
-    
+        Called when a new session has been added.
+        Reloads all project sessions and sets new notification to next possible day.
+        
         @methodtype Command
         @pre -
-        @post Running timer
+        @post Reloads all sessions and sets notification
     */
-    func startVisualizingTimer()
+    func didAddNewSession()
     {
-        startStopButton.setTitle("STOP", forState: .Normal)
-        startStopButton.backgroundColor = UIColor.redColor()
-        timeLabel.text = formatTimeToString(0)
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+        loadProjectSessions()
+        setNotification(NSDate().dateByAddingDays(1)!.dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
     }
     
     
     /*
         Callback function for timer.
         Updates elapsed time along with ui.
-    
+        
         @methodtype Command
         @pre -
         @post Update on ui and elapsed time
     */
-    func updateTimer()
+    func didUpdateTimer(elapsedTime: String)
     {
-        var elapsedTime = (Int(NSDate().timeIntervalSinceDate(session.startTime)))
-        timeLabel.text = formatTimeToString(elapsedTime)
-    }
-    
-    
-    /*
-        Stop Visualization.
-    
-        @methodtype Command
-        @pre Valid timer object
-        @post Invalidated and deleted timer
-    */
-    func stopVisualizingTimer()
-    {
-        if(timer != nil)
-        {
-            startStopButton.setTitle("START", forState: .Normal)
-            startStopButton.backgroundColor = UIColor(red: 0x00, green: 0x91/0xff, blue: 0x8e/0xff, alpha: 0xff)
-            timer.invalidate()
-            timer = nil
-        }
-    }
-    
-    
-    /*
-        Formats a given time interval in seconds to a string representation e.g.
-        128 -> 2 m 08 s
-    
-        @methodtype Convert
-        @pre Time interval in seconds
-        @post Converted string, representing the time
-    */
-    func formatTimeToString(elapsedTime : Int) -> String
-    {
-        var minutes = elapsedTime/60
-        var seconds = elapsedTime%60
-        
-        return String(format: "%d:%0.2d", minutes, seconds)
-    }
-    
-    
-    /*
-        Function for 'edit'-button selector. Enables editing of projects and morphs 'edit' into 'done'.
-        
-        @methodtype Command
-        @pre -
-        @post Editing of projects enabled
-    */
-    func edit()
-    {
-        projectSessionsTableView.setEditing(true, animated: true)
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: Selector("done")), animated: true)
-    }
-    
-    
-    /*
-        Function for 'done'-button selector. Disables editing of projects and morphs 'done' into 'edit'.
-        
-        @methodtype Command
-        @pre -
-        @post Editing of projects disabled
-    */
-    func done()
-    {
-        projectSessionsTableView.setEditing(false, animated: true)
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+        timeLabel.text = elapsedTime
     }
 }
-

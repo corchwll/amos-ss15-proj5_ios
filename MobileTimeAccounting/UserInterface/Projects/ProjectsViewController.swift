@@ -468,9 +468,9 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         else
         {
-            tabBarController?.selectedIndex = 0
             let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
             projectManager.setRecentProject(project)
+            tabBarController?.selectedIndex = 0
         }
         return indexPath
     }
