@@ -28,6 +28,21 @@ class ProjectManager
     let RecentProjectIdKey = "RecentProjectIdKey"
     let userDefaults = NSUserDefaults()
     
+    let defaultProjects = [
+        Project(id: "00001", name: "Vacation"),
+        Project(id: "00002", name: "Illness"),
+        Project(id: "00003", name: "Office"),
+        Project(id: "00004", name: "Training")
+    ]
+    
+    enum DefaultProject
+    {
+        case Vacation
+        case Illnes
+        case Office
+        case Training
+    }
+    
     
     /*
         Returns project with given project id form database.
@@ -139,5 +154,49 @@ class ProjectManager
     func removeRecentProject()
     {
         userDefaults.removeObjectForKey(RecentProjectIdKey)
+    }
+    
+    
+    /*
+        Validates if project is a default project.
+        
+        @methodtype Boolean Query
+        @pre -
+        @post Returns boolean if project is default project
+    */
+    func isDefaultProject(project: Project)->Bool
+    {
+        let filterCount = defaultProjects.filter({(defaultProject: Project)->Bool in
+            return project.id == defaultProject.id}).count
+        return filterCount == 1
+    }
+    
+    
+    /*
+        Returns requested default project as object.
+        
+        @methodtype Query
+        @pre Valid enumeration parameter value
+        @post Returns default project object
+    */
+    func getDefaultProject(defaultProject: DefaultProject)->Project?
+    {
+        switch defaultProject
+        {
+        case .Vacation:
+            return defaultProjects[0]
+
+        case .Illnes:
+            return defaultProjects[1]
+        
+        case .Office:
+            return defaultProjects[2]
+        
+        case .Training:
+            return defaultProjects[3]
+            
+        default:
+            return nil
+        }
     }
 }

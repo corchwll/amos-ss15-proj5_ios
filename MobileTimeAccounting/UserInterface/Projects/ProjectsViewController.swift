@@ -59,50 +59,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
-        Sets up tab bar controller by setting delegate.
-        
-        @methodtype Command
-        @pre Tab bar controller available
-        @post Delegate is set
-    */
-    func setUpTabBarController()
-    {
-        tabBarController!.delegate = self
-    }
-    
-    
-    /*
-        Tab bar delegate function, called when transitioning to a new tab.
-        Sets search controller inactive because of ui issues if tab was changed and search is still active.
-        
-        @methodtype Command
-        @pre -
-        @post SearchController is inactive
-    */
-    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
-    {
-        searchController.active = false
-        return nil
-    }
-
-    
-    
-    /*
-        iOS life-cycle function, called when view will disappear. Sets editing false and stops location manager.
-        
-        @methodtype Hook
-        @pre -
-        @post Stops location manager and leaves editing mode
-    */
-    override func viewWillDisappear(animated: Bool)
-    {
-        projectsTableView.setEditing(false, animated: true)
-        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
-        locationManager.stopUpdatingLocation()
-    }
-    
-    
-    /*
         Sets left navigation item button for editing projects.
         
         @methodtype Command
@@ -138,18 +94,15 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
-        Called when orientation is changed. Sets search controller inactive and hides/resizes search bar button
-        because some ugly effects happen while searching and changing screen orientation.
+        Sets up tab bar controller by setting delegate.
         
-        @methodtype Hook
-        @pre Orientation change
-        @post Resize search bar and set controller inactive
+        @methodtype Command
+        @pre Tab bar controller available
+        @post Delegate is set
     */
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    func setUpTabBarController()
     {
-        searchController.active = false
-        searchController.searchBar.showsCancelButton = false
-        searchController.searchBar.frame = CGRectMake(0, 0, size.width, searchController.searchBar.frame.height)
+        tabBarController!.delegate = self
     }
     
     
@@ -167,24 +120,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
     }
     
-    
-    /*
-        Callback function, called when location manager updates current location.
-        
-        @methodtype Command
-        @pre Projects table view not editing
-        @post Refreshes project list, sorted by distance
-    */
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
-    {
-        if !projectsTableView.editing
-        {
-            projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
-            archiveProjectsIntoSortedByDistanceDictionary(projects, dictionary: &dictionary)
-            projectsTableView.reloadData()
-        }
-    }
-
     
     /*
         iOS life-cycle function. Reloading all projects into ui.
@@ -259,6 +194,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    
     /*
         Function is archiving all given projects into a dictionary for sorting by distance.
         
@@ -287,6 +223,72 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 dictionary[headers[1]]?.append(project)
             }
+        }
+    }
+    
+    
+    /*
+        iOS life-cycle function, called when view will disappear. Sets editing false and stops location manager.
+        
+        @methodtype Hook
+        @pre -
+        @post Stops location manager and leaves editing mode
+    */
+    override func viewWillDisappear(animated: Bool)
+    {
+        super.viewWillDisappear(animated)
+        
+        projectsTableView.setEditing(false, animated: true)
+        navigationItem.setLeftBarButtonItem(UIBarButtonItem(barButtonSystemItem: .Edit, target: self, action: Selector("edit")), animated: true)
+        locationManager.stopUpdatingLocation()
+    }
+    
+    
+    /*
+        Tab bar delegate function, called when transitioning to a new tab.
+        Sets search controller inactive because of ui issues if tab was changed and search is still active.
+        
+        @methodtype Command
+        @pre -
+        @post SearchController is inactive
+    */
+    func tabBarController(tabBarController: UITabBarController, animationControllerForTransitionFromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        searchController.active = false
+        return nil
+    }
+
+    
+    /*
+        Called when orientation is changed. Sets search controller inactive and hides/resizes search bar button
+        because some ugly effects happen while searching and changing screen orientation.
+        
+        @methodtype Hook
+        @pre Orientation change
+        @post Resize search bar and set controller inactive
+    */
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator)
+    {
+        searchController.active = false
+        searchController.searchBar.showsCancelButton = false
+        searchController.searchBar.frame = CGRectMake(0, 0, size.width, searchController.searchBar.frame.height)
+    }
+    
+    
+    /*
+        Callback function, called when location manager updates current location.
+        
+        @methodtype Command
+        @pre Projects table view not editing
+        @post Refreshes project list, sorted by distance
+    */
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)
+    {
+        if !projectsTableView.editing
+        {
+            projects = projectManager.getProjectsSortedByDistance(locations.last as! CLLocation)
+            archiveProjectsIntoSortedByDistanceDictionary(projects, dictionary: &dictionary)
+            projectsTableView.reloadData()
         }
     }
     
@@ -457,10 +459,10 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
     {
+        let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
         if projectsTableView.editing
         {
-            var project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
-            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
+            if projectManager.isDefaultProject(project)
             {
                 return nil
             }
@@ -468,7 +470,6 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         else
         {
-            let project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
             projectManager.setRecentProject(project)
             tabBarController?.selectedIndex = 0
         }
@@ -535,19 +536,12 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     */
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
-        if projectsTableView.editing
+        var project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
+        if projectManager.isDefaultProject(project)
         {
-            var project = dictionary[sectionHeaders[indexPath.section]]![indexPath.row]
-            if project.id == "00001" || project.id == "00002" || project.id == "00003" || project.id == "00004"
-            {
-                return false
-            }
-            else
-            {
-                return true
-            }
+            return false
         }
-        return false
+        return true
     }
     
     

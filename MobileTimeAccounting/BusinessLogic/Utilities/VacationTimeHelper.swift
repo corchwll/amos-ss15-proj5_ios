@@ -26,7 +26,6 @@ class VacationTimeHelper
 {
     let ExpiringMonth = 4
     let calendar = NSCalendar.currentCalendar()
-    let vacationProject = Project(id: "00001", name: "Vacation")
     
     
     /*
@@ -80,6 +79,7 @@ class VacationTimeHelper
     */
     private func getVacationDaysInRange(fromTime: NSDate, toTime: NSDate)->Int
     {
+        let vacationProject = projectManager.getDefaultProject(.Vacation)!
         let vacationSessions = sessionDAO.getSessions(fromTime, toTime: toTime, project: vacationProject)
 
         var vacationDays = 0
