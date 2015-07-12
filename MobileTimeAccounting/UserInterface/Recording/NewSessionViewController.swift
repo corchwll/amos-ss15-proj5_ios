@@ -35,15 +35,15 @@ class NewSessionViewController: UITableViewController
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var dateWarningLabel: UILabel!
 
-
+    let DefaultStartTime = NSDate(hour: 8, minute: 0, second: 0, day: 0, month: 0, year: 0, calendar: NSCalendar.currentCalendar())
+    let DefaultEndTime = NSDate(hour: 16, minute: 0, second: 0, day: 0, month: 0, year: 0, calendar: NSCalendar.currentCalendar())
+    
     var delegate: NewSessionDelegate!
     let timeFormatter = NSDateFormatter()
     let dateFormatter = NSDateFormatter()
     var datePicker = UIDatePicker()
     var timePickerFrom = UIDatePicker()
     var timePickerTo = UIDatePicker()
-    
-    var session = Session()
     var project: Project!
     
     
@@ -59,8 +59,8 @@ class NewSessionViewController: UITableViewController
         super.viewDidLoad()
         
         setUpProjectHeading()
-        setUpDateTimeFormatters()
-        setUpSession()
+        setUpTimeFormatter()
+        setUpDateFormatter()
         setUpTimeTextFields()
     }
     
@@ -75,39 +75,36 @@ class NewSessionViewController: UITableViewController
     func setUpProjectHeading()
     {
         projectNameLabel.text = project.name
-        projectIdLabel.text = String(project.id)
+        projectIdLabel.text = project.id
     }
     
     
     /*
-        Function is setting up date/time formatters.
+        Function is setting up time formatter.
         
         @methodtype Command
-        @pre Valid and initialized formatter objects
-        @post Date and time formatters are set up
+        @pre Initialized formatter object
+        @post Time formatters is set up
     */
-    func setUpDateTimeFormatters()
+    func setUpTimeFormatter()
     {
         timeFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
         timeFormatter.dateStyle = NSDateFormatterStyle.NoStyle
         timeFormatter.locale = NSLocale(localeIdentifier: "en_DE")
-        
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
     }
     
     
     /*
-        Function is setting up new session.
+        Function is setting up date formatter.
         
         @methodtype Command
-        @pre Valid session object
-        @post Session has been set up
+        @pre Initialized formatter object
+        @post Date formatters is set up
     */
-    func setUpSession()
+    func setUpDateFormatter()
     {
-        session.startTime = timeFormatter.dateFromString("08:00")!
-        session.endTime = timeFormatter.dateFromString("16:00")!
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
     }
     
     
@@ -120,30 +117,35 @@ class NewSessionViewController: UITableViewController
     */
     func setUpTimeTextFields()
     {
-        setDate(NSDate())
-        fromTextField.text = timeFormatter.stringFromDate(session.startTime)
-        toTextField.text = timeFormatter.stringFromDate(session.endTime)
-        
-        datePicker.datePickerMode = UIDatePickerMode.Date
-        datePicker.addTarget(self, action: Selector("datePickerDidChange"), forControlEvents: UIControlEvents.ValueChanged)
-        dateTextField.inputView = datePicker
-        
-        timePickerFrom.datePickerMode = UIDatePickerMode.Time
-        timePickerFrom.minuteInterval = 30
-        timePickerFrom.locale = NSLocale(localeIdentifier: "en_DE")
-        timePickerFrom.addTarget(self, action: Selector("timePickerFromDidChange"), forControlEvents: UIControlEvents.ValueChanged)
-        timePickerFrom.date = session.startTime
-        fromTextField.inputView = timePickerFrom
-        
-        timePickerTo.datePickerMode = UIDatePickerMode.Time
-        timePickerTo.minuteInterval = 30
-        timePickerTo.locale = NSLocale(localeIdentifier: "en_DE")
-        timePickerTo.addTarget(self, action: Selector("timePickerToDidChange"), forControlEvents: UIControlEvents.ValueChanged)
-        timePickerTo.date = session.endTime
-        toTextField.inputView = timePickerTo
+        setUpDateTextField()
+        setUpStartTimeTextField()
+        setUpEndTimeTextField()
     }
     
     
+    /*
+        Sets up date text field by using current date and setting input view.
+        
+        @methodtype Command
+        @pre Initialized date picker object
+        @post Date text field is set up
+    */
+    func setUpDateTextField()
+    {
+        setDate(NSDate())
+        datePicker.datePickerMode = UIDatePickerMode.Date
+        datePicker.addTarget(self, action: Selector("datePickerDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        dateTextField.inputView = datePicker
+    }
+    
+    
+    /*
+        Sets date to date text field. If date is a holiday, saturday or sunday a warning is shown.
+        
+        @methodtype Command
+        @pre -
+        @post Date is set
+    */
     func setDate(date: NSDate)
     {
         dateTextField.text = dateFormatter.stringFromDate(date)
@@ -175,7 +177,7 @@ class NewSessionViewController: UITableViewController
         
         @methodtype Hook
         @pre -
-        @post -
+        @post Date is set
     */
     func datePickerDidChange()
     {
@@ -184,11 +186,31 @@ class NewSessionViewController: UITableViewController
     
     
     /*
+        Sets up start time text field along with input view.
+        
+        @methodtype Command
+        @pre Initialized time picker
+        @post Start time text field is set up
+    */
+    func setUpStartTimeTextField()
+    {
+        timePickerFrom.datePickerMode = UIDatePickerMode.Time
+        timePickerFrom.minuteInterval = 30
+        timePickerFrom.locale = NSLocale(localeIdentifier: "en_DE")
+        timePickerFrom.addTarget(self, action: Selector("timePickerFromDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        timePickerFrom.date = DefaultStartTime
+        
+        fromTextField.inputView = timePickerFrom
+        fromTextField.text = timeFormatter.stringFromDate(DefaultStartTime)
+    }
+    
+    
+    /*
         Listener function for start time picker. Updating session start time.
         
         @methodtype Hook
         @pre -
-        @post -
+        @post Time is set
     */
     func timePickerFromDidChange()
     {
@@ -198,11 +220,31 @@ class NewSessionViewController: UITableViewController
     
     
     /*
+        Sets up end time text field along with input view.
+        
+        @methodtype Command
+        @pre Initialized time picker
+        @post End time text field is set up
+    */
+    func setUpEndTimeTextField()
+    {
+        timePickerTo.datePickerMode = UIDatePickerMode.Time
+        timePickerTo.minuteInterval = 30
+        timePickerTo.locale = NSLocale(localeIdentifier: "en_DE")
+        timePickerTo.addTarget(self, action: Selector("timePickerToDidChange"), forControlEvents: UIControlEvents.ValueChanged)
+        timePickerTo.date = DefaultEndTime
+        
+        toTextField.inputView = timePickerTo
+        toTextField.text = timeFormatter.stringFromDate(DefaultEndTime)
+    }
+    
+    
+    /*
         Listener function for end time picker. Updating session end time.    
         
         @methodtype Hook
         @pre -
-        @post -
+        @post End time is set
     */
     func timePickerToDidChange()
     {
@@ -236,9 +278,27 @@ class NewSessionViewController: UITableViewController
         
         @methodtype Command
         @pre Valid SessionDAO singleton
-        @post New session, stored into database
+        @post New session is stored into database
     */
     @IBAction func addNewSession(sender: AnyObject)
+    {
+        let session = getSessionFromTextFields()
+        if sessionManager.addSession(session, project: project)
+        {
+            self.dismissViewControllerAnimated(true, completion: {})
+            delegate.didAddNewSession()
+        }
+    }
+    
+    
+    /*
+        Returns new session by using all input values and merge them together into one session object.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns new session object
+    */
+    func getSessionFromTextFields() -> Session
     {
         var calendar = NSCalendar.currentCalendar()
         var dateComponent = calendar.components(.CalendarUnitTimeZone | .CalendarUnitDay | .CalendarUnitMonth | .CalendarUnitYear, fromDate: dateFormatter.dateFromString(dateTextField.text)!)
@@ -253,14 +313,7 @@ class NewSessionViewController: UITableViewController
         toTimeComponent.month = dateComponent.month
         toTimeComponent.year = dateComponent.year
         
-        session.startTime = calendar.dateFromComponents(fromTimeComponent)!
-        session.endTime = calendar.dateFromComponents(toTimeComponent)!
-        
-        if sessionManager.addSession(session, project: project)
-        {
-            self.dismissViewControllerAnimated(true, completion: {})
-            delegate.didAddNewSession()
-        }
+        return Session(startTime: calendar.dateFromComponents(fromTimeComponent)!, endTime: calendar.dateFromComponents(toTimeComponent)!)
     }
     
     

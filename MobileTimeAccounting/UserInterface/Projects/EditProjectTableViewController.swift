@@ -203,6 +203,7 @@ class EditProjectTableViewController: UITableViewController, CLLocationManagerDe
         findLocationButton.hidden = false
     }
 
+    
     /*
         Called when project editing is done. Updates project in database.
     

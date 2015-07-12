@@ -72,7 +72,8 @@ class SettingsTableViewController: UITableViewController, UISplitViewControllerD
         @pre -
         @post Returns boolean if view controller should hide
     */
-    func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool {
+    func splitViewController(svc: UISplitViewController, shouldHideViewController vc: UIViewController, inOrientation orientation: UIInterfaceOrientation) -> Bool
+    {
         return false
     }
     
@@ -84,7 +85,8 @@ class SettingsTableViewController: UITableViewController, UISplitViewControllerD
         @pre -
         @post Returns boolean if secondary view controller should collapse
     */
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool
+    {
         return true
     }
     

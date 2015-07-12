@@ -39,6 +39,21 @@ class Session
         self.startTime = NSDate()
         self.endTime = NSDate()
     }
+   
+    
+    /*
+        Constructor for model class, representing sessions.
+        
+        @methodtype Constructor
+        @pre Correct paramters != nil
+        @post Initialized session
+    */
+    convenience init(startTime: NSDate, endTime: NSDate)
+    {
+        self.init()
+        self.startTime = startTime
+        self.endTime = endTime
+    }
     
     
     /*
@@ -48,11 +63,10 @@ class Session
         @pre Correct paramters != nil
         @post Initialized session
     */
-    init(id: Int, startTime: NSDate, endTime: NSDate)
+    convenience init(id: Int, startTime: NSDate, endTime: NSDate)
     {
+        self.init(startTime: startTime, endTime: endTime)
         self.id = id
-        self.startTime = startTime
-        self.endTime = endTime
     }
     
     
