@@ -20,7 +20,7 @@ import UIKit
 import MessageUI
 
 
-class DashboardTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate
+class DashboardTableViewController: UITableViewController
 {
     @IBOutlet weak var overtimeLabel: UILabel!
     @IBOutlet weak var vacationDaysLabel: UILabel!
@@ -81,41 +81,5 @@ class DashboardTableViewController: UITableViewController, UIPopoverPresentation
             vacationDaysLabel.textColor = UIColor.blackColor()
         }
         vacationDaysLabel.text = "\(vacationDaysLeft) / \(totalVacationDays)"
-    }
-    
-    
-    /*
-        iOS life-cycle function, called when performing a segue. Sets up popover view for mailing csv file.
-        
-        @methodtype Hook
-        @pre Segue has valid identifier
-        @post Popover is shown properly
-    */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
-    {
-        if segue.identifier == "csv_mail_popover"
-        {
-            let popoverViewController = segue.destinationViewController as! UINavigationController
-            popoverViewController.modalPresentationStyle = UIModalPresentationStyle.Popover
-            popoverViewController.popoverPresentationController!.delegate = self
-            
-            popoverViewController.navigationBar.barStyle = UIBarStyle.Default
-            popoverViewController.navigationBar.translucent = true
-            popoverViewController.navigationBar.barTintColor = UIToolbar.appearance().barTintColor
-            popoverViewController.popoverPresentationController?.backgroundColor = UIToolbar.appearance().barTintColor
-        }
-    }
-    
-    
-    /*
-        Function is called when asking the UIModalPresentationStyle. Returns 'none' in order to display popup window properly.
-        
-        @methodtype Command
-        @pre -
-        @post -
-    */
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController!, traitCollection: UITraitCollection!) -> UIModalPresentationStyle
-    {
-        return UIModalPresentationStyle.None
     }
 }

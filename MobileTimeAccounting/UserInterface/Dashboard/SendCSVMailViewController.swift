@@ -23,6 +23,9 @@ import MessageUI
 class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDelegate
 {
     @IBOutlet weak var monthPicker: UIMonthPickerView!
+    let emailTitle = "CSV Email"
+    let messageBody = "Accounting Email"
+    let toRecipents = ["accounting@mail.com"]
     
     
     /*
@@ -49,10 +52,6 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     */
     @IBAction func sendEmail(sender: AnyObject)
     {
-        let emailTitle = "Test Email"
-        let messageBody = "This is a test email body"
-        let toRecipents = ["blabla@mail.com"]
-        
         let mailComposeViewController = MFMailComposeViewController()
         mailComposeViewController.mailComposeDelegate = self
         mailComposeViewController.setSubject(emailTitle)
@@ -63,7 +62,8 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
         let monthComponents = NSCalendar.currentCalendar().components(.CalendarUnitMonth | .CalendarUnitYear, fromDate: month)
         mailComposeViewController.addAttachmentData(SessionsCSVExporter().exportCSV(monthComponents.month, year: monthComponents.year), mimeType: "text/csv", fileName: "accounting.csv")
         
-        mailComposeViewController.navigationBar.barStyle = UIBarStyle.Black
+        mailComposeViewController.navigationBar.barStyle = UINavigationBar.appearance().barStyle
+        mailComposeViewController.navigationBar.tintColor = UINavigationBar.appearance().tintColor
         presentViewController(mailComposeViewController, animated: true, completion: {UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)})
     }
     
@@ -90,21 +90,6 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     */
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError)
     {
-        switch result.value
-        {
-            case MFMailComposeResultCancelled.value:
-                println("Mail cancelled")
-            case MFMailComposeResultSaved.value:
-                println("Mail saved")
-            case MFMailComposeResultSent.value:
-                println("Mail sent")
-            case MFMailComposeResultFailed.value:
-                println("Mail sent failure: \(error.localizedDescription)")
-            default:
-                break
-        }
-        
-        dismissViewControllerAnimated(false, completion: nil)
         dismissViewControllerAnimated(false, completion: nil)
     }
 }

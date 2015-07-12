@@ -21,10 +21,11 @@ import UIKit
 
 class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
 {
-    let calendar = NSCalendar.currentCalendar()
-    let dateFormatter = NSDateFormatter()
-    var months = [NSDate]()
     let picker = UIPickerView()
+    let calendar = NSCalendar.currentCalendar()
+    var monthDescriptions = [String]()
+    var months = [Int]()
+    var years = [Int]()
     
     
     /*
@@ -37,7 +38,7 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     override init(frame: CGRect)
     {
         super.init(frame: frame)
-        
+
         setUpPicker()
     }
     
@@ -47,12 +48,12 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
         
         @methodtype Constructor
         @pre -
-        @post 0
+        @post -
     */
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
-        
+
         setUpPicker()
     }
     
@@ -67,8 +68,8 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     func setUpPicker()
     {
         setUpPickerView()
-        setUpDateFormatter()
-        setUpMonts()
+        setUpMonths()
+        setUpYears()
         picker.reloadAllComponents()
     }
     
@@ -82,49 +83,70 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func setUpPickerView()
     {
-        picker.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height-26)
+        self.addSubview(picker)
+        
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Leading, relatedBy: .Equal, toItem: picker, attribute: .Leading, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Trailing, relatedBy: .Equal, toItem: picker, attribute: .Trailing, multiplier: 1, constant: 0))
+        self.addConstraint(NSLayoutConstraint(item: self, attribute: .Top, relatedBy: .Equal, toItem: picker, attribute: .Top, multiplier: 1, constant: 0))
+        picker.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
         picker.delegate = self
         picker.dataSource = self
-        self.addSubview(picker)
-    }
-
-    
-    /*
-        Sets up date formatter, used to format dates in picker view.
-        
-        @methodtype Command
-        @pre -
-        @post Date formatter is set up
-    */
-    func setUpDateFormatter()
-    {
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-        dateFormatter.dateFormat = "MMM    yyyy"
     }
     
     
     /*
-        Sets up months shown in picker view. Default range from 'Jan 1' to 'Dec 10000'
+        Sets up months for picker view. To allow continous scrolling a loop of month values from 1 to 12 is set.
         
         @methodtype Command
         @pre -
         @post Months for picker are set up
     */
-    func setUpMonts()
+    func setUpMonths()
     {
-        var month = NSDateComponents()
+        setUpMonthDescriptions()
         
-        for year in 2000...3000
+        for index in 0..<1200
         {
-            for index in 1...12
-            {
-                month.month = index
-                month.year = year
-                months.append(calendar.dateFromComponents(month)!)
-            }
+            months.append(index%12 + 1)
         }
-
+        picker.selectRow(600, inComponent: 0, animated: false)
+    }
+    
+    
+    /*
+        Sets up month description, used to format months in picker view.
+        
+        @methodtype Command
+        @pre -
+        @post Month descriptions are set up
+    */
+    func setUpMonthDescriptions()
+    {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM"
+        
+        for index in 1...12
+        {
+            monthDescriptions.append(dateFormatter.stringFromDate(NSDate(month: index, year: 0, calendar: calendar)))
+        }
+    }
+    
+    
+    /*
+        Sets up years for picker view. Default range goes from 2000 to 3000.
+        
+        @methodtype Command
+        @pre -
+        @post Years for picker are set up
+    */
+    func setUpYears()
+    {
+        for index in 2000...3000
+        {
+            years.append(index)
+        }
+        picker.selectRow(0, inComponent: 1, animated: false)
     }
     
     
@@ -137,8 +159,8 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func setSelection(month: Int, year: Int)
     {
-        let index = (year - 1) * 12 + month
-        picker.selectRow(index - 2000*12, inComponent: 0, animated: false)
+        picker.selectRow(599 + month, inComponent: 0, animated: false)
+        picker.selectRow(year - 2000, inComponent: 1, animated: false)
     }
     
     
@@ -151,7 +173,7 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func getSelection()->NSDate
     {
-        return months[picker.selectedRowInComponent(0)]
+        return NSDate(month: months[picker.selectedRowInComponent(0)], year: years[picker.selectedRowInComponent(1)], calendar: calendar)
     }
     
     
@@ -164,7 +186,33 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int
     {
-        return 1
+        return 2
+    }
+    
+    
+    /*
+        UIPickerViewDataSource protocol function. Returns width for components.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns width for components
+    */
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat
+    {
+        return 80
+    }
+    
+    
+    /*
+        UIPickerViewDataSource protocol function. Returns row height for a component.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns row height for a component
+    */
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
+    {
+        return 35
     }
     
     
@@ -177,7 +225,17 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return months.count
+        switch component
+        {
+        case 0:
+            return months.count
+        
+        case 1:
+            return years.count
+        
+        default:
+            return 0
+        }
     }
     
     
@@ -190,6 +248,16 @@ class UIMonthPickerView: UIView, UIPickerViewDataSource, UIPickerViewDelegate
     */
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String!
     {
-        return dateFormatter.stringFromDate(months[row])
+        switch component
+        {
+        case 0:
+            return monthDescriptions[months[row]-1]
+            
+        case 1:
+            return years[row].description
+            
+        default:
+            return ""
+        }
     }
 }
