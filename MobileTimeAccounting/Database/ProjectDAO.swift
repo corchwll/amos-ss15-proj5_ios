@@ -45,8 +45,9 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.insert(id <- project.id, name <- project.name, finalDate <- Double(project.finalDate.timeIntervalSince1970),
-            latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)!
+        if let result = projects.insert(id <- project.id, name <- project.name, finalDate <- Double(project.finalDate.timeIntervalSince1970),
+            latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)
+        {}
     }
     
     

@@ -42,6 +42,7 @@ class SessionsCSVExporter
     {
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
         dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US")
     }
     
     

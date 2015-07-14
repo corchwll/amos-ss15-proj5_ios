@@ -464,6 +464,19 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     /*
+        Function is called when asking for delete confirmation button title. Changed title form "Delete" to "Archive".
+        
+        @methodtype Command
+        @pre -
+        @post Returns button title
+    */
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String!
+    {
+        return "Archive"
+    }
+    
+    
+    /*
         Function for 'edit'-button selector. Enables editing of projects and morphs 'edit' into 'done'.
         
         @methodtype Command

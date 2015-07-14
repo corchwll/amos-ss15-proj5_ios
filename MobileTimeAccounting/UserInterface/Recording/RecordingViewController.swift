@@ -348,8 +348,9 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     */
     func getCellStringForDuration(startTime: NSDate, endTime: NSDate)->String
     {
-        let durationInHours = (Int(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)) / 3600
-        return "\(durationInHours) h"
+        let durationInHours = (Double(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)) / 3600
+        let durationInHoursRounded = Double(Int(durationInHours * 10)) / 10.0
+        return "\(durationInHoursRounded) h"
     }
     
     

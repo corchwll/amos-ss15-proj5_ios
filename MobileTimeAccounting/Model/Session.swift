@@ -79,7 +79,7 @@ class Session
     */
     func getDurationInSeconds()->Int
     {
-        return Int(endTime.timeIntervalSince1970) - Int(startTime.timeIntervalSince1970)
+        return Int(endTime.timeIntervalSince1970 - startTime.timeIntervalSince1970)
     }
     
     

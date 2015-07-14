@@ -37,7 +37,7 @@ class PublicHolidays
         let endDateComponents = calendar.components(.CalendarUnitYear, fromDate: endDate)
         
         var publicHolidays = [NSDate]()
-        for year in startDateComponents.year...endDateComponents.year
+        for var year = startDateComponents.year; year <= endDateComponents.year; ++year
         {
             publicHolidays += calculatePublicHolidaysForYear(year)
         }
