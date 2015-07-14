@@ -46,7 +46,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
+    
         sessionTimer = SessionTimer(delegate: self)
         setNotification(NSDate().dateBySettingTime(notificationTime.hour, minute: notificationTime.minute, second: notificationTime.seconds)!)
         

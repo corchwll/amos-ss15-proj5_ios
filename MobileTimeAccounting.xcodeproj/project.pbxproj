@@ -81,6 +81,7 @@
 		E4F666B71B30C4AD0000F395 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */; };
 		E4F666B91B30C5CA0000F395 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48516F41B3023F500F54F9A /* SessionManager.swift */; };
 		E4F666BA1B30C5D70000F395 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E405609D1B2E15850009362C /* Alerts.swift */; };
+		E4FF639A1B554F6F0053D06C /* UIVerticalAlignLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF63991B554F6F0053D06C /* UIVerticalAlignLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +220,7 @@
 		E4F54CAE1B167701008E92C2 /* OvertimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvertimeHelper.swift; sourceTree = "<group>"; };
 		E4F666B41B30BE150000F395 /* SessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionTests.swift; sourceTree = "<group>"; };
 		E4F666B61B30C4AD0000F395 /* SessionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		E4FF63991B554F6F0053D06C /* UIVerticalAlignLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVerticalAlignLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				E405609D1B2E15850009362C /* Alerts.swift */,
+				E4FF63991B554F6F0053D06C /* UIVerticalAlignLabel.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				E48516F51B3023F500F54F9A /* SessionManager.swift in Sources */,
 				E44092D01B0D0F19006CE944 /* SessionTableViewCell.swift in Sources */,
 				E4B1C1011B20BADD0025283C /* SessionsCSVExporter.swift in Sources */,
+				E4FF639A1B554F6F0053D06C /* UIVerticalAlignLabel.swift in Sources */,
 				E41B9C331AEF8AC600EE9CFD /* SessionDAO.swift in Sources */,
 				E480DE131B36FD65005CC4C4 /* Settings.swift in Sources */,
 				E49C33EC1B3C276600B1039C /* SessionValidator.swift in Sources */,
