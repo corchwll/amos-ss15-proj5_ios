@@ -1184,8 +1184,8 @@
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hi-L5-Xfc">
-                                                    <rect key="frame" x="545" y="25" width="40" height="40"/>
-                                                    <color key="backgroundColor" name="selectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <rect key="frame" x="540" y="31" width="40" height="40"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.56862745098039214" blue="0.55686274509803924" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="LLP-xQ-OL8"/>
                                                         <constraint firstAttribute="height" constant="40" id="hGX-vm-eq6"/>
@@ -1193,7 +1193,7 @@
                                                     <state key="normal" image="GPSIcon"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="5"/>
+                                                            <integer key="value" value="20"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -1201,21 +1201,21 @@
                                                     </connections>
                                                 </button>
                                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="foz-J3-mlm">
-                                                    <rect key="frame" x="547" y="29" width="37" height="37"/>
+                                                    <rect key="frame" x="542" y="32" width="37" height="37"/>
                                                     <color key="color" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="hPL-yt-SGe" firstAttribute="leading" secondItem="Lr9-Z9-x9e" secondAttribute="leading" constant="15" id="2Z7-7v-jte"/>
                                                 <constraint firstAttribute="bottom" secondItem="hWS-AK-Uo9" secondAttribute="bottom" constant="34" id="48C-Bq-fYN"/>
-                                                <constraint firstAttribute="trailing" secondItem="foz-J3-mlm" secondAttribute="trailing" constant="16" id="6sr-Dr-Qec"/>
-                                                <constraint firstAttribute="trailing" secondItem="4Hi-L5-Xfc" secondAttribute="trailing" constant="15" id="LIj-Ut-iMn"/>
+                                                <constraint firstAttribute="trailing" secondItem="foz-J3-mlm" secondAttribute="trailing" constant="21" id="6sr-Dr-Qec"/>
+                                                <constraint firstAttribute="trailing" secondItem="4Hi-L5-Xfc" secondAttribute="trailing" constant="20" id="LIj-Ut-iMn"/>
                                                 <constraint firstItem="DUy-Uz-3oN" firstAttribute="leading" secondItem="Lr9-Z9-x9e" secondAttribute="leading" constant="15" id="OJt-tC-PL5"/>
                                                 <constraint firstItem="hWS-AK-Uo9" firstAttribute="leading" secondItem="Lr9-Z9-x9e" secondAttribute="leading" constant="15" id="YHZ-LC-ydT"/>
-                                                <constraint firstAttribute="bottom" secondItem="4Hi-L5-Xfc" secondAttribute="bottom" constant="24" id="Zr3-rz-fkA"/>
+                                                <constraint firstAttribute="bottom" secondItem="4Hi-L5-Xfc" secondAttribute="bottom" constant="18" id="Zr3-rz-fkA"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="hPL-yt-SGe" secondAttribute="bottom" id="nM2-WC-tJ6"/>
                                                 <constraint firstItem="DUy-Uz-3oN" firstAttribute="top" secondItem="Lr9-Z9-x9e" secondAttribute="top" constant="6" id="tWs-hP-aCv"/>
-                                                <constraint firstAttribute="bottom" secondItem="foz-J3-mlm" secondAttribute="bottom" constant="23.5" id="zaM-t6-HLu"/>
+                                                <constraint firstAttribute="bottom" secondItem="foz-J3-mlm" secondAttribute="bottom" constant="20" id="zaM-t6-HLu"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>

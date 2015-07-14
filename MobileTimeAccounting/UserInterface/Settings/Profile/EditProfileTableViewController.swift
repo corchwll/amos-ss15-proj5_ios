@@ -33,7 +33,11 @@ class EditProfileTableViewController: UITableViewController
     @IBOutlet weak var weeklyWorkingTimeTextField: UITextField!
     @IBOutlet weak var totalVacationTimeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    
     var delegate: EditProfileTableViewControllerDelegate!
+    var validId = true
+    var validWeeklyWorkingTime = true
+    var validTotalVacationTime = true
     
     
     /*
@@ -109,13 +113,14 @@ class EditProfileTableViewController: UITableViewController
         if Profile.isValidId(employeeIdTextField.text)
         {
             employeeIdTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validId = true
         }
         else
         {
             employeeIdTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validId = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -131,13 +136,14 @@ class EditProfileTableViewController: UITableViewController
         if Profile.isValidWeeklyWorkingTime(weeklyWorkingTimeTextField.text)
         {
             weeklyWorkingTimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validWeeklyWorkingTime = true
         }
         else
         {
             weeklyWorkingTimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validWeeklyWorkingTime = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -153,13 +159,14 @@ class EditProfileTableViewController: UITableViewController
         if Profile.isValidTotalVacationTime(totalVacationTimeTextField.text)
         {
             totalVacationTimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validTotalVacationTime = true
         }
         else
         {
             totalVacationTimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validTotalVacationTime = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -172,15 +179,15 @@ class EditProfileTableViewController: UITableViewController
     */
     func refreshDoneButtonState()
     {
-        var isEmpty = false
+        var isValid = true
         
-        isEmpty = isEmpty || firstnameTextField.text.isEmpty
-        isEmpty = isEmpty || lastnameTextField.text.isEmpty
-        isEmpty = isEmpty || employeeIdTextField.text.isEmpty
-        isEmpty = isEmpty || weeklyWorkingTimeTextField.text.isEmpty
-        isEmpty = isEmpty || totalVacationTimeTextField.text.isEmpty
+        isValid = isValid && !firstnameTextField.text.isEmpty
+        isValid = isValid && !lastnameTextField.text.isEmpty
+        isValid = isValid && validId
+        isValid = isValid && validWeeklyWorkingTime
+        isValid = isValid && validTotalVacationTime
         
-        doneButton.enabled = !isEmpty
+        doneButton.enabled = isValid
     }
     
     

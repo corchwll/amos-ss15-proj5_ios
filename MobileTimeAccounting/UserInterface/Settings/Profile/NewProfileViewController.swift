@@ -37,6 +37,11 @@ class NewProfileViewController: UITableViewController
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var delegate: NewProfileViewControllerDelegate!
+    var validId = false
+    var validWeeklyWorkingTime = false
+    var validTotalVacationTime = false
+    var validCurrentVacationTime = false
+    var validOvertime = false
     
     
     /*
@@ -107,12 +112,14 @@ class NewProfileViewController: UITableViewController
         if Profile.isValidId(employeeIdTextField.text)
         {
             employeeIdTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validId = true
         }
         else
         {
             employeeIdTextField.textColor = UIColor.redColor()
+            validId = false
         }
+        refreshDoneButtonState()
     }
 
     
@@ -128,13 +135,14 @@ class NewProfileViewController: UITableViewController
         if Profile.isValidWeeklyWorkingTime(weeklyWorkingTimeTextField.text)
         {
             weeklyWorkingTimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validWeeklyWorkingTime = true
         }
         else
         {
             weeklyWorkingTimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validWeeklyWorkingTime = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -150,13 +158,14 @@ class NewProfileViewController: UITableViewController
         if Profile.isValidTotalVacationTime(totalVacationTimeTextField.text)
         {
             totalVacationTimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validTotalVacationTime = true
         }
         else
         {
             totalVacationTimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validTotalVacationTime = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -172,13 +181,14 @@ class NewProfileViewController: UITableViewController
         if Profile.isValidCurrentVacationTime(currentVacationTimeTextField.text)
         {
             currentVacationTimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validCurrentVacationTime = true
         }
         else
         {
             currentVacationTimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validCurrentVacationTime = false
         }
+        refreshDoneButtonState()
     }
    
     
@@ -194,13 +204,14 @@ class NewProfileViewController: UITableViewController
         if Profile.isValidCurrentOvertime(currentOvertimeTextField.text)
         {
             currentOvertimeTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validOvertime = true
         }
         else
         {
             currentOvertimeTextField.textColor = UIColor.redColor()
-            doneButton.enabled = false
+            validOvertime = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -213,16 +224,16 @@ class NewProfileViewController: UITableViewController
     */
     func refreshDoneButtonState()
     {
-        var isEmpty = false
+        var isValid = true
         
-        isEmpty = isEmpty || firstnameTextField.text.isEmpty
-        isEmpty = isEmpty || lastnameTextField.text.isEmpty
-        isEmpty = isEmpty || employeeIdTextField.text.isEmpty
-        isEmpty = isEmpty || weeklyWorkingTimeTextField.text.isEmpty
-        isEmpty = isEmpty || totalVacationTimeTextField.text.isEmpty
-        isEmpty = isEmpty || currentVacationTimeTextField.text.isEmpty
-        isEmpty = isEmpty || currentOvertimeTextField.text.isEmpty
+        isValid = isValid && !firstnameTextField.text.isEmpty
+        isValid = isValid && !lastnameTextField.text.isEmpty
+        isValid = isValid && validId
+        isValid = isValid && validWeeklyWorkingTime
+        isValid = isValid && validTotalVacationTime
+        isValid = isValid && validCurrentVacationTime
+        isValid = isValid && validOvertime
         
-        doneButton.enabled = !isEmpty
+        doneButton.enabled = isValid
     }
 }

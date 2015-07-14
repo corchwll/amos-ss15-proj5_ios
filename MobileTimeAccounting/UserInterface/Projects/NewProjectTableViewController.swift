@@ -37,6 +37,8 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     @IBOutlet weak var locationProcessIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var findLocationButton: UIButton!
     
+    var validProjectId = false
+    
     var delegate: NewProjectDelegate!
     let datePicker = UIDatePicker()
     let dateFormatter = NSDateFormatter()
@@ -53,6 +55,7 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
         setUpDateFormatter()
         setUpDatePickerInputView()
         setUpLocationManager()
@@ -89,6 +92,13 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     }
     
     
+    /*
+        
+        
+        @methodtype
+        @pre
+        @post
+    */
     func setUpLocationManager()
     {
         locationManager.delegate = self
@@ -122,12 +132,14 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
         if Project.isValidId(projectIdTextField.text)
         {
             projectIdTextField.textColor = UIColor.blackColor()
-            refreshDoneButtonState()
+            validProjectId = true
         }
         else
         {
             projectIdTextField.textColor = UIColor.redColor()
+            validProjectId = false
         }
+        refreshDoneButtonState()
     }
     
     
@@ -153,12 +165,12 @@ class NewProjectTableViewController: UITableViewController, CLLocationManagerDel
     */
     func refreshDoneButtonState()
     {
-        var isEmpty = false
+        var isValid = true
         
-        isEmpty = isEmpty || projectIdTextField.text.isEmpty
-        isEmpty = isEmpty || projectNameTextField.text.isEmpty
+        isValid = isValid && validProjectId
+        isValid = isValid && !projectNameTextField.text.isEmpty
     
-        doneButton.enabled = !isEmpty
+        doneButton.enabled = isValid
     }
     
     

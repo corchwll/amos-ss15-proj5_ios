@@ -77,7 +77,7 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     */
     @IBAction func cancel(sender: AnyObject)
     {
-        dismissViewControllerAnimated(false, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -90,6 +90,6 @@ class SendCSVMailViewController: UIViewController, MFMailComposeViewControllerDe
     */
     func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError)
     {
-        dismissViewControllerAnimated(false, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
