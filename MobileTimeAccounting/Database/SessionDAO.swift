@@ -27,8 +27,8 @@ class SessionDAO
 {
     let id = Expression<Int>("id")
     let projectId = Expression<String>("project_id")
-    let startTime = Expression<Int>("timestamp_start")
-    let endTime = Expression<Int>("timestamp_end")
+    let startTime = Expression<Double>("timestamp_start")
+    let endTime = Expression<Double>("timestamp_end")
     
     
     /*
@@ -43,8 +43,8 @@ class SessionDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
         
-        var start = (Int(session.startTime.timeIntervalSince1970))
-        var end = (Int(session.endTime.timeIntervalSince1970))
+        var start = (Double(session.startTime.timeIntervalSince1970))
+        var end = (Double(session.endTime.timeIntervalSince1970))
 
         if let insert = sessions.insert(projectId <- project.id, startTime <- start, endTime <- end){}
     }
@@ -89,7 +89,7 @@ class SessionDAO
         let startOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).startOfMonth()!
         let endOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).endOfMonth()!
         
-        for sessionRow in sessions.filter(projectId == project.id && startTime >= (Int(startOfMonth.timeIntervalSince1970)) && endTime <= (Int(endOfMonth.timeIntervalSince1970))).order(startTime.asc)
+        for sessionRow in sessions.filter(projectId == project.id && startTime >= (Double(startOfMonth.timeIntervalSince1970)) && endTime <= (Double(endOfMonth.timeIntervalSince1970))).order(startTime.asc)
         {
             var session = Session(id: sessionRow[id], startTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[startTime])),
                 endTime: NSDate(timeIntervalSince1970: NSTimeInterval(sessionRow[endTime])))
@@ -111,8 +111,8 @@ class SessionDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
         
-        let fromTimeSince1970 = Int(fromTime.timeIntervalSince1970)
-        let toTimeSince1970 = Int(toTime.timeIntervalSince1970)
+        let fromTimeSince1970 = Double(fromTime.timeIntervalSince1970)
+        let toTimeSince1970 = Double(toTime.timeIntervalSince1970)
         
         var queriedSessions: [Session] = []
         for sessionRow in sessions.filter(!(startTime <= fromTimeSince1970 && endTime <= fromTimeSince1970) && !(startTime >= toTimeSince1970 && endTime >= toTimeSince1970))
@@ -138,8 +138,8 @@ class SessionDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let sessions = database["sessions"]
         
-        let fromTimeSince1970 = Int(fromTime.timeIntervalSince1970)
-        let toTimeSince1970 = Int(toTime.timeIntervalSince1970)
+        let fromTimeSince1970 = Double(fromTime.timeIntervalSince1970)
+        let toTimeSince1970 = Double(toTime.timeIntervalSince1970)
         
         var queriedSessions: [Session] = []
         for sessionRow in sessions.filter(projectId == project.id && !(startTime <= fromTimeSince1970 && endTime <= fromTimeSince1970) && !(startTime >= toTimeSince1970 && endTime >= toTimeSince1970))

@@ -27,7 +27,7 @@ class ProjectDAO
 {
     let id = Expression<String>("id")
     let name = Expression<String>("name")
-    let finalDate = Expression<Int>("final_date")
+    let finalDate = Expression<Double>("final_date")
     let latitude = Expression<Double>("latitude")
     let longitude = Expression<Double>("longitude")
     let isArchived = Expression<Bool>("is_archived")
@@ -45,7 +45,7 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.insert(id <- project.id, name <- project.name, finalDate <- Int(project.finalDate.timeIntervalSince1970),
+        projects.insert(id <- project.id, name <- project.name, finalDate <- Double(project.finalDate.timeIntervalSince1970),
             latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)!
     }
     
@@ -88,7 +88,7 @@ class ProjectDAO
         let startOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).startOfMonth()!
         let endOfMonth = NSDate(month: month, year: year, calendar: NSCalendar.currentCalendar()).endOfMonth()!
         
-        for projectRow in projects.join(database["sessions"], on: projects[id] == sessionDAO.projectId).filter(sessionDAO.startTime >= (Int(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Int(endOfMonth.timeIntervalSince1970))).group(projects[id])
+        for projectRow in projects.join(database["sessions"], on: projects[id] == sessionDAO.projectId).filter(sessionDAO.startTime >= (Double(startOfMonth.timeIntervalSince1970)) && sessionDAO.endTime <= (Double(endOfMonth.timeIntervalSince1970))).group(projects[id])
         {
             var project = Project(id: projectRow[projects[id]], name: projectRow[name], finalDate: NSDate(timeIntervalSince1970: NSTimeInterval(projectRow[finalDate])), latitude: projectRow[latitude], longitude: projectRow[longitude], isArchived: projectRow[isArchived])
             queriedProjects.append(project)
@@ -130,7 +130,7 @@ class ProjectDAO
         let database = sqliteHelper.getSQLiteDatabase()
         let projects = database["projects"]
         
-        projects.filter(id == project.id).update(name <- project.name, finalDate <- Int(project.finalDate.timeIntervalSince1970),
+        projects.filter(id == project.id).update(name <- project.name, finalDate <- Double(project.finalDate.timeIntervalSince1970),
             latitude <- project.location.coordinate.latitude, longitude <- project.location.coordinate.longitude, isArchived <- project.isArchived)!
     }
     
