@@ -20,9 +20,10 @@ import UIKit
 
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate
+class AppDelegate: UIResponder, UIApplicationDelegate, NewProfileViewControllerDelegate
 {
     var window: UIWindow?
+    var mainViewController: UITabBarController!
 
 
     /*
@@ -39,13 +40,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         setUpOneTimeRegistration()
         setUpNavigationBarStyle()
         setUpTabBarStyle()
-    
         return true
     }
     
     
     /*
-        Function is setting up one time registration on first startup. After registration is over, the corosponding screen will be skipped from there on.
+        Function is setting up one time registration on first startup. 
+        After registration is over the registration screen will be skipped from there on.
         
         @methodtype Command
         @pre -
@@ -53,16 +54,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     */
     func setUpOneTimeRegistration()
     {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        mainViewController = storyboard.instantiateViewControllerWithIdentifier("main") as! UITabBarController
+
         if profileDAO.isRegistered()
         {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("main") as! UITabBarController
-            window?.rootViewController = mainViewController
+            window!.rootViewController = mainViewController
         }
         else
         {
-            println("not yet registered")
+            let navigationViewController = window!.rootViewController as! UINavigationController
+            let registrationViewController = navigationViewController.visibleViewController as! NewProfileViewController
+            registrationViewController.delegate = self
         }
+    }
+    
+    
+    /*
+        Callback function, called when profile did register. Reasigns main view controller as root view.
+        
+        @methodtype Command
+        @pre -
+        @post Main view controller set as root view
+    */
+    func didRegisterProfile()
+    {
+        window!.rootViewController = mainViewController
     }
     
     

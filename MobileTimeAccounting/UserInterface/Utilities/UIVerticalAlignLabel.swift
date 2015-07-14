@@ -38,12 +38,26 @@ class UIVerticalAlignLabel: UILabel
     }
     
     
+    /*
+        Initializer for label.
+        
+        @methodtype Constructor
+        @pre -
+        @post -
+    */
     required init(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
     }
     
     
+    /*
+        Returns text rectangle for given bounds.
+        
+        @methodtype Getter
+        @pre -
+        @post Returns text rectangle bounds
+    */
     override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines: Int) -> CGRect
     {
         let rect = super.textRectForBounds(bounds, limitedToNumberOfLines: limitedToNumberOfLines)
@@ -65,6 +79,13 @@ class UIVerticalAlignLabel: UILabel
     }
     
     
+    /*
+        Draws text inside of the given rectangle.
+        
+        @methodtype Command
+        @pre -
+        @post Draws text inside a given rectangle
+    */
     override func drawTextInRect(rect: CGRect)
     {
         let r = self.textRectForBounds(rect, limitedToNumberOfLines: self.numberOfLines)

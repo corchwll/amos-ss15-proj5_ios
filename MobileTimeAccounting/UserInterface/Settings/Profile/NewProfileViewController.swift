@@ -19,6 +19,12 @@
 import UIKit
 
 
+protocol NewProfileViewControllerDelegate
+{
+    func didRegisterProfile()
+}
+
+
 class NewProfileViewController: UITableViewController
 {
     @IBOutlet weak var firstnameTextField: UITextField!
@@ -29,7 +35,9 @@ class NewProfileViewController: UITableViewController
     @IBOutlet weak var currentVacationTimeTextField: UITextField!
     @IBOutlet weak var currentOvertimeTextField: UITextField!
     @IBOutlet weak var doneButton: UIBarButtonItem!
-
+    
+    var delegate: NewProfileViewControllerDelegate!
+    
     
     /*
         iOS listener function. Called when pressing 'done'-button, creating new profile.
@@ -41,7 +49,7 @@ class NewProfileViewController: UITableViewController
     @IBAction func done(sender: AnyObject)
     {
         setUserProfile()
-        performSegueWithIdentifier("main_segue", sender: nil)
+        delegate.didRegisterProfile()
     }
     
     

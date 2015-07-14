@@ -80,6 +80,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
             if project != nil
             {
                 setButtonStateForHasProject(true)
+                setUpNavigationItemButton()
             }
             else
             {
@@ -103,6 +104,7 @@ class RecordingViewController: UIViewController, UITableViewDataSource, UITableV
     {
         super.viewDidDisappear(animated)
         
+        projectSessionsTableView.setEditing(false, animated: false)
         if sessionTimer.isRunning
         {
             sessionTimer.pause()
